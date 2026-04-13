@@ -6,19 +6,26 @@
   <title>MyUS — Ship Smarter. Save More.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:       #10283d;
-      --orange:     #ff7a00;
-      --orange-btn: #ff981f;
-      --blue:       #1985e3;
-      --blue-grad:  linear-gradient(144deg, #1985e3 0%, #2b73b2 100%);
-      --blue-light: #e8f3fd;
-      --muted:      #65676a;
-      --nav-color:  #45484b;
+      --navy:        #0f2336;
+      --navy-80:     rgba(15,35,54,0.8);
+      --navy-50:     rgba(15,35,54,0.5);
+      --navy-20:     rgba(15,35,54,0.12);
+      --orange:      #ff7a00;
+      --orange-btn:  #ff981f;
+      --orange-dark: #e06900;
+      --blue:        #1985e3;
+      --blue-dark:   #1270c4;
+      --blue-light:  #eaf4fd;
+      --blue-mid:    #d0e8fa;
+      --muted:       #5f6b78;
+      --border:      rgba(15,35,54,0.1);
+      --white:       #ffffff;
+      --off-white:   #f7f9fc;
     }
 
     html { scroll-behavior: smooth; }
@@ -26,726 +33,682 @@
     body {
       font-family: 'Poppins', system-ui, sans-serif;
       color: var(--navy);
-      background: #fff;
+      background: var(--white);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       line-height: 1;
     }
 
-    /* ── HEADER ─────────────────────────────────────────────────────── */
+    /* ════════════════════════════════════════
+       HEADER
+    ════════════════════════════════════════ */
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 200;
-      background: #fff;
-      border-bottom: 1px solid rgba(16, 40, 61, 0.08);
+      z-index: 500;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
     .header-inner {
-      max-width: 1340px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 0 40px;
-      height: 72px;
+      padding: 0 48px;
+      height: 68px;
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 40px;
     }
 
     /* Logo */
     .logo {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
       text-decoration: none;
       flex-shrink: 0;
     }
 
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-    }
+    .logo-mark { width: 36px; height: 36px; flex-shrink: 0; }
 
-    .logo-text {
+    .logo-wordmark {
       display: flex;
       flex-direction: column;
+      gap: 1px;
+    }
+
+    .logo-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.4px;
       line-height: 1;
     }
 
-    .logo-myus {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: -0.3px;
-    }
-
-    .logo-tagline {
-      font-size: 7.5px;
+    .logo-sub {
+      font-size: 8px;
       font-weight: 400;
       color: var(--muted);
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
-      margin-top: 2px;
+      line-height: 1;
     }
 
     /* Nav */
     .site-nav {
+      flex: 1;
       display: flex;
       align-items: center;
-      gap: 4px;
-      flex: 1;
       justify-content: center;
+      gap: 2px;
     }
 
     .site-nav a {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--nav-color);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
       text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      letter-spacing: 0.15px;
-      transition: background 0.15s, color 0.15s;
+      padding: 7px 14px;
+      border-radius: 8px;
+      letter-spacing: 0.1px;
       white-space: nowrap;
+      transition: color 0.15s, background 0.15s;
     }
 
-    .site-nav a:hover {
-      background: rgba(16,40,61,0.05);
-      color: var(--navy);
-    }
+    .site-nav a:hover { color: var(--navy); background: var(--off-white); }
 
-    /* Header actions */
+    /* Actions */
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       flex-shrink: 0;
     }
 
     .btn-icon {
-      width: 38px;
-      height: 38px;
+      width: 36px; height: 36px;
+      background: none; border: none; cursor: pointer;
       border-radius: 8px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--nav-color);
-      transition: background 0.15s;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      transition: background 0.15s, color 0.15s;
     }
-    .btn-icon:hover { background: rgba(16,40,61,0.06); }
+    .btn-icon:hover { background: var(--off-white); color: var(--navy); }
 
     .btn-login {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--nav-color);
+      font-size: 13px; font-weight: 600;
+      color: var(--navy);
       text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: background 0.15s;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      transition: border-color 0.15s, background 0.15s;
     }
-    .btn-login:hover { background: rgba(16,40,61,0.06); }
+    .btn-login:hover { border-color: var(--navy-20); background: var(--off-white); }
 
     .btn-signup {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: #fff;
+      font-size: 13px; font-weight: 600;
+      color: var(--white);
       text-decoration: none;
-      padding: 10px 22px;
-      border-radius: 7px;
+      padding: 9px 22px;
+      border-radius: 8px;
       background: var(--orange-btn);
-      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-      box-shadow: 0 2px 8px rgba(255,152,31,0.35);
+      box-shadow: 0 1px 3px rgba(255,152,31,0.4), 0 4px 12px rgba(255,152,31,0.2);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
     }
     .btn-signup:hover {
-      background: #e86e00;
+      background: var(--orange-dark);
+      box-shadow: 0 2px 6px rgba(255,152,31,0.45), 0 6px 20px rgba(255,152,31,0.25);
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(255,152,31,0.4);
     }
 
-    /* Mobile menu toggle */
     .menu-toggle {
       display: none;
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      color: var(--navy);
+      width: 36px; height: 36px;
+      background: none; border: none; cursor: pointer;
+      align-items: center; justify-content: center;
+      border-radius: 8px; color: var(--navy);
     }
 
-    /* ── HERO ────────────────────────────────────────────────────────── */
-    .hero-section {
-      width: 100%;
-      padding: 72px 40px 80px;
+    /* ════════════════════════════════════════
+       HERO SECTION
+    ════════════════════════════════════════ */
+    .hero {
+      background: var(--white);
+      padding: 80px 48px 96px;
     }
 
     .hero-inner {
-      max-width: 1260px;
+      max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 460px;
-      gap: 64px;
+      grid-template-columns: 1fr 480px;
+      gap: 80px;
       align-items: center;
     }
 
     /* ── Left ── */
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 44px;
+    .hero-left { display: flex; flex-direction: column; gap: 40px; }
+
+    /* Eyebrow */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      border-radius: 100px;
+      padding: 5px 14px 5px 8px;
+      width: fit-content;
     }
 
-    .hero-text { display: flex; flex-direction: column; gap: 20px; }
+    .eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
 
-    h1.hero-title {
-      font-size: clamp(36px, 4vw, 52px);
+    .eyebrow span {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.2px;
+    }
+
+    /* Headline */
+    .headline-block { display: flex; flex-direction: column; gap: 16px; }
+
+    h1 {
+      font-size: clamp(40px, 4.5vw, 56px);
       font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.8px;
+      line-height: 1.08;
+      letter-spacing: -1.2px;
       color: var(--navy);
     }
 
-    h1.hero-title .orange { color: var(--orange); }
+    h1 .orange { color: var(--orange); }
 
     .hero-desc {
-      font-size: clamp(15px, 1.4vw, 18px);
+      font-size: clamp(15px, 1.3vw, 17px);
       font-weight: 400;
-      color: #4a5568;
-      line-height: 1.6;
-      max-width: 520px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 480px;
     }
 
     .hero-desc strong { font-weight: 600; color: var(--navy); }
 
     /* Features */
-    .features { display: flex; flex-direction: column; gap: 0; }
+    .features-stack { display: flex; flex-direction: column; gap: 10px; }
 
-    /* TruePrice card */
+    /* TruePrice pill */
     .trueprice {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       background: var(--blue-light);
-      border-radius: 14px;
-      padding: 18px 22px;
-      margin-bottom: 20px;
+      border: 1px solid var(--blue-mid);
+      border-radius: 16px;
+      padding: 16px 20px;
     }
 
     .trueprice-badge {
-      width: 56px;
-      height: 56px;
+      width: 52px; height: 52px;
       border-radius: 14px;
-      background: var(--blue-grad);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: linear-gradient(135deg, #1985e3, #1362b0);
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 4px 14px rgba(25,133,227,0.3);
+      box-shadow: 0 4px 16px rgba(25,133,227,0.3);
     }
 
-    .trueprice-content { flex: 1; }
+    .trueprice-body { flex: 1; min-width: 0; }
 
     .trueprice-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.3;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: baseline;
-      gap: 1px;
+      font-size: 15px; font-weight: 700; color: var(--navy);
+      line-height: 1.3; margin-bottom: 3px;
+      display: flex; align-items: baseline; gap: 1px;
     }
 
     .trueprice-name sup {
-      font-size: 9px;
-      font-weight: 600;
-      vertical-align: super;
-      letter-spacing: 0.5px;
+      font-size: 8px; font-weight: 600;
+      letter-spacing: 0.5px; vertical-align: super;
     }
 
     .trueprice-desc {
-      font-size: 13.5px;
-      font-weight: 400;
-      color: var(--nav-color);
-      line-height: 1.45;
+      font-size: 13px; font-weight: 400;
+      color: var(--muted); line-height: 1.5;
     }
 
     /* Bullet features */
-    .feature-list { display: flex; flex-direction: column; gap: 14px; }
+    .feature-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
 
     .feature {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      padding: 4px 0;
+      gap: 12px;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
     }
 
-    .feature-icon-wrap {
-      width: 36px;
-      height: 36px;
+    .feat-icon {
+      width: 34px; height: 34px;
       border-radius: 10px;
       background: var(--blue-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 1px solid var(--blue-mid);
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      margin-top: 1px;
     }
 
-    .feature-body {}
+    .feat-body {}
 
-    .feature-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--navy);
-      line-height: 1.3;
+    .feat-title {
+      font-size: 13.5px; font-weight: 600;
+      color: var(--navy); line-height: 1.3;
       margin-bottom: 3px;
     }
 
-    .feature-desc {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--muted);
-      line-height: 1.45;
+    .feat-desc {
+      font-size: 12px; font-weight: 400;
+      color: var(--muted); line-height: 1.45;
     }
 
-    /* ── Right — Calculator card ── */
+    /* ════════════════════════════════════════
+       CALC CARD (right)
+    ════════════════════════════════════════ */
     .calc-card {
-      background: var(--blue-grad);
-      border-radius: 24px;
-      padding: 44px 40px 40px;
+      background: linear-gradient(152deg, #1a87e6 0%, #1362b0 100%);
+      border-radius: 28px;
+      padding: 40px 36px 36px;
       display: flex;
       flex-direction: column;
-      gap: 28px;
-      color: #fff;
-      box-shadow: 0 20px 60px rgba(25,133,227,0.28), 0 4px 16px rgba(16,40,61,0.1);
+      gap: 24px;
+      color: var(--white);
+      box-shadow:
+        0 2px 2px rgba(15,35,54,0.04),
+        0 8px 24px rgba(15,35,54,0.12),
+        0 24px 64px rgba(19,98,176,0.28);
+      position: relative;
+      overflow: hidden;
     }
 
-    .calc-head { display: flex; flex-direction: column; gap: 6px; }
+    /* Decorative light orb */
+    .calc-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      pointer-events: none;
+    }
+
+    .calc-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+
+    .calc-head { display: flex; flex-direction: column; gap: 6px; position: relative; }
 
     .calc-title {
-      font-size: 26px;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.3px;
+      font-size: 24px; font-weight: 700;
+      line-height: 1.2; letter-spacing: -0.4px;
     }
 
     .calc-subtitle {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.4;
-      color: rgba(255,255,255,0.72);
+      font-size: 14px; font-weight: 400;
+      color: rgba(255,255,255,0.65); line-height: 1.5;
     }
 
-    /* Form fields */
-    .calc-fields { display: flex; flex-direction: column; gap: 14px; }
+    /* Divider */
+    .calc-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+      position: relative;
+    }
 
-    .field { display: flex; flex-direction: column; gap: 7px; }
+    /* Form */
+    .calc-fields { display: flex; flex-direction: column; gap: 16px; position: relative; }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
 
     .field-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.85);
-      letter-spacing: 0.1px;
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
     }
+
+    /* Standard dropdown control */
+    .dropdown-wrap { position: relative; }
 
     .field-control {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #fff;
-      border-radius: 10px;
-      padding: 13px 16px;
+      background: rgba(255,255,255,0.97);
+      border-radius: 12px;
+      padding: 0 16px;
+      height: 50px;
       cursor: pointer;
       transition: box-shadow 0.15s;
+      border: 1.5px solid transparent;
+      user-select: none;
     }
-    .field-control:hover {
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
+
+    .field-control:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.25); }
+    .field-control.open  {
+      border-color: rgba(255,255,255,0.4);
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.18);
     }
 
     .field-value {
-      font-size: 15px;
-      font-weight: 400;
+      font-size: 14px; font-weight: 500;
       color: var(--navy);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
-    .field-value.placeholder { color: #aab0bb; }
+    .field-value.placeholder { color: #9baab8; font-weight: 400; }
 
     .chevron {
-      flex-shrink: 0;
-      color: #8896a3;
-      margin-left: 10px;
+      flex-shrink: 0; margin-left: 10px;
+      color: #8896a8;
+      transition: transform 0.2s;
+    }
+    .field-control.open .chevron { transform: rotate(180deg); }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 4px 6px rgba(15,35,54,0.06), 0 16px 40px rgba(15,35,54,0.16);
+      border: 1px solid var(--border);
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 600;
+      display: none;
+    }
+    .dropdown-menu.show {
+      display: block;
+      animation: menuIn 0.14s ease;
+    }
+
+    @keyframes menuIn {
+      from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .dropdown-menu::-webkit-scrollbar { width: 4px; }
+    .dropdown-menu::-webkit-scrollbar-thumb { background: rgba(15,35,54,0.12); border-radius: 4px; }
+
+    .dropdown-option {
+      padding: 11px 16px;
+      font-size: 13.5px; font-weight: 400;
+      color: var(--navy);
+      cursor: pointer;
+      transition: background 0.1s;
+      border-left: 3px solid transparent;
+    }
+
+    .dropdown-option:hover { background: var(--blue-light); }
+
+    .dropdown-option.selected {
+      background: var(--blue-light);
+      font-weight: 600;
+      color: var(--blue);
+      border-left-color: var(--blue);
     }
 
     /* Weight row */
     .weight-row {
       display: grid;
-      grid-template-columns: 140px 1fr;
+      grid-template-columns: 142px 1fr;
       gap: 12px;
       align-items: start;
     }
 
     .weight-control {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 10px;
-      padding: 13px 14px;
-      gap: 8px;
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.97);
+      border-radius: 12px;
+      padding: 0 14px;
+      height: 50px;
+      gap: 6px;
     }
 
     .weight-control input {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--navy);
-      font-family: inherit;
-      border: none;
-      outline: none;
-      background: transparent;
-      width: 44px;
+      font-size: 15px; font-weight: 500;
+      color: var(--navy); font-family: inherit;
+      border: none; outline: none; background: transparent;
+      width: 48px;
     }
+    .weight-control input::-webkit-inner-spin-button,
+    .weight-control input::-webkit-outer-spin-button { -webkit-appearance: none; }
 
     .weight-unit {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 15px;
-      color: var(--navy);
-      font-weight: 400;
-    }
-
-    .weight-note {
-      font-size: 12px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.5;
-      padding-top: 16px;
-    }
-
-    .weight-note a { color: #b8daff; text-decoration: underline; }
-
-    /* ── Dropdown ─────────────────────────────────────────────────────── */
-    .dropdown-wrap {
       position: relative;
-    }
-
-    .field-control {
-      position: relative;
-      user-select: none;
-    }
-
-    .field-control.open {
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.6);
-    }
-
-    .chevron {
-      transition: transform 0.2s ease;
-      flex-shrink: 0;
-    }
-
-    .field-control.open .chevron {
-      transform: rotate(180deg);
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      right: 0;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(16,40,61,0.18), 0 2px 8px rgba(16,40,61,0.08);
-      overflow: hidden;
-      z-index: 300;
-      max-height: 220px;
-      overflow-y: auto;
-      display: none;
-      animation: dropIn 0.15s ease;
-    }
-
-    .dropdown-menu.show { display: block; }
-
-    @keyframes dropIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .dropdown-menu::-webkit-scrollbar { width: 4px; }
-    .dropdown-menu::-webkit-scrollbar-track { background: transparent; }
-    .dropdown-menu::-webkit-scrollbar-thumb { background: rgba(16,40,61,0.15); border-radius: 4px; }
-
-    .dropdown-option {
-      padding: 11px 16px;
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--navy);
+      display: flex; align-items: center; gap: 4px;
+      font-size: 14px; font-weight: 500;
+      color: #6b7a88;
       cursor: pointer;
-      transition: background 0.1s;
-      border-left: 3px solid transparent;
+      padding: 4px 6px;
+      border-radius: 6px;
+      transition: background 0.15s;
     }
-
-    .dropdown-option:hover {
-      background: var(--blue-light);
-    }
-
-    .dropdown-option.selected {
-      background: var(--blue-light);
-      font-weight: 600;
-      border-left-color: var(--blue);
-      color: var(--blue);
-    }
-
-    /* weight unit dropdown */
-    .weight-unit {
-      position: relative;
-      cursor: pointer;
-    }
+    .weight-unit:hover { background: rgba(15,35,54,0.06); }
 
     .weight-unit-menu {
       position: absolute;
       top: calc(100% + 6px);
-      right: -14px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(16,40,61,0.16);
-      overflow: hidden;
-      z-index: 300;
+      right: -8px;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(15,35,54,0.06), 0 12px 32px rgba(15,35,54,0.14);
+      border: 1px solid var(--border);
+      min-width: 72px;
+      z-index: 600;
       display: none;
-      min-width: 70px;
-      animation: dropIn 0.15s ease;
+      overflow: hidden;
     }
-
-    .weight-unit-menu.show { display: block; }
+    .weight-unit-menu.show { display: block; animation: menuIn 0.14s ease; }
 
     .weight-unit-option {
-      padding: 10px 14px;
-      font-size: 14px;
-      color: var(--navy);
+      padding: 10px 16px;
+      font-size: 13.5px; color: var(--navy);
       cursor: pointer;
       transition: background 0.1s;
     }
-
     .weight-unit-option:hover { background: var(--blue-light); }
     .weight-unit-option.selected { font-weight: 600; color: var(--blue); }
 
-    /* CTA area */
-    .calc-cta { display: flex; flex-direction: column; gap: 12px; }
-
-    .btn-calculate {
-      width: 100%;
-      height: 52px;
-      background: var(--orange-btn);
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--navy);
-      cursor: pointer;
-      font-family: inherit;
-      letter-spacing: 0.1px;
-      transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
-      box-shadow: 0 2px 10px rgba(255,152,31,0.4);
+    .weight-note {
+      font-size: 11.5px; font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.55;
+      padding-top: 14px;
     }
+    .weight-note a { color: rgba(255,255,255,0.8); text-decoration: underline; }
 
-    .btn-calculate:hover {
-      background: #e86e00;
-      color: #fff;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(255,152,31,0.45);
-    }
-
-    .calc-trust {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-    }
-
-    .calc-trust p {
-      font-size: 12px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.4;
-      text-align: center;
-    }
-
-    /* ── Country search combobox ──────────────────────────────────────── */
+    /* ── Country search ── */
     .country-wrap { position: relative; }
 
     .country-control {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #fff;
-      border-radius: 10px;
-      padding: 0 14px;
-      height: 48px;
-      transition: box-shadow 0.15s;
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.97);
+      border-radius: 12px;
+      padding: 0 16px;
+      height: 50px;
+      border: 1.5px solid transparent;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
-
     .country-control:focus-within {
-      box-shadow: 0 0 0 2.5px rgba(255,255,255,0.7);
+      border-color: rgba(255,255,255,0.4);
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.18);
     }
 
-    .country-globe { flex-shrink: 0; }
+    .country-globe { flex-shrink: 0; color: #8896a8; }
 
     .country-input {
-      flex: 1;
-      border: none;
-      outline: none;
-      background: transparent;
-      font-family: inherit;
-      font-size: 15px;
-      font-weight: 400;
+      flex: 1; min-width: 0;
+      border: none; outline: none; background: transparent;
+      font-family: inherit; font-size: 14px; font-weight: 500;
       color: var(--navy);
-      min-width: 0;
     }
-
-    .country-input::placeholder { color: #aab0bb; }
+    .country-input::placeholder { color: #9baab8; font-weight: 400; }
 
     .country-clear {
-      flex-shrink: 0;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #aab0bb;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      padding: 0;
+      flex-shrink: 0; background: none; border: none;
+      cursor: pointer; color: #9baab8;
+      display: none; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; padding: 0;
       transition: background 0.15s, color 0.15s;
     }
-    .country-clear:hover { background: rgba(16,40,61,0.08); color: var(--navy); }
+    .country-clear:hover { background: rgba(15,35,54,0.08); color: var(--navy); }
     .country-clear.visible { display: flex; }
 
     .country-menu {
       position: absolute;
-      top: calc(100% + 6px);
-      left: 0; right: 0;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(16,40,61,0.18), 0 2px 8px rgba(16,40,61,0.08);
-      max-height: 220px;
-      overflow-y: auto;
-      z-index: 400;
-      display: none;
-      animation: dropIn 0.14s ease;
+      top: calc(100% + 6px); left: 0; right: 0;
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 4px 6px rgba(15,35,54,0.06), 0 16px 40px rgba(15,35,54,0.16);
+      border: 1px solid var(--border);
+      max-height: 216px; overflow-y: auto;
+      z-index: 600; display: none;
     }
-
-    .country-menu.show { display: block; }
+    .country-menu.show { display: block; animation: menuIn 0.14s ease; }
 
     .country-menu::-webkit-scrollbar { width: 4px; }
-    .country-menu::-webkit-scrollbar-track { background: transparent; }
-    .country-menu::-webkit-scrollbar-thumb { background: rgba(16,40,61,0.15); border-radius: 4px; }
+    .country-menu::-webkit-scrollbar-thumb { background: rgba(15,35,54,0.12); border-radius: 4px; }
 
     .country-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
       padding: 10px 16px;
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--navy);
-      cursor: pointer;
+      font-size: 13.5px; font-weight: 400;
+      color: var(--navy); cursor: pointer;
       transition: background 0.1s;
       border-left: 3px solid transparent;
     }
-
     .country-option:hover,
     .country-option.focused { background: var(--blue-light); }
-
     .country-option.selected {
-      background: var(--blue-light);
-      font-weight: 600;
-      border-left-color: var(--blue);
-      color: var(--blue);
+      background: var(--blue-light); font-weight: 600;
+      color: var(--blue); border-left-color: var(--blue);
     }
+
+    .country-flag { font-size: 17px; line-height: 1; flex-shrink: 0; }
 
     .country-option mark {
-      background: none;
-      color: var(--blue);
-      font-weight: 700;
+      background: none; color: var(--blue); font-weight: 700;
     }
-
-    .country-option .country-flag { font-size: 18px; line-height: 1; }
 
     .country-empty {
-      padding: 14px 16px;
-      font-size: 13px;
-      color: var(--muted);
-      text-align: center;
+      padding: 16px; font-size: 13px;
+      color: var(--muted); text-align: center; line-height: 1.5;
     }
 
-    /* ── Responsive ─────────────────────────────────────────────────── */
+    /* CTA */
+    .calc-cta { display: flex; flex-direction: column; gap: 12px; position: relative; }
 
-    /* Tablet */
+    .btn-calculate {
+      width: 100%; height: 54px;
+      background: var(--orange-btn);
+      border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 700;
+      color: var(--navy); font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.15px;
+      box-shadow: 0 2px 8px rgba(255,152,31,0.4), 0 6px 20px rgba(255,152,31,0.2);
+      transition: background 0.18s, box-shadow 0.18s, transform 0.1s, color 0.18s;
+    }
+    .btn-calculate:hover {
+      background: var(--orange-dark);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(255,152,31,0.45), 0 10px 28px rgba(255,152,31,0.3);
+      transform: translateY(-1px);
+    }
+    .btn-calculate:active { transform: translateY(0); }
+
+    .calc-trust {
+      display: flex; align-items: center;
+      justify-content: center; gap: 7px;
+    }
+
+    .calc-trust p {
+      font-size: 12px; font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      text-align: center; line-height: 1.4;
+    }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+
     @media (max-width: 1100px) {
-      .hero-inner {
-        grid-template-columns: 1fr 420px;
-        gap: 48px;
-      }
+      .hero-inner { grid-template-columns: 1fr 440px; gap: 56px; }
     }
 
-    /* Small tablet */
-    @media (max-width: 900px) {
-      .header-inner { gap: 16px; padding: 0 24px; }
+    @media (max-width: 960px) {
+      .header-inner { padding: 0 24px; gap: 20px; }
       .site-nav { display: none; }
       .menu-toggle { display: flex; }
 
-      .hero-section { padding: 48px 24px 64px; }
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-      .calc-card { width: 100%; max-width: 520px; margin: 0 auto; }
+      .hero { padding: 56px 24px 72px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      h1 { font-size: clamp(36px, 6vw, 48px); }
+      .hero-desc { max-width: 100%; }
+      .calc-card { max-width: 520px; width: 100%; margin: 0 auto; }
     }
 
-    /* Mobile */
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .header-inner { padding: 0 16px; height: 60px; }
-      .hero-section { padding: 36px 16px 56px; }
-
-      .calc-card { padding: 32px 24px 28px; }
-      .weight-row { grid-template-columns: 1fr; }
-      .weight-note { padding-top: 0; }
-
       .btn-login { display: none; }
+      .hero { padding: 40px 16px 60px; }
+      .hero-left { gap: 32px; }
+
+      .feature-pair { grid-template-columns: 1fr; }
+      .calc-card { padding: 28px 20px 24px; border-radius: 22px; }
+      .weight-row { grid-template-columns: 1fr; gap: 10px; }
+      .weight-note { padding-top: 0; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── HEADER ─────────────────────────────────────────────────────────── -->
+<!-- ════════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
 <header class="site-header">
   <div class="header-inner">
 
     <a href="/" class="logo" aria-label="MyUS home">
-      <!-- Logo mark: globe ring with flag -->
-      <svg class="logo-mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="17" cy="17" r="17" fill="#e8f3fd"/>
-        <!-- Globe ring -->
-        <circle cx="17" cy="17" r="11.5" stroke="#1985e3" stroke-width="2"/>
-        <!-- Horizontal band -->
-        <ellipse cx="17" cy="17" rx="6.5" ry="11.5" stroke="#1985e3" stroke-width="1.5"/>
-        <!-- Latitude lines -->
-        <path d="M6 17h22M8 12.5h18M8 21.5h18" stroke="#1985e3" stroke-width="1.2" opacity="0.5"/>
-        <!-- US flag mini dot -->
-        <circle cx="23" cy="10" r="4" fill="#ff981f"/>
-        <path d="M21 10h4M23 8v4" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+      <svg class="logo-mark" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="18" fill="#eaf4fd"/>
+        <circle cx="18" cy="18" r="12" stroke="#1985e3" stroke-width="1.5"/>
+        <ellipse cx="18" cy="18" rx="6.5" ry="12" stroke="#1985e3" stroke-width="1.3"/>
+        <path d="M6 18h24M8.5 12.5h19M8.5 23.5h19" stroke="#1985e3" stroke-width="1" opacity="0.45"/>
+        <circle cx="25" cy="10" r="5" fill="#ff981f"/>
+        <path d="M23 10h4M25 8v4" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
-      <div class="logo-text">
-        <span class="logo-myus">MyUS.com</span>
-        <span class="logo-tagline">where the possibilities</span>
+      <div class="logo-wordmark">
+        <span class="logo-name">MyUS.com</span>
+        <span class="logo-sub">where the possibilities</span>
       </div>
     </a>
 
@@ -758,9 +721,9 @@
 
     <div class="header-actions">
       <button class="btn-icon" aria-label="Search">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.7"/>
-          <path d="M12.5 12.5L16 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M12.5 12.5L16.5 16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
       </button>
       <a href="#" class="btn-login">Log in</a>
@@ -775,83 +738,91 @@
   </div>
 </header>
 
-<!-- ── HERO ───────────────────────────────────────────────────────────── -->
-<section class="hero-section">
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero">
   <div class="hero-inner">
 
-    <!-- Left column -->
+    <!-- ── Left column ─────────────────────── -->
     <div class="hero-left">
-      <div class="hero-text">
-        <h1 class="hero-title">
-          Ship Smarter.<br/>
-          <span class="orange">Save More.</span>
-        </h1>
+
+      <div class="eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span>Trusted by 1.6M+ international shoppers</span>
+      </div>
+
+      <div class="headline-block">
+        <h1>Ship Smarter.<br/><span class="orange">Save More.</span></h1>
         <p class="hero-desc">
-          MyUS members save an average of <strong>$544 a year</strong> in
-          shipping costs. Shop like a local from anywhere in the world and save!
+          MyUS members save an average of <strong>$544 a year</strong>
+          in shipping costs. Shop like a local from anywhere in the world and save!
         </p>
       </div>
 
-      <div class="features">
-        <!-- TruePrice card -->
+      <div class="features-stack">
+        <!-- TruePrice -->
         <div class="trueprice">
           <div class="trueprice-badge">
-            <!-- Shield checkmark -->
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path d="M14 3L5 7v7c0 5.25 3.85 10.15 9 11.33C19.15 24.15 23 19.25 23 14V7L14 3z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/>
-              <polyline points="9.5,14 12.5,17 18.5,11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <path d="M13 2.5L4 6.5v6.5c0 5 3.7 9.7 9 10.9 5.3-1.2 9-5.9 9-10.9V6.5L13 2.5z"
+                fill="rgba(255,255,255,0.18)" stroke="white" stroke-width="1.4"/>
+              <polyline points="8.5,13 11.5,16 17.5,10"
+                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="trueprice-content">
-            <div class="trueprice-name">MyUS TruePrice<sup>TM</sup></div>
-            <p class="trueprice-desc">
-              With TruePrice guaranteed rates, you're charged by weight only, with no hidden fees
-            </p>
+          <div class="trueprice-body">
+            <div class="trueprice-name">MyUS TruePrice<sup>™</sup></div>
+            <p class="trueprice-desc">Charged by weight only — no dimensional fees, no surprises.</p>
           </div>
         </div>
 
-        <!-- Bullets -->
-        <div class="feature-list">
+        <!-- Two feature cards -->
+        <div class="feature-pair">
           <div class="feature">
-            <div class="feature-icon-wrap">
-              <!-- Scales icon -->
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M10 3v14M4 17h12" stroke="#1985e3" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M10 3L5 8h10L10 3z" stroke="#1985e3" stroke-width="1.4" stroke-linejoin="round"/>
-                <path d="M4 8l-2 4h4L4 8z" fill="#e8f3fd" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
-                <path d="M16 8l-2 4h4L16 8z" fill="#e8f3fd" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
+            <div class="feat-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M9 2v14M3 16h12" stroke="#1985e3" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M4 7L2 11h4L4 7z" fill="#d0e8fa" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
+                <path d="M14 7l-2 4h4l-2-4z" fill="#d0e8fa" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
+                <path d="M4 7h10" stroke="#1985e3" stroke-width="1.3" stroke-linecap="round"/>
               </svg>
             </div>
-            <div class="feature-body">
-              <p class="feature-title">No dimensional weight fees</p>
-              <p class="feature-desc">You never pay extra for empty space in the box.</p>
+            <div class="feat-body">
+              <p class="feat-title">No dimensional weight fees</p>
+              <p class="feat-desc">You never pay extra for empty space in the box.</p>
             </div>
           </div>
 
           <div class="feature">
-            <div class="feature-icon-wrap">
-              <!-- Tag check icon -->
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M9.5 2H4a2 2 0 00-2 2v5.5l8.5 8.5a2 2 0 002.83 0l5.17-5.17a2 2 0 000-2.83L9.5 2z" stroke="#1985e3" stroke-width="1.5" stroke-linejoin="round"/>
-                <circle cx="6.5" cy="6.5" r="1.2" fill="#1985e3"/>
-                <polyline points="8,11 10,13 14,9" stroke="#1985e3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <div class="feat-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M8.5 2H4a2 2 0 00-2 2v4.5l7.5 7.5a2 2 0 002.83 0l4.17-4.17a2 2 0 000-2.83L8.5 2z"
+                  stroke="#1985e3" stroke-width="1.4" stroke-linejoin="round"/>
+                <circle cx="5.5" cy="5.5" r="1" fill="#1985e3"/>
+                <polyline points="7,9.5 9,11.5 13,7.5"
+                  stroke="#1985e3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <div class="feature-body">
-              <p class="feature-title">Upfront pricing</p>
-              <p class="feature-desc">What you see is what you pay—no surprises later.</p>
+            <div class="feat-body">
+              <p class="feat-title">Upfront pricing</p>
+              <p class="feat-desc">What you see is what you pay — no surprises later.</p>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
-    <!-- Right column — Savings calculator -->
+    <!-- ── Right column — Calc card ─────────── -->
     <div class="calc-card">
+
       <div class="calc-head">
         <h2 class="calc-title">See Your Savings Instantly</h2>
         <p class="calc-subtitle">Get a quick estimate before you ship</p>
       </div>
+
+      <div class="calc-divider"></div>
 
       <div class="calc-fields">
 
@@ -861,7 +832,7 @@
           <div class="dropdown-wrap">
             <div class="field-control" role="button" tabindex="0" data-dropdown="shipping-from">
               <span class="field-value" id="shipping-from-val">US Sales Tax-Free Facility</span>
-              <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+              <svg class="chevron" width="11" height="7" viewBox="0 0 12 8" fill="none">
                 <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
@@ -873,15 +844,15 @@
           </div>
         </div>
 
-        <!-- Delivering to — search combobox -->
+        <!-- Delivering to — country search -->
         <div class="field">
           <label class="field-label" for="country-search">Delivering to</label>
           <div class="country-wrap" id="country-wrap">
             <div class="country-control" id="country-control">
               <svg class="country-globe" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="6.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-                <ellipse cx="8" cy="8" rx="3.2" ry="6.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
-                <path d="M1.5 8h13M2.5 5h11M2.5 11h11" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+                <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
+                <ellipse cx="8" cy="8" rx="3" ry="6.5" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M1.5 8h13M2.5 5h11M2.5 11h11" stroke="currentColor" stroke-width="0.9" opacity="0.7"/>
               </svg>
               <input
                 id="country-search"
@@ -898,7 +869,7 @@
               />
               <button class="country-clear" id="country-clear" aria-label="Clear" tabindex="-1">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                  <path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
                 </svg>
               </button>
             </div>
@@ -907,25 +878,28 @@
         </div>
 
         <!-- Select state -->
-        <div class="dropdown-wrap">
-          <div class="field-control" role="button" tabindex="0" data-dropdown="state">
-            <span class="field-value placeholder" id="state-val">Select a state</span>
-            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="dropdown-menu" id="state-menu">
-            <div class="dropdown-option" data-value="Alabama">Alabama</div>
-            <div class="dropdown-option" data-value="Alaska">Alaska</div>
-            <div class="dropdown-option" data-value="Arizona">Arizona</div>
-            <div class="dropdown-option" data-value="California">California</div>
-            <div class="dropdown-option" data-value="Colorado">Colorado</div>
-            <div class="dropdown-option" data-value="Florida">Florida</div>
-            <div class="dropdown-option" data-value="Georgia">Georgia</div>
-            <div class="dropdown-option" data-value="Illinois">Illinois</div>
-            <div class="dropdown-option" data-value="New York">New York</div>
-            <div class="dropdown-option" data-value="Texas">Texas</div>
-            <div class="dropdown-option" data-value="Washington">Washington</div>
+        <div class="field">
+          <label class="field-label">State (if applicable)</label>
+          <div class="dropdown-wrap">
+            <div class="field-control" role="button" tabindex="0" data-dropdown="state">
+              <span class="field-value placeholder" id="state-val">Select a state</span>
+              <svg class="chevron" width="11" height="7" viewBox="0 0 12 8" fill="none">
+                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="dropdown-menu" id="state-menu">
+              <div class="dropdown-option" data-value="Alabama">Alabama</div>
+              <div class="dropdown-option" data-value="Alaska">Alaska</div>
+              <div class="dropdown-option" data-value="Arizona">Arizona</div>
+              <div class="dropdown-option" data-value="California">California</div>
+              <div class="dropdown-option" data-value="Colorado">Colorado</div>
+              <div class="dropdown-option" data-value="Florida">Florida</div>
+              <div class="dropdown-option" data-value="Georgia">Georgia</div>
+              <div class="dropdown-option" data-value="Illinois">Illinois</div>
+              <div class="dropdown-option" data-value="New York">New York</div>
+              <div class="dropdown-option" data-value="Texas">Texas</div>
+              <div class="dropdown-option" data-value="Washington">Washington</div>
+            </div>
           </div>
         </div>
 
@@ -937,8 +911,8 @@
               <input type="number" value="10" min="1" max="999" aria-label="Weight value" />
               <div class="weight-unit" id="weight-unit-btn">
                 <span id="weight-unit-val">lbs</span>
-                <svg width="10" height="7" viewBox="0 0 12 8" fill="none">
-                  <path d="M1 1.5L6 6.5L11 1.5" stroke="#8896a3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="9" height="6" viewBox="0 0 12 8" fill="none">
+                  <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <div class="weight-unit-menu" id="weight-unit-menu">
                   <div class="weight-unit-option selected" data-value="lbs">lbs</div>
@@ -947,8 +921,8 @@
               </div>
             </div>
             <p class="weight-note">
-              If your package's length + width + height is greater than 72 inches,
-              <a href="#">click here</a> to provide the dimensions
+              If your package's length + width + height is &gt; 72 inches,
+              <a href="#">click here</a> to provide dimensions.
             </p>
           </div>
         </div>
@@ -958,9 +932,9 @@
       <div class="calc-cta">
         <button class="btn-calculate">Calculate My Savings</button>
         <div class="calc-trust">
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-            <circle cx="7.5" cy="7.5" r="7" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
-            <polyline points="4,7.5 6.5,10 11,5" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="6.5" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <polyline points="3.5,7 6,9.5 10.5,4.5" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <p>Join over 1.6 million international shoppers who save on shipping</p>
         </div>
@@ -972,60 +946,43 @@
 </section>
 
 <script>
-  // ── Country data ────────────────────────────────────────────────────
+  // ── Country data ──────────────────────────────────────────────────────
   const COUNTRIES = [
-    { name: 'Afghanistan', flag: '🇦🇫' }, { name: 'Albania', flag: '🇦🇱' },
-    { name: 'Algeria', flag: '🇩🇿' }, { name: 'Argentina', flag: '🇦🇷' },
-    { name: 'Armenia', flag: '🇦🇲' }, { name: 'Australia', flag: '🇦🇺' },
-    { name: 'Austria', flag: '🇦🇹' }, { name: 'Azerbaijan', flag: '🇦🇿' },
-    { name: 'Bahrain', flag: '🇧🇭' }, { name: 'Bangladesh', flag: '🇧🇩' },
-    { name: 'Belgium', flag: '🇧🇪' }, { name: 'Bolivia', flag: '🇧🇴' },
-    { name: 'Bosnia', flag: '🇧🇦' }, { name: 'Brazil', flag: '🇧🇷' },
-    { name: 'Bulgaria', flag: '🇧🇬' }, { name: 'Cambodia', flag: '🇰🇭' },
-    { name: 'Canada', flag: '🇨🇦' }, { name: 'Chile', flag: '🇨🇱' },
-    { name: 'China', flag: '🇨🇳' }, { name: 'Colombia', flag: '🇨🇴' },
-    { name: 'Costa Rica', flag: '🇨🇷' }, { name: 'Croatia', flag: '🇭🇷' },
-    { name: 'Cyprus', flag: '🇨🇾' }, { name: 'Czech Republic', flag: '🇨🇿' },
-    { name: 'Denmark', flag: '🇩🇰' }, { name: 'Ecuador', flag: '🇪🇨' },
-    { name: 'Egypt', flag: '🇪🇬' }, { name: 'Estonia', flag: '🇪🇪' },
-    { name: 'Ethiopia', flag: '🇪🇹' }, { name: 'Finland', flag: '🇫🇮' },
-    { name: 'France', flag: '🇫🇷' }, { name: 'Georgia', flag: '🇬🇪' },
-    { name: 'Germany', flag: '🇩🇪' }, { name: 'Ghana', flag: '🇬🇭' },
-    { name: 'Greece', flag: '🇬🇷' }, { name: 'Guatemala', flag: '🇬🇹' },
-    { name: 'Honduras', flag: '🇭🇳' }, { name: 'Hong Kong', flag: '🇭🇰' },
-    { name: 'Hungary', flag: '🇭🇺' }, { name: 'Iceland', flag: '🇮🇸' },
-    { name: 'India', flag: '🇮🇳' }, { name: 'Indonesia', flag: '🇮🇩' },
-    { name: 'Ireland', flag: '🇮🇪' }, { name: 'Israel', flag: '🇮🇱' },
-    { name: 'Italy', flag: '🇮🇹' }, { name: 'Jamaica', flag: '🇯🇲' },
-    { name: 'Japan', flag: '🇯🇵' }, { name: 'Jordan', flag: '🇯🇴' },
-    { name: 'Kazakhstan', flag: '🇰🇿' }, { name: 'Kenya', flag: '🇰🇪' },
-    { name: 'Kuwait', flag: '🇰🇼' }, { name: 'Latvia', flag: '🇱🇻' },
-    { name: 'Lebanon', flag: '🇱🇧' }, { name: 'Lithuania', flag: '🇱🇹' },
-    { name: 'Luxembourg', flag: '🇱🇺' }, { name: 'Malaysia', flag: '🇲🇾' },
-    { name: 'Malta', flag: '🇲🇹' }, { name: 'Mexico', flag: '🇲🇽' },
-    { name: 'Morocco', flag: '🇲🇦' }, { name: 'Netherlands', flag: '🇳🇱' },
-    { name: 'New Zealand', flag: '🇳🇿' }, { name: 'Nigeria', flag: '🇳🇬' },
-    { name: 'Norway', flag: '🇳🇴' }, { name: 'Oman', flag: '🇴🇲' },
-    { name: 'Pakistan', flag: '🇵🇰' }, { name: 'Panama', flag: '🇵🇦' },
-    { name: 'Paraguay', flag: '🇵🇾' }, { name: 'Peru', flag: '🇵🇪' },
-    { name: 'Philippines', flag: '🇵🇭' }, { name: 'Poland', flag: '🇵🇱' },
-    { name: 'Portugal', flag: '🇵🇹' }, { name: 'Qatar', flag: '🇶🇦' },
-    { name: 'Romania', flag: '🇷🇴' }, { name: 'Russia', flag: '🇷🇺' },
-    { name: 'Saudi Arabia', flag: '🇸🇦' }, { name: 'Serbia', flag: '🇷🇸' },
-    { name: 'Singapore', flag: '🇸🇬' }, { name: 'Slovakia', flag: '🇸🇰' },
-    { name: 'Slovenia', flag: '🇸🇮' }, { name: 'South Africa', flag: '🇿🇦' },
-    { name: 'South Korea', flag: '🇰🇷' }, { name: 'Spain', flag: '🇪🇸' },
-    { name: 'Sri Lanka', flag: '🇱🇰' }, { name: 'Sweden', flag: '🇸🇪' },
-    { name: 'Switzerland', flag: '🇨🇭' }, { name: 'Taiwan', flag: '🇹🇼' },
-    { name: 'Thailand', flag: '🇹🇭' }, { name: 'Trinidad', flag: '🇹🇹' },
-    { name: 'Turkey', flag: '🇹🇷' }, { name: 'Ukraine', flag: '🇺🇦' },
-    { name: 'United Arab Emirates', flag: '🇦🇪' },
-    { name: 'United Kingdom', flag: '🇬🇧' },
-    { name: 'Uruguay', flag: '🇺🇾' }, { name: 'Venezuela', flag: '🇻🇪' },
-    { name: 'Vietnam', flag: '🇻🇳' },
+    {n:'Afghanistan',f:'🇦🇫'},{n:'Albania',f:'🇦🇱'},{n:'Algeria',f:'🇩🇿'},
+    {n:'Argentina',f:'🇦🇷'},{n:'Armenia',f:'🇦🇲'},{n:'Australia',f:'🇦🇺'},
+    {n:'Austria',f:'🇦🇹'},{n:'Azerbaijan',f:'🇦🇿'},{n:'Bahrain',f:'🇧🇭'},
+    {n:'Bangladesh',f:'🇧🇩'},{n:'Belgium',f:'🇧🇪'},{n:'Bolivia',f:'🇧🇴'},
+    {n:'Brazil',f:'🇧🇷'},{n:'Bulgaria',f:'🇧🇬'},{n:'Cambodia',f:'🇰🇭'},
+    {n:'Canada',f:'🇨🇦'},{n:'Chile',f:'🇨🇱'},{n:'China',f:'🇨🇳'},
+    {n:'Colombia',f:'🇨🇴'},{n:'Costa Rica',f:'🇨🇷'},{n:'Croatia',f:'🇭🇷'},
+    {n:'Cyprus',f:'🇨🇾'},{n:'Czech Republic',f:'🇨🇿'},{n:'Denmark',f:'🇩🇰'},
+    {n:'Ecuador',f:'🇪🇨'},{n:'Egypt',f:'🇪🇬'},{n:'Estonia',f:'🇪🇪'},
+    {n:'Finland',f:'🇫🇮'},{n:'France',f:'🇫🇷'},{n:'Georgia',f:'🇬🇪'},
+    {n:'Germany',f:'🇩🇪'},{n:'Ghana',f:'🇬🇭'},{n:'Greece',f:'🇬🇷'},
+    {n:'Guatemala',f:'🇬🇹'},{n:'Honduras',f:'🇭🇳'},{n:'Hong Kong',f:'🇭🇰'},
+    {n:'Hungary',f:'🇭🇺'},{n:'Iceland',f:'🇮🇸'},{n:'India',f:'🇮🇳'},
+    {n:'Indonesia',f:'🇮🇩'},{n:'Ireland',f:'🇮🇪'},{n:'Israel',f:'🇮🇱'},
+    {n:'Italy',f:'🇮🇹'},{n:'Jamaica',f:'🇯🇲'},{n:'Japan',f:'🇯🇵'},
+    {n:'Jordan',f:'🇯🇴'},{n:'Kazakhstan',f:'🇰🇿'},{n:'Kenya',f:'🇰🇪'},
+    {n:'Kuwait',f:'🇰🇼'},{n:'Latvia',f:'🇱🇻'},{n:'Lebanon',f:'🇱🇧'},
+    {n:'Lithuania',f:'🇱🇹'},{n:'Luxembourg',f:'🇱🇺'},{n:'Malaysia',f:'🇲🇾'},
+    {n:'Malta',f:'🇲🇹'},{n:'Mexico',f:'🇲🇽'},{n:'Morocco',f:'🇲🇦'},
+    {n:'Netherlands',f:'🇳🇱'},{n:'New Zealand',f:'🇳🇿'},{n:'Nigeria',f:'🇳🇬'},
+    {n:'Norway',f:'🇳🇴'},{n:'Oman',f:'🇴🇲'},{n:'Pakistan',f:'🇵🇰'},
+    {n:'Panama',f:'🇵🇦'},{n:'Paraguay',f:'🇵🇾'},{n:'Peru',f:'🇵🇪'},
+    {n:'Philippines',f:'🇵🇭'},{n:'Poland',f:'🇵🇱'},{n:'Portugal',f:'🇵🇹'},
+    {n:'Qatar',f:'🇶🇦'},{n:'Romania',f:'🇷🇴'},{n:'Russia',f:'🇷🇺'},
+    {n:'Saudi Arabia',f:'🇸🇦'},{n:'Serbia',f:'🇷🇸'},{n:'Singapore',f:'🇸🇬'},
+    {n:'Slovakia',f:'🇸🇰'},{n:'Slovenia',f:'🇸🇮'},{n:'South Africa',f:'🇿🇦'},
+    {n:'South Korea',f:'🇰🇷'},{n:'Spain',f:'🇪🇸'},{n:'Sri Lanka',f:'🇱🇰'},
+    {n:'Sweden',f:'🇸🇪'},{n:'Switzerland',f:'🇨🇭'},{n:'Taiwan',f:'🇹🇼'},
+    {n:'Thailand',f:'🇹🇭'},{n:'Trinidad',f:'🇹🇹'},{n:'Turkey',f:'🇹🇷'},
+    {n:'Ukraine',f:'🇺🇦'},{n:'United Arab Emirates',f:'🇦🇪'},
+    {n:'United Kingdom',f:'🇬🇧'},{n:'Uruguay',f:'🇺🇾'},
+    {n:'Venezuela',f:'🇻🇪'},{n:'Vietnam',f:'🇻🇳'},
   ];
 
-  // ── Country search combobox ─────────────────────────────────────────
+  // ── Country search ────────────────────────────────────────────────────
   const countryInput   = document.getElementById('country-search');
   const countryListbox = document.getElementById('country-listbox');
   const countryClear   = document.getElementById('country-clear');
@@ -1034,42 +991,34 @@
   let selectedCountry = 'Italy';
   let focusedIndex    = -1;
 
-  function highlight(text, query) {
-    if (!query) return text;
-    const idx = text.toLowerCase().indexOf(query.toLowerCase());
-    if (idx === -1) return text;
-    return text.slice(0, idx)
-      + `<mark>${text.slice(idx, idx + query.length)}</mark>`
-      + text.slice(idx + query.length);
+  function hl(text, q) {
+    if (!q) return text;
+    const i = text.toLowerCase().indexOf(q.toLowerCase());
+    if (i === -1) return text;
+    return text.slice(0,i) + `<mark>${text.slice(i, i+q.length)}</mark>` + text.slice(i+q.length);
   }
 
-  function renderOptions(query) {
-    const filtered = query
-      ? COUNTRIES.filter(c => c.name.toLowerCase().includes(query.toLowerCase()))
+  function renderCountries(q) {
+    const filtered = q
+      ? COUNTRIES.filter(c => c.n.toLowerCase().includes(q.toLowerCase()))
       : COUNTRIES;
-
     focusedIndex = -1;
 
-    if (filtered.length === 0) {
-      countryListbox.innerHTML = `<div class="country-empty">No countries found for "<strong>${query}</strong>"</div>`;
-    } else {
-      countryListbox.innerHTML = filtered.map((c, i) => `
-        <div class="country-option${c.name === selectedCountry ? ' selected' : ''}"
-             data-value="${c.name}" role="option"
-             aria-selected="${c.name === selectedCountry}">
-          <span class="country-flag">${c.flag}</span>
-          <span>${highlight(c.name, query)}</span>
-        </div>
-      `).join('');
-
-      // Bind click on each option
-      countryListbox.querySelectorAll('.country-option').forEach(opt => {
-        opt.addEventListener('mousedown', (e) => {
-          e.preventDefault(); // prevent input blur before we read value
-          selectCountry(opt.dataset.value);
-        });
-      });
+    if (!filtered.length) {
+      countryListbox.innerHTML = `<div class="country-empty">No countries found for "<strong>${q}</strong>"</div>`;
+      return;
     }
+
+    countryListbox.innerHTML = filtered.map(c => `
+      <div class="country-option${c.n === selectedCountry ? ' selected' : ''}"
+           data-value="${c.n}" role="option" aria-selected="${c.n === selectedCountry}">
+        <span class="country-flag">${c.f}</span>
+        <span>${hl(c.n, q)}</span>
+      </div>`).join('');
+
+    countryListbox.querySelectorAll('.country-option').forEach(opt => {
+      opt.addEventListener('mousedown', e => { e.preventDefault(); selectCountry(opt.dataset.value); });
+    });
   }
 
   function selectCountry(name) {
@@ -1077,46 +1026,38 @@
     countryInput.value = name;
     countryClear.classList.toggle('visible', !!name);
     closeCountry();
-    renderOptions(''); // reset list for next open
+    renderCountries('');
   }
 
   function openCountry() {
-    renderOptions(countryInput.value === selectedCountry ? '' : countryInput.value);
+    const q = countryInput.value === selectedCountry ? '' : countryInput.value;
+    renderCountries(q);
     countryListbox.classList.add('show');
     countryInput.setAttribute('aria-expanded', 'true');
-    // Scroll to selected
+    closeOtherDropdowns();
     requestAnimationFrame(() => {
       const sel = countryListbox.querySelector('.selected');
       if (sel) sel.scrollIntoView({ block: 'nearest' });
     });
-    closeOtherDropdowns();
   }
 
   function closeCountry() {
     countryListbox.classList.remove('show');
     countryInput.setAttribute('aria-expanded', 'false');
     focusedIndex = -1;
-    // If input doesn't match any known country, revert
-    const match = COUNTRIES.find(c => c.name.toLowerCase() === countryInput.value.toLowerCase());
-    if (!match) {
-      countryInput.value = selectedCountry;
-    } else {
-      selectedCountry = match.name;
-      countryInput.value = match.name;
-    }
+    const match = COUNTRIES.find(c => c.n.toLowerCase() === countryInput.value.trim().toLowerCase());
+    if (match) { selectedCountry = match.n; countryInput.value = match.n; }
+    else countryInput.value = selectedCountry;
+    countryClear.classList.toggle('visible', !!countryInput.value);
   }
 
   countryInput.addEventListener('focus', openCountry);
-
   countryInput.addEventListener('input', () => {
-    const q = countryInput.value;
-    countryClear.classList.toggle('visible', !!q);
+    countryClear.classList.toggle('visible', !!countryInput.value);
     countryListbox.classList.add('show');
-    renderOptions(q);
-    focusedIndex = -1;
+    renderCountries(countryInput.value);
   });
-
-  countryInput.addEventListener('keydown', (e) => {
+  countryInput.addEventListener('keydown', e => {
     const opts = countryListbox.querySelectorAll('.country-option');
     if (e.key === 'ArrowDown') {
       e.preventDefault();
@@ -1126,15 +1067,20 @@
       e.preventDefault();
       focusedIndex = Math.max(focusedIndex - 1, 0);
       updateFocus(opts);
-    } else if (e.key === 'Enter') {
+    } else if (e.key === 'Enter' && focusedIndex >= 0 && opts[focusedIndex]) {
       e.preventDefault();
-      if (focusedIndex >= 0 && opts[focusedIndex]) {
-        selectCountry(opts[focusedIndex].dataset.value);
-      }
+      selectCountry(opts[focusedIndex].dataset.value);
     } else if (e.key === 'Escape') {
-      closeCountry();
-      countryInput.blur();
+      closeCountry(); countryInput.blur();
     }
+  });
+  countryInput.addEventListener('blur', () => setTimeout(closeCountry, 150));
+  countryClear.addEventListener('click', e => {
+    e.stopPropagation();
+    countryInput.value = ''; selectedCountry = '';
+    countryClear.classList.remove('visible');
+    countryInput.focus();
+    renderCountries('');
   });
 
   function updateFocus(opts) {
@@ -1142,46 +1088,30 @@
     if (opts[focusedIndex]) opts[focusedIndex].scrollIntoView({ block: 'nearest' });
   }
 
-  countryClear.addEventListener('click', (e) => {
-    e.stopPropagation();
-    countryInput.value = '';
-    selectedCountry = '';
-    countryClear.classList.remove('visible');
-    countryInput.focus();
-    renderOptions('');
-  });
+  // ── Generic dropdowns ─────────────────────────────────────────────────
+  const dropdownIds = ['shipping-from', 'state'];
+  const dropdowns = {};
 
-  countryInput.addEventListener('blur', () => {
-    // Small delay so mousedown on option fires first
-    setTimeout(closeCountry, 150);
-  });
-
-  // ── Generic dropdown logic ──────────────────────────────────────────
-  const dropdownMap = {
-    'shipping-from': { trigger: null, menu: null, valueEl: null },
-    'state':         { trigger: null, menu: null, valueEl: null },
-  };
-
-  Object.keys(dropdownMap).forEach(id => {
+  dropdownIds.forEach(id => {
     const trigger = document.querySelector(`[data-dropdown="${id}"]`);
     const menu    = document.getElementById(`${id}-menu`);
     const valueEl = document.getElementById(`${id}-val`);
-    dropdownMap[id] = { trigger, menu, valueEl };
+    dropdowns[id] = { trigger, menu, valueEl };
 
-    trigger.addEventListener('click', (e) => {
+    trigger.addEventListener('click', e => {
       e.stopPropagation();
-      const isOpen = menu.classList.contains('show');
+      const open = menu.classList.contains('show');
       closeAll();
-      if (!isOpen) { menu.classList.add('show'); trigger.classList.add('open'); }
+      if (!open) { menu.classList.add('show'); trigger.classList.add('open'); }
     });
 
-    trigger.addEventListener('keydown', (e) => {
+    trigger.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger.click(); }
       if (e.key === 'Escape') closeAll();
     });
 
     menu.querySelectorAll('.dropdown-option').forEach(opt => {
-      opt.addEventListener('click', (e) => {
+      opt.addEventListener('click', e => {
         e.stopPropagation();
         valueEl.textContent = opt.dataset.value;
         valueEl.classList.remove('placeholder');
@@ -1193,38 +1123,37 @@
   });
 
   function closeOtherDropdowns() {
-    Object.values(dropdownMap).forEach(({ trigger, menu }) => {
-      menu.classList.remove('show');
-      trigger.classList.remove('open');
+    dropdownIds.forEach(id => {
+      dropdowns[id].menu.classList.remove('show');
+      dropdowns[id].trigger.classList.remove('open');
     });
     if (weightUnitMenu) weightUnitMenu.classList.remove('show');
   }
 
   function closeAll() {
     closeOtherDropdowns();
-    closeCountry();
   }
 
-  document.addEventListener('click', (e) => {
-    if (!countryWrap.contains(e.target)) closeOtherDropdowns();
-    closeOtherDropdowns();
+  document.addEventListener('click', e => {
+    if (!countryWrap.contains(e.target)) closeAll();
+    else closeOtherDropdowns();
   });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAll(); closeCountry(); } });
 
-  // ── Weight unit dropdown ────────────────────────────────────────────
+  // ── Weight unit ───────────────────────────────────────────────────────
   const weightUnitBtn  = document.getElementById('weight-unit-btn');
   const weightUnitMenu = document.getElementById('weight-unit-menu');
   const weightUnitVal  = document.getElementById('weight-unit-val');
 
-  weightUnitBtn.addEventListener('click', (e) => {
+  weightUnitBtn.addEventListener('click', e => {
     e.stopPropagation();
-    const isOpen = weightUnitMenu.classList.contains('show');
+    const open = weightUnitMenu.classList.contains('show');
     closeAll();
-    if (!isOpen) weightUnitMenu.classList.add('show');
+    if (!open) weightUnitMenu.classList.add('show');
   });
 
   weightUnitMenu.querySelectorAll('.weight-unit-option').forEach(opt => {
-    opt.addEventListener('click', (e) => {
+    opt.addEventListener('click', e => {
       e.stopPropagation();
       weightUnitVal.textContent = opt.dataset.value;
       weightUnitMenu.querySelectorAll('.weight-unit-option').forEach(o => o.classList.remove('selected'));
@@ -1233,6 +1162,5 @@
     });
   });
 </script>
-
 </body>
 </html>
