@@ -612,13 +612,15 @@
        COMPARISON MODULE
     ════════════════════════════════════════ */
     .comparison {
-      background: rgba(0,0,0,0.14);
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
       border-radius: 16px;
       padding: 18px 20px 16px;
       display: flex;
       flex-direction: column;
       gap: 12px;
       position: relative;
+      max-width: 420px;
     }
 
     .comparison-label {
@@ -626,7 +628,7 @@
       font-weight: 600;
       letter-spacing: 0.8px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      color: var(--muted);
     }
 
     .comparison-rows {
@@ -646,21 +648,21 @@
     .comp-name {
       font-size: 12.5px;
       font-weight: 400;
-      color: rgba(255,255,255,0.45);
+      color: var(--muted);
     }
 
     .comp-price {
       font-size: 13px;
       font-weight: 500;
-      color: rgba(255,255,255,0.4);
+      color: var(--muted);
       text-decoration: line-through;
-      text-decoration-color: rgba(255,255,255,0.25);
+      text-decoration-color: rgba(95,107,120,0.4);
     }
 
     /* Divider inside comparison */
     .comp-sep {
       height: 1px;
-      background: rgba(255,255,255,0.1);
+      background: var(--blue-mid);
     }
 
     /* MyUS row */
@@ -680,20 +682,20 @@
     .comp-myus-name {
       font-size: 12.5px;
       font-weight: 700;
-      color: rgba(255,255,255,0.9);
+      color: var(--navy);
     }
 
     .comp-myus-tag {
       font-size: 10px;
       font-weight: 400;
-      color: rgba(255,255,255,0.4);
+      color: var(--muted);
       letter-spacing: 0.1px;
     }
 
     .comp-myus-price {
       font-size: 28px;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--blue);
       letter-spacing: -0.8px;
       line-height: 1;
       animation: priceIn 0.5s cubic-bezier(0.16,1,0.3,1) both;
@@ -709,7 +711,7 @@
       display: flex;
       align-items: center;
       gap: 7px;
-      background: rgba(255,152,31,0.15);
+      background: rgba(255,152,31,0.1);
       border: 1px solid rgba(255,152,31,0.3);
       border-radius: 10px;
       padding: 8px 12px;
@@ -719,7 +721,7 @@
     .savings-icon {
       width: 20px; height: 20px;
       border-radius: 50%;
-      background: rgba(255,152,31,0.25);
+      background: rgba(255,152,31,0.2);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
@@ -727,7 +729,7 @@
     .savings-text {
       font-size: 13px;
       font-weight: 600;
-      color: #ffb84d;
+      color: #c96a00;
       line-height: 1.3;
     }
 
@@ -735,7 +737,7 @@
       display: block;
       font-size: 11px;
       font-weight: 400;
-      color: rgba(255,255,255,0.45);
+      color: var(--muted);
       margin-top: 1px;
     }
 
@@ -852,6 +854,47 @@
         </p>
       </div>
 
+      <!-- Comparison module -->
+      <div class="comparison" role="region" aria-label="Example savings comparison">
+        <p class="comparison-label">Example savings — 5 lb package to Italy</p>
+
+        <div class="comparison-rows">
+          <!-- Competitors -->
+          <div class="comp-row">
+            <span class="comp-name">Shipito</span>
+            <span class="comp-price">$370</span>
+          </div>
+          <div class="comp-row">
+            <span class="comp-name">Fishisfast</span>
+            <span class="comp-price">$322</span>
+          </div>
+
+          <div class="comp-sep"></div>
+
+          <!-- MyUS -->
+          <div class="comp-row-myus">
+            <div class="comp-myus-label">
+              <span class="comp-myus-name">MyUS TruePrice™</span>
+              <span class="comp-myus-tag">Charged by weight only</span>
+            </div>
+            <span class="comp-myus-price">$58</span>
+          </div>
+        </div>
+
+        <!-- Savings badge -->
+        <div class="savings-badge">
+          <div class="savings-icon">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 5l2.5 2.5L8 2.5" stroke="#ffb84d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="savings-text">
+            Save $264 on this shipment
+            <span>vs. average competitor price</span>
+          </div>
+        </div>
+      </div>
+
       <div class="features-stack">
 
         <div class="bullet">
@@ -896,46 +939,6 @@
         <p class="calc-subtitle">Get a quick estimate before you ship</p>
       </div>
 
-      <!-- Comparison module -->
-      <div class="comparison" role="region" aria-label="Example savings comparison">
-        <p class="comparison-label">Example savings — 5 lb package to Italy</p>
-
-        <div class="comparison-rows">
-          <!-- Competitors -->
-          <div class="comp-row">
-            <span class="comp-name">Shipito</span>
-            <span class="comp-price">$370</span>
-          </div>
-          <div class="comp-row">
-            <span class="comp-name">Fishisfast</span>
-            <span class="comp-price">$322</span>
-          </div>
-
-          <div class="comp-sep"></div>
-
-          <!-- MyUS -->
-          <div class="comp-row-myus">
-            <div class="comp-myus-label">
-              <span class="comp-myus-name">MyUS TruePrice™</span>
-              <span class="comp-myus-tag">Charged by weight only</span>
-            </div>
-            <span class="comp-myus-price">$58</span>
-          </div>
-        </div>
-
-        <!-- Savings badge -->
-        <div class="savings-badge">
-          <div class="savings-icon">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M2 5l2.5 2.5L8 2.5" stroke="#ffb84d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="savings-text">
-            Save $264 on this shipment
-            <span>vs. average competitor price</span>
-          </div>
-        </div>
-      </div>
 
       <div class="calc-divider"></div>
 
