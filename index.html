@@ -241,84 +241,38 @@
 
     .hero-desc strong { font-weight: 600; color: var(--navy); }
 
-    /* Features */
-    .features-stack { display: flex; flex-direction: column; gap: 10px; }
+    /* Features — plain bullets */
+    .features-stack { display: flex; flex-direction: column; gap: 18px; }
 
-    /* TruePrice pill */
-    .trueprice {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: var(--blue-light);
-      border: 1px solid var(--blue-mid);
-      border-radius: 16px;
-      padding: 16px 20px;
-    }
-
-    .trueprice-badge {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #1985e3, #1362b0);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 4px 16px rgba(25,133,227,0.3);
-    }
-
-    .trueprice-body { flex: 1; min-width: 0; }
-
-    .trueprice-name {
-      font-size: 15px; font-weight: 700; color: var(--navy);
-      line-height: 1.3; margin-bottom: 3px;
-      display: flex; align-items: baseline; gap: 1px;
-    }
-
-    .trueprice-name sup {
-      font-size: 8px; font-weight: 600;
-      letter-spacing: 0.5px; vertical-align: super;
-    }
-
-    .trueprice-desc {
-      font-size: 13px; font-weight: 400;
-      color: var(--muted); line-height: 1.5;
-    }
-
-    /* Bullet features */
-    .feature-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .feature {
+    .bullet {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      background: var(--off-white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
+      gap: 14px;
     }
 
-    .feat-icon {
-      width: 34px; height: 34px;
-      border-radius: 10px;
-      background: var(--blue-light);
-      border: 1px solid var(--blue-mid);
-      display: flex; align-items: center; justify-content: center;
+    .bullet-icon {
+      width: 22px;
       flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .feat-body {}
-
-    .feat-title {
-      font-size: 13.5px; font-weight: 600;
+    .bullet-title {
+      font-size: 14px; font-weight: 600;
       color: var(--navy); line-height: 1.3;
       margin-bottom: 3px;
     }
 
-    .feat-desc {
-      font-size: 12px; font-weight: 400;
-      color: var(--muted); line-height: 1.45;
+    .bullet-title sup {
+      font-size: 8px; font-weight: 600;
+      vertical-align: super; letter-spacing: 0.4px;
+    }
+
+    .bullet-desc {
+      font-size: 13px; font-weight: 400;
+      color: var(--muted); line-height: 1.5;
     }
 
     /* ════════════════════════════════════════
@@ -822,8 +776,7 @@
       .hero { padding: 40px 16px 60px; }
       .hero-left { gap: 32px; }
 
-      .feature-pair { grid-template-columns: 1fr; }
-      .calc-card { padding: 28px 20px 24px; border-radius: 22px; }
+.calc-card { padding: 28px 20px 24px; border-radius: 22px; }
       .weight-row { grid-template-columns: 1fr; gap: 10px; }
       .weight-note { padding-top: 0; }
     }
@@ -901,55 +854,53 @@
       </div>
 
       <div class="features-stack">
-        <!-- TruePrice -->
-        <div class="trueprice">
-          <div class="trueprice-badge">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+
+        <div class="bullet">
+          <div class="bullet-icon">
+            <svg width="18" height="18" viewBox="0 0 26 26" fill="none">
               <path d="M13 2.5L4 6.5v6.5c0 5 3.7 9.7 9 10.9 5.3-1.2 9-5.9 9-10.9V6.5L13 2.5z"
-                fill="rgba(255,255,255,0.18)" stroke="white" stroke-width="1.4"/>
+                fill="#dbeeff" stroke="#1985e3" stroke-width="1.4"/>
               <polyline points="8.5,13 11.5,16 17.5,10"
-                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                stroke="#1985e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="trueprice-body">
-            <div class="trueprice-name">MyUS TruePrice<sup>™</sup></div>
-            <p class="trueprice-desc">Charged by weight only — no dimensional fees, no surprises.</p>
+          <div class="bullet-body">
+            <p class="bullet-title">MyUS TruePrice<sup>™</sup></p>
+            <p class="bullet-desc">Charged by weight only — no dimensional fees, no surprises.</p>
           </div>
         </div>
 
-        <!-- Two feature cards -->
-        <div class="feature-pair">
-          <div class="feature">
-            <div class="feat-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M9 2v14M3 16h12" stroke="#1985e3" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M4 7L2 11h4L4 7z" fill="#d0e8fa" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
-                <path d="M14 7l-2 4h4l-2-4z" fill="#d0e8fa" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
-                <path d="M4 7h10" stroke="#1985e3" stroke-width="1.3" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="feat-body">
-              <p class="feat-title">No dimensional weight fees</p>
-              <p class="feat-desc">You never pay extra for empty space in the box.</p>
-            </div>
+        <div class="bullet">
+          <div class="bullet-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 2v14M3 16h12" stroke="#1985e3" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M4 7L2 11h4L4 7z" fill="#dbeeff" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M14 7l-2 4h4l-2-4z" fill="#dbeeff" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M4 7h10" stroke="#1985e3" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
           </div>
-
-          <div class="feature">
-            <div class="feat-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M8.5 2H4a2 2 0 00-2 2v4.5l7.5 7.5a2 2 0 002.83 0l4.17-4.17a2 2 0 000-2.83L8.5 2z"
-                  stroke="#1985e3" stroke-width="1.4" stroke-linejoin="round"/>
-                <circle cx="5.5" cy="5.5" r="1" fill="#1985e3"/>
-                <polyline points="7,9.5 9,11.5 13,7.5"
-                  stroke="#1985e3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="feat-body">
-              <p class="feat-title">Upfront pricing</p>
-              <p class="feat-desc">What you see is what you pay — no surprises later.</p>
-            </div>
+          <div class="bullet-body">
+            <p class="bullet-title">No dimensional weight fees</p>
+            <p class="bullet-desc">You never pay extra for empty space in the box.</p>
           </div>
         </div>
+
+        <div class="bullet">
+          <div class="bullet-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M8.5 2H4a2 2 0 00-2 2v4.5l7.5 7.5a2 2 0 002.83 0l4.17-4.17a2 2 0 000-2.83L8.5 2z"
+                stroke="#1985e3" stroke-width="1.4" stroke-linejoin="round" fill="#dbeeff"/>
+              <circle cx="5.5" cy="5.5" r="1" fill="#1985e3"/>
+              <polyline points="7,9.5 9,11.5 13,7.5"
+                stroke="#1985e3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="bullet-body">
+            <p class="bullet-title">Upfront pricing</p>
+            <p class="bullet-desc">What you see is what you pay — no surprises later.</p>
+          </div>
+        </div>
+
       </div>
 
     </div>
