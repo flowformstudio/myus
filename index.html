@@ -6,634 +6,708 @@
   <title>MyUS — Ship Smarter. Save More.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:    #10283d;
-      --orange:  #ff7a00;
+      --navy:       #10283d;
+      --orange:     #ff7a00;
       --orange-btn: #ff981f;
-      --blue:    #1985e3;
+      --blue:       #1985e3;
+      --blue-grad:  linear-gradient(144deg, #1985e3 0%, #2b73b2 100%);
       --blue-light: #e8f3fd;
-      --nav-text: #45484b;
-      --weak-text: #65676a;
-      --white:   #ffffff;
+      --muted:      #65676a;
+      --nav-color:  #45484b;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', system-ui, sans-serif;
       color: var(--navy);
-      background: var(--white);
+      background: #fff;
       -webkit-font-smoothing: antialiased;
+      line-height: 1;
     }
 
-    /* ─── HEADER ────────────────────────────────────────────────── */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 76px;
-      padding: 16px 40px;
-      background: var(--white);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+    /* ── HEADER ─────────────────────────────────────────────────────── */
+    .site-header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
+      background: #fff;
+      border-bottom: 1px solid rgba(16, 40, 61, 0.08);
     }
 
-    .logo img {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
-
-    nav {
+    .header-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 72px;
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 32px;
     }
 
-    nav a {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--nav-text);
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
       text-decoration: none;
-      padding: 8px 4px;
-      letter-spacing: 0.28px;
-      white-space: nowrap;
-      transition: color 0.15s;
+      flex-shrink: 0;
     }
 
-    nav a:hover { color: var(--navy); }
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+    }
 
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-myus {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+    }
+
+    .logo-tagline {
+      font-size: 7.5px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Nav */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .site-nav a {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--nav-color);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      letter-spacing: 0.15px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover {
+      background: rgba(16,40,61,0.05);
+      color: var(--navy);
+    }
+
+    /* Header actions */
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 4px;
+      flex-shrink: 0;
     }
 
-    .btn-search {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
+    .btn-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
       background: none;
       border: none;
       cursor: pointer;
-      border-radius: 6px;
-      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--nav-color);
       transition: background 0.15s;
     }
-    .btn-search:hover { background: rgba(0,0,0,0.05); }
+    .btn-icon:hover { background: rgba(16,40,61,0.06); }
 
     .btn-login {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
-      color: var(--nav-text);
+      color: var(--nav-color);
       text-decoration: none;
-      padding: 0 4px;
-      letter-spacing: 0.28px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background 0.15s;
     }
+    .btn-login:hover { background: rgba(16,40,61,0.06); }
 
     .btn-signup {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 20px;
-      background: var(--orange-btn);
-      color: var(--white);
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
-      letter-spacing: 0.28px;
-      border-radius: 6px;
+      color: #fff;
       text-decoration: none;
-      transition: background 0.15s, transform 0.1s;
-      white-space: nowrap;
+      padding: 10px 22px;
+      border-radius: 7px;
+      background: var(--orange-btn);
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(255,152,31,0.35);
     }
-    .btn-signup:hover { background: #e86e00; transform: translateY(-1px); }
-
-    /* ─── HERO ──────────────────────────────────────────────────── */
-    .hero-wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      background: var(--white);
+    .btn-signup:hover {
+      background: #e86e00;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(255,152,31,0.4);
     }
 
-    .hero {
-      width: 100%;
-      max-width: 1440px;
-      display: flex;
+    /* Mobile menu toggle */
+    .menu-toggle {
+      display: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
       align-items: center;
-      gap: 70px;
-      padding: 80px 120px;
-    }
-
-    /* ── Left column ── */
-    .hero-left {
-      flex: 0 0 569px;
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-    }
-
-    .hero-heading {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .hero-title {
-      font-size: 46px;
-      font-weight: 600;
-      line-height: 1.15;
-      letter-spacing: -0.46px;
+      justify-content: center;
       color: var(--navy);
     }
 
-    .hero-title .orange { color: var(--orange); }
+    /* ── HERO ────────────────────────────────────────────────────────── */
+    .hero-section {
+      width: 100%;
+      padding: 72px 40px 80px;
+    }
+
+    .hero-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* ── Left ── */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 44px;
+    }
+
+    .hero-text { display: flex; flex-direction: column; gap: 20px; }
+
+    h1.hero-title {
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+      color: var(--navy);
+    }
+
+    h1.hero-title .orange { color: var(--orange); }
 
     .hero-desc {
-      font-size: 20px;
+      font-size: clamp(15px, 1.4vw, 18px);
       font-weight: 400;
-      line-height: 1.31;
-      color: var(--navy);
+      color: #4a5568;
+      line-height: 1.6;
+      max-width: 520px;
     }
 
-    .hero-desc strong { font-weight: 600; }
+    .hero-desc strong { font-weight: 600; color: var(--navy); }
+
+    /* Features */
+    .features { display: flex; flex-direction: column; gap: 0; }
 
     /* TruePrice card */
-    .trueprice-card {
+    .trueprice {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       background: var(--blue-light);
-      border-radius: 8px;
-      padding: 19px 20px;
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-bottom: 20px;
     }
 
-    .trueprice-icon {
-      width: 68px;
-      height: 68px;
+    .trueprice-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--blue-grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(25,133,227,0.3);
     }
 
-    .trueprice-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .trueprice-text { flex: 1; }
+    .trueprice-content { flex: 1; }
 
     .trueprice-name {
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
       color: var(--navy);
-      line-height: 1.25;
+      line-height: 1.3;
       margin-bottom: 4px;
       display: flex;
       align-items: baseline;
-      gap: 2px;
+      gap: 1px;
     }
 
     .trueprice-name sup {
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 600;
       vertical-align: super;
+      letter-spacing: 0.5px;
     }
 
     .trueprice-desc {
-      font-size: 15px;
+      font-size: 13.5px;
       font-weight: 400;
-      color: var(--nav-text);
-      line-height: 1.4;
+      color: var(--nav-color);
+      line-height: 1.45;
     }
 
-    /* Feature bullets */
-    .features {
+    /* Bullet features */
+    .feature-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .feature {
       display: flex;
-      flex-direction: column;
-      gap: 18px;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 4px 0;
     }
 
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 5px 0;
-    }
-
-    .feature-icon {
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
+    .feature-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--blue-light);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
-    .feature-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .feature-text {}
+    .feature-body {}
 
     .feature-title {
-      font-size: 20px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--navy);
-      line-height: 1.25;
+      line-height: 1.3;
+      margin-bottom: 3px;
     }
 
     .feature-desc {
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 400;
-      color: var(--weak-text);
-      line-height: 1.2;
+      color: var(--muted);
+      line-height: 1.45;
     }
 
-    /* ── Right column — Calculator card ── */
+    /* ── Right — Calculator card ── */
     .calc-card {
-      flex: 0 0 537px;
-      background: linear-gradient(144.16deg, #1985e3 3.34%, #2b73b2 84.19%);
-      border: 1px solid #1a85e3;
-      border-radius: 20px;
-      padding: 59px 50px 60px;
+      background: var(--blue-grad);
+      border-radius: 24px;
+      padding: 44px 40px 40px;
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      color: var(--white);
+      gap: 28px;
+      color: #fff;
+      box-shadow: 0 20px 60px rgba(25,133,227,0.28), 0 4px 16px rgba(16,40,61,0.1);
     }
 
-    .calc-header { display: flex; flex-direction: column; gap: 6px; }
+    .calc-head { display: flex; flex-direction: column; gap: 6px; }
 
     .calc-title {
-      font-size: 32px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
       line-height: 1.2;
-      color: var(--white);
+      letter-spacing: -0.3px;
     }
 
     .calc-subtitle {
-      font-size: 20px;
+      font-size: 15px;
       font-weight: 300;
-      line-height: 1.31;
-      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+      color: rgba(255,255,255,0.72);
     }
 
-    /* Form */
-    .calc-form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
+    /* Form fields */
+    .calc-fields { display: flex; flex-direction: column; gap: 14px; }
 
-    .form-fields {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .field { display: flex; flex-direction: column; gap: 7px; }
 
     .field-label {
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.1px;
     }
 
-    .field-select {
+    .field-control {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--white);
+      background: #fff;
       border-radius: 10px;
-      padding: 14px 16px;
+      padding: 13px 16px;
       cursor: pointer;
-      user-select: none;
+      transition: box-shadow 0.15s;
+    }
+    .field-control:hover {
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
     }
 
-    .field-select span {
-      font-size: 18px;
+    .field-value {
+      font-size: 15px;
       font-weight: 400;
       color: var(--navy);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .field-select svg { flex-shrink: 0; color: var(--navy); }
+    .field-value.placeholder { color: #aab0bb; }
 
-    /* Package weight row */
+    .chevron {
+      flex-shrink: 0;
+      color: #8896a3;
+      margin-left: 10px;
+    }
+
+    /* Weight row */
     .weight-row {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      align-items: start;
     }
 
-    .weight-input-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 0 0 160px;
-    }
-
-    .weight-input {
+    .weight-control {
       display: flex;
       align-items: center;
-      background: var(--white);
+      background: #fff;
       border-radius: 10px;
-      padding: 14px 16px;
+      padding: 13px 14px;
       gap: 8px;
     }
 
-    .weight-input input {
-      font-size: 18px;
+    .weight-control input {
+      font-size: 15px;
       font-weight: 400;
       color: var(--navy);
+      font-family: inherit;
       border: none;
       outline: none;
-      width: 50px;
-      font-family: 'Poppins', sans-serif;
       background: transparent;
+      width: 44px;
     }
 
     .weight-unit {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 18px;
-      font-weight: 400;
+      gap: 5px;
+      font-size: 15px;
       color: var(--navy);
+      font-weight: 400;
     }
-
-    .weight-unit svg { color: var(--navy); }
 
     .weight-note {
-      flex: 1;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 400;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.4;
-      padding-top: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      padding-top: 16px;
     }
 
-    .weight-note a { color: #e8f3fd; }
+    .weight-note a { color: #b8daff; text-decoration: underline; }
 
-    /* CTA */
-    .calc-cta {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    /* CTA area */
+    .calc-cta { display: flex; flex-direction: column; gap: 12px; }
 
     .btn-calculate {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       width: 100%;
-      height: 54px;
+      height: 52px;
       background: var(--orange-btn);
       border: none;
-      border-radius: 6px;
-      font-size: 18px;
-      font-weight: 600;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
       color: var(--navy);
       cursor: pointer;
-      letter-spacing: 0.01em;
-      transition: background 0.15s, transform 0.1s;
-      font-family: 'Poppins', sans-serif;
+      font-family: inherit;
+      letter-spacing: 0.1px;
+      transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
+      box-shadow: 0 2px 10px rgba(255,152,31,0.4);
     }
 
-    .btn-calculate:hover { background: #e86e00; color: var(--white); transform: translateY(-1px); }
+    .btn-calculate:hover {
+      background: #e86e00;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(255,152,31,0.45);
+    }
 
     .calc-trust {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 7px;
     }
 
     .calc-trust p {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 400;
-      color: var(--white);
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
       text-align: center;
-      line-height: 1.3;
     }
 
-    /* ─── Responsive ─────────────────────────────────────────────── */
-    @media (max-width: 1200px) {
-      .hero { padding: 60px 40px; gap: 40px; }
-      .hero-left { flex: 0 0 auto; }
-      .calc-card { flex: 0 0 480px; }
+    /* ── Responsive ─────────────────────────────────────────────────── */
+
+    /* Tablet */
+    @media (max-width: 1100px) {
+      .hero-inner {
+        grid-template-columns: 1fr 420px;
+        gap: 48px;
+      }
     }
 
-    @media (max-width: 960px) {
-      header { padding: 16px 24px; }
-      nav { display: none; }
-      .hero { flex-direction: column; align-items: stretch; padding: 48px 24px; }
-      .hero-left { flex: none; }
-      .calc-card { flex: none; width: 100%; }
+    /* Small tablet */
+    @media (max-width: 900px) {
+      .header-inner { gap: 16px; padding: 0 24px; }
+      .site-nav { display: none; }
+      .menu-toggle { display: flex; }
+
+      .hero-section { padding: 48px 24px 64px; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .calc-card { width: 100%; max-width: 520px; margin: 0 auto; }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .header-inner { padding: 0 16px; height: 60px; }
+      .hero-section { padding: 36px 16px 56px; }
+
+      .calc-card { padding: 32px 24px 28px; }
+      .weight-row { grid-template-columns: 1fr; }
+      .weight-note { padding-top: 0; }
+
+      .btn-login { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── HEADER ───────────────────────────────────────────────────── -->
-  <header>
+<!-- ── HEADER ─────────────────────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+
     <a href="/" class="logo" aria-label="MyUS home">
-      <img
-        src="https://www.figma.com/api/mcp/asset/2c84283a-ad62-4e3c-adff-b8f4f6f56ade"
-        alt="MyUS.com"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-      />
-      <!-- Fallback SVG logo -->
-      <svg style="display:none" width="125" height="32" viewBox="0 0 125 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="14" fill="#1985e3"/>
-        <circle cx="16" cy="16" r="14" stroke="#ff7a00" stroke-width="3" stroke-dasharray="20 10"/>
-        <text x="36" y="22" font-family="Poppins, sans-serif" font-size="16" font-weight="700" fill="#10283d">MyUS.com</text>
+      <!-- Logo mark: globe ring with flag -->
+      <svg class="logo-mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="17" cy="17" r="17" fill="#e8f3fd"/>
+        <!-- Globe ring -->
+        <circle cx="17" cy="17" r="11.5" stroke="#1985e3" stroke-width="2"/>
+        <!-- Horizontal band -->
+        <ellipse cx="17" cy="17" rx="6.5" ry="11.5" stroke="#1985e3" stroke-width="1.5"/>
+        <!-- Latitude lines -->
+        <path d="M6 17h22M8 12.5h18M8 21.5h18" stroke="#1985e3" stroke-width="1.2" opacity="0.5"/>
+        <!-- US flag mini dot -->
+        <circle cx="23" cy="10" r="4" fill="#ff981f"/>
+        <path d="M21 10h4M23 8v4" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
+      <div class="logo-text">
+        <span class="logo-myus">MyUS.com</span>
+        <span class="logo-tagline">where the possibilities</span>
+      </div>
     </a>
 
-    <nav>
+    <nav class="site-nav">
       <a href="#">How it works</a>
-      <a href="#">Why choose Myus</a>
+      <a href="#">Why choose MyUS</a>
       <a href="#">Shipping rates</a>
       <a href="#">Shop with MyUS</a>
     </nav>
 
     <div class="header-actions">
-      <button class="btn-search" aria-label="Search">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="7"/>
-          <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+      <button class="btn-icon" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M12.5 12.5L16 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
         </svg>
       </button>
       <a href="#" class="btn-login">Log in</a>
       <a href="#" class="btn-signup">Sign up</a>
+      <button class="menu-toggle" aria-label="Open menu">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+          <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
     </div>
-  </header>
 
-  <!-- ─── HERO ─────────────────────────────────────────────────────── -->
-  <section class="hero-wrapper">
-    <div class="hero">
+  </div>
+</header>
 
-      <!-- Left column -->
-      <div class="hero-left">
+<!-- ── HERO ───────────────────────────────────────────────────────────── -->
+<section class="hero-section">
+  <div class="hero-inner">
 
-        <!-- Heading + description -->
-        <div class="hero-heading">
-          <h1 class="hero-title">
-            Ship Smarter.<br/>
-            <span class="orange">Save More.</span>
-          </h1>
-          <p class="hero-desc">
-            MyUS members save an average of <strong>$544 a year</strong> in
-            shipping costs. Shop like a local from anywhere in the world and save!
-          </p>
+    <!-- Left column -->
+    <div class="hero-left">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Ship Smarter.<br/>
+          <span class="orange">Save More.</span>
+        </h1>
+        <p class="hero-desc">
+          MyUS members save an average of <strong>$544 a year</strong> in
+          shipping costs. Shop like a local from anywhere in the world and save!
+        </p>
+      </div>
+
+      <div class="features">
+        <!-- TruePrice card -->
+        <div class="trueprice">
+          <div class="trueprice-badge">
+            <!-- Shield checkmark -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 3L5 7v7c0 5.25 3.85 10.15 9 11.33C19.15 24.15 23 19.25 23 14V7L14 3z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/>
+              <polyline points="9.5,14 12.5,17 18.5,11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="trueprice-content">
+            <div class="trueprice-name">MyUS TruePrice<sup>TM</sup></div>
+            <p class="trueprice-desc">
+              With TruePrice guaranteed rates, you're charged by weight only, with no hidden fees
+            </p>
+          </div>
         </div>
 
-        <!-- Features -->
-        <div class="features">
-          <!-- TruePrice card -->
-          <div class="trueprice-card">
-            <div class="trueprice-icon">
-              <img
-                src="https://www.figma.com/api/mcp/asset/1c1b03b8-5897-4f0d-8b59-4423ab65d873"
-                alt="TruePrice badge"
-                onerror="this.style.display='none'; this.parentElement.innerHTML='<svg width=\'68\' height=\'68\' viewBox=\'0 0 68 68\' fill=\'none\'><circle cx=\'34\' cy=\'34\' r=\'34\' fill=\'#1985e3\'/><polyline points=\'20,34 30,44 48,24\' stroke=\'white\' stroke-width=\'4\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg>'"
-              />
+        <!-- Bullets -->
+        <div class="feature-list">
+          <div class="feature">
+            <div class="feature-icon-wrap">
+              <!-- Scales icon -->
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 3v14M4 17h12" stroke="#1985e3" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M10 3L5 8h10L10 3z" stroke="#1985e3" stroke-width="1.4" stroke-linejoin="round"/>
+                <path d="M4 8l-2 4h4L4 8z" fill="#e8f3fd" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
+                <path d="M16 8l-2 4h4L16 8z" fill="#e8f3fd" stroke="#1985e3" stroke-width="1.2" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <div class="trueprice-text">
-              <div class="trueprice-name">
-                MyUS TruePrice<sup>TM</sup>
-              </div>
-              <p class="trueprice-desc">
-                With TruePrice guaranteed rates, you're charged by weight only, with no hidden fees
-              </p>
-            </div>
-          </div>
-
-          <!-- No dimensional weight fees -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <img
-                src="https://www.figma.com/api/mcp/asset/5b28be7c-c95d-4a5f-9465-3f4f83898a69"
-                alt=""
-                onerror="this.outerHTML='<svg width=\'32\' height=\'32\' viewBox=\'0 0 32 32\' fill=\'none\'><rect width=\'32\' height=\'32\' rx=\'6\' fill=\'#e8f3fd\'/><path d=\'M8 16h4l3-6 4 12 3-6h6\' stroke=\'#1985e3\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg>'"
-              />
-            </div>
-            <div class="feature-text">
+            <div class="feature-body">
               <p class="feature-title">No dimensional weight fees</p>
               <p class="feature-desc">You never pay extra for empty space in the box.</p>
             </div>
           </div>
 
-          <!-- Upfront pricing -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <img
-                src="https://www.figma.com/api/mcp/asset/80a516c8-730c-4d81-87d3-6502fa186aa5"
-                alt=""
-                onerror="this.outerHTML='<svg width=\'32\' height=\'32\' viewBox=\'0 0 32 32\' fill=\'none\'><rect width=\'32\' height=\'32\' rx=\'6\' fill=\'#e8f3fd\'/><polyline points=\'8,16 14,22 24,10\' stroke=\'#1985e3\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg>'"
-              />
+          <div class="feature">
+            <div class="feature-icon-wrap">
+              <!-- Tag check icon -->
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M9.5 2H4a2 2 0 00-2 2v5.5l8.5 8.5a2 2 0 002.83 0l5.17-5.17a2 2 0 000-2.83L9.5 2z" stroke="#1985e3" stroke-width="1.5" stroke-linejoin="round"/>
+                <circle cx="6.5" cy="6.5" r="1.2" fill="#1985e3"/>
+                <polyline points="8,11 10,13 14,9" stroke="#1985e3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <div class="feature-text">
+            <div class="feature-body">
               <p class="feature-title">Upfront pricing</p>
               <p class="feature-desc">What you see is what you pay—no surprises later.</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Right column — Savings Calculator -->
-      <div class="calc-card">
-        <div class="calc-header">
-          <h2 class="calc-title">See Your Savings Instantly</h2>
-          <p class="calc-subtitle">Get a quick estimate before you ship</p>
+    <!-- Right column — Savings calculator -->
+    <div class="calc-card">
+      <div class="calc-head">
+        <h2 class="calc-title">See Your Savings Instantly</h2>
+        <p class="calc-subtitle">Get a quick estimate before you ship</p>
+      </div>
+
+      <div class="calc-fields">
+
+        <!-- Shipping from -->
+        <div class="field">
+          <label class="field-label">Shipping from</label>
+          <div class="field-control" role="button" tabindex="0">
+            <span class="field-value">US Sales Tax-Free Facility</span>
+            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+              <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
 
-        <div class="calc-form">
-          <div class="form-fields">
+        <!-- Delivering to -->
+        <div class="field">
+          <label class="field-label">Delivering to</label>
+          <div class="field-control" role="button" tabindex="0">
+            <span class="field-value">Italy</span>
+            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+              <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
 
-            <!-- Shipping from -->
-            <div class="field-group">
-              <label class="field-label">Shipping from</label>
-              <div class="field-select" role="combobox" tabindex="0">
-                <span>US Sales Tax-Free Facility</span>
-                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                  <path d="M1 1.5L6 6.5L11 1.5" stroke="#10283d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Select state (no label, slightly different bg to show disabled-ish) -->
+        <div class="field-control" role="button" tabindex="0">
+          <span class="field-value placeholder">Select a state</span>
+          <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Package weight -->
+        <div class="field">
+          <label class="field-label">Package Weight</label>
+          <div class="weight-row">
+            <div class="weight-control">
+              <input type="number" value="10" min="1" max="999" aria-label="Weight value" />
+              <div class="weight-unit">
+                <span>lbs</span>
+                <svg width="10" height="7" viewBox="0 0 12 8" fill="none">
+                  <path d="M1 1.5L6 6.5L11 1.5" stroke="#8896a3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
             </div>
-
-            <!-- Delivering to -->
-            <div class="field-group">
-              <label class="field-label">Delivering to</label>
-              <div class="field-select" role="combobox" tabindex="0">
-                <span>Italy</span>
-                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                  <path d="M1 1.5L6 6.5L11 1.5" stroke="#10283d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Select a state -->
-            <div class="field-select" role="combobox" tabindex="0" style="margin-top: 14px;">
-              <span style="color: #9ca3af; font-size: 18px;">Select a state</span>
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1.5L6 6.5L11 1.5" stroke="#10283d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-
-            <!-- Package weight -->
-            <div class="field-group">
-              <label class="field-label">Package Weight</label>
-              <div class="weight-row">
-                <div class="weight-input-wrap">
-                  <div class="weight-input">
-                    <input type="number" value="10" min="1" aria-label="Package weight" />
-                    <div class="weight-unit">
-                      <span>lbs</span>
-                      <svg width="10" height="7" viewBox="0 0 12 8" fill="none">
-                        <path d="M1 1.5L6 6.5L11 1.5" stroke="#10283d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <p class="weight-note">
-                  If your package's length + width + height is greater than 72 inches,
-                  <a href="#">click here</a> to provide the dimensions
-                </p>
-              </div>
-            </div>
-
+            <p class="weight-note">
+              If your package's length + width + height is greater than 72 inches,
+              <a href="#">click here</a> to provide the dimensions
+            </p>
           </div>
+        </div>
 
-          <!-- CTA -->
-          <div class="calc-cta">
-            <button class="btn-calculate">Calculate My Savings</button>
-            <div class="calc-trust">
-              <!-- Checkmark badge -->
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
-                <polyline points="4.5,8 7,10.5 11.5,5.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <p>Join over 1.6 million international shoppers who save on shipping</p>
-            </div>
-          </div>
+      </div>
+
+      <div class="calc-cta">
+        <button class="btn-calculate">Calculate My Savings</button>
+        <div class="calc-trust">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <circle cx="7.5" cy="7.5" r="7" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+            <polyline points="4,7.5 6.5,10 11,5" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>Join over 1.6 million international shoppers who save on shipping</p>
         </div>
       </div>
 
     </div>
-  </section>
+
+  </div>
+</section>
 
 </body>
 </html>
