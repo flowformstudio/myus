@@ -431,6 +431,110 @@
 
     .weight-note a { color: #b8daff; text-decoration: underline; }
 
+    /* ── Dropdown ─────────────────────────────────────────────────────── */
+    .dropdown-wrap {
+      position: relative;
+    }
+
+    .field-control {
+      position: relative;
+      user-select: none;
+    }
+
+    .field-control.open {
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.6);
+    }
+
+    .chevron {
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .field-control.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(16,40,61,0.18), 0 2px 8px rgba(16,40,61,0.08);
+      overflow: hidden;
+      z-index: 300;
+      max-height: 220px;
+      overflow-y: auto;
+      display: none;
+      animation: dropIn 0.15s ease;
+    }
+
+    .dropdown-menu.show { display: block; }
+
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-menu::-webkit-scrollbar { width: 4px; }
+    .dropdown-menu::-webkit-scrollbar-track { background: transparent; }
+    .dropdown-menu::-webkit-scrollbar-thumb { background: rgba(16,40,61,0.15); border-radius: 4px; }
+
+    .dropdown-option {
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--navy);
+      cursor: pointer;
+      transition: background 0.1s;
+      border-left: 3px solid transparent;
+    }
+
+    .dropdown-option:hover {
+      background: var(--blue-light);
+    }
+
+    .dropdown-option.selected {
+      background: var(--blue-light);
+      font-weight: 600;
+      border-left-color: var(--blue);
+      color: var(--blue);
+    }
+
+    /* weight unit dropdown */
+    .weight-unit {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .weight-unit-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: -14px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(16,40,61,0.16);
+      overflow: hidden;
+      z-index: 300;
+      display: none;
+      min-width: 70px;
+      animation: dropIn 0.15s ease;
+    }
+
+    .weight-unit-menu.show { display: block; }
+
+    .weight-unit-option {
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--navy);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .weight-unit-option:hover { background: var(--blue-light); }
+    .weight-unit-option.selected { font-weight: 600; color: var(--blue); }
+
     /* CTA area */
     .calc-cta { display: flex; flex-direction: column; gap: 12px; }
 
@@ -644,31 +748,74 @@
         <!-- Shipping from -->
         <div class="field">
           <label class="field-label">Shipping from</label>
-          <div class="field-control" role="button" tabindex="0">
-            <span class="field-value">US Sales Tax-Free Facility</span>
-            <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <div class="dropdown-wrap">
+            <div class="field-control" role="button" tabindex="0" data-dropdown="shipping-from">
+              <span class="field-value" id="shipping-from-val">US Sales Tax-Free Facility</span>
+              <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="dropdown-menu" id="shipping-from-menu">
+              <div class="dropdown-option selected" data-value="US Sales Tax-Free Facility">US Sales Tax-Free Facility</div>
+              <div class="dropdown-option" data-value="MyUS UK Facility">MyUS UK Facility</div>
+              <div class="dropdown-option" data-value="MyUS Canada Facility">MyUS Canada Facility</div>
+            </div>
           </div>
         </div>
 
         <!-- Delivering to -->
         <div class="field">
           <label class="field-label">Delivering to</label>
-          <div class="field-control" role="button" tabindex="0">
-            <span class="field-value">Italy</span>
+          <div class="dropdown-wrap">
+            <div class="field-control" role="button" tabindex="0" data-dropdown="delivering-to">
+              <span class="field-value" id="delivering-to-val">Italy</span>
+              <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="dropdown-menu" id="delivering-to-menu">
+              <div class="dropdown-option" data-value="Australia">Australia</div>
+              <div class="dropdown-option" data-value="Brazil">Brazil</div>
+              <div class="dropdown-option" data-value="Canada">Canada</div>
+              <div class="dropdown-option" data-value="France">France</div>
+              <div class="dropdown-option" data-value="Germany">Germany</div>
+              <div class="dropdown-option" data-value="India">India</div>
+              <div class="dropdown-option selected" data-value="Italy">Italy</div>
+              <div class="dropdown-option" data-value="Japan">Japan</div>
+              <div class="dropdown-option" data-value="Mexico">Mexico</div>
+              <div class="dropdown-option" data-value="Netherlands">Netherlands</div>
+              <div class="dropdown-option" data-value="New Zealand">New Zealand</div>
+              <div class="dropdown-option" data-value="Saudi Arabia">Saudi Arabia</div>
+              <div class="dropdown-option" data-value="Singapore">Singapore</div>
+              <div class="dropdown-option" data-value="South Korea">South Korea</div>
+              <div class="dropdown-option" data-value="Spain">Spain</div>
+              <div class="dropdown-option" data-value="United Arab Emirates">United Arab Emirates</div>
+              <div class="dropdown-option" data-value="United Kingdom">United Kingdom</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Select state -->
+        <div class="dropdown-wrap">
+          <div class="field-control" role="button" tabindex="0" data-dropdown="state">
+            <span class="field-value placeholder" id="state-val">Select a state</span>
             <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
               <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-        </div>
-
-        <!-- Select state (no label, slightly different bg to show disabled-ish) -->
-        <div class="field-control" role="button" tabindex="0">
-          <span class="field-value placeholder">Select a state</span>
-          <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <div class="dropdown-menu" id="state-menu">
+            <div class="dropdown-option" data-value="Alabama">Alabama</div>
+            <div class="dropdown-option" data-value="Alaska">Alaska</div>
+            <div class="dropdown-option" data-value="Arizona">Arizona</div>
+            <div class="dropdown-option" data-value="California">California</div>
+            <div class="dropdown-option" data-value="Colorado">Colorado</div>
+            <div class="dropdown-option" data-value="Florida">Florida</div>
+            <div class="dropdown-option" data-value="Georgia">Georgia</div>
+            <div class="dropdown-option" data-value="Illinois">Illinois</div>
+            <div class="dropdown-option" data-value="New York">New York</div>
+            <div class="dropdown-option" data-value="Texas">Texas</div>
+            <div class="dropdown-option" data-value="Washington">Washington</div>
+          </div>
         </div>
 
         <!-- Package weight -->
@@ -677,11 +824,15 @@
           <div class="weight-row">
             <div class="weight-control">
               <input type="number" value="10" min="1" max="999" aria-label="Weight value" />
-              <div class="weight-unit">
-                <span>lbs</span>
+              <div class="weight-unit" id="weight-unit-btn">
+                <span id="weight-unit-val">lbs</span>
                 <svg width="10" height="7" viewBox="0 0 12 8" fill="none">
                   <path d="M1 1.5L6 6.5L11 1.5" stroke="#8896a3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                <div class="weight-unit-menu" id="weight-unit-menu">
+                  <div class="weight-unit-option selected" data-value="lbs">lbs</div>
+                  <div class="weight-unit-option" data-value="kg">kg</div>
+                </div>
               </div>
             </div>
             <p class="weight-note">
@@ -708,6 +859,93 @@
 
   </div>
 </section>
+
+<script>
+  // ── Generic dropdown logic ──────────────────────────────────────────
+  const dropdownMap = {
+    'shipping-from': { trigger: null, menu: null, valueEl: null },
+    'delivering-to': { trigger: null, menu: null, valueEl: null },
+    'state':         { trigger: null, menu: null, valueEl: null },
+  };
+
+  Object.keys(dropdownMap).forEach(id => {
+    const trigger  = document.querySelector(`[data-dropdown="${id}"]`);
+    const menu     = document.getElementById(`${id}-menu`);
+    const valueEl  = document.getElementById(`${id}-val`);
+    dropdownMap[id] = { trigger, menu, valueEl };
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = menu.classList.contains('show');
+      closeAll();
+      if (!isOpen) openDropdown(id);
+    });
+
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        trigger.click();
+      }
+      if (e.key === 'Escape') closeAll();
+    });
+
+    menu.querySelectorAll('.dropdown-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const val = opt.dataset.value;
+        valueEl.textContent = val;
+        valueEl.classList.remove('placeholder');
+        // Update selected state
+        menu.querySelectorAll('.dropdown-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        closeAll();
+      });
+    });
+  });
+
+  function openDropdown(id) {
+    const { trigger, menu } = dropdownMap[id];
+    menu.classList.add('show');
+    trigger.classList.add('open');
+    // Scroll selected option into view
+    const selected = menu.querySelector('.selected');
+    if (selected) selected.scrollIntoView({ block: 'nearest' });
+  }
+
+  function closeAll() {
+    Object.values(dropdownMap).forEach(({ trigger, menu }) => {
+      menu.classList.remove('show');
+      trigger.classList.remove('open');
+    });
+    weightUnitMenu.classList.remove('show');
+    weightUnitBtn.querySelector('svg').style.transform = '';
+  }
+
+  document.addEventListener('click', closeAll);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+
+  // ── Weight unit dropdown ────────────────────────────────────────────
+  const weightUnitBtn  = document.getElementById('weight-unit-btn');
+  const weightUnitMenu = document.getElementById('weight-unit-menu');
+  const weightUnitVal  = document.getElementById('weight-unit-val');
+
+  weightUnitBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = weightUnitMenu.classList.contains('show');
+    closeAll();
+    if (!isOpen) weightUnitMenu.classList.add('show');
+  });
+
+  weightUnitMenu.querySelectorAll('.weight-unit-option').forEach(opt => {
+    opt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      weightUnitVal.textContent = opt.dataset.value;
+      weightUnitMenu.querySelectorAll('.weight-unit-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      weightUnitMenu.classList.remove('show');
+    });
+  });
+</script>
 
 </body>
 </html>
