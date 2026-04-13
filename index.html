@@ -576,6 +576,116 @@
       text-align: center;
     }
 
+    /* ── Country search combobox ──────────────────────────────────────── */
+    .country-wrap { position: relative; }
+
+    .country-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 0 14px;
+      height: 48px;
+      transition: box-shadow 0.15s;
+    }
+
+    .country-control:focus-within {
+      box-shadow: 0 0 0 2.5px rgba(255,255,255,0.7);
+    }
+
+    .country-globe { flex-shrink: 0; }
+
+    .country-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--navy);
+      min-width: 0;
+    }
+
+    .country-input::placeholder { color: #aab0bb; }
+
+    .country-clear {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #aab0bb;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      padding: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+    .country-clear:hover { background: rgba(16,40,61,0.08); color: var(--navy); }
+    .country-clear.visible { display: flex; }
+
+    .country-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(16,40,61,0.18), 0 2px 8px rgba(16,40,61,0.08);
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 400;
+      display: none;
+      animation: dropIn 0.14s ease;
+    }
+
+    .country-menu.show { display: block; }
+
+    .country-menu::-webkit-scrollbar { width: 4px; }
+    .country-menu::-webkit-scrollbar-track { background: transparent; }
+    .country-menu::-webkit-scrollbar-thumb { background: rgba(16,40,61,0.15); border-radius: 4px; }
+
+    .country-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--navy);
+      cursor: pointer;
+      transition: background 0.1s;
+      border-left: 3px solid transparent;
+    }
+
+    .country-option:hover,
+    .country-option.focused { background: var(--blue-light); }
+
+    .country-option.selected {
+      background: var(--blue-light);
+      font-weight: 600;
+      border-left-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .country-option mark {
+      background: none;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .country-option .country-flag { font-size: 18px; line-height: 1; }
+
+    .country-empty {
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
     /* ── Responsive ─────────────────────────────────────────────────── */
 
     /* Tablet */
@@ -763,35 +873,36 @@
           </div>
         </div>
 
-        <!-- Delivering to -->
+        <!-- Delivering to — search combobox -->
         <div class="field">
-          <label class="field-label">Delivering to</label>
-          <div class="dropdown-wrap">
-            <div class="field-control" role="button" tabindex="0" data-dropdown="delivering-to">
-              <span class="field-value" id="delivering-to-val">Italy</span>
-              <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <label class="field-label" for="country-search">Delivering to</label>
+          <div class="country-wrap" id="country-wrap">
+            <div class="country-control" id="country-control">
+              <svg class="country-globe" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="6.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+                <ellipse cx="8" cy="8" rx="3.2" ry="6.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+                <path d="M1.5 8h13M2.5 5h11M2.5 11h11" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
               </svg>
+              <input
+                id="country-search"
+                class="country-input"
+                type="text"
+                value="Italy"
+                placeholder="Search country…"
+                autocomplete="off"
+                spellcheck="false"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-controls="country-listbox"
+                aria-expanded="false"
+              />
+              <button class="country-clear" id="country-clear" aria-label="Clear" tabindex="-1">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </button>
             </div>
-            <div class="dropdown-menu" id="delivering-to-menu">
-              <div class="dropdown-option" data-value="Australia">Australia</div>
-              <div class="dropdown-option" data-value="Brazil">Brazil</div>
-              <div class="dropdown-option" data-value="Canada">Canada</div>
-              <div class="dropdown-option" data-value="France">France</div>
-              <div class="dropdown-option" data-value="Germany">Germany</div>
-              <div class="dropdown-option" data-value="India">India</div>
-              <div class="dropdown-option selected" data-value="Italy">Italy</div>
-              <div class="dropdown-option" data-value="Japan">Japan</div>
-              <div class="dropdown-option" data-value="Mexico">Mexico</div>
-              <div class="dropdown-option" data-value="Netherlands">Netherlands</div>
-              <div class="dropdown-option" data-value="New Zealand">New Zealand</div>
-              <div class="dropdown-option" data-value="Saudi Arabia">Saudi Arabia</div>
-              <div class="dropdown-option" data-value="Singapore">Singapore</div>
-              <div class="dropdown-option" data-value="South Korea">South Korea</div>
-              <div class="dropdown-option" data-value="Spain">Spain</div>
-              <div class="dropdown-option" data-value="United Arab Emirates">United Arab Emirates</div>
-              <div class="dropdown-option" data-value="United Kingdom">United Kingdom</div>
-            </div>
+            <div class="country-menu" id="country-listbox" role="listbox" aria-label="Countries"></div>
           </div>
         </div>
 
@@ -861,41 +972,219 @@
 </section>
 
 <script>
+  // ── Country data ────────────────────────────────────────────────────
+  const COUNTRIES = [
+    { name: 'Afghanistan', flag: '🇦🇫' }, { name: 'Albania', flag: '🇦🇱' },
+    { name: 'Algeria', flag: '🇩🇿' }, { name: 'Argentina', flag: '🇦🇷' },
+    { name: 'Armenia', flag: '🇦🇲' }, { name: 'Australia', flag: '🇦🇺' },
+    { name: 'Austria', flag: '🇦🇹' }, { name: 'Azerbaijan', flag: '🇦🇿' },
+    { name: 'Bahrain', flag: '🇧🇭' }, { name: 'Bangladesh', flag: '🇧🇩' },
+    { name: 'Belgium', flag: '🇧🇪' }, { name: 'Bolivia', flag: '🇧🇴' },
+    { name: 'Bosnia', flag: '🇧🇦' }, { name: 'Brazil', flag: '🇧🇷' },
+    { name: 'Bulgaria', flag: '🇧🇬' }, { name: 'Cambodia', flag: '🇰🇭' },
+    { name: 'Canada', flag: '🇨🇦' }, { name: 'Chile', flag: '🇨🇱' },
+    { name: 'China', flag: '🇨🇳' }, { name: 'Colombia', flag: '🇨🇴' },
+    { name: 'Costa Rica', flag: '🇨🇷' }, { name: 'Croatia', flag: '🇭🇷' },
+    { name: 'Cyprus', flag: '🇨🇾' }, { name: 'Czech Republic', flag: '🇨🇿' },
+    { name: 'Denmark', flag: '🇩🇰' }, { name: 'Ecuador', flag: '🇪🇨' },
+    { name: 'Egypt', flag: '🇪🇬' }, { name: 'Estonia', flag: '🇪🇪' },
+    { name: 'Ethiopia', flag: '🇪🇹' }, { name: 'Finland', flag: '🇫🇮' },
+    { name: 'France', flag: '🇫🇷' }, { name: 'Georgia', flag: '🇬🇪' },
+    { name: 'Germany', flag: '🇩🇪' }, { name: 'Ghana', flag: '🇬🇭' },
+    { name: 'Greece', flag: '🇬🇷' }, { name: 'Guatemala', flag: '🇬🇹' },
+    { name: 'Honduras', flag: '🇭🇳' }, { name: 'Hong Kong', flag: '🇭🇰' },
+    { name: 'Hungary', flag: '🇭🇺' }, { name: 'Iceland', flag: '🇮🇸' },
+    { name: 'India', flag: '🇮🇳' }, { name: 'Indonesia', flag: '🇮🇩' },
+    { name: 'Ireland', flag: '🇮🇪' }, { name: 'Israel', flag: '🇮🇱' },
+    { name: 'Italy', flag: '🇮🇹' }, { name: 'Jamaica', flag: '🇯🇲' },
+    { name: 'Japan', flag: '🇯🇵' }, { name: 'Jordan', flag: '🇯🇴' },
+    { name: 'Kazakhstan', flag: '🇰🇿' }, { name: 'Kenya', flag: '🇰🇪' },
+    { name: 'Kuwait', flag: '🇰🇼' }, { name: 'Latvia', flag: '🇱🇻' },
+    { name: 'Lebanon', flag: '🇱🇧' }, { name: 'Lithuania', flag: '🇱🇹' },
+    { name: 'Luxembourg', flag: '🇱🇺' }, { name: 'Malaysia', flag: '🇲🇾' },
+    { name: 'Malta', flag: '🇲🇹' }, { name: 'Mexico', flag: '🇲🇽' },
+    { name: 'Morocco', flag: '🇲🇦' }, { name: 'Netherlands', flag: '🇳🇱' },
+    { name: 'New Zealand', flag: '🇳🇿' }, { name: 'Nigeria', flag: '🇳🇬' },
+    { name: 'Norway', flag: '🇳🇴' }, { name: 'Oman', flag: '🇴🇲' },
+    { name: 'Pakistan', flag: '🇵🇰' }, { name: 'Panama', flag: '🇵🇦' },
+    { name: 'Paraguay', flag: '🇵🇾' }, { name: 'Peru', flag: '🇵🇪' },
+    { name: 'Philippines', flag: '🇵🇭' }, { name: 'Poland', flag: '🇵🇱' },
+    { name: 'Portugal', flag: '🇵🇹' }, { name: 'Qatar', flag: '🇶🇦' },
+    { name: 'Romania', flag: '🇷🇴' }, { name: 'Russia', flag: '🇷🇺' },
+    { name: 'Saudi Arabia', flag: '🇸🇦' }, { name: 'Serbia', flag: '🇷🇸' },
+    { name: 'Singapore', flag: '🇸🇬' }, { name: 'Slovakia', flag: '🇸🇰' },
+    { name: 'Slovenia', flag: '🇸🇮' }, { name: 'South Africa', flag: '🇿🇦' },
+    { name: 'South Korea', flag: '🇰🇷' }, { name: 'Spain', flag: '🇪🇸' },
+    { name: 'Sri Lanka', flag: '🇱🇰' }, { name: 'Sweden', flag: '🇸🇪' },
+    { name: 'Switzerland', flag: '🇨🇭' }, { name: 'Taiwan', flag: '🇹🇼' },
+    { name: 'Thailand', flag: '🇹🇭' }, { name: 'Trinidad', flag: '🇹🇹' },
+    { name: 'Turkey', flag: '🇹🇷' }, { name: 'Ukraine', flag: '🇺🇦' },
+    { name: 'United Arab Emirates', flag: '🇦🇪' },
+    { name: 'United Kingdom', flag: '🇬🇧' },
+    { name: 'Uruguay', flag: '🇺🇾' }, { name: 'Venezuela', flag: '🇻🇪' },
+    { name: 'Vietnam', flag: '🇻🇳' },
+  ];
+
+  // ── Country search combobox ─────────────────────────────────────────
+  const countryInput   = document.getElementById('country-search');
+  const countryListbox = document.getElementById('country-listbox');
+  const countryClear   = document.getElementById('country-clear');
+  const countryWrap    = document.getElementById('country-wrap');
+
+  let selectedCountry = 'Italy';
+  let focusedIndex    = -1;
+
+  function highlight(text, query) {
+    if (!query) return text;
+    const idx = text.toLowerCase().indexOf(query.toLowerCase());
+    if (idx === -1) return text;
+    return text.slice(0, idx)
+      + `<mark>${text.slice(idx, idx + query.length)}</mark>`
+      + text.slice(idx + query.length);
+  }
+
+  function renderOptions(query) {
+    const filtered = query
+      ? COUNTRIES.filter(c => c.name.toLowerCase().includes(query.toLowerCase()))
+      : COUNTRIES;
+
+    focusedIndex = -1;
+
+    if (filtered.length === 0) {
+      countryListbox.innerHTML = `<div class="country-empty">No countries found for "<strong>${query}</strong>"</div>`;
+    } else {
+      countryListbox.innerHTML = filtered.map((c, i) => `
+        <div class="country-option${c.name === selectedCountry ? ' selected' : ''}"
+             data-value="${c.name}" role="option"
+             aria-selected="${c.name === selectedCountry}">
+          <span class="country-flag">${c.flag}</span>
+          <span>${highlight(c.name, query)}</span>
+        </div>
+      `).join('');
+
+      // Bind click on each option
+      countryListbox.querySelectorAll('.country-option').forEach(opt => {
+        opt.addEventListener('mousedown', (e) => {
+          e.preventDefault(); // prevent input blur before we read value
+          selectCountry(opt.dataset.value);
+        });
+      });
+    }
+  }
+
+  function selectCountry(name) {
+    selectedCountry = name;
+    countryInput.value = name;
+    countryClear.classList.toggle('visible', !!name);
+    closeCountry();
+    renderOptions(''); // reset list for next open
+  }
+
+  function openCountry() {
+    renderOptions(countryInput.value === selectedCountry ? '' : countryInput.value);
+    countryListbox.classList.add('show');
+    countryInput.setAttribute('aria-expanded', 'true');
+    // Scroll to selected
+    requestAnimationFrame(() => {
+      const sel = countryListbox.querySelector('.selected');
+      if (sel) sel.scrollIntoView({ block: 'nearest' });
+    });
+    closeOtherDropdowns();
+  }
+
+  function closeCountry() {
+    countryListbox.classList.remove('show');
+    countryInput.setAttribute('aria-expanded', 'false');
+    focusedIndex = -1;
+    // If input doesn't match any known country, revert
+    const match = COUNTRIES.find(c => c.name.toLowerCase() === countryInput.value.toLowerCase());
+    if (!match) {
+      countryInput.value = selectedCountry;
+    } else {
+      selectedCountry = match.name;
+      countryInput.value = match.name;
+    }
+  }
+
+  countryInput.addEventListener('focus', openCountry);
+
+  countryInput.addEventListener('input', () => {
+    const q = countryInput.value;
+    countryClear.classList.toggle('visible', !!q);
+    countryListbox.classList.add('show');
+    renderOptions(q);
+    focusedIndex = -1;
+  });
+
+  countryInput.addEventListener('keydown', (e) => {
+    const opts = countryListbox.querySelectorAll('.country-option');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      focusedIndex = Math.min(focusedIndex + 1, opts.length - 1);
+      updateFocus(opts);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      focusedIndex = Math.max(focusedIndex - 1, 0);
+      updateFocus(opts);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (focusedIndex >= 0 && opts[focusedIndex]) {
+        selectCountry(opts[focusedIndex].dataset.value);
+      }
+    } else if (e.key === 'Escape') {
+      closeCountry();
+      countryInput.blur();
+    }
+  });
+
+  function updateFocus(opts) {
+    opts.forEach((o, i) => o.classList.toggle('focused', i === focusedIndex));
+    if (opts[focusedIndex]) opts[focusedIndex].scrollIntoView({ block: 'nearest' });
+  }
+
+  countryClear.addEventListener('click', (e) => {
+    e.stopPropagation();
+    countryInput.value = '';
+    selectedCountry = '';
+    countryClear.classList.remove('visible');
+    countryInput.focus();
+    renderOptions('');
+  });
+
+  countryInput.addEventListener('blur', () => {
+    // Small delay so mousedown on option fires first
+    setTimeout(closeCountry, 150);
+  });
+
   // ── Generic dropdown logic ──────────────────────────────────────────
   const dropdownMap = {
     'shipping-from': { trigger: null, menu: null, valueEl: null },
-    'delivering-to': { trigger: null, menu: null, valueEl: null },
     'state':         { trigger: null, menu: null, valueEl: null },
   };
 
   Object.keys(dropdownMap).forEach(id => {
-    const trigger  = document.querySelector(`[data-dropdown="${id}"]`);
-    const menu     = document.getElementById(`${id}-menu`);
-    const valueEl  = document.getElementById(`${id}-val`);
+    const trigger = document.querySelector(`[data-dropdown="${id}"]`);
+    const menu    = document.getElementById(`${id}-menu`);
+    const valueEl = document.getElementById(`${id}-val`);
     dropdownMap[id] = { trigger, menu, valueEl };
 
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = menu.classList.contains('show');
       closeAll();
-      if (!isOpen) openDropdown(id);
+      if (!isOpen) { menu.classList.add('show'); trigger.classList.add('open'); }
     });
 
     trigger.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        trigger.click();
-      }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger.click(); }
       if (e.key === 'Escape') closeAll();
     });
 
     menu.querySelectorAll('.dropdown-option').forEach(opt => {
       opt.addEventListener('click', (e) => {
         e.stopPropagation();
-        const val = opt.dataset.value;
-        valueEl.textContent = val;
+        valueEl.textContent = opt.dataset.value;
         valueEl.classList.remove('placeholder');
-        // Update selected state
         menu.querySelectorAll('.dropdown-option').forEach(o => o.classList.remove('selected'));
         opt.classList.add('selected');
         closeAll();
@@ -903,25 +1192,23 @@
     });
   });
 
-  function openDropdown(id) {
-    const { trigger, menu } = dropdownMap[id];
-    menu.classList.add('show');
-    trigger.classList.add('open');
-    // Scroll selected option into view
-    const selected = menu.querySelector('.selected');
-    if (selected) selected.scrollIntoView({ block: 'nearest' });
-  }
-
-  function closeAll() {
+  function closeOtherDropdowns() {
     Object.values(dropdownMap).forEach(({ trigger, menu }) => {
       menu.classList.remove('show');
       trigger.classList.remove('open');
     });
-    weightUnitMenu.classList.remove('show');
-    weightUnitBtn.querySelector('svg').style.transform = '';
+    if (weightUnitMenu) weightUnitMenu.classList.remove('show');
   }
 
-  document.addEventListener('click', closeAll);
+  function closeAll() {
+    closeOtherDropdowns();
+    closeCountry();
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!countryWrap.contains(e.target)) closeOtherDropdowns();
+    closeOtherDropdowns();
+  });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
 
   // ── Weight unit dropdown ────────────────────────────────────────────
