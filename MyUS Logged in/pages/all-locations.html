@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Locations · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/multi.css" />
+</head>
+<body class="page all-loc-page" data-page="all-locations">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <h1>All locations</h1>
+        <span class="page-counter">256 locations</span>
+      </div>
+
+      <section class="card">
+        <div class="loc-table-head">
+          <div>
+            <h3 style="color:var(--navy-900); margin-bottom: 6px">All Locations</h3>
+            <div class="count-line" style="font-size:14px;color:var(--ink-600);font-weight:500">245 Locations</div>
+          </div>
+          <div class="loc-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" placeholder="Search for location" />
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+
+        <table class="loc-table">
+          <thead>
+            <tr>
+              <th style="width:220px">Country</th>
+              <th>Address</th>
+              <th style="width:380px">Status <span class="sort-arrow">↑↓</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="country-cell"><span class="fav-icon star">★</span><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>UK</span></td>
+              <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1…</a></td>
+              <td><div class="status-cell">
+                <span class="status-pill ready"><span class="count">2</span>Ready to send</span>
+                <span class="status-pill review"><span class="count">1</span>In Review</span>
+                <span class="status-pill action"><span class="count">1</span>Action Required</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td><span class="country-cell"><span class="fav-icon star">★</span><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>USA</span></td>
+              <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1…</a></td>
+              <td><div class="status-cell">
+                <span class="status-pill ready"><span class="count">2</span>Ready to send</span>
+                <span class="status-pill review"><span class="count">3</span>In Review</span>
+                <span class="status-pill action"><span class="count">5</span>Action Required</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td><span class="country-cell"><span class="fav-icon star">★</span><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>USA</span></td>
+              <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1…</a></td>
+              <td><div class="status-cell">
+                <span class="status-pill action"><span class="count">2</span>Action Required</span>
+              </div></td>
+            </tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/re.png')"></span>Réunion</span></td><td><a class="address-link" href="#">12g, Lorong Tandang 51/204b, Seksyen 51, 46050 Petaling…</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/ru.png')"></span>Russian Federation</span></td><td><a class="address-link" href="#">No. 59, Jalan SS 25/32, Taman Mayang, 47301 Petaling Ja…</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/mc.png')"></span>Monaco</span></td><td><a class="address-link" href="#">Persiaran Molek Utama, Taman Molek, 81100 Johor Bahru…</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/vc.png')"></span>Saint Vincent and the…</span></td><td><a class="address-link" href="#">Lot 49A, Sedco Industrial Estate, Jalan Kilang, Kolombong…</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>United Kingdom of Gre…</span></td><td><a class="address-link" href="#">1392 E Palomar St Ste 302, Chula Vista, CA 91913, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/sa.png')"></span>Saudi Arabia</span></td><td><a class="address-link" href="#">Safari Walk, San Diego, CA 92027, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/dz.png')"></span>Algeria</span></td><td><a class="address-link" href="#">1231 Palm Ave, Imperial Beach, CA 91932, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/st.png')"></span>Sao Tome and Principe</span></td><td><a class="address-link" href="#">949 Parkway Plaza, El Cajon, CA 92020, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/re.png')"></span>Réunion</span></td><td><a class="address-link" href="#">1155 B St, San Diego, CA 92101, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/tj.png')"></span>Tajikistan</span></td><td><a class="address-link" href="#">Safari Walk, San Diego, CA 92027, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/gn.png')"></span>Guinea</span></td><td><a class="address-link" href="#">6873 Federal Blvd, Lemon Grove, CA 91945, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/gr.png')"></span>Greece</span></td><td><a class="address-link" href="#">San Diego, CA 92139, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/rs.png')"></span>Serbia</span></td><td><a class="address-link" href="#">4450 Main St, Chula Vista, CA 91911, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/il.png')"></span>Israel</span></td><td><a class="address-link" href="#">La Mesa, CA 91941, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/pl.png')"></span>Poland</span></td><td><a class="address-link" href="#">1231 Palm Ave, Imperial Beach, CA 91932, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/is.png')"></span>Iceland</span></td><td><a class="address-link" href="#">1155 B St, San Diego, CA 92101, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/ge.png')"></span>Georgia</span></td><td><a class="address-link" href="#">655 E Lincoln Ave, Escondido, CA 92026, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/mc.png')"></span>Monaco</span></td><td><a class="address-link" href="#">2935 Jamacha Road, El Cajon, CA 92019, USA</a></td><td></td></tr>
+            <tr><td><span class="country-cell"><span class="country-flag" style="background-image:url('https://flagcdn.com/w80/br.png')"></span>Brazil</span></td><td><a class="address-link" href="#">1165 Garnet Ave, San Diego, CA 92109, USA</a></td><td></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+</body>
+</html>

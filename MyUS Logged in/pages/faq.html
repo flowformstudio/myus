@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+</head>
+<body class="page" data-page="faq">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <h1>Frequently Asked Questions</h1>
+      </div>
+
+      <!-- Search hero -->
+      <section class="card faq-search-card">
+        <div class="faq-search-label">What can we help you with?</div>
+        <input class="input faq-search" type="search" placeholder="Enter your question or search keywords" />
+      </section>
+
+      <div class="faq-grid">
+
+        <!-- Category tiles -->
+        <aside class="faq-cats">
+          <a class="faq-cat" href="#"><span class="cat-icon">ℹ️</span>General Information</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">👤</span>My Account</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">💳</span>Payment Information</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">📦</span>Package Receiving &amp; Storage</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">💲</span>Merchandise Values</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">🚚</span>Shipping &amp; Consolidation</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">⛔</span>Restricted Merchandise</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">⏸️</span>Packages On Hold</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">🛠️</span>Other Services</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">📱</span>MyUS Mobile App</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">🛍️</span>Shopping &amp; Buying Assistant</a>
+          <a class="faq-cat" href="#"><span class="cat-icon">🌍</span>Country-Specific Questions</a>
+        </aside>
+
+        <!-- Common questions -->
+        <section class="card faq-questions">
+          <h3 style="color:var(--navy-900); margin-bottom: var(--s-3)">Common questions</h3>
+
+          <details class="faq-q" open>
+            <summary>How does my MyUS online account work?</summary>
+            <div class="faq-a">
+              <p>You can use your MyUS online account to:</p>
+              <ul>
+                <li>Check if your merchandise has been <strong>received</strong></li>
+                <li>Create a ship request</li>
+                <li>Check the status of your shipments</li>
+                <li>Change your account details such as credit card, shipping address and membership information</li>
+              </ul>
+              <p><strong>Note:</strong> You will receive an email notification when you receive a package, or when MyUS sends a shipment to you.</p>
+            </div>
+          </details>
+
+          <details class="faq-q">
+            <summary>How do I use my MyUS addresses?</summary>
+            <div class="faq-a">
+              <p>Enter your US or UK MyUS address as the "Shipping Address." It can always be found in the upper-right corner of your account.</p>
+              <p>When you buy from <strong>US online stores</strong>, use your 4283 Express Lane address. For <strong>UK online stores</strong>, use your Unit 9 Skyport Drive address.</p>
+            </div>
+          </details>
+
+          <details class="faq-q">
+            <summary>Where is my package?</summary>
+            <div class="faq-a">
+              <p>We'll email you when a package has been logged into your suite, and again once a shipment has been prepared with tracking information. You can check status anytime in Order History.</p>
+            </div>
+          </details>
+
+          <details class="faq-q">
+            <summary>Why do I need to enter my merchandise values?</summary>
+            <div class="faq-a">
+              <p>Customs and US Census Bureau regulations require accurate prices for export. We use the merchant invoice in your package; if there isn't one, we'll ask you to confirm values before shipping.</p>
+            </div>
+          </details>
+
+          <details class="faq-q">
+            <summary>How can I estimate international shipping costs?</summary>
+            <div class="faq-a">
+              <p>Use our <a href="shipping-calculator.html">ship rate calculator</a>. Ask the merchant for the weight and dimensions of the package and plug them in.</p>
+            </div>
+          </details>
+
+          <details class="faq-q">
+            <summary>How do I ship my packages?</summary>
+            <div class="faq-a">
+              <p>Depending on your <a href="shipping-preferences.html">Shipping Preferences</a>:</p>
+              <ul>
+                <li><strong>Automatic</strong> — Sent as soon as packages arrive.</li>
+                <li><strong>Weekly / Bi-Weekly / Monthly</strong> — Sent on a schedule.</li>
+                <li><strong>Hold</strong> — You submit a ship request to consolidate &amp; send.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faq-q">
+            <summary>Can MyUS ship my products?</summary>
+            <div class="faq-a">
+              <p>We can ship nearly every item — clothing, cosmetics, toys, cell phones, laptops, and much more. Items restricted by the US government or banned in your destination cannot be shipped.</p>
+            </div>
+          </details>
+
+          <div class="faq-help">
+            <h3>Don't see what you're looking for?</h3>
+            <a href="contact.html" class="btn btn-primary compact">Contact Us</a>
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <style>
+    .faq-search-card { text-align: center; padding: var(--s-6); }
+    .faq-search-label { color: var(--ink-600); font-size: 14px; margin-bottom: var(--s-3); }
+    .faq-search { max-width: 560px; margin: 0 auto; font-size: 15px; padding: 14px 18px; }
+    .faq-grid { display: grid; grid-template-columns: 280px 1fr; gap: var(--s-5); align-items: start; }
+    @media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-cats { display: flex; flex-direction: column; gap: 6px; }
+    .faq-cat {
+      display: flex; align-items: center; gap: var(--s-3);
+      background: #fff; border: 1px solid var(--border); border-radius: var(--r-md);
+      padding: var(--s-3) var(--s-4); color: var(--navy-900); font-size: 13.5px; font-weight: var(--fw-medium);
+    }
+    .faq-cat:hover { border-color: var(--blue-600); background: var(--blue-050); color: var(--blue-600); }
+    .cat-icon { font-size: 18px; line-height: 1; }
+    .faq-q { border-bottom: 1px solid var(--ink-100); padding: var(--s-3) 0; }
+    .faq-q:first-of-type { padding-top: 0; }
+    .faq-q summary {
+      cursor: pointer; font-weight: var(--fw-semibold); color: var(--navy-900);
+      font-size: 15px; padding: 6px 0;
+      list-style: none; display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-q summary::after { content: '+'; color: var(--blue-600); font-size: 20px; line-height: 1; margin-left: var(--s-3); }
+    .faq-q[open] summary::after { content: '−'; }
+    .faq-q summary::-webkit-details-marker { display: none; }
+    .faq-a { padding-top: var(--s-2); color: var(--ink-700); line-height: 1.6; }
+    .faq-a p { margin: 0 0 var(--s-3); }
+    .faq-a ul { padding-left: 20px; margin: 0 0 var(--s-3); }
+    .faq-help { margin-top: var(--s-5); padding-top: var(--s-5); border-top: 1px solid var(--border); text-align: center; }
+    .faq-help h3 { color: var(--navy-900); margin-bottom: var(--s-3); }
+  </style>
+</body>
+</html>

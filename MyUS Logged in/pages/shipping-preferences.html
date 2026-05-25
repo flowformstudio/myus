@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shipping Preferences · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+</head>
+<body class="page" data-page="shipping-preferences">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <h1>Shipping Preferences</h1>
+        <div class="facility-switcher">
+          <span class="muted">Facility</span>
+          <select class="select" style="width:auto"><option>USA</option><option>UK</option></select>
+        </div>
+      </div>
+
+      <!-- Default Shipping Address -->
+      <section class="card">
+        <div class="card-section">
+          <div class="card-head">
+            <h5>Default Shipping Address</h5>
+            <button class="btn btn-outline compact">Change</button>
+          </div>
+          <p class="text-muted" style="margin-top:-8px">Where we will ship your packages from this facility</p>
+
+          <div class="address-block">
+            <div class="address-block-label">Shipping Address 1</div>
+            <div class="address-lines">
+              <div>Igor Ginzburg</div>
+              <div>3619 Kelsey Knolls</div>
+              <div>Santa Rosa, 95403</div>
+              <div>United States</div>
+              <div>+1 (415) 539-8508</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Duties and Taxes -->
+      <section class="card">
+        <div class="card-section">
+          <div class="card-section-title">Duties and Taxes</div>
+          <p class="text-muted">Pay duties when you submit your ship request, instead of at your door, and MyUS will pay your local customs for items in the shipment. This duties service is guaranteed by MyUS.</p>
+          <div class="notice" style="margin-top:var(--s-3)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Paying duties and taxes with your shipment is not available for your default shipping country.</span>
+          </div>
+          <label class="checkbox" style="margin-top:var(--s-3)">
+            <input type="checkbox" disabled />
+            Pay duties and taxes with shipment
+          </label>
+          <p class="help" style="margin-top:var(--s-3)">Not all carriers or countries allow for duties and taxes to be paid upfront, so your preferred ship method may not be available. To see additional international shipping methods, turn this option off.</p>
+        </div>
+      </section>
+
+      <!-- Preferred Ship Method -->
+      <section class="card">
+        <div class="card-section">
+          <div class="card-section-title">Preferred Ship Method</div>
+
+          <label class="ship-option featured">
+            <input type="radio" name="ship-method" checked />
+            <div>
+              <div class="ship-name">MyUS Preferred Express</div>
+              <div class="text-muted">Best balance of speed and cost — auto-selects the best carrier per shipment.</div>
+            </div>
+          </label>
+
+          <div class="card-section-subtitle">Expedited (door-to-door tracking)</div>
+          <label class="ship-option">
+            <input type="radio" name="ship-method" />
+            <div><div class="ship-name">FedEx USA Overnight</div><div class="text-muted">1 business day</div></div>
+          </label>
+          <label class="ship-option">
+            <input type="radio" name="ship-method" />
+            <div><div class="ship-name">FedEx USA 2nd Day</div><div class="text-muted">2 business days</div></div>
+          </label>
+          <label class="ship-option">
+            <input type="radio" name="ship-method" />
+            <div><div class="ship-name">FedEx USA Ground</div><div class="text-muted">5 – 10 business days</div></div>
+          </label>
+        </div>
+      </section>
+
+      <!-- Shipping schedule -->
+      <section class="card">
+        <div class="card-section">
+          <div class="card-section-title">Merchandise shipping schedule</div>
+          <div class="schedule-grid">
+            <label class="radio"><input type="radio" name="sched" />Hold</label>
+            <label class="radio"><input type="radio" name="sched" />Weekly</label>
+            <label class="radio"><input type="radio" name="sched" />Biweekly (week 1 &amp; 3)</label>
+            <label class="radio"><input type="radio" name="sched" />Biweekly (week 2 &amp; 4)</label>
+            <label class="radio"><input type="radio" name="sched" />Monthly week 1</label>
+            <label class="radio"><input type="radio" name="sched" />Monthly week 2</label>
+            <label class="radio"><input type="radio" name="sched" />Monthly week 3</label>
+            <label class="radio"><input type="radio" name="sched" />Monthly week 4</label>
+            <label class="radio"><input type="radio" name="sched" checked />Automatic</label>
+          </div>
+          <p class="help" style="margin-top:var(--s-3)">Packages are forwarded automatically when they arrive.</p>
+        </div>
+
+        <div class="card-section">
+          <label class="toggle-row">
+            <span>
+              <strong>Enhanced Liability Protection</strong>
+              <span class="help">Adds extra coverage in case of loss or damage.</span>
+            </span>
+            <input type="checkbox" class="toggle" />
+          </label>
+          <label class="toggle-row">
+            <span>
+              <strong>Urgent Handling</strong>
+              <span class="help">Faster check-in and intake for time-sensitive packages.</span>
+            </span>
+            <input type="checkbox" class="toggle" />
+          </label>
+        </div>
+      </section>
+
+      <!-- Packing Options -->
+      <section class="card">
+        <div class="card-section">
+          <div class="card-section-title">Packing Options</div>
+          <div class="checkbox-grid">
+            <label class="checkbox"><input type="checkbox" />Fragile Stickers</label>
+            <label class="checkbox"><input type="checkbox" />Discard Shoe Boxes</label>
+            <label class="checkbox"><input type="checkbox" />Extra Padding</label>
+            <label class="checkbox"><input type="checkbox" />Ship in Original Boxes</label>
+            <label class="checkbox"><input type="checkbox" />Only Single Outbound Parcel Shipments</label>
+            <label class="checkbox"><input type="checkbox" />Place Documents in Envelope</label>
+          </div>
+
+          <div class="field" style="max-width:280px; margin-top:var(--s-5)">
+            <label>Maximum Weight per Box</label>
+            <select class="select">
+              <option>No maximum</option>
+              <option>20 lbs</option>
+              <option>40 lbs</option>
+              <option>60 lbs</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Export Documentation -->
+      <section class="card">
+        <div class="card-section">
+          <div class="card-section-title">Export Documentation</div>
+          <div class="field" style="max-width:360px">
+            <label for="taxid">Enter Tax I.D.</label>
+            <input id="taxid" class="input" type="text" placeholder="Tax / VAT number" />
+          </div>
+          <label class="checkbox"><input type="checkbox" />Mark for "For Personal Use Only"</label>
+          <label class="checkbox" style="margin-top:var(--s-2)"><input type="checkbox" />Include proforma invoice with shipment</label>
+        </div>
+      </section>
+
+      <!-- Log In Options -->
+      <section class="card">
+        <div class="card-section">
+          <div class="card-section-title">Log In Options</div>
+          <div class="field" style="max-width:360px">
+            <label for="add-email">Additional Email Address (Optional)</label>
+            <input id="add-email" class="input" type="email" placeholder="alt@example.com" />
+          </div>
+          <label class="checkbox"><input type="checkbox" />Take photos of items at login</label>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-ghost">Cancel</button>
+          <button class="btn btn-primary compact">Save Changes</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <style>
+    .facility-switcher { display:flex; align-items:center; gap: var(--s-2); }
+    .card-section-subtitle { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: var(--fw-semibold); color: var(--ink-600); margin: var(--s-4) 0 var(--s-2); }
+    .address-block { background: var(--ink-50); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--s-4); margin-top: var(--s-3); }
+    .address-block-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: var(--fw-semibold); color: var(--ink-600); margin-bottom: var(--s-2); }
+    .address-lines div { font-size: 14px; color: var(--navy-900); line-height: 1.55; }
+    .ship-option {
+      display: flex; align-items: flex-start; gap: var(--s-3);
+      padding: var(--s-3) var(--s-4); border: 1px solid var(--border); border-radius: var(--r-md);
+      margin-bottom: var(--s-2); cursor: pointer;
+    }
+    .ship-option:hover { border-color: var(--blue-600); }
+    .ship-option input { margin-top: 3px; accent-color: var(--blue-600); }
+    .ship-option.featured { border-color: var(--blue-600); background: var(--blue-050); }
+    .ship-option .ship-name { font-weight: var(--fw-semibold); color: var(--navy-900); }
+    .schedule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-2); }
+    @media (max-width: 700px) { .schedule-grid { grid-template-columns: 1fr; } }
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+      padding: var(--s-3) 0; border-top: 1px solid var(--ink-100);
+    }
+    .toggle-row:first-child { border-top: none; padding-top: 0; }
+    .toggle-row .help { display:block; color: var(--ink-600); font-size: 12px; font-weight: 400; margin-top: 2px; }
+    .toggle-row strong { color: var(--navy-900); }
+    .toggle { width: 36px; height: 20px; accent-color: var(--blue-600); }
+    .checkbox-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-2) var(--s-4); }
+    @media (max-width: 700px) { .checkbox-grid { grid-template-columns: 1fr; } }
+  </style>
+</body>
+</html>

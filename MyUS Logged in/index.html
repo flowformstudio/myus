@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard · MyUS.com</title>
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/dashboard.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/multi.css" />
+</head>
+<body class="page" data-page="dashboard">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <!-- Page header -->
+      <div class="page-header">
+        <h1>Dashboard</h1>
+        <span class="page-counter">256 locations</span>
+      </div>
+
+      <!-- Locations master card (4 quick cards + table) -->
+      <section class="card">
+        <div class="card-head">
+          <h5>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Locations
+          </h5>
+        </div>
+
+        <!-- 4 quick-access location cards -->
+        <div class="loc-row">
+
+          <div class="loc-card">
+            <div class="loc-card-head">
+              <span class="loc-card-flag" style="background-image:url('https://flagcdn.com/w80/li.png')"></span>
+              <span class="loc-card-name">Liechtenstein</span>
+            </div>
+            <div class="loc-card-status">
+              <span class="status-pill review"><span class="count">2</span>In Review</span>
+              <span class="status-pill action"><span class="count">4</span>Action Required</span>
+            </div>
+            <div class="loc-card-actions">
+              <button class="btn btn-outline" data-see-address
+                data-name="Liechtenstein"
+                data-flag="https://flagcdn.com/w80/li.png"
+                data-counts="1,0,4"
+                data-a1="Suite 6340-104"
+                data-a2="Unit 9, Skyport Drive"
+                data-city="West Drayton"
+                data-state="Middx"
+                data-zip="UB7 0LB"
+                data-tel="+44 0175 321 0551">See Address</button>
+              <button class="btn btn-primary">Manage Location</button>
+            </div>
+          </div>
+
+          <div class="loc-card">
+            <div class="loc-card-head">
+              <span class="loc-card-flag" style="background-image:url('https://flagcdn.com/w80/me.png')"></span>
+              <span class="loc-card-name">Montenegro</span>
+            </div>
+            <div class="loc-card-status">
+              <span class="status-pill ready"><span class="count">2</span>Ready to send</span>
+              <span class="status-pill action"><span class="count">8</span>Action Required</span>
+            </div>
+            <div class="loc-card-actions">
+              <button class="btn btn-outline" data-see-address
+                data-name="Montenegro"
+                data-flag="https://flagcdn.com/w80/me.png"
+                data-counts="2,0,8"
+                data-a1="Suite 6340-104"
+                data-a2="Bulevar Pera Ćetkovića 16"
+                data-city="Podgorica"
+                data-state="—"
+                data-zip="81000"
+                data-tel="+382 20 234 567">See Address</button>
+              <button class="btn btn-primary">Manage Location</button>
+            </div>
+          </div>
+
+          <div class="loc-card">
+            <div class="loc-card-head">
+              <span class="loc-card-flag" style="background-image:url('https://flagcdn.com/w80/ls.png')"></span>
+              <span class="loc-card-name">Lesotho</span>
+            </div>
+            <div class="loc-card-status">
+              <span class="status-pill review"><span class="count">7</span>In Review</span>
+            </div>
+            <div class="loc-card-actions">
+              <button class="btn btn-outline" data-see-address
+                data-name="Lesotho"
+                data-flag="https://flagcdn.com/w80/ls.png"
+                data-counts="0,7,0"
+                data-a1="Suite 6340-104"
+                data-a2="Kingsway Road"
+                data-city="Maseru"
+                data-state="—"
+                data-zip="100"
+                data-tel="+266 2231 1234">See Address</button>
+              <button class="btn btn-primary">Manage Location</button>
+            </div>
+          </div>
+
+          <div class="loc-card">
+            <div class="loc-card-head">
+              <span class="loc-card-flag" style="background-image:url('https://flagcdn.com/w80/mg.png')"></span>
+              <span class="loc-card-name">Madagascar</span>
+            </div>
+            <div class="loc-card-empty">You have no packages at this location</div>
+            <div class="loc-card-actions">
+              <button class="btn btn-outline" data-see-address
+                data-name="Madagascar"
+                data-flag="https://flagcdn.com/w80/mg.png"
+                data-counts="0,0,0"
+                data-a1="Suite 6340-104"
+                data-a2="Avenue de l'Indépendance"
+                data-city="Antananarivo"
+                data-state="—"
+                data-zip="101"
+                data-tel="+261 20 22 234 56">See Address</button>
+              <button class="btn btn-primary">Manage Location</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 25 Locations sub-table -->
+        <div style="margin-top: var(--s-6); padding-top: var(--s-6); border-top: 1px solid var(--ink-100)">
+          <div class="loc-table-head">
+            <div class="count-line">25 Locations</div>
+            <div class="loc-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="search" placeholder="Search for location" />
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+
+          <table class="loc-table">
+            <thead>
+              <tr>
+                <th style="width:220px">Country</th>
+                <th>Address</th>
+                <th style="width:360px">Status <span class="sort-arrow">↑↓</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="fav-icon star">★</span>
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>
+                    UK
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1...</a></td>
+                <td>
+                  <div class="status-cell">
+                    <span class="status-pill ready"><span class="count">2</span>Ready to send</span>
+                    <span class="status-pill review"><span class="count">1</span>In Review</span>
+                    <span class="status-pill action"><span class="count">1</span>Action Required</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="fav-icon star">★</span>
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>
+                    USA
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1...</a></td>
+                <td>
+                  <div class="status-cell">
+                    <span class="status-pill ready"><span class="count">2</span>Ready to send</span>
+                    <span class="status-pill review"><span class="count">3</span>In Review</span>
+                    <span class="status-pill action"><span class="count">5</span>Action Required</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="fav-icon star">★</span>
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>
+                    USA
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1...</a></td>
+                <td>
+                  <div class="status-cell">
+                    <span class="status-pill action"><span class="count">2</span>Action Required</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/re.png')"></span>
+                    Réunion
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">12g, Lorong Tandang 51/204b, Seksyen 51, 46050 Petaling...</a></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/ru.png')"></span>
+                    Russian Federation
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">No. 59, Jalan SS 25/32, Taman Mayang, 47301 Petaling Ja...</a></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/mc.png')"></span>
+                    Monaco
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">Persiaran Molek Utama, Taman Molek, 81100 Johor Bahru...</a></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/vc.png')"></span>
+                    Saint Vincent and the…
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">Lot 49A, Sedco Industrial Estate, Jalan Kilang, Kolombong...</a></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>
+                    United Kingdom of Gre…
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">1893-1892, Lor Taman Riverview 1, Taman Riverview, 93450...</a></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="country-cell">
+                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/ht.png')"></span>
+                    Haiti
+                  </span>
+                </td>
+                <td><a class="address-link" href="#">17, Jalan Mewah Ria 1/2, Taman Bukit Mewah, 81200 Johor...</a></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button class="show-more"><a href="pages/all-locations.html" style="color:inherit;text-decoration:none">Show more →</a></button>
+        </div>
+      </section>
+
+      <!-- Recently arrived packages -->
+      <section class="card">
+        <div class="card-head"><h5>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          Recently arrived packages
+        </h5></div>
+        <table class="compact-table">
+          <thead>
+            <tr>
+              <th>Facility</th>
+              <th>Sender</th>
+              <th>Tracking number</th>
+              <th>Date Received</th>
+              <th>Package ID</th>
+              <th class="right">Value</th>
+              <th class="right">Weight</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>UK</span></td>
+              <td>Amazon</td><td>9879762512</td><td>02 Oct 2018</td><td>01-721-3415</td>
+              <td class="right">6.00 USD</td><td class="right">3.00lbs</td>
+            </tr>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>UK</span></td>
+              <td>Amazon</td><td>9879762512</td><td>02 Oct 2018</td><td>01-721-3415</td>
+              <td class="right">6.00 USD</td><td class="right">3.00lbs</td>
+            </tr>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>UK</span></td>
+              <td>Amazon</td><td>9879762512</td><td>02 Oct 2018</td><td>01-721-3415</td>
+              <td class="right">6.00 USD</td><td class="right">3.00lbs</td>
+            </tr>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>UK</span></td>
+              <td>Amazon</td><td>9879762512</td><td>02 Oct 2018</td><td>01-721-3415</td>
+              <td class="right">6.00 USD</td><td class="right">3.00lbs</td>
+            </tr>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>UK</span></td>
+              <td>Amazon</td><td>9879762512</td><td>02 Oct 2018</td><td>01-721-3415</td>
+              <td class="right">6.00 USD</td><td class="right">3.00lbs</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Recently Processed Shipments -->
+      <section class="card">
+        <div class="card-head"><h5>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16h2a2 2 0 0 0 2-2V8l-4-4H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/><path d="M14 8h6"/><circle cx="9" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+          Recently Processed Shipments
+        </h5></div>
+        <table class="compact-table">
+          <thead>
+            <tr>
+              <th>Facility</th>
+              <th>Airway Bill Number</th>
+              <th>Ship Date</th>
+              <th>Destination</th>
+              <th class="right">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>USA</span></td>
+              <td><a class="num-link" href="#">9131443687023280554776 2</a></td>
+              <td>21 Sep, 2020</td><td>Antigua and Barbuda</td>
+              <td class="right cost">323.36 USD</td>
+            </tr>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>USA</span></td>
+              <td><a class="num-link" href="#">712579882567162021838 01</a></td>
+              <td>22 Oct, 2020</td><td>France</td>
+              <td class="right cost">535.98 USD</td>
+            </tr>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>UK</span></td>
+              <td><a class="num-link" href="#">9400108205499305730 999</a></td>
+              <td>1 Feb, 2020</td><td>United Kingdom</td>
+              <td class="right cost">499.98 USD</td>
+            </tr>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>USA</span></td>
+              <td><a class="num-link" href="#">056283515154362129276 381</a></td>
+              <td>8 Sep, 2020</td><td>France</td>
+              <td class="right cost">927.98 USD</td>
+            </tr>
+            <tr>
+              <td><span class="facility-cell"><span class="facility-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>UK</span></td>
+              <td><a class="num-link" href="#">332890727117528290589 03</a></td>
+              <td>24 May, 2020</td><td>France</td>
+              <td class="right cost">617.89 USD</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Transaction History -->
+      <section class="card">
+        <div class="card-head"><h5>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="7" y1="15" x2="11" y2="15"/></svg>
+          Transaction History
+        </h5></div>
+        <table class="compact-table">
+          <thead>
+            <tr>
+              <th>Date</th><th>Invoice Number</th><th>Description</th><th class="right">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="4">
+              <div class="empty-state" style="padding: var(--s-6) 0">
+                <img src="https://account.myus.com/content/images/emptybox.svg" alt="Empty" />
+                <p>No orders were processed</p>
+              </div>
+            </td></tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+
+  <!-- ─── See Address modal (template, hidden until opened) ─────────── -->
+  <div class="modal-backdrop" id="seeAddressModal" role="dialog" aria-modal="true" aria-labelledby="seeAddressTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="seeAddressTitle">Location info</h3>
+        <button class="modal-close" data-modal-close aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-loc">
+          <span class="country-flag" data-modal-flag></span>
+          <h4 data-modal-name>Country Tax-Free Address</h4>
+        </div>
+        <div class="modal-badges">
+          <div class="modal-badge"><span class="dot green"  data-modal-ready>0</span><span class="label">Ready to send</span></div>
+          <div class="modal-badge"><span class="dot orange" data-modal-review>0</span><span class="label">In Review</span></div>
+          <div class="modal-badge"><span class="dot red"    data-modal-action>0</span><span class="label">Action Required</span></div>
+        </div>
+
+        <div class="address-grid">
+          <div class="label">Adress 1:</div>
+          <div class="value-row" data-copy>
+            <span class="val" data-modal-a1>—</span>
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <div class="label">Adress 2:</div>
+          <div class="value-row" data-copy>
+            <span class="val" data-modal-a2>—</span>
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <div class="label">City:</div>
+          <div class="value-row" data-copy>
+            <span class="val" data-modal-city>—</span>
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <div class="label">State/Prov:</div>
+          <div class="value-row" data-copy>
+            <span class="val" data-modal-state>—</span>
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <div class="label">Zip/Post:</div>
+          <div class="value-row" data-copy>
+            <span class="val" data-modal-zip>—</span>
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <div class="label">Telephone:</div>
+          <div class="value-row" data-copy>
+            <span class="val" data-modal-tel>—</span>
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="copyFullAddress">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Full Address
+        </button>
+        <button class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.36.18.66.46.86.81"/></svg>
+          Manage Suite
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copy confirmation toast -->
+  <div class="copy-toast" id="copyToast" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span data-toast-text>Copied to clipboard</span>
+  </div>
+
+  <script src="scripts/layout.js"></script>
+  <script src="scripts/see-address.js"></script>
+</body>
+</html>

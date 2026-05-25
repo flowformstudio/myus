@@ -1,0 +1,78 @@
+/* ──────────────────────────────────────────────────────────────────────
+   Reset + base — load after tokens.css.
+   ────────────────────────────────────────────────────────────────────── */
+
+/* Poppins — self-hosted weights served from MyUS's CDN to match the live app exactly. */
+@font-face {
+  font-family: "Poppins";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-Light.woff2") format("woff2"),
+       url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-Light.woff")  format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-Regular.woff2") format("woff2"),
+       url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-Regular.woff")  format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-Medium.woff2") format("woff2"),
+       url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-Medium.woff")  format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-SemiBold.woff2") format("woff2"),
+       url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-SemiBold.woff")  format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-Bold.woff2") format("woff2"),
+       url("https://static.nc-myus.com/scripts/css/fonts/poppins/Poppins-Bold.woff")  format("woff");
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+  background: var(--surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button { font-family: inherit; cursor: pointer; }
+a       { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); }
+img, svg { display: block; max-width: 100%; }
+
+/* Headings — match the live MyUS scale */
+h1 { font-size: var(--fs-h1); font-weight: var(--fw-bold);    line-height: var(--lh-tight); margin: 0; }
+h3 { font-size: var(--fs-h3); font-weight: var(--fw-semibold); line-height: var(--lh-tight); margin: 0; }
+h4 { font-size: var(--fs-h4); font-weight: var(--fw-bold);    line-height: 1.1; margin: 0; }
+h5 { font-size: var(--fs-h5); font-weight: var(--fw-bold);    line-height: 1.1; margin: 0; }
+
+/* Numeric data: tabular figures */
+.num, .tabular { font-variant-numeric: tabular-nums; letter-spacing: -0.005em; }
+
+/* Focus ring */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-focus);
+}

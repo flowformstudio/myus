@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order History · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+</head>
+<body class="page" data-page="order-history">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <div>
+          <h1>Order History</h1>
+          <p class="page-sub">View your completed MyUS shipments, transactions and orders here. Ship requests still in process can be found in your <a href="#">Shipping Queue</a>.</p>
+        </div>
+      </div>
+
+      <section class="card">
+        <div class="orders-toolbar">
+          <div class="time-window">
+            <span class="muted">Show Last:</span>
+            <div class="seg">
+              <button class="seg-btn active">30 Days</button>
+              <button class="seg-btn">60 Days</button>
+              <button class="seg-btn">90 Days</button>
+              <button class="seg-btn">All</button>
+            </div>
+          </div>
+          <form class="search-group">
+            <input class="input" type="search" placeholder="Search for invoice" />
+            <button class="btn btn-outline compact" type="submit">Search</button>
+          </form>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Invoice / Order #</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="7">
+              <div class="empty-state" style="padding: var(--s-6) 0">
+                <img src="https://account.myus.com/content/images/emptybox.svg" alt="Empty" />
+                <p>No orders found in the past 30 days</p>
+              </div>
+            </td></tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <style>
+    .orders-toolbar {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+      margin-bottom: var(--s-4); flex-wrap: wrap;
+    }
+    .time-window { display: flex; align-items: center; gap: var(--s-3); }
+    .seg { display: inline-flex; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+    .seg-btn {
+      background: #fff; border: none; padding: 8px 14px;
+      font-family: inherit; font-size: 13px; font-weight: var(--fw-semibold);
+      color: var(--ink-600); border-right: 1px solid var(--border); cursor: pointer;
+    }
+    .seg-btn:last-child { border-right: none; }
+    .seg-btn:hover { background: var(--ink-50); }
+    .seg-btn.active { background: var(--blue-050); color: var(--blue-600); }
+    .search-group { display: flex; gap: var(--s-2); }
+    .search-group .input { min-width: 220px; }
+  </style>
+</body>
+</html>

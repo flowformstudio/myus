@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>USA · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/location.css" />
+</head>
+<body class="page" data-page="us">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <!-- Page header -->
+      <div class="page-header">
+        <div>
+          <div class="location-title">
+            <span class="location-flag us"></span>
+            <h1>USA</h1>
+            <button class="favorite-toggle" title="Favorite location" aria-label="Favorite">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <span>Set as Favorite location</span>
+            </button>
+          </div>
+          <div class="schedule-row">
+            <span class="muted">My Shipping Schedule:</span>
+            <span class="schedule-value">Automatic</span>
+            <a href="shipping-preferences.html" class="link-edit">Edit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment warning -->
+      <div class="notice warning">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Please <a href="payment-method.html">go to your Payment Method</a> and update your credit card information to avoid any shipment or order delays.</span>
+      </div>
+
+      <!-- Two-column: Packages + Ship Request -->
+      <div class="locations-grid">
+
+        <!-- Packages card -->
+        <section class="card">
+          <div class="card-head"><h5>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            Your Packages
+          </h5></div>
+          <div class="empty-state">
+            <img src="https://account.myus.com/content/images/emptybox.svg" alt="Empty" />
+            <p>You have no packages at this facility</p>
+          </div>
+          <div class="promo-bar">
+            <div>
+              <strong>Family &amp; team profiles</strong>
+              <div class="muted">Add additional names to receive packages.</div>
+            </div>
+            <a class="btn btn-outline compact" href="membership-profile.html">Manage names</a>
+          </div>
+        </section>
+
+        <!-- Ship Request card -->
+        <section class="card">
+          <div class="card-head"><h5>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16h2a2 2 0 0 0 2-2V8l-4-4H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/><path d="M14 8h6"/><circle cx="9" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+            Ship Request
+          </h5></div>
+          <div class="ship-request-body">
+            <p class="text-muted">Add packages to your Ship Request, then submit to consolidate and ship internationally.</p>
+            <button class="btn btn-primary compact" disabled>Add to Ship Request</button>
+          </div>
+          <div class="promo-bar">
+            <div>
+              <strong>Refer a friend</strong>
+              <div class="muted">Earn shipping credits when they sign up.</div>
+            </div>
+            <a class="btn btn-outline compact" href="refer-a-friend.html">Get link</a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Address card -->
+      <section class="card">
+        <div class="card-head"><h5>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          US Sales Tax-Free Address
+        </h5></div>
+        <table class="address-table">
+          <tr><td>Address 1:</td><td>4283 Express Lane</td></tr>
+          <tr><td>Address 2:</td><td>Suite 6340-104</td></tr>
+          <tr><td>City:</td><td>Sarasota</td></tr>
+          <tr><td>State/Prov:</td><td>FL</td></tr>
+          <tr><td>Zip/Post:</td><td>34249</td></tr>
+          <tr><td>Telephone:</td><td>+1 (941) 538-6941</td></tr>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Info · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+</head>
+<body class="page" data-page="privacy">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <h1>Privacy Info</h1>
+      </div>
+
+      <section class="card legal-card">
+        <h3>Your Choices</h3>
+        <p>Upon written request and verification of your identity, we will provide you with your Personal information in our possession. You may request such information by contacting us as described below. You may also update or correct your Personal information in our possession by contacting us as described below.</p>
+
+        <h3>Access, Correction and Deletion</h3>
+        <p>Subject to applicable law, (i) you may obtain a copy of certain Personal information we maintain about you or update or correct inaccuracies in that information through your <a href="https://www.myus.com/">MyUS.com</a> account on <a href="https://www.myus.com/">MyUS.com</a>; (ii) you may have the right to obtain access to Personal information we maintain about you; or (iii) for certain Personal information we hold about you to be deleted. Please note that if you request we delete your information, that deletion may not happen immediately. We may retain your Personal information subject to our reasonable business or legal requirements to do so, including, for example, to comply with requests from law enforcement.</p>
+        <p>In each case you can contact us to exercise these rights as indicated in the "Contact Us" section of our <a href="https://www.myus.com/privacy-policy/">Privacy Policy</a>. To help protect your privacy and maintain security, we will take steps to verify your identity before granting you access to the Personal information. In addition, if you believe that Personal information we maintain about you is inaccurate, subject to applicable law, you may have the right to request that we correct or amend the information by contacting us as indicated in our <a href="https://www.myus.com/privacy-policy/">Privacy Policy</a>.</p>
+
+        <div class="legal-actions">
+          <a href="contact.html" class="btn btn-outline compact">Contact Privacy Team</a>
+          <a href="https://www.myus.com/privacy-policy/" class="btn-ghost-link">Read full Privacy Policy →</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <style>
+    .legal-card { max-width: 820px; }
+    .legal-card h3 { color: var(--navy-900); font-size: 18px; margin: var(--s-5) 0 var(--s-3); }
+    .legal-card h3:first-child { margin-top: 0; }
+    .legal-card p { color: var(--ink-700); line-height: 1.7; margin: 0 0 var(--s-3); }
+    .legal-actions { display: flex; gap: var(--s-3); align-items: center; margin-top: var(--s-5); padding-top: var(--s-5); border-top: 1px solid var(--border); }
+  </style>
+</body>
+</html>

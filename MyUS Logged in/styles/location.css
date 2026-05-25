@@ -1,0 +1,46 @@
+/* ──────────────────────────────────────────────────────────────────────
+   Location pages (/us, /uk).
+   ────────────────────────────────────────────────────────────────────── */
+
+.location-title {
+  display: flex; align-items: center; gap: var(--s-3);
+}
+.location-title h1 { color: var(--navy-900); }
+.location-title .location-flag { width: 36px; height: 36px; }
+
+.favorite-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; border: none;
+  color: var(--orange-500);
+  font-size: 13px; font-weight: var(--fw-semibold);
+  cursor: pointer;
+  padding: 6px 10px; border-radius: var(--r);
+}
+.favorite-toggle:hover { background: rgba(255,152,31,0.08); }
+.favorite-toggle svg { color: var(--orange-500); }
+
+.schedule-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px;
+  margin-top: 6px;
+}
+.schedule-row .schedule-value { font-weight: var(--fw-semibold); color: var(--navy-900); }
+.schedule-row .link-edit { color: var(--blue-600); font-weight: var(--fw-semibold); }
+
+.promo-bar {
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--ink-100);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-3);
+  font-size: 13px;
+}
+.promo-bar strong { color: var(--navy-900); }
+.promo-bar .muted { color: var(--ink-600); margin-top: 2px; font-size: 12px; }
+
+.ship-request-body {
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-3);
+  padding: var(--s-6) var(--s-4) var(--s-4);
+  text-align: center;
+}
+.ship-request-body p { margin: 0; max-width: 320px; }

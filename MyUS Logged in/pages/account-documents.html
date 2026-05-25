@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account Documents · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+</head>
+<body class="page" data-page="account-documents">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <div>
+          <h1>Account Documents</h1>
+          <p class="page-sub">Any documents uploaded to your account can be viewed and downloaded here.</p>
+        </div>
+        <button class="btn btn-primary compact">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Upload Document
+        </button>
+      </div>
+
+      <div class="docs-grid">
+        <section class="card">
+          <div class="card-head"><h5>Uploaded Documents</h5></div>
+          <div class="empty-state">
+            <img src="https://account.myus.com/content/images/emptybox.svg" alt="Empty" />
+            <p>You haven't uploaded any documents yet</p>
+          </div>
+        </section>
+
+        <aside class="card secure-card">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <h4>Is this secure?</h4>
+          <p class="text-muted">Yes, all uploaded documents are held in our secure server, and are only available for viewing when you are signed in to your account.</p>
+        </aside>
+      </div>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <style>
+    .docs-grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-5); align-items: start; }
+    @media (max-width: 900px) { .docs-grid { grid-template-columns: 1fr; } }
+    .secure-card { text-align: center; padding: var(--s-6); }
+    .secure-card svg { color: var(--blue-600); margin: 0 auto var(--s-3); }
+    .secure-card h4 { color: var(--navy-900); margin-bottom: var(--s-2); }
+  </style>
+</body>
+</html>

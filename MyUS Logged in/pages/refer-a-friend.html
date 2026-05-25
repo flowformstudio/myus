@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Refer a Friend · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+</head>
+<body class="page" data-page="refer-a-friend">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <div>
+          <h1>Refer a Friend</h1>
+          <p class="page-sub">Receive a <strong>15.00 USD</strong> shipping credit for every friend you refer when they become a member and send their first shipment. PLUS your friends will receive 20% off their first shipment, just because you referred them!</p>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active">Invite Friends</button>
+        <button class="tab">Referral History</button>
+      </div>
+
+      <div class="raf-grid">
+        <section class="card">
+          <h3 style="color:var(--navy-900); margin-bottom: var(--s-3)">Share your unique referral link</h3>
+          <div class="share-row">
+            <input class="input" type="text" value="https://www.myus.com/signup/?aid=1004636&ReferId=lz3ll//Js7w=" readonly />
+            <button class="btn btn-outline compact">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div style="margin-top:var(--s-3)">
+            <a class="btn btn-outline compact" href="https://www.facebook.com/share.php">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.27c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.9h-2.34v6.98A10 10 0 0 0 22 12z"/></svg>
+              Share on Facebook
+            </a>
+          </div>
+
+          <hr class="divider" />
+
+          <h3 style="color:var(--navy-900); margin-bottom: var(--s-3)">Or send an email</h3>
+          <div class="field">
+            <label for="emails">Enter up to five email addresses</label>
+            <input id="emails" class="input" type="text" placeholder="friend@example.com, ..." />
+          </div>
+          <div class="field">
+            <label for="msg">Include a customized message <span class="muted">(optional)</span></label>
+            <textarea id="msg" class="textarea" placeholder="Hey! Try MyUS — they'll get you a US shipping address..."></textarea>
+          </div>
+          <div class="form-actions" style="border:none; padding-top:0; justify-content:flex-start">
+            <button class="btn btn-ghost" disabled>Preview Email</button>
+            <button class="btn btn-primary compact" disabled>Send Email</button>
+          </div>
+        </section>
+
+        <aside class="card">
+          <h3 style="color:var(--navy-900); margin-bottom: var(--s-4)">How does it work?</h3>
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h4>Refer Friends</h4>
+              <p class="text-muted">Invite your friends to join MyUS using your referral link or email.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h4>Earn Rewards</h4>
+              <p class="text-muted">Earn a 15.00 USD account credit after they become a member and send their first shipment.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h4>Redeem Your Rewards</h4>
+              <p class="text-muted">Use your credit toward any future shipment.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <style>
+    .raf-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s-5); align-items: start; }
+    @media (max-width: 900px) { .raf-grid { grid-template-columns: 1fr; } }
+    .share-row { display: grid; grid-template-columns: 1fr auto; gap: var(--s-2); }
+    .share-row .input { font-family: var(--font-ui); font-size: 13px; }
+    .step { display: flex; gap: var(--s-3); margin-bottom: var(--s-4); }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+      background: var(--blue-050); color: var(--blue-600);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: var(--fw-bold); font-size: 16px;
+    }
+    .step h4 { color: var(--navy-900); margin-bottom: 4px; font-size: 15px; }
+    .step p { margin: 0; font-size: 13.5px; line-height: 1.55; }
+  </style>
+</body>
+</html>

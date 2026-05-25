@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Address Book · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+</head>
+<body class="page" data-page="address-book">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <div>
+          <h1>Address Book</h1>
+          <p class="page-sub">Store up to 12 shipping addresses and set your default address for each facility. Update this information at any time.</p>
+        </div>
+      </div>
+
+      <div class="address-grid">
+
+        <!-- Add new card -->
+        <button class="address-add">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>Add new shipping address</span>
+        </button>
+
+        <!-- Default address card -->
+        <div class="address-card default">
+          <div class="default-chip-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span class="muted">Default address for:</span>
+            <span class="chip"><span class="sidebar-flag us"></span>USA</span>
+            <span class="chip"><span class="sidebar-flag uk"></span>UK</span>
+          </div>
+          <h4>Shipping Address 1</h4>
+          <div class="address-lines">
+            <div>Igor Ginzburg</div>
+            <div>3619 Kelsey Knolls</div>
+            <div>Santa Rosa, CA 95403</div>
+            <div>United States</div>
+            <div>+1 (415) 539-8508</div>
+          </div>
+          <div class="address-actions">
+            <button class="btn btn-outline compact">Update</button>
+            <button class="btn-ghost-link">Set Default</button>
+          </div>
+        </div>
+
+        <!-- Second address -->
+        <div class="address-card">
+          <div class="default-chip-row muted">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span class="muted">Not set as default</span>
+          </div>
+          <h4>3619 Kelsey Knolls</h4>
+          <div class="address-lines">
+            <div>Igor Ginzburg</div>
+            <div>3619 Kelsey Knolls</div>
+            <div>Santa Rosa, 95403-0132</div>
+            <div>Angola</div>
+            <div>+1 (415) 539-8508</div>
+          </div>
+          <div class="address-actions">
+            <button class="btn btn-outline compact">Update</button>
+            <button class="btn-ghost-link danger">Remove</button>
+            <button class="btn-ghost-link">Set Default</button>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <style>
+    .address-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--s-4); }
+    .address-add {
+      background: #fff; border: 2px dashed var(--border-strong); border-radius: var(--r-md);
+      padding: var(--s-6); display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: var(--s-3); color: var(--blue-600); cursor: pointer; min-height: 240px;
+      font-family: inherit; font-size: 14px; font-weight: var(--fw-semibold);
+    }
+    .address-add:hover { background: var(--blue-050); border-color: var(--blue-600); }
+    .address-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--r-md);
+      padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3);
+    }
+    .address-card.default { border-color: var(--blue-600); }
+    .address-card h4 { color: var(--navy-900); font-size: 18px; margin-top: var(--s-2); }
+    .default-chip-row { display: flex; align-items: center; gap: 6px; font-size: 12px; flex-wrap: wrap; color: var(--ink-600); }
+    .default-chip-row svg { color: var(--blue-600); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-050); color: var(--blue-600);
+      font-weight: var(--fw-semibold); font-size: 12px;
+      padding: 3px 10px; border-radius: var(--r-pill);
+    }
+    .chip .sidebar-flag { width: 14px; height: 14px; }
+    .address-lines div { font-size: 14px; color: var(--navy-900); line-height: 1.55; }
+    .address-actions {
+      display: flex; gap: var(--s-2); align-items: center; flex-wrap: wrap;
+      margin-top: auto; padding-top: var(--s-3);
+      border-top: 1px solid var(--ink-100);
+    }
+    .btn-ghost-link {
+      background: transparent; border: none;
+      color: var(--blue-600); font-weight: var(--fw-semibold); font-size: 13px;
+      padding: 6px 10px; border-radius: var(--r-sm); cursor: pointer;
+    }
+    .btn-ghost-link:hover { background: var(--blue-050); }
+    .btn-ghost-link.danger { color: var(--danger); }
+    .btn-ghost-link.danger:hover { background: rgba(209,49,56,0.08); }
+  </style>
+</body>
+</html>

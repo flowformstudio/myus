@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shipping Calculator · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+</head>
+<body class="page" data-page="shipping-calculator">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <div class="page-header">
+        <h1>Shipping Rate Calculator</h1>
+      </div>
+
+      <div class="calc-grid">
+
+        <!-- Left value-prop panel -->
+        <aside class="card calc-promo">
+          <div class="promo-row">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <div>
+              <h4>MyUS TruePrice™</h4>
+              <p class="text-muted">Save big with our revolutionary pricing system that calculates rates by <strong>weight only*</strong>.</p>
+            </div>
+          </div>
+          <div class="promo-row">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            <p><strong>No dimensional weight fees</strong> for packages under 72 inches.</p>
+          </div>
+          <div class="promo-row">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            <p>Shop US stores and ship <strong>sales tax-free</strong> to your MyUS address.</p>
+          </div>
+        </aside>
+
+        <!-- Right calculator -->
+        <section class="card">
+          <h3 style="color:var(--navy-900); margin-bottom: var(--s-4)">Get Shipping Rates</h3>
+
+          <div class="field">
+            <label>Shipping From</label>
+            <select class="select">
+              <option selected>US Sales Tax-Free Address</option>
+              <option>UK Address</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Delivering To</label>
+            <select class="select">
+              <option>Select Country</option>
+              <option>Australia</option>
+              <option>Canada</option>
+              <option>Germany</option>
+              <option>Japan</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Package Weight</label>
+            <div class="weight-row">
+              <input class="input" type="number" min="0" step="0.1" placeholder="0.0" />
+              <div class="unit-toggle">
+                <button class="unit-btn active">lbs</button>
+                <button class="unit-btn">kg</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="help">If your package's length + width + height is greater than 72 inches, <a href="#">please click here</a> to provide the dimensions.</p>
+
+          <div class="form-actions" style="justify-content:flex-start; border:none; padding-top:0">
+            <button class="btn btn-primary compact" disabled>Get My Rates</button>
+          </div>
+
+          <p class="help" style="margin-top:var(--s-3)">*While 99% of shipments are calculated by weight only, TruePrice excludes packages with linear dimensions (length + width + height) greater than 72 inches (183 cm).</p>
+        </section>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <style>
+    .calc-grid { display: grid; grid-template-columns: 360px 1fr; gap: var(--s-5); align-items: start; }
+    @media (max-width: 900px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-promo { display: flex; flex-direction: column; gap: var(--s-4); }
+    .promo-row { display: flex; gap: var(--s-3); align-items: flex-start; padding-bottom: var(--s-3); border-bottom: 1px solid var(--ink-100); }
+    .promo-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .promo-row svg { color: var(--blue-600); flex-shrink: 0; }
+    .promo-row h4 { color: var(--navy-900); margin-bottom: 4px; font-size: 16px; }
+    .promo-row p { margin: 0; line-height: 1.5; font-size: 13.5px; }
+    .weight-row { display: grid; grid-template-columns: 1fr auto; gap: var(--s-2); }
+    .unit-toggle { display: inline-flex; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+    .unit-btn { background: #fff; border: none; padding: 0 14px; font-family: inherit; font-size: 13px; font-weight: var(--fw-semibold); color: var(--ink-600); cursor: pointer; }
+    .unit-btn.active { background: var(--blue-050); color: var(--blue-600); }
+  </style>
+</body>
+</html>
