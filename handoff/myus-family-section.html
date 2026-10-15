@@ -2,8 +2,8 @@
 
 <!-- HERO -->
 <section class="mf-hero">
-  <img class="mf-hero__photo" src="https://myus-demo.vercel.app/assets/family/hero.webp" width="1200" height="800" alt="Four friends on a sofa holding shopping packages" />
   <div class="mf-container">
+    <img class="mf-hero__photo" src="https://myus-demo.vercel.app/assets/family/hero.webp" width="1437" height="888" alt="Four friends on a sofa holding shopping packages" />
     <div class="mf-hero__copy">
       <div class="mf-eyebrow">MyUS Family</div>
       <h1 class="mf-h1">Ship together. <span class="mf-accent">Save together.</span></h1>
@@ -25,39 +25,24 @@
   </div>
 </section>
 
-<!-- SAVINGS LADDER -->
-<section class="mf-section">
+<!-- SA<!-- SAVINGS LADDER (animated) -->
+<section class="mf-section" id="mf-ladder">
   <div class="mf-container">
     <div class="mf-head">
       <div class="mf-eyebrow">The math</div>
       <h2 class="mf-h2">More People = Bigger Savings</h2>
       <p class="mf-body">MyUS shipping rates are <a href="#">based on weight only</a>, so the cost per person falls as your shipment weight grows.</p>
     </div>
-    <div class="mf-ladder">
-      <div class="mf-tile"><div class="mf-tile__content">
-        <div class="mf-who">1 <span>Shipper</span></div>
-        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="https://myus-demo.vercel.app/assets/family/avatar-2.webp" alt=""></div></div>
-        <div class="mf-price">$27.84 <small>/person</small></div>
-        <div class="mf-detail"><span><img src="https://myus-demo.vercel.app/assets/family/icon-weight.svg" alt="">1 lb</span><span><img src="https://myus-demo.vercel.app/assets/family/icon-package.svg" alt="">$27.84 total</span></div>
-      </div><span class="mf-pill mf-pill--neutral">Full price</span></div>
-      <div class="mf-tile"><div class="mf-tile__content">
-        <div class="mf-who">2 <span>Shippers</span></div>
-        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="https://myus-demo.vercel.app/assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="https://myus-demo.vercel.app/assets/family/avatar-1.webp" alt=""></div></div>
-        <div class="mf-price">$14.07 <small>/person</small></div>
-        <div class="mf-detail"><span><img src="https://myus-demo.vercel.app/assets/family/icon-weight.svg" alt="">2 lb</span><span><img src="https://myus-demo.vercel.app/assets/family/icon-package.svg" alt="">$28.14 total</span></div>
-      </div><span class="mf-pill mf-pill--orange">Save 49%</span></div>
-      <div class="mf-tile"><div class="mf-tile__content">
-        <div class="mf-who">3 <span>Shippers</span></div>
-        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="https://myus-demo.vercel.app/assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="https://myus-demo.vercel.app/assets/family/avatar-1.webp" alt=""></div><div class="mf-av mf-av--3"><img src="https://myus-demo.vercel.app/assets/family/avatar-3.webp" alt=""></div></div>
-        <div class="mf-price">$9.93 <small>/person</small></div>
-        <div class="mf-detail"><span><img src="https://myus-demo.vercel.app/assets/family/icon-weight.svg" alt="">3 lb</span><span><img src="https://myus-demo.vercel.app/assets/family/icon-package.svg" alt="">$29.79 total</span></div>
-      </div><span class="mf-pill mf-pill--green-light">Save 64%</span></div>
-      <div class="mf-tile mf-tile--featured"><div class="mf-tile__content">
-        <div class="mf-who">4 <span>Shippers</span></div>
-        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="https://myus-demo.vercel.app/assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="https://myus-demo.vercel.app/assets/family/avatar-1.webp" alt=""></div><div class="mf-av mf-av--3"><img src="https://myus-demo.vercel.app/assets/family/avatar-3.webp" alt=""></div><div class="mf-av mf-av--4"><img src="https://myus-demo.vercel.app/assets/family/avatar-4.webp" alt=""></div></div>
-        <div class="mf-price">$7.69 <small>/person</small></div>
-        <div class="mf-detail"><span><img src="https://myus-demo.vercel.app/assets/family/icon-weight.svg" alt="">4 lb</span><span><img src="https://myus-demo.vercel.app/assets/family/icon-package.svg" alt="">$30.77 total</span></div>
-      </div><span class="mf-pill mf-pill--green">Save 72%</span></div>
+    <div class="mf-ladder" data-steps='[{"n":1,"price":27.84,"lb":1,"total":27.84,"pill":"Full price","tone":"neutral"},{"n":2,"price":14.07,"lb":2,"total":28.14,"pill":"Save 49%","tone":"orange"},{"n":3,"price":9.93,"lb":3,"total":29.79,"pill":"Save 64%","tone":"green-light"},{"n":4,"price":7.69,"lb":4,"total":30.77,"pill":"Save 72%","tone":"green"}]'>
+      <div class="mf-avs">
+        <div class="mf-av mf-av--2"><img src="https://myus-demo.vercel.app/assets/family/avatar-2.webp" alt=""></div>
+        <div class="mf-av mf-av--1 is-in" data-step="2"><img src="https://myus-demo.vercel.app/assets/family/avatar-1.webp" alt=""></div>
+        <div class="mf-av mf-av--3 is-in" data-step="3"><img src="https://myus-demo.vercel.app/assets/family/avatar-3.webp?v=2" alt=""></div>
+        <div class="mf-av mf-av--4 is-in" data-step="4"><img src="https://myus-demo.vercel.app/assets/family/avatar-4.webp" alt=""></div>
+      </div>
+      <div class="mf-price"><span class="mf-price__n">$7.69</span><small>/person</small></div>
+      <div class="mf-detail"><span><img src="https://myus-demo.vercel.app/assets/family/icon-weight.svg" alt=""><b class="mf-lb" style="font-weight:400">4 lb</b></span><span><img src="https://myus-demo.vercel.app/assets/family/icon-package.svg" alt=""><b class="mf-total" style="font-weight:400">$30.77 total</b></span></div>
+      <span class="mf-pill mf-pill--green">Save 72%</span>
     </div>
     <p class="mf-ladder-line">Four people shipping together → <strong>$7.69</strong> each, instead of $27.84 alone.</p>
     <p class="mf-ladder-foot">*Savings example based on equally splitting shipping costs from the US to Saudi Arabia via DHL. Actual savings vary based on destination, shipment weight, carrier, and package contents.</p>
@@ -92,9 +77,9 @@
       <h2 class="mf-h2">Everyone shops. MyUS brings it together.</h2>
     </div>
     <div class="mf-steps">
-      <div class="mf-step"><img src="https://myus-demo.vercel.app/assets/family/icon-add-person.svg" alt=""><h3 class="mf-h3">Add your people</h3><p>Invite family, friends, neighbors, or anyone you trust — all it takes is a first name, last name, and email.</p></div>
-      <div class="mf-step"><img src="https://myus-demo.vercel.app/assets/family/icon-cart-check.svg" alt=""><h3 class="mf-h3">Shop from US stores</h3><p>Everyone shops the US stores they prefer and sends their purchases to your MyUS suite.</p></div>
-      <div class="mf-step"><img src="https://myus-demo.vercel.app/assets/family/icon-consolidate.svg" alt=""><h3 class="mf-h3">Combine and ship</h3><p>Consolidate eligible packages into one international shipment and share the shipping cost.</p></div>
+      <div class="mf-step"><span class="mf-line" aria-hidden="true"></span><img src="https://myus-demo.vercel.app/assets/family/icon-add-person.svg?v=2" alt=""><h3 class="mf-h3">Add your people</h3><p>Invite family, friends, neighbors, or anyone you trust — all it takes is a first name, last name, and email.</p></div>
+      <div class="mf-step"><span class="mf-line" aria-hidden="true"></span><img src="https://myus-demo.vercel.app/assets/family/icon-cart-check.svg?v=2" alt=""><h3 class="mf-h3">Shop from US stores</h3><p>Everyone shops the US stores they prefer and sends their purchases to your MyUS suite.</p></div>
+      <div class="mf-step"><img src="https://myus-demo.vercel.app/assets/family/icon-consolidate.svg?v=2" alt=""><h3 class="mf-h3">Combine and ship</h3><p>Consolidate eligible packages into one international shipment and share the shipping cost.</p></div>
     </div>
   </div>
 </section>
@@ -117,9 +102,10 @@
     </div>
     <div class="mf-acct" aria-label="Your MyUS Family in your account">
       <div class="mf-acct-top"><i></i>Your account · MyUS Family</div>
-      <div class="mf-acct-row"><span class="ini ini--blue">MH</span><div><div class="nm">Maya Haddad</div><div class="em">maya.haddad@gmail.com</div></div><div class="acts"><span>Edit</span><span class="rm">Remove</span></div></div>
-      <div class="mf-acct-row"><span class="ini ini--violet">TH</span><div><div class="nm">Tariq Haddad</div><div class="em">tariq.haddad@outlook.com</div></div><div class="acts"><span>Edit</span><span class="rm">Remove</span></div></div>
-      <div class="mf-acct-row"><span class="ini ini--green">OK</span><div><div class="nm">Omar Khalil</div><div class="em">omar.khalil@icloud.com</div></div><div class="acts"><span>Edit</span><span class="rm">Remove</span></div></div>
+      <div class="mf-acct-row"><span class="mf-av mf-av--2"><img src="https://myus-demo.vercel.app/assets/family/avatar-2.webp" alt=""></span><div><div class="nm">Amir Haddad</div><div class="em">amir.haddad@gmail.com</div></div><div class="acts"><span>Edit</span><span class="rm">Remove</span></div></div>
+      <div class="mf-acct-row"><span class="mf-av mf-av--1"><img src="https://myus-demo.vercel.app/assets/family/avatar-1.webp" alt=""></span><div><div class="nm">Sara Haddad</div><div class="em">sara.haddad@gmail.com</div></div><div class="acts"><span>Edit</span><span class="rm">Remove</span></div></div>
+      <div class="mf-acct-row"><span class="mf-av mf-av--4"><img src="https://myus-demo.vercel.app/assets/family/avatar-4.webp" alt=""></span><div><div class="nm">Lina Haddad</div><div class="em">lina.haddad@outlook.com</div></div><div class="acts"><span>Edit</span><span class="rm">Remove</span></div></div>
+      <div class="mf-acct-row"><span class="mf-av mf-av--3"><img src="https://myus-demo.vercel.app/assets/family/avatar-3.webp?v=2" alt=""></span><div><div class="nm">Omar Khalil</div><div class="em">omar.khalil@icloud.com</div></div><div class="acts"><span>Edit</span><span class="rm">Remove</span></div></div>
     </div>
   </div>
 </section>
@@ -140,10 +126,10 @@
             <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--2"><img src="https://myus-demo.vercel.app/assets/family/avatar-2.webp" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-sneakers.webp" alt=""></div><div class="nm">Amir</div><div class="lb">1 lb.</div></div>
             <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--1"><img src="https://myus-demo.vercel.app/assets/family/avatar-1.webp" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-beauty.webp" alt=""></div><div class="nm">Sara</div><div class="lb">1 lb.</div></div>
             <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--4"><img src="https://myus-demo.vercel.app/assets/family/avatar-4.webp" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-clothing.webp" alt=""></div><div class="nm">Lina</div><div class="lb">1 lb.</div></div>
-            <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--3"><img src="https://myus-demo.vercel.app/assets/family/avatar-3.webp" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-phone.webp" alt=""></div><div class="nm">Omar</div><div class="lb">1 lb.</div></div>
+            <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--3"><img src="https://myus-demo.vercel.app/assets/family/avatar-3.webp?v=2" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-phone.webp" alt=""></div><div class="nm">Omar</div><div class="lb">1 lb.</div></div>
           </div>
         </div>
-        <div class="mf-sout"><div class="line">Four accounts, four separate shipments.</div><div class="big">$25.42 <small>Per person</small></div></div>
+        <div class="mf-sout"><div class="line">Four accounts, four separate shipments.</div><div class="big">$27.84 <small>Per person</small></div></div>
       </div>
       <div class="mf-scard mf-scard--dark">
         <div>
@@ -152,13 +138,13 @@
             <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--2"><img src="https://myus-demo.vercel.app/assets/family/avatar-2.webp" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-sneakers.webp" alt=""></div><div class="nm">Amir</div><div class="lb">1 lb.</div></div>
             <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--1"><img src="https://myus-demo.vercel.app/assets/family/avatar-1.webp" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-beauty.webp" alt=""></div><div class="nm">Sara</div><div class="lb">1 lb.</div></div>
             <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--4"><img src="https://myus-demo.vercel.app/assets/family/avatar-4.webp" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-clothing.webp" alt=""></div><div class="nm">Lina</div><div class="lb">1 lb.</div></div>
-            <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--3"><img src="https://myus-demo.vercel.app/assets/family/avatar-3.webp" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-phone.webp" alt=""></div><div class="nm">Omar</div><div class="lb">1 lb.</div></div>
+            <div class="mf-shopper"><div class="stack"><div class="mf-av mf-av--3"><img src="https://myus-demo.vercel.app/assets/family/avatar-3.webp?v=2" alt=""></div><img class="prod" src="https://myus-demo.vercel.app/assets/family/product-phone.webp" alt=""></div><div class="nm">Omar</div><div class="lb">1 lb.</div></div>
           </div>
         </div>
-        <div class="mf-sout"><div class="line">One suite, one combined shipment.</div><div class="big">$9.21 <small>Per person</small></div></div>
+        <div class="mf-sout"><div class="line">One suite, one combined shipment.</div><div class="big">$7.69 <small>Per person</small></div></div>
       </div>
     </div>
-    <p class="mf-scen-note">Comparison based on shipping to Saudi Arabia via premium carrier (5-9 day delivery)</p>
+    <p class="mf-scen-note">Same example as above: four 1 lb packages from the US to Saudi Arabia via DHL, $27.84 each alone vs. $30.77 for one 4 lb shipment.</p>
   </div>
 </section>
 
@@ -184,7 +170,7 @@
 
 <!-- FINAL CTA -->
 <section class="mf-final">
-  <img class="mf-final__photo" src="https://myus-demo.vercel.app/assets/family/cta-photo.webp" width="1100" height="584" alt="Friends celebrating with shopping packages" />
+  <img class="mf-final__photo" src="https://myus-demo.vercel.app/assets/family/cta-photo.webp?v=2" width="1536" height="1024" alt="Four friends on a sofa cheering with their packages" />
   <div class="mf-container">
     <div class="mf-final__copy">
       <div class="head">
@@ -201,3 +187,85 @@
 </section>
 
 </div>
+<script>
+/* MyUS Family savings animation: 1 shipper → 4, price counts down. Without JS the section shows the final frame. */
+(function(){
+  var root=document.querySelector('.myus-family .mf-ladder'); if(!root||!('IntersectionObserver' in window)) return;
+  var steps=JSON.parse(root.getAttribute('data-steps')), avs=root.querySelectorAll('.mf-av[data-step]'), priceEl=root.querySelector('.mf-price__n'), lbEl=root.querySelector('.mf-lb'), totEl=root.querySelector('.mf-total'), pill=root.querySelector('.mf-pill');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var money=function(v){return '$'+v.toFixed(2);};
+  var timer=null, raf=null, running=false, i=0;
+  function setPill(st){ pill.className='mf-pill mf-pill--'+st.tone; pill.textContent=st.pill; }
+  function show(st){ priceEl.textContent=money(st.price); lbEl.textContent=st.lb+' lb'; totEl.textContent=money(st.total)+' total'; setPill(st); for(var k=0;k<avs.length;k++) avs[k].classList.toggle('is-in', +avs[k].getAttribute('data-step')<=st.n); }
+  function count(from,to,ms,done){ var t0=performance.now(); cancelAnimationFrame(raf); (function tick(now){ var k=Math.min(1,(now-t0)/ms); k=1-Math.pow(1-k,3); priceEl.textContent=money(from+(to-from)*k); if(k<1) raf=requestAnimationFrame(tick); else if(done) done(); })(t0); }
+  function next(){ i++; if(i>=steps.length){ timer=setTimeout(function(){ i=0; show(steps[0]); timer=setTimeout(next,1300); },3200); return; }
+    var prev=steps[i-1], st=steps[i]; avs[i-1].classList.add('is-in'); lbEl.textContent=st.lb+' lb'; totEl.textContent=money(st.total)+' total';
+    setTimeout(function(){ count(prev.price,st.price,1100,function(){ setPill(st); }); },250);
+    timer=setTimeout(next,1900); }
+  /* resume from the current step when the block scrolls back in; pause (don't reset) when it scrolls out */
+  function play(){ if(running) return; running=true; show(steps[Math.min(i,steps.length-1)]); timer=setTimeout(next,1300); }
+  function pause(){ clearTimeout(timer); cancelAnimationFrame(raf); running=false; }
+  if(reduce){ show(steps[steps.length-1]); return; }
+  new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.intersectionRatio>=.3){ play(); } else if(e.intersectionRatio===0){ pause(); } }); },{threshold:[0,.3]}).observe(root);
+
+  /* "Who you can add": tiles deal out from under the Family tile the first time the row scrolls in */
+  /* "How it works": step 1 is visible; step 2 appears after the line reaches it, then step 3 */
+  var steps2=document.querySelector('.myus-family .mf-steps');
+  if(steps2){ steps2.classList.add('is-pending'); steps2.offsetWidth;
+    new IntersectionObserver(function(es,obs){ es.forEach(function(e){ if(e.intersectionRatio>=.3){ obs.disconnect(); setTimeout(function(){ steps2.classList.remove('is-pending'); },500); } }); },{threshold:[.3]}).observe(steps2); }
+  var tiles=document.querySelector('.myus-family .mf-who-tiles');
+  if(tiles){ tiles.classList.add('is-pending'); tiles.offsetWidth;
+    new IntersectionObserver(function(es,obs){ es.forEach(function(e){ if(e.intersectionRatio>=.2){ obs.disconnect(); tiles.classList.remove('is-pending'); } }); },{threshold:[.2]}).observe(tiles); }
+  /* "Your account": a cursor walks to Omar's Remove button, clicks, the row collapses; the row comes back and the loop repeats while in view */
+  /* FAQ: animate the <details> height open and closed instead of snapping */
+  (function(){
+    var items=document.querySelectorAll('.myus-family .mf-faq details'); if(!items.length||!('animate' in document.body)) return;
+    var dur=window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:380, ease='cubic-bezier(.4,0,.2,1)';
+    Array.prototype.forEach.call(items,function(d){ var sum=d.querySelector('summary'); if(!sum) return; var anim=null;
+      sum.addEventListener('click',function(ev){ ev.preventDefault(); if(anim) anim.cancel();
+        var from=d.offsetHeight, to;
+        if(d.open){ to=sum.offsetHeight; d.style.height=from+'px'; anim=d.animate([{height:from+'px'},{height:to+'px'}],{duration:dur,easing:ease});
+          anim.onfinish=function(){ d.open=false; d.style.height=''; anim=null; }; }
+        else{ d.open=true; to=d.offsetHeight; d.style.height=from+'px'; anim=d.animate([{height:from+'px'},{height:to+'px'}],{duration:dur,easing:ease});
+          anim.onfinish=function(){ d.style.height=''; anim=null; }; }
+      });
+    });
+  })();
+  (function(){ /* own scope: play/stop/running here must not collide with the ladder's */
+  var acct=document.querySelector('.myus-family .mf-acct');
+  if(acct && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var cur=document.createElement('span'); cur.className='mf-cursor'; cur.setAttribute('aria-hidden','true');
+    cur.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3l14 9-6.5 1.4L16 20l-2.4 1.1-3.5-6.6L5 19z" fill="#fff" stroke="#1d2730" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+    acct.appendChild(cur);
+    var row=acct.querySelector('.mf-acct-row:last-of-type'), btn=row.querySelector('.rm'), timers=[], running=false;
+    function at(ms,fn){ timers.push(setTimeout(fn,ms)); }
+    function place(el,ox,oy){ var a=acct.getBoundingClientRect(), b=el.getBoundingClientRect(); cur.style.transform='translate('+(b.left-a.left+ox)+'px,'+(b.top-a.top+oy)+'px)'; }
+    function play(){
+      running=true; row.classList.remove('is-removed'); btn.classList.remove('is-press'); row.classList.remove('is-hover');
+      cur.style.transition='none'; cur.style.opacity='0'; cur.style.transform='translate('+(acct.offsetWidth*.62)+'px,'+(acct.offsetHeight+16)+'px)'; cur.offsetWidth;
+      at(500,function(){ cur.style.transition='transform 1s cubic-bezier(.45,.05,.3,1),opacity .35s ease'; cur.style.opacity='1'; place(row,row.offsetWidth*.42,row.offsetHeight*.5); });
+      at(1400,function(){ row.classList.add('is-hover'); });
+      at(2000,function(){ cur.style.transition='transform .9s cubic-bezier(.45,.05,.3,1),opacity .35s ease'; place(btn,btn.offsetWidth*.5,btn.offsetHeight*.55); });
+      at(3050,function(){ btn.classList.add('is-press'); });
+      at(3250,function(){ btn.classList.remove('is-press'); row.classList.add('is-removed'); });
+      at(3900,function(){ cur.style.opacity='0'; row.classList.remove('is-hover'); cur.style.transform='translate('+(acct.offsetWidth*.62)+'px,'+(acct.offsetHeight+16)+'px)'; });
+      at(6500,function(){ row.classList.remove('is-removed'); });
+      at(8700,function(){ running=false; play(); });
+    }
+    /* keep the section and the card pinned while the row folds: lock the grid height and the card's top edge */
+    var grid=acct.parentNode;
+    function lock(){ /* always measure the full card (row present, no transitions), otherwise a mid-loop measure locks a too-short height */
+      var wasRemoved=row.classList.contains('is-removed'); acct.classList.add('is-measuring'); row.classList.remove('is-removed');
+      grid.style.minHeight=''; acct.style.alignSelf=''; acct.style.marginTop=''; var g=grid.getBoundingClientRect(), a=acct.getBoundingClientRect();
+      if(wasRemoved) row.classList.add('is-removed'); acct.offsetWidth; acct.classList.remove('is-measuring');
+      grid.style.minHeight=g.height+'px';
+      /* two columns: pin the card's top so it doesn't re-centre; one column (stacked): the card is already in its own row, nothing to pin */
+      if(getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length>1){ acct.style.alignSelf='start'; acct.style.marginTop=(a.top-g.top)+'px'; } }
+    lock(); window.addEventListener('load',lock); /* fonts/images settle */
+    var rt, lastW=window.innerWidth; window.addEventListener('resize',function(){ if(window.innerWidth===lastW) return; /* ignore mobile URL-bar height changes */ lastW=window.innerWidth; clearTimeout(rt); rt=setTimeout(lock,150); });
+    function stop(){ timers.forEach(clearTimeout); timers=[]; running=false; cur.style.opacity='0'; btn.classList.remove('is-press'); row.classList.remove('is-removed'); row.classList.remove('is-hover'); }
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.intersectionRatio>=.5){ if(!running) play(); } else if(e.intersectionRatio===0){ stop(); } }); },{threshold:[0,.5]}).observe(acct);
+  }
+  })();
+})();
+</script>

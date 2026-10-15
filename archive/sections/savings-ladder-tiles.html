@@ -1,0 +1,122 @@
+<!-- MyUS Family: 'More People = Bigger Savings' as four static tiles (archived 2026-10-15, replaced by the animated version).
+     Paste the CSS inside the .myus-family CSS, the markup in place of the animated section. Responsive lines listed at the end. -->
+<style>
+    /* ── Savings ladder ── */
+    .myus-family .mf-ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+    .myus-family .mf-tile{background:var(--mf-white);border:1px solid var(--mf-border);border-radius:var(--mf-r-sm);padding:25px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+    .myus-family .mf-tile--featured{border-color:var(--mf-blue-900);box-shadow:0 0 0 1px var(--mf-blue-900),0 4px 12px -2px rgba(11,20,32,.08),0 2px 4px rgba(11,20,32,.04)}
+    .myus-family .mf-tile__content{display:flex;flex-direction:column;gap:12px}
+    .myus-family .mf-who{display:flex;gap:6px;font:600 14px/1 var(--mf-font);letter-spacing:.02em;text-transform:uppercase}
+    .myus-family .mf-who span{color:var(--mf-text-2)}
+    .myus-family .mf-avs{display:flex}
+    .myus-family .mf-avs .mf-av{width:63px;height:63px;margin-right:-11px;border:2px solid #fff}
+    .myus-family .mf-avs .mf-av:last-child{margin-right:0}
+    .myus-family .mf-av{width:64px;height:64px;border-radius:50%;overflow:hidden;position:relative;flex-shrink:0}
+    .myus-family .mf-av img{position:absolute;width:102%;height:102%;left:-1%;top:8.75%;max-width:none;object-fit:cover}
+    .myus-family .mf-av--3 img{top:-1%}
+    .myus-family .mf-av--1{background:var(--mf-blue-200)} .myus-family .mf-av--2{background:var(--mf-purple-50)} .myus-family .mf-av--3{background:var(--mf-green-50)} .myus-family .mf-av--4{background:var(--mf-orange-50)}
+    .myus-family .mf-price{display:flex;align-items:baseline;gap:6px;font-weight:600;font-size:46px;line-height:1.15;letter-spacing:-.01em}
+    .myus-family .mf-price small{font-size:13px;font-weight:500;letter-spacing:0;color:var(--mf-text-2)}
+    .myus-family .mf-detail{display:flex;gap:20px;font-size:14px;color:var(--mf-text-2)}
+    .myus-family .mf-detail span{display:inline-flex;align-items:center;gap:5px}
+    .myus-family .mf-detail img{width:14px;height:14px}
+    .myus-family .mf-pill{display:inline-flex;align-items:center;padding:7px 14px;border-radius:999px;font:600 15px/1 var(--mf-font);letter-spacing:.02em;text-transform:uppercase;align-self:flex-start;margin-top:10px}
+    .myus-family .mf-pill--neutral{background:var(--mf-grey-100);color:var(--mf-text-2)}
+    .myus-family .mf-pill--orange{background:var(--mf-orange-700);color:#fff}
+    .myus-family .mf-pill--green-light{background:var(--mf-green-500);color:#fff}
+    .myus-family .mf-pill--green{background:var(--mf-green-700);color:#fff}
+    .myus-family .mf-ladder-line{margin-top:32px;text-align:center;font-size:17px;line-height:1.5}
+    .myus-family .mf-ladder-line strong{color:var(--mf-orange-800);font-weight:700;font-size:20px}
+    .myus-family .mf-ladder-foot{margin:20px auto 0;max-width:640px;text-align:center;font-size:12px;line-height:1.6;color:var(--mf-text-muted)}
+    .myus-family .mf-ladder-cta{margin-top:40px;text-align:center}
+
+</style>
+
+<!-- SAVINGS LADDER -->
+<section class="mf-section">
+  <div class="mf-container">
+    <div class="mf-head">
+      <div class="mf-eyebrow">The math</div>
+      <h2 class="mf-h2">More People = Bigger Savings</h2>
+      <p class="mf-body">MyUS shipping rates are <a href="#">based on weight only</a>, so the cost per person falls as your shipment weight grows.</p>
+    </div>
+    <div class="mf-ladder">
+      <div class="mf-tile"><div class="mf-tile__content">
+        <div class="mf-who">1 <span>Shipper</span></div>
+        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="assets/family/avatar-2.webp" alt=""></div></div>
+        <div class="mf-price">$27.84 <small>/person</small></div>
+        <div class="mf-detail"><span><img src="assets/family/icon-weight.svg" alt="">1 lb</span><span><img src="assets/family/icon-package.svg" alt="">$27.84 total</span></div>
+      </div><span class="mf-pill mf-pill--neutral">Full price</span></div>
+      <div class="mf-tile"><div class="mf-tile__content">
+        <div class="mf-who">2 <span>Shippers</span></div>
+        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="assets/family/avatar-1.webp" alt=""></div></div>
+        <div class="mf-price">$14.07 <small>/person</small></div>
+        <div class="mf-detail"><span><img src="assets/family/icon-weight.svg" alt="">2 lb</span><span><img src="assets/family/icon-package.svg" alt="">$28.14 total</span></div>
+      </div><span class="mf-pill mf-pill--orange">Save 49%</span></div>
+      <div class="mf-tile"><div class="mf-tile__content">
+        <div class="mf-who">3 <span>Shippers</span></div>
+        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="assets/family/avatar-1.webp" alt=""></div><div class="mf-av mf-av--3"><img src="assets/family/avatar-3.webp" alt=""></div></div>
+        <div class="mf-price">$9.93 <small>/person</small></div>
+        <div class="mf-detail"><span><img src="assets/family/icon-weight.svg" alt="">3 lb</span><span><img src="assets/family/icon-package.svg" alt="">$29.79 total</span></div>
+      </div><span class="mf-pill mf-pill--green-light">Save 64%</span></div>
+      <div class="mf-tile mf-tile--featured"><div class="mf-tile__content">
+        <div class="mf-who">4 <span>Shippers</span></div>
+        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="assets/family/avatar-1.webp" alt=""></div><div class="mf-av mf-av--3"><img src="assets/family/avatar-3.webp" alt=""></div><div class="mf-av mf-av--4"><img src="assets/family/avatar-4.webp" alt=""></div></div>
+        <div class="mf-price">$7.69 <small>/person</small></div>
+        <div class="mf-detail"><span><img src="assets/family/icon-weight.svg" alt="">4 lb</span><span><img src="assets/family/icon-package.svg" alt="">$30.77 total</span></div>
+      </div><span class="mf-pill mf-pill--green">Save 72%</span></div>
+    </div>
+    <p class="mf-ladder-line">Four people shipping together → <strong>$7.69</strong> each, instead of $27.84 alone.</p>
+    <p class="mf-ladder-foot">*Savings example based on equally splitting shipping costs from the US to Saudi Arabia via DHL. Actual savings vary based on destination, shipment weight, carrier, and package contents.</p>
+    <div class="mf-ladder-cta">
+      <a class="mf-btn mf-btn--main mf-only-out" href="confirmation.html">Sign up for MyUS</a>
+      <a class="mf-btn mf-btn--main mf-only-in" href="MyUS%20Logged%20in/pages/myus-family.html">Add someone to MyUS Family</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- responsive rules that referenced these classes -->
+<!--
+    .myus-family .mf-ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+    .myus-family .mf-tile{background:var(--mf-white);border:1px solid var(--mf-border);border-radius:var(--mf-r-sm);padding:25px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+    .myus-family .mf-tile--featured{border-color:var(--mf-blue-900);box-shadow:0 0 0 1px var(--mf-blue-900),0 4px 12px -2px rgba(11,20,32,.08),0 2px 4px rgba(11,20,32,.04)}
+    .myus-family .mf-tile__content{display:flex;flex-direction:column;gap:12px}
+    .myus-family .mf-avs{display:flex}
+    .myus-family .mf-avs .mf-av{width:63px;height:63px;margin-right:-11px;border:2px solid #fff}
+    .myus-family .mf-avs .mf-av:last-child{margin-right:0}
+    .myus-family .mf-price{display:flex;align-items:baseline;gap:6px;font-weight:600;font-size:46px;line-height:1.15;letter-spacing:-.01em}
+    .myus-family .mf-price small{font-size:13px;font-weight:500;letter-spacing:0;color:var(--mf-text-2)}
+    .myus-family .mf-pill{display:inline-flex;align-items:center;padding:7px 14px;border-radius:999px;font:600 15px/1 var(--mf-font);letter-spacing:.02em;text-transform:uppercase;align-self:flex-start;margin-top:10px}
+    .myus-family .mf-pill--neutral{background:var(--mf-grey-100);color:var(--mf-text-2)}
+    .myus-family .mf-pill--orange{background:var(--mf-orange-700);color:#fff}
+    .myus-family .mf-pill--green-light{background:var(--mf-green-500);color:#fff}
+    .myus-family .mf-pill--green{background:var(--mf-green-700);color:#fff}
+    .myus-family .mf-ladder-line{margin-top:32px;text-align:center;font-size:17px;line-height:1.5}
+    .myus-family .mf-ladder-line strong{color:var(--mf-orange-800);font-weight:700;font-size:20px}
+    .myus-family .mf-ladder-foot{margin:20px auto 0;max-width:640px;text-align:center;font-size:12px;line-height:1.6;color:var(--mf-text-muted)}
+    .myus-family .mf-ladder-cta{margin-top:40px;text-align:center}
+      .myus-family .mf-ladder{grid-template-columns:repeat(2,1fr)}
+      .myus-family .mf-ladder{grid-template-columns:1fr;gap:12px;margin-top:28px} .myus-family .mf-tile{padding:20px} .myus-family .mf-price{font-size:40px}
+      .myus-family .mf-ladder-line{font-size:16px;margin-top:28px}
+    <div class="mf-ladder">
+      <div class="mf-tile"><div class="mf-tile__content">
+        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="assets/family/avatar-2.webp" alt=""></div></div>
+        <div class="mf-price">$27.84 <small>/person</small></div>
+      </div><span class="mf-pill mf-pill--neutral">Full price</span></div>
+      <div class="mf-tile"><div class="mf-tile__content">
+        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="assets/family/avatar-1.webp" alt=""></div></div>
+        <div class="mf-price">$14.07 <small>/person</small></div>
+      </div><span class="mf-pill mf-pill--orange">Save 49%</span></div>
+      <div class="mf-tile"><div class="mf-tile__content">
+        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="assets/family/avatar-1.webp" alt=""></div><div class="mf-av mf-av--3"><img src="assets/family/avatar-3.webp" alt=""></div></div>
+        <div class="mf-price">$9.93 <small>/person</small></div>
+      </div><span class="mf-pill mf-pill--green-light">Save 64%</span></div>
+      <div class="mf-tile mf-tile--featured"><div class="mf-tile__content">
+        <div class="mf-avs"><div class="mf-av mf-av--2"><img src="assets/family/avatar-2.webp" alt=""></div><div class="mf-av mf-av--1"><img src="assets/family/avatar-1.webp" alt=""></div><div class="mf-av mf-av--3"><img src="assets/family/avatar-3.webp" alt=""></div><div class="mf-av mf-av--4"><img src="assets/family/avatar-4.webp" alt=""></div></div>
+        <div class="mf-price">$7.69 <small>/person</small></div>
+      </div><span class="mf-pill mf-pill--green">Save 72%</span></div>
+    <p class="mf-ladder-line">Four people shipping together → <strong>$7.69</strong> each, instead of $27.84 alone.</p>
+    <p class="mf-ladder-foot">*Savings example based on equally splitting shipping costs from the US to Saudi Arabia via DHL. Actual savings vary based on destination, shipment weight, carrier, and package contents.</p>
+    <div class="mf-ladder-cta">
+-->

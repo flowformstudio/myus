@@ -1,0 +1,1711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>MyUS — Design System v1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Foundational design system for MyUS — internal reference for product, design, and marketing teams." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ── TOKENS (carried over from MyUS Design System v1) ───────────── */
+:root {
+  /* Brand */
+  --brand-primary: #0A2540;
+  --brand-primary-600: #123358;
+  --brand-primary-400: #2b4d72;
+  --brand-accent: #FF981F;
+  --brand-accent-600: #ed6812; /* myus.com .color-orange-d — dark orange for highlighted heading words, eyebrows */
+  --brand-accent-700: #d98017; /* primary button hover — matches myus.com .btn-signup:hover */
+  --brand-accent-100: #fff3e3;
+
+  /* Neutrals */
+  --ink-900: #0b1420;
+  --ink-800: #18253a;
+  --ink-700: #2b3a52;
+  --ink-600: #455672;
+  --ink-500: #667793;
+  --ink-400: #8e9db5;
+  --ink-300: #b6c1d2;
+  --ink-200: #dae0ea;
+  --ink-150: #e8ecf3;
+  --ink-100: #f1f4f9;
+  --ink-50:  #f7f9fc;
+  --paper:   #ffffff;
+
+  /* Semantic */
+  --success: #18873d;
+  --success-100: #e2f4ea;
+  --warning: #c2861d;
+  --warning-100: #fbecce;
+  --danger:  #d13138;
+  --danger-100: #f8dddd;
+  --info:    #0c71c9;
+  --info-100: #e0eef9;
+
+  /* Surfaces */
+  --bg: var(--ink-50);
+  --surface: var(--paper);
+  --surface-2: var(--ink-100);
+  --border: var(--ink-200);
+  --border-strong: var(--ink-300);
+  --text: var(--ink-900);
+  --text-muted: var(--ink-500);
+  --text-subtle: var(--ink-400);
+
+  /* Type */
+  /* Single-family system — Poppins everywhere, including numeric data
+     (handled with tabular-nums + tighter tracking, no separate mono family). */
+  --font-ui: "Poppins", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  --font-display: "Poppins", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+
+  /* Spacing (8pt) */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 20px;
+  --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px; --s-16: 64px;
+
+  /* Radius */
+  --r: 6px;
+  --r-sm: 6px;
+  --r-md: 6px;
+  --r-lg: 12px;
+  --r-xl: 18px;
+  --r-pill: 999px;
+
+  /* Elevation */
+  --sh-0: 0 0 0 1px rgba(11,20,32,0.06);
+  --sh-1: 0 1px 2px rgba(11,20,32,0.06), 0 1px 0 rgba(11,20,32,0.03);
+  --sh-2: 0 4px 12px -2px rgba(11,20,32,0.08), 0 2px 4px rgba(11,20,32,0.04);
+  --sh-3: 0 12px 32px -8px rgba(11,20,32,0.14), 0 4px 12px -4px rgba(11,20,32,0.06);
+  --sh-focus: 0 0 0 3px color-mix(in srgb, var(--brand-accent) 30%, transparent);
+
+  /* Layout */
+  --header-h: 60px;
+  --sidebar-w: 260px;
+}
+
+[data-theme="dark"] {
+  --bg: #0a1220;
+  --surface: #10192a;
+  --surface-2: #0a1220;
+  --border: #243149;
+  --border-strong: #33425e;
+  --text: #eef2f8;
+  --text-muted: #97a4bc;
+  --text-subtle: #6d7c96;
+  --ink-50: #0a1220;
+  --ink-100: #10192a;
+  --ink-150: #162136;
+  --ink-200: #243149;
+  --ink-300: #33425e;
+  --ink-900: #eef2f8;
+  --paper: #10192a;
+  --sh-0: 0 0 0 1px rgba(255,255,255,0.06);
+  --sh-1: 0 1px 2px rgba(0,0,0,0.4);
+  --sh-2: 0 4px 12px -2px rgba(0,0,0,0.5);
+  --sh-3: 0 12px 32px -8px rgba(0,0,0,0.65);
+}
+
+/* ── RESET ──────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: var(--font-ui);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  line-height: 1.5;
+}
+button { font-family: inherit; }
+a { color: inherit; }
+
+/* ── HEADER ─────────────────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  color: var(--brand-primary);
+  text-decoration: none;
+}
+[data-theme="dark"] .header__brand { color: var(--text); }
+.header__brand .brand-logo {
+  height: 31px;
+  width: auto;
+  display: block;
+}
+[data-theme="dark"] .header__brand .brand-logo { filter: brightness(0) invert(1); }
+.header__brand .ver {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 6px;
+  letter-spacing: 0.04em;
+}
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header__actions a, .header__actions button {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  height: 34px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background 0.12s ease;
+}
+.header__actions a:hover, .header__actions button:hover { background: var(--surface-2); }
+.menu-toggle { display: none; }
+@media (max-width: 900px) {
+  .menu-toggle { display: inline-flex; }
+}
+
+/* ── LAYOUT ─────────────────────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  align-items: start;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+/* ── SIDEBAR ────────────────────────────────────────────────────── */
+.sidebar {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  overflow-y: auto;
+  padding: 28px 16px 40px 24px;
+  border-right: 1px solid var(--border);
+}
+.sidebar__group { margin-bottom: var(--s-5); }
+.sidebar__grouplabel {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-subtle);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 12px 8px;
+}
+.sidebar__item {
+  display: block;
+  padding: 6px 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: var(--r-sm);
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+  cursor: pointer;
+  transition: color 0.1s, background 0.1s;
+}
+.sidebar__item:hover { color: var(--text); background: var(--surface-2); }
+.sidebar__item.is-active {
+  color: var(--brand-accent);
+  border-left-color: var(--brand-accent);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    width: 280px;
+    height: calc(100vh - var(--header-h));
+    background: var(--bg);
+    z-index: 90;
+    transform: translateX(-100%);
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--sh-3);
+  }
+  .sidebar.is-open { transform: translateX(0); }
+  .sidebar-backdrop {
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 85;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+  }
+  .sidebar-backdrop.is-on { opacity: 1; pointer-events: auto; }
+}
+
+/* ── MAIN ───────────────────────────────────────────────────────── */
+.main {
+  padding: 0 48px;
+  min-width: 0; /* crucial for grid children to actually shrink */
+}
+@media (max-width: 900px) { .main { padding: 0 24px; } }
+
+.section {
+  padding: 96px 0;
+}
+.section:first-of-type { padding-top: 64px; }
+.section:last-child { padding-bottom: 64px; }
+
+.section__head { max-width: 720px; margin-bottom: var(--s-8); }
+.section__eyebrow {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--brand-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--text);
+  margin: 0 0 12px 0;
+}
+.section__lead {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+.section__h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: var(--s-8) 0 var(--s-3) 0;
+}
+.section__h3:first-child { margin-top: 0; }
+
+.sec-label {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-subtle);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--s-3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-label::before {
+  content: "";
+  width: 6px; height: 6px;
+  background: var(--brand-accent);
+  border-radius: 2px;
+}
+
+/* ── HERO ───────────────────────────────────────────────────────── */
+.hero {
+  padding: 80px 0 64px;
+}
+.hero__eyebrow {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--brand-accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 0 0 18px 0;
+  color: var(--text);
+}
+.hero__title em { color: var(--brand-accent); font-style: normal; }
+.hero__lead {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 0 28px 0;
+}
+.hero__stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.hero__stats > div {
+  display: flex;
+  flex-direction: column;
+}
+.hero__stats .num {
+  font-family: var(--font-ui);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.hero__stats .lbl {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── COMPONENT: Button ─────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 22px;
+  height: 48px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  white-space: nowrap;
+  font-family: var(--font-ui);
+}
+.btn--sm { height: 36px; padding: 0 14px; font-size: 13px; border-radius: var(--r-sm); }
+.btn--lg { height: 56px; padding: 0 28px; font-size: 16px; }
+.btn--primary { background: var(--brand-accent); color: #fff; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.15); }
+.btn--primary:hover { background: var(--brand-accent-700); }
+.btn--secondary { background: var(--brand-primary); color: #fff; }
+.btn--secondary:hover { background: var(--brand-primary-600); }
+.btn--outline { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn--outline:hover { background: var(--ink-100); }
+.btn--ghost { background: transparent; color: var(--text); }
+.btn--ghost:hover { background: var(--ink-100); }
+.btn--link { background: transparent; color: var(--brand-accent); padding: 0; height: auto; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+/* ── COMPONENT: Form ────────────────────────────────────────────── */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 13px; font-weight: 500; color: var(--text); display: flex; align-items: center; gap: 6px; }
+.field label .req { color: var(--brand-accent); }
+.input, .select {
+  width: 100%; height: 44px; padding: 0 14px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  font-size: 14px; font-family: var(--font-ui);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.input:focus, .select:focus { outline: none; border-color: var(--brand-accent); box-shadow: var(--sh-focus); }
+.input::placeholder { color: var(--text-subtle); }
+.hint { font-size: 12px; color: var(--text-muted); }
+.error-hint { font-size: 12px; color: var(--danger); display: flex; align-items: center; gap: 4px;}
+
+.seg { display: inline-flex; background: var(--ink-100); border-radius: var(--r-md); padding: 3px; gap: 2px; }
+.seg button { appearance: none; background: transparent; border: 0; padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--text-muted); border-radius: calc(var(--r-md) - 3px); cursor: pointer; }
+.seg button[data-on] { background: var(--surface); color: var(--text); box-shadow: var(--sh-1); }
+
+/* ── COMPONENT: Card ────────────────────────────────────────────── */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); }
+
+/* ── COMPONENT: Badge ───────────────────────────────────────────── */
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); letter-spacing: 0.02em; border-radius: var(--r-pill); background: var(--ink-100); color: var(--text); border: 1px solid var(--border); }
+.badge--accent { background: var(--brand-accent-100); color: var(--brand-accent-600); border-color: transparent; }
+.badge--primary { background: var(--brand-primary); color: #fff; border-color: transparent; }
+.badge--success { background: var(--success-100); color: var(--success); border-color: transparent; }
+.badge--warning { background: var(--warning-100); color: var(--warning); border-color: transparent; }
+.badge--info { background: var(--info-100); color: var(--info); border-color: transparent; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.7; }
+
+/* ── Swatch ─────────────────────────────────────────────────────── */
+.sw { display: flex; flex-direction: column; gap: 8px; }
+.sw .chip { height: 96px; border-radius: var(--r-md); border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden; cursor: pointer; transition: transform 0.12s ease; }
+.sw .chip:hover { transform: translateY(-2px); }
+.sw .meta { display: flex; justify-content: space-between; font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); letter-spacing: 0.04em; }
+.sw .name { color: var(--text); font-weight: 500; font-size: 12px; font-family: var(--font-ui); }
+
+/* ── Spec ───────────────────────────────────────────────────────── */
+.spec { display: grid; grid-template-columns: 120px 1fr 200px; align-items: baseline; gap: var(--s-6); padding: var(--s-4) 0; border-top: 1px solid var(--border); }
+.spec:first-child { border-top: 0; }
+.spec .lbl { font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); letter-spacing: 0.06em; text-transform: uppercase; }
+.spec .ex { color: var(--text); }
+.spec .tok { font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); text-align: right; letter-spacing: 0.02em; }
+
+/* ── Step ───────────────────────────────────────────────────────── */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
+.step { display: flex; flex-direction: column; gap: 14px; }
+.step .num { width: 48px; height: 48px; border-radius: var(--r-md); background: var(--brand-primary); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-size: 18px; font-weight: 600; }
+.step .n { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+.step .d { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+/* ── Pricing card ───────────────────────────────────────────────── */
+.price-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); position: relative; }
+.price-card--featured { border-color: var(--brand-primary); box-shadow: 0 0 0 1px var(--brand-primary), var(--sh-2); }
+.price-card .tier-name { font-size: 14px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--font-ui); }
+.price-card .price { font-size: 44px; font-weight: 700; letter-spacing: -0.03em; color: var(--text); display: flex; align-items: baseline; gap: 6px; }
+.price-card .price .cur { font-size: 18px; color: var(--text-muted); font-weight: 500; }
+.price-card .price .per { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+.price-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.price-card ul li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--text); }
+.price-card ul li .check { flex-shrink: 0; color: var(--success); }
+
+/* ── Alert ──────────────────────────────────────────────────────── */
+.alert { display: flex; gap: 12px; padding: 14px 16px; border-radius: var(--r-md); background: var(--info-100); color: var(--info); font-size: 14px; border: 1px solid transparent; align-items: flex-start; }
+.alert--success { background: var(--success-100); color: var(--success); }
+.alert--warning { background: var(--warning-100); color: var(--warning); }
+.alert--danger { background: var(--danger-100); color: var(--danger); }
+.alert .ic { flex-shrink: 0; margin-top: 1px; }
+.alert strong { display: block; color: inherit; margin-bottom: 2px; font-size: 14px; }
+.alert p { margin: 0; color: inherit; opacity: 0.9; font-size: 13px; }
+
+/* ── Benefit ────────────────────────────────────────────────────── */
+.benefit { display: flex; align-items: flex-start; gap: 14px; padding: var(--s-4); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); }
+.benefit .ic { width: 40px; height: 40px; border-radius: var(--r-sm); background: var(--brand-accent-100); color: var(--brand-accent-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.benefit .t { font-size: 15px; font-weight: 600; color: var(--text); margin: 0 0 4px 0; }
+.benefit .d { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+/* ── Nav sample ─────────────────────────────────────────────────── */
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); }
+.nav .logo { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--brand-primary); display: flex; align-items: center; gap: 6px; }
+.nav .logo .dot { width: 8px; height: 8px; background: var(--brand-accent); border-radius: 2px; margin-right: 2px; display: inline-block; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { color: var(--text); font-size: 14px; font-weight: 500; text-decoration: none; cursor: pointer; }
+.nav-links a:hover { color: var(--brand-accent); }
+[data-theme="dark"] .nav .logo { color: var(--text); }
+
+/* ── Icons ──────────────────────────────────────────────────────── */
+.ic-sm { width: 16px; height: 16px; }
+.ic-md { width: 20px; height: 20px; }
+.ic-lg { width: 24px; height: 24px; }
+
+/* ── Cols ───────────────────────────────────────────────────────── */
+.cols { display: grid; gap: var(--s-6); }
+.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.cols-6 { grid-template-columns: repeat(6, 1fr); }
+@media (max-width: 720px) {
+  .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+  .cols-6 { grid-template-columns: repeat(3, 1fr); }
+  .steps { grid-template-columns: 1fr; }
+}
+
+/* ── Two-col docs section (foundation) ─────────────────────────── */
+.split { display: grid; grid-template-columns: 1fr 2fr; gap: var(--s-12); }
+@media (max-width: 720px) { .split { grid-template-columns: 1fr; gap: var(--s-8); } }
+
+/* ── Demo wrapper ────────────────────────────────────────────────  */
+.demo {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+.demo--row { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--s-4); }
+
+/* ── Toast (copy hint) ──────────────────────────────────────────── */
+#copyToast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--brand-primary);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  font-size: 12.5px;
+  font-family: var(--font-ui);
+  letter-spacing: 0.04em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 1000;
+}
+#copyToast.is-on {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.footer {
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+.footer .nav-links a { font-size: 12.5px; }
+@media (max-width: 720px) { .footer { padding: 24px; flex-direction: column; gap: 12px; align-items: flex-start; } }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="header__brand" href="#top" aria-label="MyUS Design System">
+    <img src="logo.svg" alt="MyUS" class="brand-logo" />
+    <span class="ver">Design System v1.0</span>
+  </a>
+  <div class="header__actions">
+    <a href="https://github.com/flowformstudio/myusdesignsystem" target="_blank" rel="noopener">
+      <svg class="ic-md" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 002 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7 0-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.5 9.5 0 015 0c2-1.3 2.8-1 2.8-1 .6 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0022 12 10 10 0 0012 2z"/></svg>
+      GitHub
+    </a>
+    <button id="themeBtn" aria-label="Toggle dark mode">
+      <svg class="ic-md theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="layout" id="top">
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar__group">
+      <div class="sidebar__grouplabel">Get started</div>
+      <a class="sidebar__item" href="#overview">Overview</a>
+      <a class="sidebar__item" href="#principles">Principles</a>
+    </div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__grouplabel">Foundations</div>
+      <a class="sidebar__item" href="#color">Color</a>
+      <a class="sidebar__item" href="#typography">Typography</a>
+      <a class="sidebar__item" href="#space">Space &amp; Radius</a>
+      <a class="sidebar__item" href="#dark-mode">Dark Mode</a>
+    </div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__grouplabel">Components</div>
+      <a class="sidebar__item" href="#buttons">Buttons</a>
+      <a class="sidebar__item" href="#forms">Forms</a>
+      <a class="sidebar__item" href="#cards">Cards &amp; Badges</a>
+      <a class="sidebar__item" href="#iconography">Iconography</a>
+    </div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__grouplabel">Patterns</div>
+      <a class="sidebar__item" href="#step-flow">Step Flow</a>
+      <a class="sidebar__item" href="#pricing">Pricing</a>
+      <a class="sidebar__item" href="#navigation">Navigation</a>
+      <a class="sidebar__item" href="#hero">Hero</a>
+      <a class="sidebar__item" href="#signup">Signup Flow</a>
+    </div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__grouplabel">Applied</div>
+      <a class="sidebar__item" href="#landing">Landing Page</a>
+      <a class="sidebar__item" href="#assets">Confirmation Assets</a>
+    </div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__grouplabel">Resources</div>
+      <a class="sidebar__item" href="https://github.com/flowformstudio/myusdesignsystem" target="_blank" rel="noopener">GitHub Repo ↗</a>
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <!-- ─────────── OVERVIEW (HERO) ─────────── -->
+    <section class="hero" id="overview">
+      <div class="hero__eyebrow">MyUS Design System · v1.0</div>
+      <h1 class="hero__title">Ship US stores. <em>Ship anywhere.</em></h1>
+      <p class="hero__lead">
+        A foundational design system for MyUS — built on the structural vocabulary of suite numbers,
+        package consolidation, and worldwide shipping. Internal reference for product, design, and marketing.
+      </p>
+      <div style="display: flex; gap: 12px;">
+        <a class="btn btn--primary" href="#color">Explore the system</a>
+      </div>
+      <div class="hero__stats">
+        <div><span class="num">17</span><span class="lbl">Documented sections</span></div>
+        <div><span class="num">220+</span><span class="lbl">Countries served</span></div>
+        <div><span class="num">350k+</span><span class="lbl">MyUS members</span></div>
+      </div>
+    </section>
+
+    <!-- ─────────── PRINCIPLES ─────────── -->
+    <section class="section" id="principles">
+      <div class="section__head">
+        <div class="section__eyebrow">01 — Foundation</div>
+        <h2 class="section__title">Four principles behind every decision.</h2>
+        <p class="section__lead">MyUS moves packages across borders. Our design moves people through that process — with clarity, speed, and the quiet confidence of a brand that's been doing this for decades.</p>
+      </div>
+
+      <div class="cols cols-4">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: var(--font-ui); font-size: 48px; color: var(--brand-accent); font-weight: 600; line-height: 1;">01</div>
+          <div style="font-size: 19px; font-weight: 600; color: var(--text); letter-spacing: -0.015em;">Trust is the product.</div>
+          <div style="font-size: 14px; color: var(--text-muted); line-height: 1.55;">Dark navy authority, warm orange moments. We earn trust by showing the work — weights, dimensions, tracking, costs.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: var(--font-ui); font-size: 48px; color: var(--brand-accent); font-weight: 600; line-height: 1;">02</div>
+          <div style="font-size: 19px; font-weight: 600; color: var(--text); letter-spacing: -0.015em;">Global by default.</div>
+          <div style="font-size: 14px; color: var(--text-muted); line-height: 1.55;">Type that reads in 20 languages. Patterns that respect RTL. Currency, weights, and dates adapt silently to the member.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: var(--font-ui); font-size: 48px; color: var(--brand-accent); font-weight: 600; line-height: 1;">03</div>
+          <div style="font-size: 19px; font-weight: 600; color: var(--text); letter-spacing: -0.015em;">Density with air.</div>
+          <div style="font-size: 14px; color: var(--text-muted); line-height: 1.55;">Package logistics are data-dense. We keep things compact and legible, then let hero moments breathe.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: var(--font-ui); font-size: 48px; color: var(--brand-accent); font-weight: 600; line-height: 1;">04</div>
+          <div style="font-size: 19px; font-weight: 600; color: var(--text); letter-spacing: -0.015em;">Always a next step.</div>
+          <div style="font-size: 14px; color: var(--text-muted); line-height: 1.55;">Every screen tells a member what to do next. One primary action, never two.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── COLOR ─────────── -->
+    <section class="section" id="color">
+      <div class="section__head">
+        <div class="section__eyebrow">02 — Foundations / Color</div>
+        <h2 class="section__title">A palette built for trust.</h2>
+        <p class="section__lead">Deep navy anchors every surface. Warm orange is reserved — used only for action, moments of delight, or attention. Neutrals lean slightly cool to let accents sing. Click any swatch to copy its hex.</p>
+      </div>
+
+      <div class="sec-label">Usage ratio</div>
+      <div style="display:flex; height: 28px; border-radius: 4px; overflow: hidden; margin-bottom: 8px;">
+        <div style="flex: 60; background: var(--paper); border-right: 1px solid var(--border);"></div>
+        <div style="flex: 25; background: var(--brand-primary);"></div>
+        <div style="flex: 10; background: var(--ink-300);"></div>
+        <div style="flex: 5; background: var(--brand-accent);"></div>
+      </div>
+      <div style="display:flex; font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); gap: 16px; margin-bottom: var(--s-8);">
+        <span><span style="color:var(--text);">60</span> Paper</span>
+        <span><span style="color:var(--text);">25</span> Navy</span>
+        <span><span style="color:var(--text);">10</span> Ink</span>
+        <span><span style="color:var(--text);">5</span> Accent</span>
+      </div>
+
+      <h3 class="section__h3">Brand · Primary</h3>
+      <div class="cols cols-3">
+        <div class="sw"><div class="chip" data-copy="#0A2540" style="background: var(--brand-primary);"></div><div class="name">Primary / Navy 900</div><div class="meta"><span>#0A2540</span><span>brand.primary</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#123358" style="background: var(--brand-primary-600);"></div><div class="name">Navy 700</div><div class="meta"><span>#123358</span><span>.primary-600</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#2B4D72" style="background: var(--brand-primary-400);"></div><div class="name">Navy 500</div><div class="meta"><span>#2B4D72</span><span>.primary-400</span></div></div>
+      </div>
+
+      <h3 class="section__h3">Brand · Accent</h3>
+      <div class="cols cols-3">
+        <div class="sw"><div class="chip" data-copy="#FF981F" style="background: var(--brand-accent);"></div><div class="name">Accent / Orange 700</div><div class="meta"><span>#FF981F</span><span>brand.accent</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#C44A22" style="background: var(--brand-accent-600);"></div><div class="name">Coral 800</div><div class="meta"><span>#C44A22</span><span>.accent-600</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#FDE8DD" style="background: var(--brand-accent-100);"></div><div class="name">Coral 100</div><div class="meta"><span>#FDE8DD</span><span>.accent-100</span></div></div>
+      </div>
+
+      <h3 class="section__h3">Neutrals · Ink</h3>
+      <div class="cols cols-6">
+        <div class="sw"><div class="chip" data-copy="#0B1420" style="background: var(--ink-900); height: 72px;"></div><div class="meta"><span>900</span><span>#0B1420</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#2B3A52" style="background: var(--ink-700); height: 72px;"></div><div class="meta"><span>700</span><span>#2B3A52</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#667793" style="background: var(--ink-500); height: 72px;"></div><div class="meta"><span>500</span><span>#667793</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#B6C1D2" style="background: var(--ink-300); height: 72px;"></div><div class="meta"><span>300</span><span>#B6C1D2</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#E8ECF3" style="background: var(--ink-150); height: 72px;"></div><div class="meta"><span>150</span><span>#E8ECF3</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#F7F9FC" style="background: var(--ink-50); height: 72px;"></div><div class="meta"><span>50</span><span>#F7F9FC</span></div></div>
+      </div>
+
+      <h3 class="section__h3">Semantic</h3>
+      <div class="cols cols-4">
+        <div class="sw"><div class="chip" data-copy="#18873D" style="background: var(--success); height: 72px;"></div><div class="name">Success</div><div class="meta"><span>#18873D</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#C2861D" style="background: var(--warning); height: 72px;"></div><div class="name">Warning</div><div class="meta"><span>#C2861D</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#D13138" style="background: var(--danger); height: 72px;"></div><div class="name">Danger</div><div class="meta"><span>#D13138</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#0C71C9" style="background: var(--info); height: 72px;"></div><div class="name">Info</div><div class="meta"><span>#0C71C9</span></div></div>
+      </div>
+    </section>
+
+    <!-- ─────────── TYPOGRAPHY ─────────── -->
+    <section class="section" id="typography">
+      <div class="section__head">
+        <div class="section__eyebrow">03 — Foundations / Typography</div>
+        <h2 class="section__title">Poppins, everywhere.</h2>
+        <p class="section__lead">A single typeface across every surface — UI, display, body, and numeric data. Tabular numerics handle the technical bits (suite numbers, weights, tracking IDs, prices) without needing a separate mono family.</p>
+      </div>
+
+      <div class="split">
+        <div>
+          <div class="sec-label">UI · Display · Data</div>
+          <div style="font-family: var(--font-ui); font-size: 48px; font-weight: 700; letter-spacing: -0.03em; line-height: 1;">Poppins</div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">300 · 400 · 500 · 600 · 700 · 800</div>
+        </div>
+
+        <div class="demo">
+          <div class="sec-label">Scale</div>
+          <div class="spec"><span class="lbl">Display / XL</span><span class="ex" style="font-size: 56px; font-weight: 700; letter-spacing: -0.035em; line-height: 1;">Ship Worldwide</span><span class="tok">72 / 1.00 / -0.035em<br/>700</span></div>
+          <div class="spec"><span class="lbl">Display / LG</span><span class="ex" style="font-size: 40px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05;">Shop US &amp; UK</span><span class="tok">48 / 1.05 / -0.025em<br/>700</span></div>
+          <div class="spec"><span class="lbl">Heading / H1</span><span class="ex" style="font-size: 32px; font-weight: 600; letter-spacing: -0.02em;">How MyUS works</span><span class="tok">36 / 1.15 / -0.02em<br/>600</span></div>
+          <div class="spec"><span class="lbl">Heading / H2</span><span class="ex" style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em;">Premium membership</span><span class="tok">24 / 1.25 / -0.015em<br/>600</span></div>
+          <div class="spec"><span class="lbl">Heading / H3</span><span class="ex" style="font-size: 18px; font-weight: 600;">Package consolidation</span><span class="tok">18 / 1.35 / -0.01em<br/>600</span></div>
+          <div class="spec"><span class="lbl">Body / Lead</span><span class="ex" style="font-size: 16px; color: var(--text-muted); line-height: 1.5;">Save up to 80% on international shipping.</span><span class="tok">18 / 1.50<br/>400</span></div>
+          <div class="spec"><span class="lbl">Body / Default</span><span class="ex" style="font-size: 14px; line-height: 1.55;">Get a US address, shop any store, and ship home.</span><span class="tok">14 / 1.55<br/>400</span></div>
+          <div class="spec"><span class="lbl">Caption</span><span class="ex" style="font-size: 12px; color: var(--text-muted);">Rates apply to standard shipments.</span><span class="tok">12 / 1.4<br/>400</span></div>
+          <div class="spec"><span class="lbl">Eyebrow</span><span class="ex" style="font-size: 11px; color: var(--brand-accent); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;">Membership benefit</span><span class="tok">11 / 0.12em<br/>500 / UPPER</span></div>
+          <div class="spec"><span class="lbl">Data / Numeric</span><span class="ex" style="font-size: 16px; font-weight: 500; font-feature-settings: 'tnum' 1;">SUITE-12345 · 4.2 lb · $47.80</span><span class="tok">16 / tnum<br/>500</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── SPACE & RADIUS ─────────── -->
+    <section class="section" id="space">
+      <div class="section__head">
+        <div class="section__eyebrow">04 — Foundations / Form</div>
+        <h2 class="section__title">Eight-point grid. Calm corners.</h2>
+        <p class="section__lead">All spacing aligns to an 8pt base scale. Radius scales calmly from sharp to soft. Elevation is restrained — most surfaces are flat or borderered, with shadow reserved for floating elements.</p>
+      </div>
+
+      <div class="cols cols-3">
+        <div>
+          <div class="sec-label">Spacing scale (8pt base)</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-1</div><div style="height: 24px; width: 4px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">4 px</div></div>
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-2</div><div style="height: 24px; width: 8px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">8 px</div></div>
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-3</div><div style="height: 24px; width: 12px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">12 px</div></div>
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-4</div><div style="height: 24px; width: 16px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">16 px</div></div>
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-6</div><div style="height: 24px; width: 24px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">24 px</div></div>
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-8</div><div style="height: 24px; width: 32px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">32 px</div></div>
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-12</div><div style="height: 24px; width: 48px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">48 px</div></div>
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-16</div><div style="height: 24px; width: 64px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">64 px</div></div>
+            <div style="display:flex; align-items:center; gap: 16px;"><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); width: 50px;">s-24</div><div style="height: 24px; width: 96px; background: var(--brand-accent);"></div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">96 px</div></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sec-label">Corner radius</div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 60px; height: 60px; background: var(--ink-100); border-radius: 6px;"></div><div><div style="font-size: 13px; font-weight: 500;">Sharp</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">6px · r-sm</div></div></div>
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 60px; height: 60px; background: var(--ink-100); border-radius: 6px;"></div><div><div style="font-size: 13px; font-weight: 500;">Default</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">6px · r-md</div></div></div>
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 60px; height: 60px; background: var(--ink-100); border-radius: 12px;"></div><div><div style="font-size: 13px; font-weight: 500;">Comfortable</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">12px · r-lg</div></div></div>
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 60px; height: 60px; background: var(--ink-100); border-radius: 18px;"></div><div><div style="font-size: 13px; font-weight: 500;">Soft</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">18px · r-xl</div></div></div>
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 60px; height: 60px; background: var(--ink-100); border-radius: 999px;"></div><div><div style="font-size: 13px; font-weight: 500;">Pill</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">999 · r-pill</div></div></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sec-label">Elevation</div>
+          <div style="display: flex; flex-direction: column; gap: 22px;">
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 72px; height: 52px; background: var(--surface); border-radius: 8px; box-shadow: var(--sh-0);"></div><div><div style="font-size: 13px; font-weight: 500;">Flat</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">sh-0 · border</div></div></div>
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 72px; height: 52px; background: var(--surface); border-radius: 8px; box-shadow: var(--sh-1);"></div><div><div style="font-size: 13px; font-weight: 500;">Raised</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">sh-1 · inputs</div></div></div>
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 72px; height: 52px; background: var(--surface); border-radius: 8px; box-shadow: var(--sh-2);"></div><div><div style="font-size: 13px; font-weight: 500;">Card</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">sh-2 · cards</div></div></div>
+            <div style="display:flex; align-items:center; gap: 14px;"><div style="width: 72px; height: 52px; background: var(--surface); border-radius: 8px; box-shadow: var(--sh-3);"></div><div><div style="font-size: 13px; font-weight: 500;">Floating</div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">sh-3 · modals</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── DARK MODE ─────────── -->
+    <section class="section" id="dark-mode">
+      <div class="section__head">
+        <div class="section__eyebrow">05 — Foundations / Dark Mode</div>
+        <h2 class="section__title">Dark mode, inverted with care.</h2>
+        <p class="section__lead">Navy becomes the surface. Coral stays coral — it's the anchor of brand recognition across both modes. Toggle the theme using the sun icon in the header.</p>
+      </div>
+
+      <div class="cols cols-2">
+        <div style="background: #f7f9fc; color: #0b1420; border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4);">
+          <div style="font-family: var(--font-ui); font-size: 11px; color: #667793; letter-spacing: 0.1em; text-transform: uppercase;">Light mode</div>
+          <div style="display: flex; gap: 8px;"><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: #fde8dd; color: #c44a22; border-radius: 999px;">NEW</span><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: #e2f4ea; color: #1f8f5c; border-radius: 999px;">READY TO SEND</span></div>
+          <h3 style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em; margin: 0; color:#0b1420;">Your package is ready.</h3>
+          <p style="font-size: 14px; color: #667793; margin: 0;">Ship it now or add more orders — storage is free for 30 days.</p>
+          <div style="display: flex; gap: 8px;"><button class="btn btn--primary btn--sm">Ship now</button><button class="btn btn--sm" style="background:transparent;color:#0b1420;border:1px solid #b6c1d2;">Wait</button></div>
+        </div>
+
+        <div style="background: #0a1220; color: #eef2f8; border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4);">
+          <div style="font-family: var(--font-ui); font-size: 11px; color: #97a4bc; letter-spacing: 0.1em; text-transform: uppercase;">Dark mode</div>
+          <div style="display: flex; gap: 8px;"><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: rgba(232,93,47,0.15); color: #ff9566; border-radius: 999px;">NEW</span><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: rgba(31,143,92,0.2); color: #5dcb9a; border-radius: 999px;">READY TO SEND</span></div>
+          <h3 style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em; margin: 0; color: #eef2f8;">Your package is ready.</h3>
+          <p style="font-size: 14px; color: #97a4bc; margin: 0;">Ship it now or add more orders — storage is free for 30 days.</p>
+          <div style="display: flex; gap: 8px;"><button class="btn btn--primary btn--sm">Ship now</button><button class="btn btn--sm" style="background: transparent; color: #eef2f8; border: 1px solid #33425e;">Wait</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── BUTTONS ─────────── -->
+    <section class="section" id="buttons">
+      <div class="section__head">
+        <div class="section__eyebrow">06 — Components / Buttons</div>
+        <h2 class="section__title">One primary action, always.</h2>
+        <p class="section__lead">Coral accent = "do the thing." Navy = "consider this carefully." Outline and ghost are supporting roles.</p>
+      </div>
+
+      <h3 class="section__h3">Variants</h3>
+      <div class="demo">
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--primary">Sign up free</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--primary</span></div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--secondary">Learn more</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--secondary</span></div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--outline">Shipping calculator</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--outline</span></div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--ghost">Skip for now</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--ghost</span></div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--link">View all countries →</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--link</span></div>
+      </div>
+
+      <h3 class="section__h3">Sizes</h3>
+      <div class="demo demo--row">
+        <button class="btn btn--primary btn--sm">Small</button>
+        <button class="btn btn--primary">Default</button>
+        <button class="btn btn--primary btn--lg">Large</button>
+      </div>
+
+      <h3 class="section__h3">With iconography</h3>
+      <div class="demo demo--row">
+        <button class="btn btn--primary"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Get my US address</button>
+        <button class="btn btn--outline"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Track package</button>
+        <button class="btn btn--ghost"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg>Chat 24/7</button>
+      </div>
+
+      <h3 class="section__h3">States</h3>
+      <div class="demo demo--row">
+        <button class="btn btn--primary">Default</button>
+        <button class="btn btn--primary" style="background: var(--brand-accent-700);">Hover</button>
+        <button class="btn btn--primary" style="box-shadow: var(--sh-focus);">Focused</button>
+        <button class="btn btn--primary" disabled>Disabled</button>
+        <button class="btn btn--primary"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" stroke-dasharray="40 20"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>Loading</button>
+      </div>
+    </section>
+
+    <!-- ─────────── FORMS ─────────── -->
+    <section class="section" id="forms">
+      <div class="section__head">
+        <div class="section__eyebrow">07 — Components / Forms</div>
+        <h2 class="section__title">Members finish what they start.</h2>
+        <p class="section__lead">Signup asks less up front — address and payment come later. Every field has clear labels, sensible defaults, and obvious recovery paths when things go wrong.</p>
+      </div>
+
+      <div class="split">
+        <div>
+          <h3 class="section__h3">Field anatomy</h3>
+          <div class="demo" style="max-width: 440px;">
+            <div class="field">
+              <label>Full name <span class="req">*</span></label>
+              <input class="input" placeholder="e.g. Amira Hassan" />
+              <div class="hint">As shown on your ID — used for customs forms.</div>
+            </div>
+            <div class="field">
+              <label>Country of residence</label>
+              <select class="select">
+                <option>United Arab Emirates</option>
+                <option>Saudi Arabia</option>
+                <option>Singapore</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Email <span class="req">*</span></label>
+              <input class="input" value="amira@example.c" style="border-color: var(--danger);" />
+              <div class="error-hint">
+                <svg class="ic-sm" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 4v5M8 11.5v.5"/></svg>
+                Looks incomplete. Double-check the domain.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="section__h3">Selection controls</h3>
+          <div class="demo">
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.06em;">Segmented</div>
+              <div class="seg">
+                <button data-on>Premium</button>
+                <button>Business</button>
+                <button>Standard</button>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.06em;">Checkbox / Radio</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="display:flex; gap:10px; align-items: center; font-size: 14px; cursor: pointer;">
+                  <span style="width: 18px; height: 18px; background: var(--brand-accent); border-radius: 4px; display:inline-flex; align-items: center; justify-content: center;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5L8.5 2"/></svg></span>
+                  Enable auto-consolidation
+                </label>
+                <label style="display:flex; gap:10px; align-items: center; font-size: 14px; cursor: pointer;">
+                  <span style="width: 18px; height: 18px; background: var(--surface); border: 1.5px solid var(--border-strong); border-radius: 4px;"></span>
+                  Send weekly summary emails
+                </label>
+                <label style="display:flex; gap:10px; align-items: center; font-size: 14px; cursor: pointer;">
+                  <span style="width: 18px; height: 18px; border: 1.5px solid var(--brand-accent); border-radius: 50%; display:inline-flex; align-items: center; justify-content: center;"><span style="width:8px;height:8px;background:var(--brand-accent);border-radius:50%;"></span></span>
+                  Ship via DHL (fastest)
+                </label>
+                <label style="display:flex; gap:10px; align-items: center; font-size: 14px; color: var(--text-muted); cursor: pointer;">
+                  <span style="width: 18px; height: 18px; border: 1.5px solid var(--border-strong); border-radius: 50%;"></span>
+                  Ship via FedEx
+                </label>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.06em;">Toggle</div>
+              <label style="display: flex; gap: 12px; align-items: center; font-size: 14px; cursor:pointer;">
+                <span style="width:36px;height:22px;background:var(--brand-accent);border-radius:999px;position:relative;display:inline-block;"><span style="position:absolute;top:3px;left:17px;width:16px;height:16px;background:#fff;border-radius:50%;"></span></span>
+                Notify me when packages arrive
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section__h3">Alerts</h3>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="alert alert--success">
+          <svg class="ic-md ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+          <div><strong>Suite created</strong><p>Your US address is ready — start shopping now.</p></div>
+        </div>
+        <div class="alert alert--warning">
+          <svg class="ic-md ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 17.5v.5"/></svg>
+          <div><strong>Action required</strong><p>2 packages need purchase values before shipping.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── CARDS & BADGES ─────────── -->
+    <section class="section" id="cards">
+      <div class="section__head">
+        <div class="section__eyebrow">08 — Components / Surfaces</div>
+        <h2 class="section__title">Cards do the heavy lifting.</h2>
+        <p class="section__lead">A package card is what a member sees most. Benefit cards drive the marketing site. Badges and data chips are the small surfaces that carry the most-scanned information.</p>
+      </div>
+
+      <h3 class="section__h3">Package card — a member's daily view</h3>
+      <div class="cols cols-2">
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+              <div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); letter-spacing: 0.04em;">PKG-48219</div>
+              <div style="font-size: 16px; font-weight: 600; margin-top: 4px;">Allbirds Tree Runner</div>
+            </div>
+            <span class="badge badge--success"><span class="dot"></span>Ready to send</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px;">
+            <div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); text-transform: uppercase;">Weight</div><div style="font-family: var(--font-ui); font-size: 15px; font-weight: 500;">2.1 lb</div></div>
+            <div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); text-transform: uppercase;">Declared</div><div style="font-family: var(--font-ui); font-size: 15px; font-weight: 500;">$98.00</div></div>
+            <div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); text-transform: uppercase;">Arrived</div><div style="font-family: var(--font-ui); font-size: 15px; font-weight: 500;">Apr 18</div></div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 4px;">
+            <button class="btn btn--primary btn--sm" style="flex:1;">Create ship request</button>
+            <button class="btn btn--outline btn--sm">Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+              <div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); letter-spacing: 0.04em;">PKG-48220</div>
+              <div style="font-size: 16px; font-weight: 600; margin-top: 4px;">Patagonia Nano Puff</div>
+            </div>
+            <span class="badge badge--warning"><span class="dot"></span>Action required</span>
+          </div>
+          <div class="alert alert--warning" style="margin-top: 4px;">
+            <div><strong>Value needed</strong><p>Merchant didn't provide a purchase price.</p></div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 4px;">
+            <button class="btn btn--primary btn--sm" style="flex:1;">Provide values</button>
+            <button class="btn btn--ghost btn--sm">Later</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section__h3">Benefit cards — for landing pages</h3>
+      <div class="cols cols-3">
+        <div class="benefit">
+          <div class="ic"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></div>
+          <div><p class="t">Free consolidation</p><p class="d">Combine multiple orders into one shipment and save up to 80%.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div>
+          <div><p class="t">Ships to 220 countries</p><p class="d">Every major carrier, with real tracking and insurance included.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></svg></div>
+          <div><p class="t">30 days free storage</p><p class="d">Space to wait for sales, combine orders, or plan your shipment.</p></div>
+        </div>
+      </div>
+
+      <h3 class="section__h3">Badges</h3>
+      <div class="demo">
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="badge">Default</span>
+          <span class="badge badge--accent">Coral</span>
+          <span class="badge badge--primary">Navy</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="badge badge--success"><span class="dot"></span>Ready to send</span>
+          <span class="badge badge--warning"><span class="dot"></span>Action required</span>
+          <span class="badge badge--info"><span class="dot"></span>In transit</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="badge" style="background: var(--brand-primary); color:#fff; border:0;">PREMIUM</span>
+          <span class="badge" style="background: var(--brand-accent); color:#fff; border:0;">NEW</span>
+          <span class="badge">BUSINESS</span>
+        </div>
+      </div>
+
+      <h3 class="section__h3">Data chip</h3>
+      <div class="demo">
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:24px;">
+          <div>
+            <div style="font-family:var(--font-ui);font-size:11px;color:var(--text-subtle);text-transform:uppercase;letter-spacing:0.06em;">Suite</div>
+            <div style="font-family:var(--font-ui);font-size:20px;font-weight:500;">12345</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-ui);font-size:11px;color:var(--text-subtle);text-transform:uppercase;letter-spacing:0.06em;">Weight</div>
+            <div style="font-family:var(--font-ui);font-size:20px;font-weight:500;">4.2 <span style="color:var(--text-muted);font-size:14px;">lb</span></div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-ui);font-size:11px;color:var(--text-subtle);text-transform:uppercase;letter-spacing:0.06em;">Saved</div>
+            <div style="font-family:var(--font-ui);font-size:20px;font-weight:500;color:var(--success);">$47.80</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-ui);font-size:11px;color:var(--text-subtle);text-transform:uppercase;letter-spacing:0.06em;">ETA</div>
+            <div style="font-family:var(--font-ui);font-size:20px;font-weight:500;">3 days</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── ICONOGRAPHY ─────────── -->
+    <section class="section" id="iconography">
+      <div class="section__head">
+        <div class="section__eyebrow">09 — Components / Icons</div>
+        <h2 class="section__title">Line icons. 2px stroke. 24px grid.</h2>
+        <p class="section__lead">Consistent, minimal, translate-friendly. We draw icons, never emoji. Paired with a short text label whenever space allows.</p>
+      </div>
+
+      <div class="split">
+        <div>
+          <h3 class="section__h3">Rules</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--text-muted);">
+            <li>— 24×24 viewBox, 2px rounded stroke</li>
+            <li>— Outline style only; no fills except for status dots</li>
+            <li>— Always center-aligned with adjacent text</li>
+            <li>— Match color to context (text-muted → inherits from label)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="section__h3">Core library</h3>
+          <div class="demo" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: var(--s-5); color: var(--text);">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">package</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 13l3 0 2-7h11l2 7h3M5 13v5h4v-5M15 13v5h4v-5"/><circle cx="7" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">ship</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">globe</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">member</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">address</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">time</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">price</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">star</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">check</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 17.5v.5"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">alert</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M8 4v4M16 4v4"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">calendar</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">card</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">search</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">menu</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">chat</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span style="font-family:var(--font-ui);font-size:10px;color:var(--text-subtle);">location</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── STEP FLOW ─────────── -->
+    <section class="section" id="step-flow">
+      <div class="section__head">
+        <div class="section__eyebrow">10 — Patterns / Step Flow</div>
+        <h2 class="section__title">How MyUS works — in three steps.</h2>
+        <p class="section__lead">The step-flow is our core educational pattern. Numbered, scannable, and always leading to a single CTA.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <div class="n">Sign up free</div>
+          <div class="d">Get a personal US address and unique suite number in under a minute. No credit card required.</div>
+          <div style="font-family:var(--font-ui);font-size:11px;color:var(--text-subtle);letter-spacing:0.06em;text-transform:uppercase;">~ 60 seconds</div>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <div class="n">Shop any US store</div>
+          <div class="d">Check out with your new US suite address. We'll receive your packages, log them, and notify you.</div>
+          <div style="font-family:var(--font-ui);font-size:11px;color:var(--text-subtle);letter-spacing:0.06em;text-transform:uppercase;">Consolidate for free</div>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <div class="n">We ship worldwide</div>
+          <div class="d">Pick your carrier and speed. We pack, insure, and send. Tracking from door to door.</div>
+          <div style="font-family:var(--font-ui);font-size:11px;color:var(--text-subtle);letter-spacing:0.06em;text-transform:uppercase;">220+ countries</div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 16px; margin-top: var(--s-8); flex-wrap: wrap;">
+        <button class="btn btn--primary btn--lg">Get my US address free</button>
+        <button class="btn btn--link">Estimate shipping →</button>
+      </div>
+    </section>
+
+    <!-- ─────────── PRICING ─────────── -->
+    <section class="section" id="pricing">
+      <div class="section__head">
+        <div class="section__eyebrow">11 — Patterns / Pricing</div>
+        <h2 class="section__title">Transparent pricing, side-by-side.</h2>
+        <p class="section__lead">Three tiers, one recommended. Feature lists are short and scannable; the featured card lifts subtly off the page.</p>
+      </div>
+
+      <div class="cols cols-3">
+        <div class="price-card">
+          <div class="tier-name">Standard</div>
+          <div class="price"><span class="cur">$</span>0<span class="per">/month</span></div>
+          <p style="font-size: 14px; color: var(--text-muted); margin: 0;">Pay-as-you-ship. Best for occasional shoppers.</p>
+          <hr style="border:0; border-top: 1px solid var(--border); margin: 4px 0;"/>
+          <ul>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Personal US address</li>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>30 days free storage</li>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Standard shipping rates</li>
+            <li style="color: var(--text-subtle)"><svg class="ic-sm" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l8 8M4 12l8-8"/></svg>Package consolidation</li>
+          </ul>
+          <button class="btn btn--outline" style="margin-top:auto;">Start free</button>
+        </div>
+
+        <div class="price-card price-card--featured">
+          <span class="badge badge--accent" style="position:absolute; top: -10px; right: 20px;">30 DAYS FREE</span>
+          <div class="tier-name" style="color: var(--brand-accent);">Premium — Most popular</div>
+          <div class="price"><span class="cur">$</span>9.99<span class="per">/month</span></div>
+          <p style="font-size: 14px; color: var(--text-muted); margin: 0;">Maximum shipping discounts, free consolidation.</p>
+          <hr style="border:0; border-top: 1px solid var(--border); margin: 4px 0;"/>
+          <ul>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Everything in Standard</li>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Free package consolidation</li>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Discounted shipping (up to 80%)</li>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Tax-free Delaware address</li>
+          </ul>
+          <button class="btn btn--primary" style="margin-top:auto;">Try free for 30 days</button>
+        </div>
+
+        <div class="price-card">
+          <div class="tier-name">Business</div>
+          <div class="price"><span class="cur">$</span>19.99<span class="per">/month</span></div>
+          <p style="font-size: 14px; color: var(--text-muted); margin: 0;">For teams moving high volume.</p>
+          <hr style="border:0; border-top: 1px solid var(--border); margin: 4px 0;"/>
+          <ul>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Everything in Premium</li>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Priority package login</li>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Free photos &amp; return fees</li>
+            <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Dedicated account manager</li>
+          </ul>
+          <button class="btn btn--secondary" style="margin-top:auto;">Contact sales</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── NAVIGATION ─────────── -->
+    <section class="section" id="navigation">
+      <div class="section__head">
+        <div class="section__eyebrow">12 — Patterns / Navigation</div>
+        <h2 class="section__title">Top-level nav.</h2>
+        <p class="section__lead">Marketing pages get a light navbar with a primary CTA. Member dashboards flip to dark navy with the suite number and avatar always visible. Footer is one navy block with five link columns.</p>
+      </div>
+
+      <h3 class="section__h3">Marketing navbar — logged out</h3>
+      <nav class="nav">
+        <div style="display: flex; align-items: center; gap: 48px;">
+          <div class="logo"><span class="dot"></span>MyUS</div>
+          <div class="nav-links">
+            <a>How it works</a>
+            <a>Benefits</a>
+            <a>Pricing</a>
+            <a>Business</a>
+            <a>Help</a>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="btn btn--ghost btn--sm">Sign in</button>
+          <button class="btn btn--primary btn--sm">Get my US address</button>
+        </div>
+      </nav>
+
+      <h3 class="section__h3">Member dashboard — logged in</h3>
+      <nav class="nav" style="background: var(--brand-primary); border-color: transparent;">
+        <div style="display: flex; align-items: center; gap: 48px;">
+          <div class="logo" style="color: #fff;"><span class="dot"></span>MyUS</div>
+          <div class="nav-links">
+            <a style="color: #fff;">Inbox <span class="badge badge--accent" style="margin-left: 4px;">3</span></a>
+            <a style="color: rgba(255,255,255,0.75);">Ship requests</a>
+            <a style="color: rgba(255,255,255,0.75);">History</a>
+            <a style="color: rgba(255,255,255,0.75);">Account</a>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="font-family: var(--font-ui); font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.06em;">SUITE-12345</div>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--brand-accent); color: #fff; display:inline-flex; align-items:center; justify-content:center; font-size: 13px; font-weight: 600;">AH</div>
+        </div>
+      </nav>
+
+      <h3 class="section__h3">Footer</h3>
+      <div style="background: var(--brand-primary); color: #fff; padding: var(--s-8); border-radius: var(--r-lg); display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; gap: var(--s-8);">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:800;letter-spacing:-0.03em;color:#fff;font-size:18px;"><span style="width:18px;height:18px;background:var(--brand-accent);border-radius:4px;transform:rotate(45deg);display:inline-block;"></span>MyUS</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 14px; line-height: 1.5; max-width: 260px;">Package forwarding and international shipping to 220+ countries since 1997.</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-ui); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;">Product</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;"><a style="color: rgba(255,255,255,0.85); text-decoration:none;">How it works</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Benefits</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Pricing</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Calculator</a></div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-ui); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;">Support</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;"><a style="color: rgba(255,255,255,0.85); text-decoration:none;">FAQ</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Contact us</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Prohibited items</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Tracking</a></div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-ui); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;">Company</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;"><a style="color: rgba(255,255,255,0.85); text-decoration:none;">About</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Careers</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Press</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Blog</a></div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-ui); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;">Legal</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;"><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Terms</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Privacy</a><a style="color: rgba(255,255,255,0.85); text-decoration:none;">Accessibility</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── HERO ─────────── -->
+    <section class="section" id="hero">
+      <div class="section__head">
+        <div class="section__eyebrow">13 — Patterns / Hero</div>
+        <h2 class="section__title">Hero composition.</h2>
+        <p class="section__lead">Brand-trust badge, two-line display headline, lead paragraph, dual CTA, three-stat strip. The image panel is reserved for member-and-package photography.</p>
+      </div>
+
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; display: grid; grid-template-columns: 1.2fr 1fr;">
+        <div style="padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="badge badge--accent"><span class="dot"></span>TRUSTED BY 350,000+ MEMBERS</span>
+          </div>
+          <h1 style="font-family: var(--font-display); font-size: 56px; font-weight: 700; line-height: 1; letter-spacing: -0.035em; color: var(--text); margin: 0;">
+            Shop US stores.<br/><span style="color: var(--brand-accent);">Ship anywhere.</span>
+          </h1>
+          <p style="font-size: 16px; line-height: 1.5; color: var(--text-muted); margin: 0; max-width: 480px;">
+            Get your own US address in minutes, consolidate orders from any store, and save up to 80% on international shipping.
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn btn--primary btn--lg">Get my free US address</button>
+            <button class="btn btn--outline btn--lg">See how it works</button>
+          </div>
+          <div style="display: flex; gap: 32px; padding-top: 20px; border-top: 1px solid var(--border); flex-wrap: wrap;">
+            <div><div style="font-family: var(--font-ui); font-size: 22px; font-weight: 600;">220+</div><div style="font-size: 12px; color: var(--text-muted);">Countries served</div></div>
+            <div><div style="font-family: var(--font-ui); font-size: 22px; font-weight: 600;">80%</div><div style="font-size: 12px; color: var(--text-muted);">Avg. savings</div></div>
+            <div><div style="font-family: var(--font-ui); font-size: 22px; font-weight: 600;">24/7</div><div style="font-size: 12px; color: var(--text-muted);">Chat support</div></div>
+          </div>
+        </div>
+
+        <div style="background: repeating-linear-gradient(135deg, var(--ink-100) 0 12px, var(--ink-150) 12px 24px); position: relative; display: flex; align-items: center; justify-content: center; min-height: 360px;">
+          <div style="position: absolute; inset: 32px; background: var(--surface); border: 1px dashed var(--border-strong); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px;">
+            <div style="font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;">HERO IMAGE</div>
+            <div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle);">1200×900 · member + package</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── SIGNUP FLOW ─────────── -->
+    <section class="section" id="signup">
+      <div class="section__head">
+        <div class="section__eyebrow">14 — Patterns / Signup</div>
+        <h2 class="section__title">Signup — three-step progressive.</h2>
+        <p class="section__lead">Each step asks only what's necessary. Membership tier is selected before payment. The final step shows the new US address as a confirmation.</p>
+      </div>
+
+      <div class="cols cols-3">
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 24px; height: 24px; background: var(--brand-accent); color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; font-family: var(--font-ui);">1</div>
+            <div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); letter-spacing: 0.08em; text-transform: uppercase;">Step 1 of 3</div>
+          </div>
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 6px 0;">Create your suite</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Just the essentials — we'll set up your US address.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="field"><label>Full name</label><input class="input" value="Amira Hassan" /></div>
+            <div class="field"><label>Email</label><input class="input" value="amira@example.com" /></div>
+            <div class="field"><label>Country of residence</label><select class="select"><option>🇦🇪 United Arab Emirates</option></select></div>
+            <div class="field"><label>Password</label><input class="input" type="password" value="••••••••••" /></div>
+          </div>
+          <button class="btn btn--primary" style="margin-top: auto;">Continue</button>
+          <div style="font-size: 12px; color: var(--text-muted); text-align: center;">No credit card required</div>
+        </div>
+
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 24px; height: 24px; background: var(--brand-accent); color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; font-family: var(--font-ui);">2</div>
+            <div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); letter-spacing: 0.08em; text-transform: uppercase;">Step 2 of 3</div>
+          </div>
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 6px 0;">Choose a plan</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Start free — upgrade anytime to unlock bigger savings.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <label style="display: flex; gap: 12px; padding: 14px; border: 2px solid var(--brand-accent); border-radius: var(--r-md); cursor: pointer; background: var(--brand-accent-100);">
+              <span style="width: 18px; height: 18px; border: 1.5px solid var(--brand-accent); border-radius: 50%; display:inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;"><span style="width:8px;height:8px;background:var(--brand-accent);border-radius:50%;"></span></span>
+              <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600; font-size: 15px;">Premium</span><span class="badge badge--accent" style="font-size: 10px;">30 DAYS FREE</span></div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Then $9.99/mo · Cancel anytime</div>
+              </div>
+            </label>
+            <label style="display: flex; gap: 12px; padding: 14px; border: 1px solid var(--border); border-radius: var(--r-md); cursor: pointer;">
+              <span style="width: 18px; height: 18px; border: 1.5px solid var(--border-strong); border-radius: 50%; flex-shrink: 0; margin-top: 2px;"></span>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 15px;">Standard</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Free — pay-as-you-ship</div>
+              </div>
+            </label>
+            <label style="display: flex; gap: 12px; padding: 14px; border: 1px solid var(--border); border-radius: var(--r-md); cursor: pointer;">
+              <span style="width: 18px; height: 18px; border: 1.5px solid var(--border-strong); border-radius: 50%; flex-shrink: 0; margin-top: 2px;"></span>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 15px;">Business</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">$19.99/mo · High volume</div>
+              </div>
+            </label>
+          </div>
+          <button class="btn btn--primary" style="margin-top: auto;">Continue</button>
+        </div>
+
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <svg class="ic-md" viewBox="0 0 24 24" fill="var(--success)" stroke="none"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1.5 14.3l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4z"/></svg>
+            <div style="font-family: var(--font-ui); font-size: 11px; color: var(--success); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Suite ready</div>
+          </div>
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 6px 0;">You're in.</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Start using this US address at any store — we'll receive your packages.</p>
+          </div>
+          <div style="background: var(--brand-primary); color: #fff; border-radius: var(--r-md); padding: var(--s-5); font-family: var(--font-ui); line-height: 1.5;">
+            <div style="font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Your US Address</div>
+            <div style="font-size: 13px;">Amira Hassan</div>
+            <div style="font-size: 13px;">4299 Express Lane</div>
+            <div style="font-size: 13px;"><span style="color: var(--brand-accent); font-weight: 600;">Suite-12345</span></div>
+            <div style="font-size: 13px;">Sarasota, FL 34249</div>
+            <div style="font-size: 13px;">United States</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+            <button class="btn btn--primary">Start shopping</button>
+            <button class="btn btn--ghost btn--sm">Copy address</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── APPLIED LANDING ─────────── -->
+    <section class="section" id="landing">
+      <div class="section__head">
+        <div class="section__eyebrow">15 — Applied</div>
+        <h2 class="section__title">A landing page, from the system.</h2>
+        <p class="section__lead">Every component, pattern, and token in one composition. This is the proof — the system holds together when applied to a real marketing surface.</p>
+      </div>
+
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; display: flex; flex-direction: column;">
+        <nav style="display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; border-bottom: 1px solid var(--border);">
+          <div style="display: flex; align-items: center; gap: 32px;">
+            <div class="logo"><span class="dot"></span>MyUS</div>
+            <div class="nav-links" style="gap: 20px; font-size: 13px;">
+              <a>How it works</a><a>Benefits</a><a>Pricing</a><a>Business</a>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn--ghost btn--sm">Sign in</button>
+            <button class="btn btn--primary btn--sm">Get my US address</button>
+          </div>
+        </nav>
+
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; padding: 40px 40px 32px; border-bottom: 1px solid var(--border);">
+          <div style="display: flex; flex-direction: column; justify-content: center; gap: 16px;">
+            <span class="badge badge--accent" style="align-self: flex-start;"><span class="dot"></span>TRUSTED BY 350,000+ MEMBERS</span>
+            <h1 style="font-family: var(--font-display); font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -0.035em; margin: 0;">Shop US stores.<br/><span style="color: var(--brand-accent);">Ship anywhere.</span></h1>
+            <p style="font-size: 15px; color: var(--text-muted); max-width: 440px; margin: 0; line-height: 1.5;">Get a US address in minutes, consolidate from any store, save up to 80% on international shipping.</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;"><button class="btn btn--primary">Get my free US address</button><button class="btn btn--outline">See how it works</button></div>
+          </div>
+          <div style="background: repeating-linear-gradient(135deg, var(--ink-100) 0 10px, var(--ink-150) 10px 20px); border-radius: var(--r-md); position: relative; min-height: 240px;">
+            <div style="position: absolute; inset: 20px; background: var(--surface); border: 1px dashed var(--border-strong); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;">HERO IMAGE</div>
+          </div>
+        </div>
+
+        <div style="padding: 32px 40px; background: var(--ink-50); border-bottom: 1px solid var(--border);">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+            <div style="display:flex; gap:14px; align-items: flex-start;"><div style="width: 32px; height: 32px; background: var(--brand-primary); color:#fff; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: var(--font-ui); flex-shrink: 0;">01</div><div><div style="font-weight: 600; font-size: 15px;">Sign up free</div><div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">US address in under a minute.</div></div></div>
+            <div style="display:flex; gap:14px; align-items: flex-start;"><div style="width: 32px; height: 32px; background: var(--brand-primary); color:#fff; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: var(--font-ui); flex-shrink: 0;">02</div><div><div style="font-weight: 600; font-size: 15px;">Shop any US store</div><div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">We receive, log, and notify.</div></div></div>
+            <div style="display:flex; gap:14px; align-items: flex-start;"><div style="width: 32px; height: 32px; background: var(--brand-primary); color:#fff; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; font-family: var(--font-ui); flex-shrink: 0;">03</div><div><div style="font-weight: 600; font-size: 15px;">Ship worldwide</div><div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">220+ countries, all carriers.</div></div></div>
+          </div>
+        </div>
+
+        <div style="padding: 32px 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <div class="benefit"><div class="ic"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><p class="t">Free consolidation</p><p class="d">Combine orders, one shipment.</p></div></div>
+          <div class="benefit"><div class="ic"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><div><p class="t">220+ countries</p><p class="d">Every major carrier, insured.</p></div></div>
+          <div class="benefit"><div class="ic"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></svg></div><div><p class="t">30 days storage</p><p class="d">Free — wait for sales.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─────────── 16 · Confirmation Assets ─────────── -->
+    <section class="section" id="assets">
+      <div class="section__head">
+        <div class="section__eyebrow">16 — Assets</div>
+        <h2 class="section__title">Confirmation page assets, ready to ship.</h2>
+        <p class="section__lead">Every icon and image used by the registration confirmation experience — click any card to download the file, or grab the whole kit. The three hero icons are animated in production; hover or click the previews to see the motion, and check the kit's README for exact keyframes and physics.</p>
+      </div>
+
+      <div style="display:flex; gap:12px; margin-bottom:28px; flex-wrap:wrap;">
+        <a class="btn btn--primary" href="assets/confirmation/myus-confirmation-assets.zip" download>Download full kit (.zip · 2.0 MB)</a>
+        <a class="btn btn--outline" href="/confirmation" target="_blank" rel="noopener">View live page ↗</a>
+      </div>
+
+      <h3 class="section__h3">Animated hero icons</h3>
+      <div class="asset-grid">
+        <div class="asset-card">
+          <div class="asset-prev"><img id="ds-anim-check" class="ds-pop-target" src="assets/confirmation/conf-hero-check.svg" alt="" width="72" height="72"></div>
+          <div class="asset-meta"><strong>conf-hero-check.svg</strong><span>Approved · confetti burst + pop (click)</span></div>
+          <a class="asset-dl" href="assets/confirmation/conf-hero-check.svg" download>Download SVG</a>
+        </div>
+        <div class="asset-card">
+          <div class="asset-prev">
+            <svg viewBox="0 0 93.75 93.75" width="72" height="72" aria-label="Animated clock">
+              <path fill="#FF981F" fill-opacity="0.08" d="M13.825 1.13C20.64 0.58 31.46 0 46.88 0c15.42 0 26.23 0.58 33.05 1.13 6.85 0.56 12.13 5.84 12.69 12.69 0.55 6.82 1.13 17.63 1.13 33.05 0 15.42-0.58 26.24-1.13 33.05-0.56 6.85-5.84 12.14-12.69 12.69-6.82 0.55-17.63 1.13-33.05 1.13-15.42 0-26.24-0.58-33.05-1.13-6.85-0.55-12.14-5.84-12.69-12.69C0.58 73.11 0 62.29 0 46.88c0-15.42 0.58-26.24 1.13-33.05C1.69 6.98 6.98 1.69 13.825 1.13Z"/>
+              <circle cx="47.02" cy="47.91" r="25.38" fill="#FF981F"/>
+              <g class="ds-clock-min"><line x1="47.02" y1="47.91" x2="47.02" y2="31.6" stroke="#FFF1CC" stroke-width="6.9" stroke-linecap="round"/></g>
+              <g class="ds-clock-hr"><line x1="47.02" y1="47.91" x2="57.5" y2="58.4" stroke="#FFF1CC" stroke-width="6.9" stroke-linecap="round"/></g>
+              <circle cx="47.02" cy="47.91" r="3.4" fill="#FFF1CC"/>
+            </svg>
+          </div>
+          <div class="asset-meta"><strong>conf-hero-pending.svg</strong><span>Pending · hands sweep 6s / 72s</span></div>
+          <a class="asset-dl" href="assets/confirmation/conf-hero-pending.svg" download>Download SVG</a>
+        </div>
+        <div class="asset-card">
+          <div class="asset-prev"><img id="ds-anim-stop" class="ds-shake-target" src="assets/confirmation/conf-hero-stop.svg" alt="" width="72" height="72"></div>
+          <div class="asset-meta"><strong>conf-hero-stop.svg</strong><span>Rejected · damped deny shake (click)</span></div>
+          <a class="asset-dl" href="assets/confirmation/conf-hero-stop.svg" download>Download SVG</a>
+        </div>
+      </div>
+
+      <h3 class="section__h3">Iconography</h3>
+      <div class="asset-grid asset-grid--dense" id="ds-icon-grid"></div>
+
+      <h3 class="section__h3">Images</h3>
+      <div class="asset-grid asset-grid--dense" id="ds-img-grid"></div>
+    </section>
+
+    <style>
+      .asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-bottom: var(--s-8); }
+      .asset-grid--dense { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+      .asset-card {
+        background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+        padding: 18px 14px 14px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+      }
+      .asset-prev { height: 76px; display: flex; align-items: center; justify-content: center; }
+      .asset-prev--dark { background: #183a58; border-radius: 8px; padding: 12px 20px; }
+      /* footer-social row also sits on navy in production */
+      .asset-prev img[src*="footer-social"], .asset-prev img[src*="logo-white"] { background: #183a58; border-radius: 8px; padding: 8px 12px; box-sizing: content-box; }
+      .asset-prev img { max-height: 72px; max-width: 150px; width: auto; height: auto; }
+      .asset-meta { text-align: center; display: flex; flex-direction: column; gap: 2px; }
+      .asset-meta strong { font-size: 12px; color: var(--text); word-break: break-all; }
+      .asset-meta span { font-size: 10.5px; color: var(--text-muted); }
+      .asset-dl {
+        font-size: 11.5px; font-weight: 600; color: var(--brand-accent);
+        text-decoration: none; border: 1px solid var(--brand-accent); border-radius: var(--r);
+        padding: 6px 14px; transition: background .15s, color .15s;
+      }
+      .asset-dl:hover { background: var(--brand-accent); color: #fff; }
+      .ds-clock-min, .ds-clock-hr { transform-box: view-box; transform-origin: 47.02px 47.91px; }
+      .ds-clock-min { animation: dsClockSpin 6s linear infinite; }
+      .ds-clock-hr  { animation: dsClockSpin 72s linear infinite; }
+      @keyframes dsClockSpin { to { transform: rotate(360deg); } }
+      .ds-pop { animation: dsPop 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+      @keyframes dsPop { 0% { transform: scale(0.7); } 55% { transform: scale(1.08); } 100% { transform: scale(1); } }
+      .ds-shake { animation: dsShake 1.15s cubic-bezier(0.36,0.07,0.19,0.97); transform-origin: 50% 60%; }
+      @keyframes dsShake {
+        0%,100% { transform: rotate(0); } 18% { transform: rotate(-5.5deg); }
+        38% { transform: rotate(4.5deg); } 58% { transform: rotate(-2.5deg); } 78% { transform: rotate(1deg); }
+      }
+      @media (prefers-reduced-motion: reduce) { .ds-clock-min, .ds-clock-hr, .ds-pop, .ds-shake { animation: none; } }
+    </style>
+    <script>
+      (function () {
+        var ICONS = [
+          ["conf-step-filecheck.svg","Stepper · received"], ["conf-step-filesearch.svg","Stepper · in review"],
+          ["conf-step-inbox.svg","Stepper · email"], ["conf-faq-chevron.svg","FAQ accordion"],
+          ["conf-flag-us.png","Address card · US · 4x"], ["conf-flag-uk.png","Address card · UK · 4x"],
+          ["conf-info-circle.svg","Alert (legacy)"]
+        ];
+        var IMAGES = [
+          ["member-invite.png","Membership card · 683×1024"],
+          ["member-family.png","Membership card · 683×1024"],
+          ["member-shopping.png","Membership card · 683×1024"]
+        ];
+        function fill(gridId, items) {
+          var g = document.getElementById(gridId);
+          if (!g) return;
+          g.innerHTML = items.map(function (it) {
+            var f = it[0], note = it[1], p = "assets/confirmation/" + f;
+            var prevCls = it[2] ? "asset-prev asset-prev--dark" : "asset-prev";
+            return '<div class="asset-card"><div class="' + prevCls + '"><img loading="lazy" src="' + p + '" alt=""></div>' +
+              '<div class="asset-meta"><strong>' + f + '</strong><span>' + note + '</span></div>' +
+              '<a class="asset-dl" href="' + p + '" download>Download</a></div>';
+          }).join("");
+        }
+        fill("ds-icon-grid", ICONS);
+        fill("ds-img-grid", IMAGES);
+        function replay(el, cls) {
+          if (!el) return;
+          el.addEventListener("click", function () {
+            el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
+          });
+          el.classList.add(cls);
+        }
+        replay(document.getElementById("ds-anim-check"), "ds-pop");
+        replay(document.getElementById("ds-anim-stop"), "ds-shake");
+        // Re-fire the one-shot animations when the section scrolls into view,
+        // then loop them so the previews always read as animated.
+        function fire(id, cls) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
+        }
+        var loopTimer = null;
+        var target = document.getElementById("assets");
+        if (target && "IntersectionObserver" in window) {
+          new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                fire("ds-anim-check", "ds-pop");
+                fire("ds-anim-stop", "ds-shake");
+                if (!loopTimer) loopTimer = setInterval(function () {
+                  fire("ds-anim-check", "ds-pop");
+                  fire("ds-anim-stop", "ds-shake");
+                }, 4000);
+              } else if (loopTimer) {
+                clearInterval(loopTimer); loopTimer = null;
+              }
+            });
+          }, { threshold: 0.2 }).observe(target);
+        }
+      })();
+    </script>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <span>MyUS Design System v1 · internal reference</span>
+  <div class="nav-links">
+    <a href="https://github.com/flowformstudio/myusdesignsystem" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
+<div id="copyToast" role="status" aria-live="polite">Copied</div>
+
+<script>
+/* ── THEME TOGGLE ─────────────────────────────────────────────── */
+(function () {
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeBtn');
+  const KEY  = 'myus-ds-theme';
+  const stored = localStorage.getItem(KEY);
+  if (stored === 'dark') root.setAttribute('data-theme', 'dark');
+  btn?.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    if (next === 'dark') root.setAttribute('data-theme', 'dark');
+    else root.removeAttribute('data-theme');
+    localStorage.setItem(KEY, next);
+  });
+})();
+
+/* ── SIDEBAR · MOBILE TOGGLE ───────────────────────────────────── */
+(function () {
+  const sidebar  = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+  const toggle   = document.getElementById('menuBtn');
+  function open() { sidebar.classList.add('is-open'); backdrop.classList.add('is-on'); }
+  function close() { sidebar.classList.remove('is-open'); backdrop.classList.remove('is-on'); }
+  toggle?.addEventListener('click', () => sidebar.classList.contains('is-open') ? close() : open());
+  backdrop?.addEventListener('click', close);
+  sidebar.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', close));
+})();
+
+/* ── SIDEBAR · ACTIVE-SECTION HIGHLIGHTING ─────────────────────── */
+(function () {
+  const items = Array.from(document.querySelectorAll('.sidebar__item[href^="#"]'));
+  const map   = new Map();
+  items.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const t  = document.getElementById(id);
+    if (t) map.set(t, a);
+  });
+  if (!('IntersectionObserver' in window) || map.size === 0) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const a = map.get(e.target);
+      if (!a) return;
+      if (e.isIntersecting) {
+        items.forEach(i => i.classList.remove('is-active'));
+        a.classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-100px 0px -60% 0px', threshold: 0 });
+  map.forEach((_, t) => obs.observe(t));
+})();
+
+/* ── COLOR SWATCH · CLICK TO COPY ─────────────────────────────── */
+(function () {
+  const toast = document.getElementById('copyToast');
+  let timer;
+  function show(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('is-on');
+    clearTimeout(timer);
+    timer = setTimeout(() => toast.classList.remove('is-on'), 1400);
+  }
+  document.querySelectorAll('.chip[data-copy]').forEach(chip => {
+    chip.addEventListener('click', async () => {
+      const v = chip.getAttribute('data-copy');
+      try {
+        await navigator.clipboard.writeText(v);
+        show(`Copied ${v}`);
+      } catch {
+        show('Copy failed');
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
