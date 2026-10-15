@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyUS Family — Concept B · Human Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:        #0f2336;
+      --navy-80:     rgba(15,35,54,0.8);
+      --navy-50:     rgba(15,35,54,0.5);
+      --navy-20:     rgba(15,35,54,0.12);
+      --orange:      #ff7a00;
+      --orange-btn:  #ff981f;
+      --orange-dark: #e06900;
+      --orange-soft: #fff3e4;
+      --blue:        #1985e3;
+      --blue-light:  #eaf4fd;
+      --muted:       #5f6b78;
+      --border:      rgba(15,35,54,0.1);
+      --white:       #ffffff;
+      --off-white:   #f7f9fc;
+      --green:       #1e9e5a;
+      --green-soft:  #e9f7ef;
+    }
+    body { font-family: 'Poppins', system-ui, sans-serif; color: var(--navy); background: var(--white); -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); border-bottom: 1px solid var(--navy-20); }
+    .header-inner { max-width: 1280px; margin: 0 auto; height: 72px; padding: 0 32px; display: flex; align-items: center; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .site-nav { display: flex; gap: 4px; margin-left: 8px; flex: 1; }
+    .site-nav a { text-decoration: none; color: var(--navy-80); font-size: 14.5px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+    .site-nav a:hover { color: var(--navy); background: var(--off-white); }
+    .site-nav a.active { color: var(--navy); font-weight: 600; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-login { text-decoration: none; color: var(--navy); font-size: 14.5px; font-weight: 600; padding: 9px 18px; border-radius: 8px; }
+    .btn-login:hover { background: var(--off-white); }
+    .btn-signup { text-decoration: none; color: var(--white); background: var(--orange-btn); font-size: 14.5px; font-weight: 600; padding: 10px 20px; border-radius: 8px; }
+    .btn-signup:hover { background: var(--orange-dark); }
+
+    .btn-primary { display: inline-block; text-decoration: none; background: var(--orange-btn); color: var(--white); font-size: 16px; font-weight: 600; padding: 15px 32px; border-radius: 10px; transition: background .15s; }
+    .btn-primary:hover { background: var(--orange-dark); }
+    .btn-ghost { display: inline-block; text-decoration: none; color: var(--navy); font-size: 15.5px; font-weight: 600; padding: 14px 28px; border-radius: 10px; border: 1.5px solid var(--navy-20); }
+    .btn-ghost:hover { border-color: var(--navy); background: var(--off-white); }
+
+    /* Switcher */
+    .switcher { position: fixed; bottom: 20px; right: 20px; z-index: 60; display: flex; align-items: center; gap: 4px; background: var(--white); border: 1px solid var(--navy-20); border-radius: 999px; padding: 6px; box-shadow: 0 8px 30px rgba(15,35,54,0.18); }
+    .switcher a { min-width: 32px; height: 32px; padding: 0 6px; display: flex; align-items: center; justify-content: center; border-radius: 999px; text-decoration: none; font-size: 12.5px; font-weight: 600; color: var(--navy-80); }
+    .switcher a:hover { background: var(--off-white); }
+    .switcher a.on { background: var(--navy); color: var(--white); }
+    .switcher .tip { position: absolute; bottom: calc(100% + 14px); right: 0; width: 320px; background: var(--navy); color: var(--white); border-radius: 14px; padding: 15px 18px; font-size: 12.5px; font-weight: 400; line-height: 1.55; text-align: left; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .16s, transform .16s, visibility .16s; pointer-events: none; box-shadow: 0 16px 44px rgba(15,35,54,0.3); z-index: 61; }
+    .switcher a:hover .tip { opacity: 1; visibility: visible; transform: none; }
+    .switcher .tip .tip-group { display: block; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-btn); }
+    .switcher .tip strong { display: block; font-size: 13.5px; font-weight: 600; margin: 4px 0 6px; }
+    .switcher .tip span { color: rgba(255,255,255,0.75); }
+
+    .switcher .sep { width: 1px; height: 18px; background: var(--navy-20); margin: 0 3px; }
+
+    /* HERO — people first */
+    .hero { background: linear-gradient(180deg, var(--orange-soft) 0%, var(--white) 78%); padding: 80px 0 72px; text-align: center; }
+    .eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--orange); }
+    .hero h1 { margin: 16px auto 0; font-size: 50px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; max-width: 760px; }
+    .hero-sub { margin: 20px auto 0; font-size: 16.5px; line-height: 1.65; color: var(--muted); max-width: 620px; }
+    .hero-ctas { margin-top: 30px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    /* Hero group visual */
+    .cast { margin: 58px auto 0; max-width: 900px; position: relative; }
+    .cast-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .cast-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 22px 16px 18px; box-shadow: 0 12px 34px rgba(15,35,54,0.08); }
+    .cc-av { width: 68px; height: 68px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+    .cc-1 { background: var(--blue-light); } .cc-2 { background: #f3eefc; } .cc-3 { background: var(--green-soft); } .cc-4 { background: var(--orange-soft); }
+    .cc-name { margin-top: 12px; font-size: 14.5px; font-weight: 600; }
+    .cc-role { font-size: 12px; color: var(--muted); }
+    .cc-item { margin-top: 10px; display: inline-flex; align-items: center; gap: 7px; background: var(--off-white); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 500; }
+    .cast-merge { margin: 34px auto 0; display: flex; flex-direction: column; align-items: center; }
+    .cast-merge .arrow { font-size: 22px; color: var(--navy-50); }
+    .suite-pill { margin-top: 10px; display: inline-flex; align-items: center; gap: 12px; background: var(--navy); color: var(--white); border-radius: 999px; padding: 13px 26px; font-size: 14.5px; font-weight: 600; box-shadow: 0 14px 36px rgba(15,35,54,0.25); }
+    .cast-stats { margin-top: 22px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .stat-chip { background: var(--white); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; font-size: 13px; font-weight: 600; }
+    .stat-chip.hot { background: var(--green); color: var(--white); border-color: var(--green); }
+
+    /* Section head */
+    .sec-head { text-align: center; max-width: 660px; margin: 0 auto; }
+    .sec-head h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; }
+    .sec-head p { margin-top: 14px; font-size: 15.5px; line-height: 1.65; color: var(--muted); }
+
+    /* SECTION 2: Maya's story */
+    .story { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 0; }
+    .story-strip { margin-top: 52px; display: grid; grid-template-columns: repeat(4, 1fr) 1.25fr; gap: 16px; align-items: stretch; }
+    .st-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 20px 16px; text-align: center; position: relative; }
+    .st-card::after { content: "＋"; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--navy-50); font-size: 15px; z-index: 1; }
+    .st-card:nth-child(4)::after { content: "＝"; }
+    .st-av { width: 54px; height: 54px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 25px; }
+    .st-card h4 { margin-top: 10px; font-size: 14px; font-weight: 600; }
+    .st-card .st-rel { font-size: 11.5px; color: var(--muted); }
+    .st-thumb { margin: 12px auto 0; width: 64px; height: 52px; border-radius: 10px; background: var(--off-white); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .st-card .st-item { margin-top: 8px; font-size: 12px; color: var(--muted); }
+    .st-outcome { background: var(--navy); color: var(--white); border-radius: 16px; padding: 24px 22px; display: flex; flex-direction: column; justify-content: center; }
+    .st-outcome .so-tag { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-btn); }
+    .st-outcome h4 { margin-top: 8px; font-size: 17px; font-weight: 600; line-height: 1.3; }
+    .st-outcome .so-rows { margin-top: 14px; display: flex; flex-direction: column; gap: 7px; font-size: 13px; color: rgba(255,255,255,0.75); }
+    .st-outcome .so-rows strong { color: var(--white); }
+    .st-outcome .so-save { margin-top: 14px; align-self: flex-start; font-size: 12px; font-weight: 700; background: var(--green); border-radius: 999px; padding: 5px 12px; }
+    .story-caption { margin-top: 30px; text-align: center; font-size: 15px; color: var(--muted); font-style: italic; }
+
+    /* SECTION 3: mechanism */
+    .mech { padding: 96px 0; }
+    .mech-flow { margin: 52px auto 0; max-width: 560px; display: flex; flex-direction: column; align-items: center; }
+    .mech-people { display: flex; gap: 14px; }
+    .mp { text-align: center; }
+    .mp .mp-av { width: 52px; height: 52px; border-radius: 50%; background: var(--blue-light); display: flex; align-items: center; justify-content: center; font-size: 23px; }
+    .mp .mp-n { margin-top: 6px; font-size: 11.5px; font-weight: 600; }
+    .mp .mp-p { margin-top: 2px; font-size: 14px; }
+    .mech-arrow { margin: 14px 0; color: var(--navy-50); font-size: 19px; }
+    .mech-node { width: 100%; max-width: 380px; background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 16px 22px; text-align: center; box-shadow: 0 10px 28px rgba(15,35,54,0.07); }
+    .mech-node .mn-t { font-size: 14.5px; font-weight: 600; }
+    .mech-node .mn-s { margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .mech-node.accent { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .mech-node.accent .mn-s { color: rgba(255,255,255,0.65); }
+
+    /* SECTION 4: why people use it */
+    .why { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 0; }
+    .why-grid { margin-top: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .why-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: 128px 1fr; }
+    .why-img { display: flex; align-items: center; justify-content: center; font-size: 42px; }
+    .wi-1 { background: var(--blue-light); } .wi-2 { background: var(--orange-soft); } .wi-3 { background: var(--green-soft); } .wi-4 { background: #f3eefc; }
+    .why-body { padding: 24px 26px; }
+    .why-body h3 { font-size: 17px; font-weight: 600; }
+    .why-body p { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+
+    /* SECTION 5: savings */
+    .drop { padding: 100px 0; text-align: center; }
+    .drop-row { margin-top: 56px; display: flex; justify-content: center; align-items: flex-end; gap: 44px; }
+    .drop-item .d-people { font-size: 15px; color: var(--muted); font-weight: 500; }
+    .drop-item .d-price { font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin-top: 12px; }
+    .drop-item:nth-child(1) .d-price { font-size: 32px; color: var(--navy-50); }
+    .drop-item:nth-child(2) .d-price { font-size: 42px; color: var(--navy-80); }
+    .drop-item:nth-child(3) .d-price { font-size: 54px; }
+    .drop-item:nth-child(4) .d-price { font-size: 70px; color: var(--orange); }
+    .drop-item .d-save { margin-top: 12px; display: inline-block; font-size: 12.5px; font-weight: 700; border-radius: 999px; padding: 5px 13px; }
+    .d-save.none { visibility: hidden; }
+    .d-save.mid { color: #a35400; background: var(--orange-soft); }
+    .d-save.top { color: var(--white); background: var(--green); }
+    .drop-fine { margin-top: 34px; font-size: 12px; color: var(--navy-50); }
+
+    /* SECTION 6: steps */
+    .steps { background: var(--navy); color: var(--white); padding: 96px 0; text-align: center; }
+    .steps h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; }
+    .steps-grid { margin-top: 52px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; text-align: left; }
+    .step-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 28px; }
+    .step-card .sc-n { width: 34px; height: 34px; border-radius: 999px; background: var(--orange-btn); color: var(--white); font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .step-card h3 { margin-top: 16px; font-size: 17px; font-weight: 600; }
+    .step-card p { margin-top: 8px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+    .steps .btn-primary { margin-top: 44px; }
+
+    /* SECTION 7: trust */
+    .trust { padding: 88px 0; }
+    .trust-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .trust-inner h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+    .trust-inner p { margin-top: 16px; font-size: 15px; line-height: 1.7; color: var(--muted); }
+
+    /* FAQ */
+    .faq { padding: 0 0 96px; }
+    .faq-list { margin-top: 44px; max-width: 780px; margin-left: auto; margin-right: auto; display: flex; flex-direction: column; gap: 12px; }
+    details { background: var(--off-white); border: 1px solid var(--border); border-radius: 12px; padding: 0 22px; }
+    summary { list-style: none; cursor: pointer; padding: 18px 0; font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 20px; font-weight: 400; color: var(--blue); flex-shrink: 0; }
+    details[open] summary::after { content: "–"; }
+    details p { padding: 0 0 18px; font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* FINAL */
+    .final { background: linear-gradient(180deg, var(--orange-soft), var(--white)); text-align: center; padding: 96px 32px; }
+    .final h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; }
+    .final p { margin: 16px auto 0; font-size: 15.5px; color: var(--muted); max-width: 480px; line-height: 1.65; }
+    .final .btn-primary { margin-top: 30px; }
+
+    /* Footer */
+    .footer { background: #0b1a29; color: rgba(255,255,255,0.55); padding: 36px 32px; }
+    .footer-inner { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 13px; }
+    .footer-links { display: flex; gap: 22px; }
+    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .site-nav { display: none; }
+      .header-inner { padding: 0 16px; height: 60px; }
+      .btn-login { display: none; }
+      .container { padding: 0 20px; }
+      .hero { padding: 48px 0 56px; }
+      .hero h1 { font-size: 33px; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-ghost { width: 100%; max-width: 380px; text-align: center; }
+      .cast-row { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .sec-head h2 { font-size: 27px; }
+      .story, .mech, .why, .steps { padding: 64px 0; }
+      .drop { padding: 64px 0; }
+      .story-strip { grid-template-columns: 1fr 1fr; }
+      .st-card::after { display: none; }
+      .st-outcome { grid-column: 1 / -1; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-card { grid-template-columns: 96px 1fr; }
+      .drop-row { flex-direction: column; align-items: center; gap: 28px; }
+      .drop-item:nth-child(4) .d-price { font-size: 58px; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .final h2 { font-size: 29px; }
+      .final .btn-primary { width: 100%; max-width: 380px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="MyUS home">
+      <img src="logo.svg" alt="MyUS" style="height:32px;width:auto;display:block;" />
+    </a>
+    <nav class="site-nav">
+      <a href="#">How it works</a>
+      <a href="#">Why choose MyUS</a>
+      <a href="#">Shipping rates</a>
+      <a href="#">Shop with MyUS</a>
+      <a href="family.html" class="active">MyUS Family</a>
+    </nav>
+    <div class="header-actions">
+      <a href="MyUS%20Logged%20in/index.html" class="btn-login">Log in</a>
+      <a href="confirmation.html" class="btn-signup">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">MyUS Family</div>
+    <h1>Shopping is better together.</h1>
+    <p class="hero-sub">Your MyUS Family can include friends, relatives, neighbors, or anyone you trust. Everyone shops from the US, sends packages to your MyUS suite, and combines shipments to save.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="confirmation.html">Build Your MyUS Family</a>
+      <a class="btn-ghost" href="#savings">See the Savings</a>
+    </div>
+
+    <div class="cast">
+      <div class="cast-row">
+        <div class="cast-card"><div class="cc-av cc-1">👩</div><div class="cc-name">Maya</div><div class="cc-role">Account owner</div><div class="cc-item">👟 Sneakers</div></div>
+        <div class="cast-card"><div class="cc-av cc-2">🧑</div><div class="cc-name">Daniel</div><div class="cc-role">Her brother</div><div class="cc-item">🎧 Headphones</div></div>
+        <div class="cast-card"><div class="cc-av cc-3">👩‍🦱</div><div class="cc-name">Lena</div><div class="cc-role">Her friend</div><div class="cc-item">🧴 Skincare</div></div>
+        <div class="cast-card"><div class="cc-av cc-4">🧔</div><div class="cc-name">Sam</div><div class="cc-role">Her neighbor</div><div class="cc-item">👕 Clothing</div></div>
+      </div>
+      <div class="cast-merge">
+        <div class="arrow">↓ &nbsp; ↓ &nbsp; ↓ &nbsp; ↓</div>
+        <div class="suite-pill">📍 One MyUS suite · One shipment</div>
+      </div>
+      <div class="cast-stats">
+        <span class="stat-chip">4 people</span>
+        <span class="stat-chip">4 packages</span>
+        <span class="stat-chip">1 shipment</span>
+        <span class="stat-chip hot">Up to 72% less per person in this example</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: MAYA'S STORY -->
+<section class="story">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Meet Maya's MyUS Family.</h2>
+      <p>Four people, four different shopping carts — and one decision that changes what everyone pays.</p>
+    </div>
+    <div class="story-strip">
+      <div class="st-card"><div class="st-av cc-1">👩</div><h4>Maya</h4><div class="st-rel">orders sneakers</div><div class="st-thumb">👟</div><div class="st-item">1 package</div></div>
+      <div class="st-card"><div class="st-av cc-2">🧑</div><h4>Daniel</h4><div class="st-rel">orders headphones</div><div class="st-thumb">🎧</div><div class="st-item">1 package</div></div>
+      <div class="st-card"><div class="st-av cc-3">👩‍🦱</div><h4>Lena</h4><div class="st-rel">orders skincare</div><div class="st-thumb">🧴</div><div class="st-item">1 package</div></div>
+      <div class="st-card"><div class="st-av cc-4">🧔</div><h4>Sam</h4><div class="st-rel">orders clothing</div><div class="st-thumb">👕</div><div class="st-item">1 package</div></div>
+      <div class="st-outcome">
+        <div class="so-tag">The result</div>
+        <h4>One consolidated shipment</h4>
+        <div class="so-rows">
+          <div><strong>$30.77</strong> total shipping</div>
+          <div><strong>$7.69</strong> per person</div>
+        </div>
+        <div class="so-save">72% lower per person*</div>
+      </div>
+    </div>
+    <p class="story-caption">"Instead of shipping four packages internationally, Maya combines them into one shipment."</p>
+  </div>
+</section>
+
+<!-- SECTION 3: MECHANISM -->
+<section class="mech">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Different shopping carts. One shipment.</h2>
+    </div>
+    <div class="mech-flow">
+      <div class="mech-people">
+        <div class="mp"><div class="mp-av">👩</div><div class="mp-n">Maya</div><div class="mp-p">📦</div></div>
+        <div class="mp"><div class="mp-av">🧑</div><div class="mp-n">Daniel</div><div class="mp-p">📦</div></div>
+        <div class="mp"><div class="mp-av">👩‍🦱</div><div class="mp-n">Lena</div><div class="mp-p">📦</div></div>
+        <div class="mp"><div class="mp-av">🧔</div><div class="mp-n">Sam</div><div class="mp-p">📦</div></div>
+      </div>
+      <div class="mech-arrow">↓</div>
+      <div class="mech-node"><div class="mn-t">📍 MyUS Suite</div><div class="mn-s">Everyone's packages arrive at one US address</div></div>
+      <div class="mech-arrow">↓</div>
+      <div class="mech-node"><div class="mn-t">📦 Package Consolidation</div><div class="mn-s">Eligible packages are combined into one box</div></div>
+      <div class="mech-arrow">↓</div>
+      <div class="mech-node accent"><div class="mn-t">✈️ International Delivery</div><div class="mn-s">One shipment. One shared shipping cost.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: WHY PEOPLE USE IT -->
+<section class="why">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Built for how people actually shop.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-img wi-1">🌍</div>
+        <div class="why-body"><h3>Families overseas</h3><p>Parents, siblings, and adult children can shop independently and combine packages.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="why-img wi-2">🛍️</div>
+        <div class="why-body"><h3>Friends who shop together</h3><p>Regular US shoppers can coordinate shipments and share costs.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="why-img wi-3">🏡</div>
+        <div class="why-body"><h3>Neighbors</h3><p>People sending packages to the same destination can combine eligible orders.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="why-img wi-4">🛋️</div>
+        <div class="why-body"><h3>Shared households</h3><p>Roommates or partners can organize US purchases through one MyUS account.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: SAVINGS -->
+<section class="drop" id="savings">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Watch the cost per person drop.</h2>
+    </div>
+    <div class="drop-row">
+      <div class="drop-item"><div class="d-people">1 person</div><div class="d-price">$27.84</div><span class="d-save none">–</span></div>
+      <div class="drop-item"><div class="d-people">2 people</div><div class="d-price">$14.07</div><span class="d-save mid">50% less</span></div>
+      <div class="drop-item"><div class="d-people">3 people</div><div class="d-price">$9.93</div><span class="d-save mid">64% less</span></div>
+      <div class="drop-item"><div class="d-people">4 people</div><div class="d-price">$7.69</div><span class="d-save top">72% less</span></div>
+    </div>
+    <p class="drop-fine">Per-person shipping in this example. Based on equally splitting US → Saudi Arabia shipping via DHL. Actual savings vary.</p>
+  </div>
+</section>
+
+<!-- SECTION 6: THREE STEPS -->
+<section class="steps">
+  <div class="container">
+    <h2>Start in minutes.</h2>
+    <div class="steps-grid">
+      <div class="step-card"><div class="sc-n">1</div><h3>Add people</h3><p>First name, last name, and email — that's all it takes to add someone to your MyUS Family.</p></div>
+      <div class="step-card"><div class="sc-n">2</div><h3>Start shopping</h3><p>Everyone shops US stores and sends packages to your MyUS suite.</p></div>
+      <div class="step-card"><div class="sc-n">3</div><h3>Ship together</h3><p>Combine eligible packages and send them internationally as one shipment.</p></div>
+    </div>
+    <a class="btn-primary" href="confirmation.html">Add Someone Now</a>
+  </div>
+</section>
+
+<!-- SECTION 7: TRUST -->
+<section class="trust">
+  <div class="container trust-inner">
+    <h2>Your account stays in your hands.</h2>
+    <p>The MyUS account owner manages shipments and charges, so MyUS Family works best with people you trust. Members decide privately how they split shipping costs — MyUS keeps everything running through one account you control.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Questions people ask</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>Can I add friends instead of relatives?</summary>
+        <p>Yes. Despite the name, MyUS Family is for anyone you trust — friends, neighbors, roommates, partners, or relatives.</p>
+      </details>
+      <details>
+        <summary>Does it cost extra to add someone?</summary>
+        <p>No. MyUS Family is included free with your MyUS membership, on every plan.</p>
+      </details>
+      <details>
+        <summary>Does everyone get their own MyUS login?</summary>
+        <p>Not currently. People you add can shop and send packages to your suite, but the account — and its shipments — stays managed by you as the primary member.</p>
+      </details>
+      <details>
+        <summary>Who pays for shipping?</summary>
+        <p>Shipping charges are billed through the primary MyUS account. How your group splits the cost afterward is up to you.</p>
+      </details>
+      <details>
+        <summary>How many people can I add?</summary>
+        <p>You can add as many people as you like, and edit or remove them at any time.</p>
+      </details>
+      <details>
+        <summary>Can everyone shop from different stores?</summary>
+        <p>Absolutely. Everyone shops independently from the US stores they prefer — packages simply arrive at the same MyUS suite.</p>
+      </details>
+      <details>
+        <summary>How does package consolidation work?</summary>
+        <p>When packages arrive at your suite, you choose eligible ones to combine into a single international shipment — usually reducing the total cost compared to sending them separately.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <h2>Who would you add first?</h2>
+  <p>Family, friends, neighbors — start building your shipping group today.</p>
+  <a class="btn-primary" href="confirmation.html">Add Your First Person</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 MyUS. All rights reserved.</div>
+    <div class="footer-links"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Help</a></div>
+  </div>
+</footer>
+
+<div class="switcher" aria-label="Exploration switcher">
+  <a href="family.html" title="All options">⌂<span class="tip"><span class="tip-group">Hub</span><strong>All options</strong><span>The final three directions for the stakeholder meeting, consolidated from six explorations.</span></span></a>
+  <a href="family-d.html">1 ★<span class="tip"><span class="tip-group">★ Primary candidate</span><strong>Option 1 · Savings First</strong><span>Savings-led and synthesis-aligned (Spotify clarity + Nintendo math). Now includes the interactive group-size picker absorbed from exploration A2. Answers: "How much can I save?"</span></span></a>
+  <a href="family-e.html" class="on">2<span class="tip"><span class="tip-group">People-first</span><strong>Option 2 · Human Story</strong><span>Maya’s cast makes the behavior feel normal before prices appear; savings land as the payoff. Answers: "How would someone like me use this?"</span></span></a>
+  <a href="family-g.html">4 ★<span class="tip"><span class="tip-group">★ From the 08/31 review</span><strong>Option 4 · The Meeting Cut</strong><span>Option 1 skeleton + the sections Karen and Bobby asked to keep. Static, dev-light.</span></span></a>
+  <a href="family-f.html">3<span class="tip"><span class="tip-group">Product-led</span><strong>Option 3 · Shipping Group</strong><span>Group-as-product with the orbit identity visual absorbed from exploration A3, live calculator, and a truthful account-UI preview. Answers: "What exactly am I creating?"</span></span></a>
+</div>
+
+</body>
+</html>

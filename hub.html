@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyUS — Project Springboard</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy-900: #10283d; --navy-700: #266093; --blue-500: #0c71c9; --blue-600: #0a5ba3; --blue-50: #e8f3fd;
+      --grey-50: #f5f8fa; --grey-100: #f0f2f5; --grey-200: #e0e6eb; --grey-300: #dae0e5; --grey-500: #a9b4bc; --grey-600: #5a6670;
+      --yellow-400: #ffd31f; --green-500: #18873d; --purple-600: #980cc9; --teal-500: #1a9e9a;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Poppins, system-ui, sans-serif; color: var(--navy-900); background: var(--grey-50); }
+    a { color: inherit; text-decoration: none; }
+    .top { background: var(--navy-900); color: #fff; padding: 18px 40px; display: flex; align-items: center; gap: 14px; }
+    .top img { height: 34px; }
+    .top .tag { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; opacity: .7; margin-left: auto; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 44px 40px 80px; }
+    h1 { font-size: 32px; font-weight: 700; margin: 0 0 8px; }
+    .sub { font-size: 15px; color: var(--grey-600); margin: 0 0 36px; max-width: 640px; line-height: 1.5; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+    .card {
+      display: flex; flex-direction: column; background: #fff; border: 1px solid var(--grey-200); border-radius: 12px; overflow: hidden;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .card { position: relative; }
+    .card-link { position: absolute; inset: 0; z-index: 1; border-radius: 12px; }
+    .card-link:focus-visible { outline: 2px solid var(--blue-500); outline-offset: 2px; }
+    .links { position: relative; z-index: 2; }
+    .card:hover, .card:focus-within { transform: translateY(-3px); box-shadow: 0 18px 40px -18px rgba(16,40,61,.35); border-color: var(--blue-500); outline: none; }
+    .thumb { position: relative; aspect-ratio: 16 / 10; background: var(--grey-100); overflow: hidden; border-bottom: 1px solid var(--grey-200); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .thumb .badge { position: absolute; top: 12px; left: 12px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--blue-500); padding: 4px 9px; border-radius: 999px; }
+    .thumb .badge.ext { background: var(--purple-600); }
+    .thumb .badge.ds { background: var(--teal-500); }
+    .thumb .badge.flow { background: var(--green-500); }
+    .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .title { font-size: 17px; font-weight: 600; }
+    .desc { font-size: 13px; color: var(--grey-600); line-height: 1.5; margin: 0; }
+    .links { margin-top: auto; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .links a { font-size: 12px; font-weight: 600; color: var(--blue-500); background: var(--blue-50); padding: 5px 10px; border-radius: 6px; }
+    .links a:hover { background: var(--blue-500); color: #fff; }
+    .section { margin-top: 48px; }
+    .section h2 { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--grey-500); margin: 0 0 16px; }
+    footer { text-align: center; font-size: 12px; color: var(--grey-500); padding: 20px; }
+    @media (max-width: 640px) { .top, .wrap { padding-left: 20px; padding-right: 20px; } h1 { font-size: 26px; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <img src="logo.svg" alt="MyUS" onerror="this.style.display='none'" />
+    <span class="tag">Project springboard</span>
+  </header>
+
+  <main class="wrap">
+    <h1>MyUS projects</h1>
+    <p class="sub">Every live prototype we've built for MyUS, in one place. Tap a card to open the project; the small links jump to specific states or pages.</p>
+
+    <section class="section" style="margin-top:0">
+      <h2>Account &amp; product</h2>
+      <div class="grid">
+
+        <div class="card"><a class="card-link" href="MyUS%20Logged%20in/pages/myus-family" aria-label="Open project"></a>
+          <div class="thumb"><img src="hub/thumbs/family-account.png" alt="" /><span class="badge flow">Latest</span></div>
+          <div class="body">
+            <div class="title">MyUS Family — in-account</div>
+            <p class="desc">Add, edit and remove family members from the logged-in account. Modal flow, inline errors, confirmation, remove safeguard. Mirrors the Atlas Figma flows.</p>
+            <div class="links">
+              <a href="MyUS%20Logged%20in/pages/myus-family?capture=2-filled">With members</a>
+              <a href="MyUS%20Logged%20in/pages/myus-family?capture=2-modal">Add modal</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card"><a class="card-link" href="MyUS%20Logged%20in/" aria-label="Open project"></a>
+          <div class="thumb"><img src="hub/thumbs/dashboard.png" alt="" /></div>
+          <div class="body">
+            <div class="title">Logged-in dashboard</div>
+            <p class="desc">Multi-location account dashboard rebuild: sidebar, locations, membership profile, address book, payment method and the rest of the settings pages.</p>
+            <div class="links">
+              <a href="MyUS%20Logged%20in/pages/membership-profile">Membership profile</a>
+              <a href="MyUS%20Logged%20in/pages/address-book">Address book</a>
+              <a href="MyUS%20Logged%20in/pages/refer-a-friend">Refer a friend</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card"><a class="card-link" href="confirmation" aria-label="Open project"></a>
+          <div class="thumb"><img src="hub/thumbs/confirmation.png" alt="" /></div>
+          <div class="body">
+            <div class="title">Registration confirmation</div>
+            <p class="desc">One adaptive confirmation page for every registration outcome, with a journey simulator to switch states.</p>
+            <div class="links">
+              <a href="confirmation#pending">Pending</a>
+              <a href="confirmation#approvedAfterReview">Approved after review</a>
+              <a href="confirmation#rejected">Rejected</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Marketing &amp; landing</h2>
+      <div class="grid">
+
+        <div class="card"><a class="card-link" href="./" aria-label="Open project"></a>
+          <div class="thumb"><img src="hub/thumbs/home.png" alt="" /></div>
+          <div class="body">
+            <div class="title">MyUS homepage</div>
+            <p class="desc">"Pay by weight, not by size." Homepage concept with the Sign up entry into the confirmation flow and the MyUS Family nav link.</p>
+          </div>
+        </div>
+
+        <div class="card"><a class="card-link" href="family" aria-label="Open project"></a>
+          <div class="thumb"><img src="hub/thumbs/family-landing.png" alt="" /></div>
+          <div class="body">
+            <div class="title">MyUS Family — landing page (final)</div>
+            <p class="desc">Karen's Cut, final. Matches the Figma desktop, tablet and mobile boards; the visitor switch previews the logged-out and logged-in CTA states. The handoff is the CSS + HTML pair Karen pastes into the site.</p>
+            <div class="links">
+              <a href="family?auth=in">Logged-in state</a>
+              <a href="handoff/myus-family.html">Handoff file (CSS + HTML)</a>
+              <a href="handoff/myus-family.css">CSS only</a>
+              <a href="handoff/myus-family-section.html">HTML only</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Foundations &amp; related</h2>
+      <div class="grid">
+
+        <div class="card"><a class="card-link" href="design-system/" aria-label="Open project"></a>
+          <div class="thumb"><img src="hub/thumbs/design-system.png" alt="" /><span class="badge ds">System</span></div>
+          <div class="body">
+            <div class="title">MyUS design system</div>
+            <p class="desc">Tokens, type, color and components behind the demos. Also the source of the Atlas Figma variable collections.</p>
+            <div class="links">
+              <a href="design-system/deck">Deck view</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card"><a class="card-link" href="https://shopnship.vercel.app/" target="_blank" rel="noopener" aria-label="Open project"></a>
+          <div class="thumb"><img src="hub/thumbs/shopnship.png" alt="" /><span class="badge ext">External</span></div>
+          <div class="body">
+            <div class="title">Shop &amp; Ship</div>
+            <p class="desc">Sister-brand rebuild of shopandship.com on the same foundations. Opens in a new tab.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>Internal demo hub · not indexed · thumbnails captured from the live pages</footer>
+</body>
+</html>

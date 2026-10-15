@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyUS Family — Option C · The Circle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:        #0f2336;
+      --navy-80:     rgba(15,35,54,0.8);
+      --navy-50:     rgba(15,35,54,0.5);
+      --navy-20:     rgba(15,35,54,0.12);
+      --orange:      #ff7a00;
+      --orange-btn:  #ff981f;
+      --orange-dark: #e06900;
+      --orange-soft: #fff3e4;
+      --blue:        #1985e3;
+      --blue-light:  #eaf4fd;
+      --muted:       #5f6b78;
+      --border:      rgba(15,35,54,0.1);
+      --white:       #ffffff;
+      --off-white:   #f7f9fc;
+      --green:       #1e9e5a;
+    }
+    body { font-family: 'Poppins', system-ui, sans-serif; color: var(--navy); background: var(--white); -webkit-font-smoothing: antialiased; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); border-bottom: 1px solid var(--navy-20); }
+    .header-inner { max-width: 1280px; margin: 0 auto; height: 72px; padding: 0 32px; display: flex; align-items: center; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .site-nav { display: flex; gap: 4px; margin-left: 8px; flex: 1; }
+    .site-nav a { text-decoration: none; color: var(--navy-80); font-size: 14.5px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+    .site-nav a:hover { color: var(--navy); background: var(--off-white); }
+    .site-nav a.active { color: var(--navy); font-weight: 600; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-login { text-decoration: none; color: var(--navy); font-size: 14.5px; font-weight: 600; padding: 9px 18px; border-radius: 8px; }
+    .btn-login:hover { background: var(--off-white); }
+    .btn-signup { text-decoration: none; color: var(--white); background: var(--orange-btn); font-size: 14.5px; font-weight: 600; padding: 10px 20px; border-radius: 8px; }
+    .btn-signup:hover { background: var(--orange-dark); }
+
+    /* Switcher */
+    .switcher { position: fixed; bottom: 20px; right: 20px; z-index: 60; display: flex; gap: 6px; background: var(--white); border: 1px solid var(--navy-20); border-radius: 999px; padding: 6px; box-shadow: 0 8px 30px rgba(15,35,54,0.18); }
+    .switcher a { min-width: 32px; height: 32px; padding: 0 6px; display: flex; align-items: center; justify-content: center; border-radius: 999px; text-decoration: none; font-size: 12.5px; font-weight: 600; color: var(--navy-80); }
+    .switcher .sep { width: 1px; height: 18px; background: var(--navy-20); margin: 0 3px; }
+    .switcher a:hover { background: var(--off-white); }
+    .switcher a.on { background: var(--navy); color: var(--white); }
+    .switcher .tip { position: absolute; bottom: calc(100% + 14px); right: 0; width: 320px; background: var(--navy); color: var(--white); border-radius: 14px; padding: 15px 18px; font-size: 12.5px; font-weight: 400; line-height: 1.55; text-align: left; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .16s, transform .16s, visibility .16s; pointer-events: none; box-shadow: 0 16px 44px rgba(15,35,54,0.3); z-index: 61; }
+    .switcher a:hover .tip { opacity: 1; visibility: visible; transform: none; }
+    .switcher .tip .tip-group { display: block; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-btn); }
+    .switcher .tip strong { display: block; font-size: 13.5px; font-weight: 600; margin: 4px 0 6px; }
+    .switcher .tip span { color: rgba(255,255,255,0.75); }
+
+
+    /* Hero — the orbit */
+    .hero { padding: 80px 32px 96px; background: radial-gradient(ellipse 900px 520px at 50% -10%, var(--orange-soft), var(--white) 70%); }
+    .hero-grid { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+    .hero-eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .hero h1 { font-size: 44px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.14; }
+    .hero h1 .orange { color: var(--orange); }
+    .hero-copy p { margin-top: 18px; font-size: 16px; line-height: 1.65; color: var(--muted); max-width: 480px; }
+    .who-chips { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; max-width: 460px; }
+    .chip { font-size: 13px; font-weight: 500; border: 1px solid var(--border); background: var(--white); border-radius: 999px; padding: 7px 14px; color: var(--navy-80); }
+    .chip.hot { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .hero-ctas { margin-top: 30px; display: flex; align-items: center; gap: 18px; }
+    .btn-big { text-decoration: none; background: var(--orange-btn); color: var(--white); font-size: 16px; font-weight: 600; padding: 14px 32px; border-radius: 10px; }
+    .btn-big:hover { background: var(--orange-dark); }
+    .free-note { font-size: 13px; color: var(--muted); }
+    .free-note strong { color: var(--green); }
+
+    /* Orbit visual */
+    .orbit-wrap { display: flex; justify-content: center; }
+    .orbit { position: relative; width: 400px; height: 400px; }
+    .orbit::before { content: ""; position: absolute; inset: 26px; border: 1.5px dashed rgba(15,35,54,0.18); border-radius: 50%; animation: spin 60s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .suite-card {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      background: var(--white); border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: 0 18px 44px rgba(15,35,54,0.14); padding: 20px 26px; text-align: center; z-index: 2;
+    }
+    .suite-card .sc-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .suite-card .sc-num { margin-top: 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+    .suite-card .sc-addr { margin-top: 4px; font-size: 12px; color: var(--muted); }
+    .orb {
+      position: absolute; width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 26px;
+      background: var(--white); border: 1px solid var(--border);
+      box-shadow: 0 10px 26px rgba(15,35,54,0.12); z-index: 1;
+    }
+    .orb small { position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .orb.o1 { top: -4px; left: 50%; transform: translateX(-50%); }
+    .orb.o2 { top: 24%; right: -8px; }
+    .orb.o3 { bottom: 10%; right: 10%; }
+    .orb.o4 { bottom: 10%; left: 10%; }
+    .orb.o5 { top: 24%; left: -8px; }
+    .orb.add { background: var(--orange-soft); border: 1.5px dashed var(--orange); color: var(--orange); font-size: 28px; font-weight: 500; bottom: -14px; left: 50%; transform: translateX(-50%); }
+
+    /* Anyone-you-trust band */
+    .truth { background: var(--navy); color: var(--white); padding: 76px 32px; text-align: center; }
+    .truth h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; max-width: 700px; margin: 0 auto; line-height: 1.3; }
+    .truth h2 .orange { color: var(--orange-btn); }
+    .truth p { margin: 16px auto 0; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.72); max-width: 560px; }
+
+    /* 30-second add */
+    .add-demo { max-width: 1060px; margin: 0 auto; padding: 88px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .add-copy h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+    .add-copy p { margin-top: 16px; font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 440px; }
+    .add-points { margin-top: 24px; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .add-points li { font-size: 14.5px; padding-left: 30px; position: relative; line-height: 1.5; }
+    .add-points li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--blue-light); color: var(--blue); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .form-mock { background: var(--white); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 20px 50px rgba(15,35,54,0.1); padding: 30px; }
+    .form-mock h3 { font-size: 16px; font-weight: 600; }
+    .fm-sub { margin-top: 4px; font-size: 12.5px; color: var(--muted); }
+    .fm-fields { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .fm-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fm-field { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+    .fm-field label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    .fm-field div { margin-top: 3px; font-size: 14px; font-weight: 500; }
+    .fm-btn { margin-top: 18px; width: 100%; border: none; cursor: pointer; font-family: inherit; background: var(--navy); color: var(--white); font-size: 14.5px; font-weight: 600; padding: 13px; border-radius: 10px; }
+    .fm-added { margin-top: 16px; display: flex; align-items: center; gap: 10px; background: #effaf3; border: 1px solid rgba(30,158,90,0.25); border-radius: 10px; padding: 11px 14px; font-size: 13px; color: #14713f; }
+
+    /* Savings proof strip */
+    .proof { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 68px 32px; text-align: center; }
+    .proof h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .proof-cards { margin-top: 38px; display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; }
+    .proof-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px 30px; min-width: 190px; }
+    .proof-card .pc-n { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .proof-card .pc-price { margin-top: 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+    .proof-card .pc-save { margin-top: 8px; display: inline-block; font-size: 12.5px; font-weight: 700; border-radius: 999px; padding: 4px 12px; }
+    .pc-save.none { color: var(--muted); background: var(--off-white); }
+    .pc-save.mid { color: var(--white); background: var(--orange-btn); }
+    .pc-save.top { color: var(--white); background: var(--green); }
+    .proof .fineprint { margin-top: 26px; font-size: 11.5px; color: var(--navy-50); }
+
+    /* Final */
+    .final { text-align: center; padding: 92px 32px; }
+    .final h2 { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+    .final p { margin: 14px auto 0; font-size: 15px; color: var(--muted); max-width: 460px; line-height: 1.65; }
+    .final .btn-big { display: inline-block; margin-top: 30px; }
+
+    @media (max-width: 900px) {
+      .site-nav { display: none; }
+      .header-inner { padding: 0 16px; height: 60px; }
+      .btn-login { display: none; }
+      .hero { padding: 48px 20px 64px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero h1 { font-size: 32px; }
+      .orbit { width: 320px; height: 320px; }
+      .add-demo { grid-template-columns: 1fr; gap: 40px; padding: 64px 20px; }
+      .truth, .proof { padding: 56px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="MyUS home">
+      <img src="logo.svg" alt="MyUS" style="height:32px;width:auto;display:block;" />
+    </a>
+    <nav class="site-nav">
+      <a href="#">How it works</a>
+      <a href="#">Why choose MyUS</a>
+      <a href="#">Shipping rates</a>
+      <a href="#">Shop with MyUS</a>
+      <a href="family.html" class="active">MyUS Family</a>
+    </nav>
+    <div class="header-actions">
+      <a href="MyUS%20Logged%20in/index.html" class="btn-login">Log in</a>
+      <a href="confirmation.html" class="btn-signup">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO: one suite, your whole circle -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">MyUS Family · Free for all members</div>
+      <h1>One US address.<br /><span class="orange">Your whole circle.</span></h1>
+      <p>MyUS Family lets anyone you trust shop US stores and ship to your suite — so you combine packages, split one shipping bill, and everybody saves. Family by name, open to everyone you choose.</p>
+      <div class="who-chips">
+        <span class="chip hot">Family</span>
+        <span class="chip">Friends</span>
+        <span class="chip">Roommates</span>
+        <span class="chip">Neighbors</span>
+        <span class="chip">Coworkers</span>
+        <span class="chip">Your book club</span>
+        <span class="chip">+ anyone you trust</span>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn-big" href="confirmation.html">Build your circle — free</a>
+        <span class="free-note"><strong>$0</strong> on every plan</span>
+      </div>
+    </div>
+
+    <div class="orbit-wrap" aria-hidden="true">
+      <div class="orbit">
+        <div class="suite-card">
+          <div class="sc-label">Your MyUS suite</div>
+          <div class="sc-num">Suite 4581-C</div>
+          <div class="sc-addr">Sarasota, FL · USA</div>
+        </div>
+        <div class="orb o1">👩<small>Sister</small></div>
+        <div class="orb o2">🧔<small>Best friend</small></div>
+        <div class="orb o3">👵<small>Mom</small></div>
+        <div class="orb o4">🧑<small>Roommate</small></div>
+        <div class="orb o5">👨<small>Neighbor</small></div>
+        <div class="orb add">+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUTH BAND -->
+<section class="truth">
+  <h2>"Family" is just what we call it.<br /><span class="orange">You decide who's in.</span></h2>
+  <p>There's no relation required and nothing to verify. You add people to your account, their packages arrive in your suite, and you stay in control — every shipment is reviewed, combined, and sent by you.</p>
+</section>
+
+<!-- 30-SECOND ADD -->
+<section class="add-demo">
+  <div class="add-copy">
+    <h2>Adding someone takes about 30 seconds</h2>
+    <p>No forms about addresses, IDs, or plans. Three fields and they're in — shopping US stores with your suite address the same day.</p>
+    <ul class="add-points">
+      <li>Just first name, last name, and email</li>
+      <li>Add as many people as you like — it's free on every plan</li>
+      <li>Edit or remove anyone from your circle, anytime</li>
+      <li>You approve and send every shipment — nothing ships without you</li>
+    </ul>
+  </div>
+  <div class="form-mock" aria-hidden="true">
+    <h3>Add to your Family</h3>
+    <div class="fm-sub">They'll be able to ship packages to your suite.</div>
+    <div class="fm-fields">
+      <div class="fm-row">
+        <div class="fm-field"><label>First name</label><div>Maya</div></div>
+        <div class="fm-field"><label>Last name</label><div>Haddad</div></div>
+      </div>
+      <div class="fm-field"><label>Email</label><div>maya@example.com</div></div>
+    </div>
+    <button class="fm-btn" type="button">Add Maya to your Family</button>
+    <div class="fm-added">✓&nbsp; Tariq Haddad was added 2 minutes ago</div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<section class="proof">
+  <h2>The bigger the circle, the smaller the bill</h2>
+  <div class="proof-cards">
+    <div class="proof-card">
+      <div class="pc-n">Shipping alone</div>
+      <div class="pc-price">$27.84</div>
+      <span class="pc-save none">per person</span>
+    </div>
+    <div class="proof-card">
+      <div class="pc-n">Circle of 2</div>
+      <div class="pc-price">$14.07</div>
+      <span class="pc-save mid">Save 50%</span>
+    </div>
+    <div class="proof-card">
+      <div class="pc-n">Circle of 3</div>
+      <div class="pc-price">$9.93</div>
+      <span class="pc-save mid">Save 64%</span>
+    </div>
+    <div class="proof-card">
+      <div class="pc-n">Circle of 4</div>
+      <div class="pc-price">$7.69</div>
+      <span class="pc-save top">Save 72%</span>
+    </div>
+  </div>
+  <p class="fineprint">*Savings based on splitting shipping costs equally from the US to Saudi Arabia via DHL. Actual savings will vary.</p>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <h2>Who's in your circle?</h2>
+  <p>Start with one person — a sibling, a neighbor, a friend abroad. Your first invite takes less than a minute.</p>
+  <a class="btn-big" href="confirmation.html">Sign Up Now, It's FREE</a>
+</section>
+
+<div class="switcher" aria-label="Exploration switcher">
+  <a href="family.html">⌂<span class="tip"><span class="tip-group">Hub</span><strong>All explorations</strong><span>Overview of both rounds — three quick explorations (Group A) and three presentation-ready concepts from the PM brief (Group B).</span></span></a>
+  <a href="family-b.html">A2<span class="tip"><span class="tip-group">Group A · quick exploration</span><strong>The Math</strong><span>The price is the hero, Spotify-style: an interactive people picker drops the per-person cost live. Tests whether pure savings math — and answering “too good to be true” head-on — is enough to convert.</span></span></a>
+  <a href="family-c.html" class="on">A3<span class="tip"><span class="tip-group">Group A · quick exploration</span><strong>The Circle</strong><span>Attacks the “family” misnomer from the meeting: one suite orbited by friends, roommates, neighbors. Tests whether widening “who counts” removes the biggest sign-up hesitation.</span></span></a>
+  <span class="sep"></span>
+  <a href="family-d.html">B1 ★<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Savings First · ★ Primary candidate</strong><span>Full-page concept where the financial benefit leads: packages-to-one-box hero, savings progression with a falling cost curve, case study, trust callout, full FAQ. Answers: “How much can I save?”</span></span></a>
+  <a href="family-e.html">B2<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Human Story</strong><span>People before numbers: meet Maya's MyUS Family, follow their carts into one consolidated shipment, then reveal the savings as a transformation. Answers: “How would someone like me actually use this?”</span></span></a>
+  <a href="family-f.html">B3<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Shipping Group</strong><span>Product-led, SaaS-onboarding feel: group-builder hero, working savings calculator, add-person form and member management preview. Answers: “What exactly am I creating and how does it work?”</span></span></a>
+</div>
+
+</body>
+</html>

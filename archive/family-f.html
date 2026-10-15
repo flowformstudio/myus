@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyUS Family — Concept C · Shipping Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:        #0f2336;
+      --navy-80:     rgba(15,35,54,0.8);
+      --navy-50:     rgba(15,35,54,0.5);
+      --navy-20:     rgba(15,35,54,0.12);
+      --orange:      #ff7a00;
+      --orange-btn:  #ff981f;
+      --orange-dark: #e06900;
+      --orange-soft: #fff3e4;
+      --blue:        #1985e3;
+      --blue-light:  #eaf4fd;
+      --blue-mid:    #d0e8fa;
+      --muted:       #5f6b78;
+      --border:      rgba(15,35,54,0.1);
+      --white:       #ffffff;
+      --off-white:   #f7f9fc;
+      --green:       #1e9e5a;
+      --green-soft:  #e9f7ef;
+    }
+    body { font-family: 'Poppins', system-ui, sans-serif; color: var(--navy); background: var(--white); -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); border-bottom: 1px solid var(--navy-20); }
+    .header-inner { max-width: 1280px; margin: 0 auto; height: 72px; padding: 0 32px; display: flex; align-items: center; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .site-nav { display: flex; gap: 4px; margin-left: 8px; flex: 1; }
+    .site-nav a { text-decoration: none; color: var(--navy-80); font-size: 14.5px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+    .site-nav a:hover { color: var(--navy); background: var(--off-white); }
+    .site-nav a.active { color: var(--navy); font-weight: 600; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-login { text-decoration: none; color: var(--navy); font-size: 14.5px; font-weight: 600; padding: 9px 18px; border-radius: 8px; }
+    .btn-login:hover { background: var(--off-white); }
+    .btn-signup { text-decoration: none; color: var(--white); background: var(--orange-btn); font-size: 14.5px; font-weight: 600; padding: 10px 20px; border-radius: 8px; }
+    .btn-signup:hover { background: var(--orange-dark); }
+
+    .btn-primary { display: inline-block; text-decoration: none; background: var(--orange-btn); color: var(--white); font-size: 16px; font-weight: 600; padding: 15px 32px; border-radius: 10px; transition: background .15s; border: none; cursor: pointer; font-family: inherit; }
+    .btn-primary:hover { background: var(--orange-dark); }
+    .btn-ghost { display: inline-block; text-decoration: none; color: var(--navy); font-size: 15.5px; font-weight: 600; padding: 14px 28px; border-radius: 10px; border: 1.5px solid var(--navy-20); }
+    .btn-ghost:hover { border-color: var(--navy); background: var(--off-white); }
+
+    /* Switcher */
+    .switcher { position: fixed; bottom: 20px; right: 20px; z-index: 60; display: flex; align-items: center; gap: 4px; background: var(--white); border: 1px solid var(--navy-20); border-radius: 999px; padding: 6px; box-shadow: 0 8px 30px rgba(15,35,54,0.18); }
+    .switcher a { min-width: 32px; height: 32px; padding: 0 6px; display: flex; align-items: center; justify-content: center; border-radius: 999px; text-decoration: none; font-size: 12.5px; font-weight: 600; color: var(--navy-80); }
+    .switcher a:hover { background: var(--off-white); }
+    .switcher a.on { background: var(--navy); color: var(--white); }
+    .switcher .tip { position: absolute; bottom: calc(100% + 14px); right: 0; width: 320px; background: var(--navy); color: var(--white); border-radius: 14px; padding: 15px 18px; font-size: 12.5px; font-weight: 400; line-height: 1.55; text-align: left; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .16s, transform .16s, visibility .16s; pointer-events: none; box-shadow: 0 16px 44px rgba(15,35,54,0.3); z-index: 61; }
+    .switcher a:hover .tip { opacity: 1; visibility: visible; transform: none; }
+    .switcher .tip .tip-group { display: block; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-btn); }
+    .switcher .tip strong { display: block; font-size: 13.5px; font-weight: 600; margin: 4px 0 6px; }
+    .switcher .tip span { color: rgba(255,255,255,0.75); }
+
+    .switcher .sep { width: 1px; height: 18px; background: var(--navy-20); margin: 0 3px; }
+
+    /* HERO */
+    .hero { background: var(--off-white); border-bottom: 1px solid var(--border); padding: 76px 0 88px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+    .hero h1 { margin-top: 16px; font-size: 46px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.13; }
+    .hero-sub { margin-top: 20px; font-size: 16px; line-height: 1.65; color: var(--muted); max-width: 480px; }
+    .hero-ctas { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+
+    /* Orbit hero (merged from exploration A3) */
+    .orbit-wrap { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    .orbit { position: relative; width: 380px; height: 380px; }
+    .orbit::before { content: ""; position: absolute; inset: 26px; border: 1.5px dashed rgba(15,35,54,0.18); border-radius: 50%; animation: orbit-spin 60s linear infinite; }
+    @keyframes orbit-spin { to { transform: rotate(360deg); } }
+    .suite-card { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: var(--white); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 18px 44px rgba(15,35,54,0.14); padding: 18px 24px; text-align: center; z-index: 2; }
+    .suite-card .sc-label { font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .suite-card .sc-num { margin-top: 5px; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+    .suite-card .sc-addr { margin-top: 3px; font-size: 11.5px; color: var(--muted); }
+    .orb { position: absolute; width: 62px; height: 62px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; color: var(--white); box-shadow: 0 10px 26px rgba(15,35,54,0.16); z-index: 1; }
+    .orb small { position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .orb.o1 { top: -2px; left: 50%; transform: translateX(-50%); background: var(--navy); }
+    .orb.o2 { top: 26%; right: -6px; background: #1985e3; }
+    .orb.o3 { bottom: 8%; right: 12%; background: #7c5cd6; }
+    .orb.o4 { bottom: 8%; left: 12%; background: #1e9e5a; }
+    .orb.add { top: 26%; left: -6px; background: var(--orange-soft); border: 1.5px dashed var(--orange); color: var(--orange); font-size: 26px; font-weight: 500; box-shadow: none; }
+    .orbit-stats { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 999px; padding: 10px 20px; box-shadow: 0 10px 30px rgba(15,35,54,0.08); font-size: 13.5px; font-weight: 600; }
+    .orbit-stats .os-price { color: var(--orange); font-size: 16px; }
+    .orbit-stats .os-save { font-size: 11.5px; font-weight: 700; color: var(--white); background: var(--green); border-radius: 999px; padding: 4px 11px; }
+
+    /* Group builder card */
+    .builder { background: var(--white); border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 24px 60px rgba(15,35,54,0.12); padding: 28px; }
+    .builder h2 { font-size: 16px; font-weight: 600; }
+    .b-sub { margin-top: 3px; font-size: 12.5px; color: var(--muted); }
+    .b-members { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; }
+    .b-member { display: flex; align-items: center; gap: 12px; border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; }
+    .b-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: var(--white); flex-shrink: 0; }
+    .bv-1 { background: var(--navy); } .bv-2 { background: #1985e3; } .bv-3 { background: #7c5cd6; } .bv-4 { background: #1e9e5a; }
+    .b-name { font-size: 14px; font-weight: 600; flex: 1; }
+    .b-name small { display: block; font-size: 11px; font-weight: 500; color: var(--muted); }
+    .b-role { font-size: 11px; font-weight: 600; color: var(--blue); background: var(--blue-light); border-radius: 999px; padding: 3px 10px; }
+    .b-pkg { font-size: 16px; }
+    .b-stats { margin-top: 18px; background: var(--off-white); border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .bs { text-align: center; }
+    .bs .n { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+    .bs .n.orange { color: var(--orange); }
+    .bs .l { margin-top: 1px; font-size: 11px; color: var(--muted); }
+    .b-save { font-size: 12.5px; font-weight: 700; color: var(--white); background: var(--green); border-radius: 999px; padding: 6px 13px; }
+
+    /* Section head */
+    .sec-head { text-align: center; max-width: 660px; margin: 0 auto; }
+    .sec-head h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; }
+    .sec-head p { margin-top: 14px; font-size: 15.5px; line-height: 1.65; color: var(--muted); }
+
+    /* SECTION 2: calculator */
+    .calcsec { padding: 96px 0; }
+    .calc-mod { margin: 52px auto 0; max-width: 880px; background: var(--white); border: 1px solid var(--border); border-radius: 22px; box-shadow: 0 20px 50px rgba(15,35,54,0.09); display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+    .calc-controls { padding: 34px; border-right: 1px solid var(--border); }
+    .ctrl { margin-bottom: 24px; }
+    .ctrl label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .stepper { display: inline-flex; align-items: center; gap: 18px; border: 1.5px solid var(--border); border-radius: 12px; padding: 8px 12px; }
+    .stepper button { width: 34px; height: 34px; border: none; border-radius: 9px; background: var(--off-white); color: var(--navy); font-size: 19px; font-weight: 600; cursor: pointer; font-family: inherit; }
+    .stepper button:hover { background: var(--blue-light); color: var(--blue); }
+    .stepper .val { font-size: 20px; font-weight: 700; min-width: 30px; text-align: center; }
+    .ctrl-static { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--border); border-radius: 12px; padding: 13px 16px; font-size: 14.5px; font-weight: 500; }
+    .ctrl-static .flag { font-size: 18px; }
+    .calc-out { padding: 34px; background: var(--off-white); display: flex; flex-direction: column; justify-content: center; }
+    .co-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; color: var(--muted); padding: 7px 0; }
+    .co-row strong { color: var(--navy); font-size: 15px; }
+    .co-big { margin-top: 14px; padding-top: 18px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; }
+    .co-big .cb-label { font-size: 13px; color: var(--muted); }
+    .co-big .cb-price { font-size: 44px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .co-big .cb-save { font-size: 26px; font-weight: 700; color: var(--green); }
+    .calc-fine { margin-top: 20px; text-align: center; font-size: 12px; color: var(--navy-50); }
+    .calc-cta-row { margin-top: 32px; text-align: center; }
+
+    /* SECTION 3: build your group (account UI preview) */
+    .buildsec { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 0; }
+    .build-grid { margin-top: 52px; display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
+    .build-copy h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+    .build-copy p { margin-top: 12px; font-size: 14.5px; line-height: 1.7; color: var(--muted); max-width: 420px; }
+    .build-points { margin-top: 22px; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .build-points li { font-size: 14px; line-height: 1.55; padding-left: 28px; position: relative; color: var(--navy-80); }
+    .build-points li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 19px; height: 19px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .acct-ui { background: var(--white); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 20px 50px rgba(15,35,54,0.1); padding: 28px; }
+    .acct-ui h4 { font-size: 15.5px; font-weight: 600; }
+    .au-form { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr 1.4fr auto; gap: 10px; }
+    .au-field { border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+    .au-field label { display: block; font-size: 9.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+    .au-field div { margin-top: 2px; font-size: 13px; font-weight: 500; }
+    .au-add { border: none; cursor: pointer; font-family: inherit; background: var(--navy); color: var(--white); font-size: 13px; font-weight: 600; border-radius: 10px; padding: 0 18px; }
+    .au-members { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .au-member { display: flex; align-items: center; gap: 13px; border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; }
+    .au-member .b-av { width: 38px; height: 38px; }
+    .au-m-info { flex: 1; }
+    .au-m-name { font-size: 14px; font-weight: 600; }
+    .au-m-email { font-size: 12px; color: var(--muted); }
+    .au-actions { display: flex; gap: 6px; }
+    .au-actions button { border: 1px solid var(--border); background: var(--white); border-radius: 8px; padding: 6px 13px; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; color: var(--navy-80); }
+    .au-actions button:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+    .au-actions button.rm:hover { border-color: #c0553a; color: #c0553a; background: #fdf0ec; }
+
+    /* SECTION 4: how your group works */
+    .process { padding: 96px 0; }
+    .proc-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .proc-grid::before { content: ""; position: absolute; top: 29px; left: 12%; right: 12%; height: 2px; background: var(--navy-20); }
+    .proc-step { text-align: center; padding: 0 18px; position: relative; }
+    .proc-dot { width: 58px; height: 58px; margin: 0 auto; border-radius: 50%; background: var(--white); border: 2px solid var(--navy-20); display: flex; align-items: center; justify-content: center; font-size: 24px; position: relative; z-index: 1; }
+    .proc-step.hot .proc-dot { border-color: var(--orange-btn); background: var(--orange-soft); }
+    .proc-step h3 { margin-top: 16px; font-size: 16.5px; font-weight: 600; }
+    .proc-step p { margin-top: 7px; font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+
+    /* SECTION 5: comparison */
+    .compare { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 0; }
+    .cmp-grid { margin-top: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 26px; max-width: 920px; margin-left: auto; margin-right: auto; }
+    .cmp-card { border-radius: 20px; padding: 34px; border: 1px solid var(--border); background: var(--white); }
+    .cmp-card.hot { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .cmp-tag { font-size: 11.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .cmp-card.hot .cmp-tag { color: var(--orange-btn); }
+    .cmp-list { margin-top: 20px; list-style: none; display: flex; flex-direction: column; gap: 13px; }
+    .cmp-list li { font-size: 14.5px; line-height: 1.5; padding-left: 27px; position: relative; }
+    .cmp-card .cmp-list li { color: var(--muted); }
+    .cmp-card .cmp-list li::before { content: "✕"; position: absolute; left: 0; color: #c0553a; font-weight: 700; }
+    .cmp-card.hot .cmp-list li { color: rgba(255,255,255,0.85); }
+    .cmp-card.hot .cmp-list li::before { content: "✓"; color: #57c584; }
+    .cmp-price { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+    .cmp-card.hot .cmp-price { border-top-color: rgba(255,255,255,0.15); color: var(--orange-btn); }
+    .cmp-price small { font-size: 13px; font-weight: 500; color: var(--muted); }
+    .cmp-card.hot .cmp-price small { color: rgba(255,255,255,0.6); }
+    .cmp-badge { display: inline-block; margin-top: 14px; font-size: 12.5px; font-weight: 700; color: var(--white); background: var(--green); border-radius: 999px; padding: 5px 13px; }
+
+    /* SECTION 6: who can be in your group */
+    .naming { padding: 96px 0; text-align: center; }
+    .naming h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; }
+    .naming .n-sub { margin: 14px auto 0; font-size: 15.5px; color: var(--muted); max-width: 520px; line-height: 1.65; }
+    .n-chips { margin-top: 34px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .n-chip { display: inline-flex; align-items: center; gap: 9px; border: 1.5px solid var(--border); border-radius: 999px; padding: 11px 20px; font-size: 14.5px; font-weight: 500; cursor: default; transition: border-color .15s, background .15s; }
+    .n-chip:hover { border-color: var(--blue); background: var(--blue-light); }
+    .n-quote { margin: 40px auto 0; font-size: 22px; font-weight: 600; color: var(--orange); letter-spacing: -0.01em; }
+
+    /* SECTION 7: owner control */
+    .control { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 96px 0; }
+    .ctl-grid { margin-top: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .ctl-copy h3 { font-size: 22px; font-weight: 700; }
+    .ctl-copy p { margin-top: 12px; font-size: 14.5px; line-height: 1.7; color: var(--muted); max-width: 420px; }
+    .dash { background: var(--white); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 20px 50px rgba(15,35,54,0.1); overflow: hidden; }
+    .dash-top { background: var(--navy); color: var(--white); padding: 14px 22px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
+    .dash-top .dt-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .dash-body { padding: 22px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .dash-fn { display: flex; align-items: center; gap: 11px; border: 1px solid var(--border); border-radius: 12px; padding: 13px 16px; font-size: 13.5px; font-weight: 600; }
+    .dash-fn span { font-size: 17px; }
+
+    /* FAQ */
+    .faq { padding: 96px 0; }
+    .faq-list { margin-top: 44px; max-width: 780px; margin-left: auto; margin-right: auto; display: flex; flex-direction: column; gap: 12px; }
+    details { background: var(--off-white); border: 1px solid var(--border); border-radius: 12px; padding: 0 22px; }
+    summary { list-style: none; cursor: pointer; padding: 18px 0; font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 20px; font-weight: 400; color: var(--blue); flex-shrink: 0; }
+    details[open] summary::after { content: "–"; }
+    details p { padding: 0 0 18px; font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* FINAL */
+    .final { background: linear-gradient(160deg, #0f2336, #1a3d5c); color: var(--white); text-align: center; padding: 88px 32px; }
+    .final h2 { font-size: 38px; font-weight: 700; letter-spacing: -0.02em; }
+    .final p { margin: 16px auto 0; font-size: 15.5px; color: rgba(255,255,255,0.72); max-width: 460px; line-height: 1.65; }
+    .final .btn-primary { margin-top: 30px; }
+
+    /* Footer */
+    .footer { background: #0b1a29; color: rgba(255,255,255,0.55); padding: 36px 32px; }
+    .footer-inner { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 13px; }
+    .footer-links { display: flex; gap: 22px; }
+    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .site-nav { display: none; }
+      .header-inner { padding: 0 16px; height: 60px; }
+      .btn-login { display: none; }
+      .container { padding: 0 20px; }
+      .hero { padding: 44px 0 60px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero h1 { font-size: 32px; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-ghost { width: 100%; text-align: center; }
+      .sec-head h2, .naming h2 { font-size: 27px; }
+      .calcsec, .buildsec, .process, .compare, .naming, .control, .faq { padding: 64px 0; }
+      .calc-mod { grid-template-columns: 1fr; }
+      .calc-controls { border-right: none; border-bottom: 1px solid var(--border); }
+      .build-grid, .ctl-grid { grid-template-columns: 1fr; gap: 36px; }
+      .au-form { grid-template-columns: 1fr 1fr; }
+      .au-form .au-field:nth-child(3) { grid-column: 1 / -1; }
+      .au-add { grid-column: 1 / -1; padding: 12px; }
+      .proc-grid { grid-template-columns: 1fr; gap: 32px; }
+      .proc-grid::before { display: none; }
+      .cmp-grid { grid-template-columns: 1fr; }
+      .final h2 { font-size: 28px; }
+      .final .btn-primary { width: 100%; max-width: 380px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="MyUS home">
+      <img src="logo.svg" alt="MyUS" style="height:32px;width:auto;display:block;" />
+    </a>
+    <nav class="site-nav">
+      <a href="#">How it works</a>
+      <a href="#">Why choose MyUS</a>
+      <a href="#">Shipping rates</a>
+      <a href="#">Shop with MyUS</a>
+      <a href="family.html" class="active">MyUS Family</a>
+    </nav>
+    <div class="header-actions">
+      <a href="MyUS%20Logged%20in/index.html" class="btn-login">Log in</a>
+      <a href="confirmation.html" class="btn-signup">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">MyUS Family</div>
+      <h1>Create your shipping group.</h1>
+      <p class="hero-sub">Invite people you trust to shop using your MyUS suite. Combine eligible packages into one international shipment and make shipping more affordable for everyone.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="confirmation.html">Create Your Group</a>
+        <a class="btn-ghost" href="#calc">Calculate Your Savings</a>
+      </div>
+    </div>
+
+    <div class="orbit-wrap" aria-label="Shipping group preview">
+      <div class="orbit">
+        <div class="suite-card">
+          <div class="sc-label">Your shipping group</div>
+          <div class="sc-num">Suite 4581-C</div>
+          <div class="sc-addr">Sarasota, FL · USA</div>
+        </div>
+        <div class="orb o1">IG<small>You · Owner</small></div>
+        <div class="orb o2">SM<small>Sarah</small></div>
+        <div class="orb o3">AC<small>Alex</small></div>
+        <div class="orb o4">MH<small>Maya</small></div>
+        <div class="orb add">+</div>
+      </div>
+      <div class="orbit-stats">
+        <span>4 people</span>
+        <span class="os-price">$7.69</span>
+        <span>est. / person</span>
+        <span class="os-save">72% savings</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: CALCULATOR -->
+<section class="calcsec" id="calc">
+  <div class="container">
+    <div class="sec-head">
+      <h2>See what shipping together could look like.</h2>
+    </div>
+
+    <div class="calc-mod">
+      <div class="calc-controls">
+        <div class="ctrl">
+          <label>People in group</label>
+          <div class="stepper">
+            <button type="button" id="minus" aria-label="Fewer people">−</button>
+            <span class="val" id="nPeople">4</span>
+            <button type="button" id="plus" aria-label="More people">+</button>
+          </div>
+        </div>
+        <div class="ctrl">
+          <label>Shipment weight</label>
+          <div class="ctrl-static">⚖️ <span id="weightLabel">4 lbs</span></div>
+        </div>
+        <div class="ctrl" style="margin-bottom:0;">
+          <label>Destination</label>
+          <div class="ctrl-static"><span class="flag">🇸🇦</span> Saudi Arabia · DHL</div>
+        </div>
+      </div>
+      <div class="calc-out">
+        <div class="co-row"><span>Estimated shipment</span><strong id="totalOut">$30.77</strong></div>
+        <div class="co-row"><span>Split between</span><strong id="splitOut">4 people</strong></div>
+        <div class="co-big">
+          <div>
+            <div class="cb-label">Estimated cost / person</div>
+            <div class="cb-price" id="perOut">$7.69</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="cb-label">Estimated savings</div>
+            <div class="cb-save" id="saveOut">72%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="calc-fine">Illustrative shipping example. Actual rates vary.</p>
+    <div class="calc-cta-row"><a class="btn-primary" href="confirmation.html">Create Your Group</a></div>
+  </div>
+</section>
+
+<!-- SECTION 3: BUILD YOUR GROUP -->
+<section class="buildsec">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Add people in seconds.</h2>
+    </div>
+    <div class="build-grid">
+      <div class="build-copy">
+        <h3>Three fields. That's the whole form.</h3>
+        <p>This is exactly how it works inside your MyUS account — no addresses, IDs, or extra paperwork for the people you add.</p>
+        <ul class="build-points">
+          <li>First name, last name, and email address</li>
+          <li>Edit a member's details anytime</li>
+          <li>Remove someone whenever you need to</li>
+          <li>Free on every membership plan</li>
+        </ul>
+      </div>
+      <div class="acct-ui" aria-label="Account UI preview">
+        <h4>MyUS Family</h4>
+        <div class="au-form">
+          <div class="au-field"><label>First name</label><div>Jordan</div></div>
+          <div class="au-field"><label>Last name</label><div>Lee</div></div>
+          <div class="au-field"><label>Email address</label><div>jordan@example.com</div></div>
+          <button class="au-add" type="button">Add person</button>
+        </div>
+        <div class="au-members">
+          <div class="au-member">
+            <div class="b-av bv-2">SM</div>
+            <div class="au-m-info"><div class="au-m-name">Sarah Miller</div><div class="au-m-email">sarah@example.com</div></div>
+            <div class="au-actions"><button type="button">Edit</button><button type="button" class="rm">Remove</button></div>
+          </div>
+          <div class="au-member">
+            <div class="b-av bv-3">AC</div>
+            <div class="au-m-info"><div class="au-m-name">Alex Chen</div><div class="au-m-email">alex@example.com</div></div>
+            <div class="au-actions"><button type="button">Edit</button><button type="button" class="rm">Remove</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: HOW YOUR GROUP WORKS -->
+<section class="process">
+  <div class="container">
+    <div class="sec-head">
+      <h2>How your group works</h2>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-step"><div class="proc-dot">✉️</div><h3>Invite</h3><p>Add trusted people to your MyUS Family.</p></div>
+      <div class="proc-step"><div class="proc-dot">📥</div><h3>Receive</h3><p>Their packages arrive at your MyUS suite.</p></div>
+      <div class="proc-step"><div class="proc-dot">📦</div><h3>Consolidate</h3><p>Choose eligible packages to combine.</p></div>
+      <div class="proc-step hot"><div class="proc-dot">✈️</div><h3>Ship</h3><p>Create the international shipment from your primary MyUS account.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: WHY GROUP SHIPPING WORKS -->
+<section class="compare">
+  <div class="container">
+    <div class="sec-head">
+      <h2>One shipment is often better than many.</h2>
+    </div>
+    <div class="cmp-grid">
+      <div class="cmp-card">
+        <div class="cmp-tag">Without MyUS Family</div>
+        <ul class="cmp-list">
+          <li>4 shoppers</li>
+          <li>4 separate international shipments</li>
+          <li>Repeated shipping charges</li>
+        </ul>
+        <div class="cmp-price">$27.84 <small>/ person at the 1 lb example rate</small></div>
+      </div>
+      <div class="cmp-card hot">
+        <div class="cmp-tag">With MyUS Family</div>
+        <ul class="cmp-list">
+          <li>4 shoppers</li>
+          <li>1 consolidated shipment</li>
+          <li>Shared shipping cost</li>
+        </ul>
+        <div class="cmp-price">$7.69 <small>/ person estimated</small></div>
+        <span class="cmp-badge">72% savings in this example</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: WHO CAN BE IN YOUR GROUP -->
+<section class="naming">
+  <div class="container">
+    <h2>Family is just the name.</h2>
+    <p class="n-sub">Your group can include family members, friends, neighbors, partners, or other people you trust.</p>
+    <div class="n-chips">
+      <span class="n-chip">👨‍👩‍👧 Family members</span>
+      <span class="n-chip">🤝 Friends</span>
+      <span class="n-chip">🏡 Neighbors</span>
+      <span class="n-chip">💛 Partners</span>
+      <span class="n-chip">🛋️ Roommates</span>
+      <span class="n-chip">🛍️ Trusted shopping groups</span>
+    </div>
+    <div class="n-quote">"Family is whoever you ship with."</div>
+  </div>
+</section>
+
+<!-- SECTION 7: OWNER CONTROL -->
+<section class="control">
+  <div class="container">
+    <div class="ctl-grid">
+      <div class="ctl-copy">
+        <h3>You're in control.</h3>
+        <p>The primary MyUS member manages shipments and shipping charges. Everything about your group — who's in it, what ships, and when — runs through your account.</p>
+      </div>
+      <div class="dash" aria-label="Owner dashboard preview">
+        <div class="dash-top"><span class="dt-dot"></span> Your MyUS account · Suite 4581-C</div>
+        <div class="dash-body">
+          <div class="dash-fn"><span>➕</span> Add person</div>
+          <div class="dash-fn"><span>✏️</span> Edit details</div>
+          <div class="dash-fn"><span>🗑️</span> Remove person</div>
+          <div class="dash-fn"><span>📦</span> View packages</div>
+          <div class="dash-fn" style="grid-column: 1 / -1;"><span>✈️</span> Create shipment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="sec-head">
+      <h2>MyUS Family FAQ</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>Can I add friends instead of relatives?</summary>
+        <p>Yes. Your group can include anyone you trust — friends, neighbors, roommates, partners, or relatives.</p>
+      </details>
+      <details>
+        <summary>Does it cost extra to add someone?</summary>
+        <p>No. MyUS Family is included free with your MyUS membership, on every plan.</p>
+      </details>
+      <details>
+        <summary>Does everyone get their own MyUS login?</summary>
+        <p>Not currently. People you add can shop and send packages to your suite, but the account — and its shipments — stays managed by you as the primary member.</p>
+      </details>
+      <details>
+        <summary>Who pays for shipping?</summary>
+        <p>Shipping charges are billed through the primary MyUS account. How your group splits the cost afterward is up to you.</p>
+      </details>
+      <details>
+        <summary>How many people can I add?</summary>
+        <p>You can add as many people as you like, and edit or remove them at any time.</p>
+      </details>
+      <details>
+        <summary>Can everyone shop from different stores?</summary>
+        <p>Yes. Everyone shops independently from the US stores they prefer — packages simply arrive at the same MyUS suite.</p>
+      </details>
+      <details>
+        <summary>How does package consolidation work?</summary>
+        <p>When packages arrive at your suite, you choose eligible ones to combine into a single international shipment — usually reducing the total cost compared to sending them separately.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <h2>Start your shipping group.</h2>
+  <p>Add people you trust and make your next consolidated shipment go further.</p>
+  <a class="btn-primary" href="confirmation.html">Add People to MyUS Family</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 MyUS. All rights reserved.</div>
+    <div class="footer-links"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Help</a></div>
+  </div>
+</footer>
+
+<div class="switcher" aria-label="Exploration switcher">
+  <a href="family.html" title="All options">⌂<span class="tip"><span class="tip-group">Hub</span><strong>All options</strong><span>The final three directions for the stakeholder meeting, consolidated from six explorations.</span></span></a>
+  <a href="family-d.html">1 ★<span class="tip"><span class="tip-group">★ Primary candidate</span><strong>Option 1 · Savings First</strong><span>Savings-led and synthesis-aligned (Spotify clarity + Nintendo math). Now includes the interactive group-size picker absorbed from exploration A2. Answers: "How much can I save?"</span></span></a>
+  <a href="family-e.html">2<span class="tip"><span class="tip-group">People-first</span><strong>Option 2 · Human Story</strong><span>Maya’s cast makes the behavior feel normal before prices appear; savings land as the payoff. Answers: "How would someone like me use this?"</span></span></a>
+  <a href="family-g.html">4 ★<span class="tip"><span class="tip-group">★ From the 08/31 review</span><strong>Option 4 · The Meeting Cut</strong><span>Option 1 skeleton + the sections Karen and Bobby asked to keep. Static, dev-light.</span></span></a>
+  <a href="family-f.html" class="on">3<span class="tip"><span class="tip-group">Product-led</span><strong>Option 3 · Shipping Group</strong><span>Group-as-product with the orbit identity visual absorbed from exploration A3, live calculator, and a truthful account-UI preview. Answers: "What exactly am I creating?"</span></span></a>
+</div>
+
+<script>
+  // Rates from the live myus.com savings table (US → Saudi Arabia via DHL)
+  const RATES = {
+    1: { total: 27.84, per: 27.84, save: 0 },
+    2: { total: 28.14, per: 14.07, save: 50 },
+    3: { total: 29.79, per: 9.93,  save: 64 },
+    4: { total: 30.77, per: 7.69,  save: 72 },
+  };
+  let n = 4;
+  const els = {
+    n: document.getElementById('nPeople'),
+    weight: document.getElementById('weightLabel'),
+    total: document.getElementById('totalOut'),
+    split: document.getElementById('splitOut'),
+    per: document.getElementById('perOut'),
+    save: document.getElementById('saveOut'),
+  };
+  function render() {
+    const r = RATES[n];
+    els.n.textContent = n;
+    els.weight.textContent = n + (n === 1 ? ' lb' : ' lbs');
+    els.total.textContent = '$' + r.total.toFixed(2);
+    els.split.textContent = n + (n === 1 ? ' person' : ' people');
+    els.per.textContent = '$' + r.per.toFixed(2);
+    els.save.textContent = r.save + '%';
+  }
+  document.getElementById('minus').addEventListener('click', () => { if (n > 1) { n--; render(); } });
+  document.getElementById('plus').addEventListener('click', () => { if (n < 4) { n++; render(); } });
+</script>
+
+</body>
+</html>

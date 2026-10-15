@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyUS Family — Option A · The Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:        #0f2336;
+      --navy-80:     rgba(15,35,54,0.8);
+      --navy-50:     rgba(15,35,54,0.5);
+      --navy-20:     rgba(15,35,54,0.12);
+      --orange:      #ff7a00;
+      --orange-btn:  #ff981f;
+      --orange-dark: #e06900;
+      --blue:        #1985e3;
+      --blue-light:  #eaf4fd;
+      --muted:       #5f6b78;
+      --border:      rgba(15,35,54,0.1);
+      --white:       #ffffff;
+      --off-white:   #f7f9fc;
+      --green:       #1e9e5a;
+    }
+    body { font-family: 'Poppins', system-ui, sans-serif; color: var(--navy); background: var(--white); -webkit-font-smoothing: antialiased; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); border-bottom: 1px solid var(--navy-20); }
+    .header-inner { max-width: 1280px; margin: 0 auto; height: 72px; padding: 0 32px; display: flex; align-items: center; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .site-nav { display: flex; gap: 4px; margin-left: 8px; flex: 1; }
+    .site-nav a { text-decoration: none; color: var(--navy-80); font-size: 14.5px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+    .site-nav a:hover { color: var(--navy); background: var(--off-white); }
+    .site-nav a.active { color: var(--navy); font-weight: 600; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-login { text-decoration: none; color: var(--navy); font-size: 14.5px; font-weight: 600; padding: 9px 18px; border-radius: 8px; }
+    .btn-login:hover { background: var(--off-white); }
+    .btn-signup { text-decoration: none; color: var(--white); background: var(--orange-btn); font-size: 14.5px; font-weight: 600; padding: 10px 20px; border-radius: 8px; }
+    .btn-signup:hover { background: var(--orange-dark); }
+
+    /* Exploration switcher */
+    .switcher { position: fixed; bottom: 20px; right: 20px; z-index: 60; display: flex; gap: 6px; background: var(--white); border: 1px solid var(--navy-20); border-radius: 999px; padding: 6px; box-shadow: 0 8px 30px rgba(15,35,54,0.18); }
+    .switcher a { min-width: 32px; height: 32px; padding: 0 6px; display: flex; align-items: center; justify-content: center; border-radius: 999px; text-decoration: none; font-size: 12.5px; font-weight: 600; color: var(--navy-80); }
+    .switcher .sep { width: 1px; height: 18px; background: var(--navy-20); margin: 0 3px; }
+    .switcher a:hover { background: var(--off-white); }
+    .switcher a.on { background: var(--navy); color: var(--white); }
+    .switcher .tip { position: absolute; bottom: calc(100% + 14px); right: 0; width: 320px; background: var(--navy); color: var(--white); border-radius: 14px; padding: 15px 18px; font-size: 12.5px; font-weight: 400; line-height: 1.55; text-align: left; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .16s, transform .16s, visibility .16s; pointer-events: none; box-shadow: 0 16px 44px rgba(15,35,54,0.3); z-index: 61; }
+    .switcher a:hover .tip { opacity: 1; visibility: visible; transform: none; }
+    .switcher .tip .tip-group { display: block; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-btn); }
+    .switcher .tip strong { display: block; font-size: 13.5px; font-weight: 600; margin: 4px 0 6px; }
+    .switcher .tip span { color: rgba(255,255,255,0.75); }
+
+
+    /* Hero — dark, cinematic (Netflix pattern: one bold promise) */
+    .hero { background: linear-gradient(160deg, #0f2336 0%, #16324b 60%, #1a3d5c 100%); color: var(--white); padding: 88px 32px 96px; text-align: center; position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; inset: auto -20% -60% -20%; height: 400px; background: radial-gradient(ellipse at center, rgba(255,152,31,0.22), transparent 65%); pointer-events: none; }
+    .hero-eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #8fc4ef; margin-bottom: 20px; }
+    .hero h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; max-width: 780px; margin: 0 auto; }
+    .hero h1 .orange { color: var(--orange-btn); }
+    .hero p { margin: 22px auto 0; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.75); max-width: 560px; }
+    .hero-cta { margin-top: 34px; display: inline-flex; flex-direction: column; align-items: center; gap: 10px; position: relative; z-index: 1; }
+    .hero-cta .btn-big { text-decoration: none; background: var(--orange-btn); color: var(--white); font-size: 16.5px; font-weight: 600; padding: 15px 36px; border-radius: 10px; }
+    .hero-cta .btn-big:hover { background: var(--orange-dark); }
+    .hero-cta small { font-size: 12.5px; color: rgba(255,255,255,0.55); }
+
+    /* Story chapters */
+    .story { max-width: 880px; margin: 0 auto; padding: 88px 32px 40px; }
+    .story-kicker { text-align: center; margin-bottom: 64px; }
+    .story-kicker .eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+    .story-kicker h2 { margin-top: 12px; font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+    .story-kicker p { margin: 14px auto 0; font-size: 15.5px; color: var(--muted); line-height: 1.65; max-width: 540px; }
+
+    .chapter { display: grid; grid-template-columns: 56px 1fr; gap: 28px; position: relative; padding-bottom: 72px; }
+    .chapter:not(:last-child)::before { content: ""; position: absolute; left: 27px; top: 64px; bottom: 8px; width: 2px; background: linear-gradient(var(--navy-20), rgba(15,35,54,0.03)); }
+    .chapter-dot { width: 56px; height: 56px; border-radius: 50%; background: var(--blue-light); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+    .chapter-body h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+    .chapter-body h3 em { font-style: normal; color: var(--orange); }
+    .chapter-body p { margin-top: 10px; font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 560px; }
+
+    .price-strip { margin-top: 22px; display: flex; align-items: center; gap: 18px; background: var(--off-white); border: 1px solid var(--border); border-radius: 14px; padding: 16px 22px; max-width: 560px; }
+    .avatars { display: flex; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; border: 2.5px solid var(--white); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: var(--white); margin-left: -10px; }
+    .avatar:first-child { margin-left: 0; }
+    .av-1 { background: #1985e3; } .av-2 { background: #7c5cd6; } .av-3 { background: #1e9e5a; } .av-4 { background: #e0763a; }
+    .price-figures { flex: 1; display: flex; align-items: baseline; gap: 8px; }
+    .price-per { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+    .price-label { font-size: 12.5px; color: var(--muted); }
+    .price-was { font-size: 14px; color: var(--navy-50); text-decoration: line-through; }
+    .save-badge { font-size: 13px; font-weight: 700; color: var(--white); background: var(--green); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+    .save-badge.mid { background: var(--orange-btn); }
+
+    /* Punchline */
+    .punchline { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 72px 32px; text-align: center; }
+    .punchline blockquote { font-size: 26px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.45; max-width: 720px; margin: 0 auto; }
+    .punchline blockquote .orange { color: var(--orange); }
+    .punchline figcaption { margin-top: 18px; font-size: 14px; color: var(--muted); }
+    .punchline .fineprint { margin-top: 26px; font-size: 12px; color: var(--navy-50); }
+
+    /* How it works */
+    .how { max-width: 1000px; margin: 0 auto; padding: 88px 32px; text-align: center; }
+    .how h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+    .how-sub { margin-top: 12px; font-size: 15px; color: var(--muted); }
+    .steps { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; text-align: left; }
+    .step { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+    .step-num { width: 34px; height: 34px; border-radius: 999px; background: var(--navy); color: var(--white); font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .step h3 { margin-top: 16px; font-size: 17px; font-weight: 600; }
+    .step p { margin-top: 8px; font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* Final CTA */
+    .final { background: linear-gradient(160deg, #0f2336, #1a3d5c); color: var(--white); text-align: center; padding: 80px 32px; }
+    .final h2 { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+    .final p { margin: 14px auto 0; font-size: 15.5px; color: rgba(255,255,255,0.7); max-width: 480px; line-height: 1.6; }
+    .final .btn-big { display: inline-block; margin-top: 30px; text-decoration: none; background: var(--orange-btn); color: var(--white); font-size: 16.5px; font-weight: 600; padding: 15px 36px; border-radius: 10px; }
+    .final .btn-big:hover { background: var(--orange-dark); }
+
+    @media (max-width: 900px) {
+      .site-nav { display: none; }
+      .header-inner { padding: 0 16px; height: 60px; }
+      .btn-login { display: none; }
+      .hero { padding: 60px 20px 72px; }
+      .hero h1 { font-size: 32px; }
+      .story { padding: 64px 20px 24px; }
+      .chapter { grid-template-columns: 44px 1fr; gap: 18px; }
+      .chapter-dot { width: 44px; height: 44px; font-size: 20px; }
+      .chapter:not(:last-child)::before { left: 21px; }
+      .price-strip { flex-wrap: wrap; gap: 12px; }
+      .steps { grid-template-columns: 1fr; }
+      .punchline blockquote { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="MyUS home">
+      <img src="logo.svg" alt="MyUS" style="height:32px;width:auto;display:block;" />
+    </a>
+    <nav class="site-nav">
+      <a href="#">How it works</a>
+      <a href="#">Why choose MyUS</a>
+      <a href="#">Shipping rates</a>
+      <a href="#">Shop with MyUS</a>
+      <a href="family.html" class="active">MyUS Family</a>
+    </nav>
+    <div class="header-actions">
+      <a href="MyUS%20Logged%20in/index.html" class="btn-login">Log in</a>
+      <a href="confirmation.html" class="btn-signup">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">MyUS Family · Free with every membership</div>
+  <h1>One suite. One shipment.<br /><span class="orange">Everyone saves.</span></h1>
+  <p>Add the people you trust to your MyUS account. Shop separately, ship together, and split the cost of every box that leaves the warehouse.</p>
+  <div class="hero-cta">
+    <a class="btn-big" href="confirmation.html">Start your Family — it's free</a>
+    <small>No extra fee. No limits by plan. Cancel anyone, anytime.</small>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div class="story-kicker">
+    <div class="eyebrow">A true-to-life example</div>
+    <h2>How the Halabi household ships to Riyadh</h2>
+    <p>Four people, one MyUS suite, one consolidated box via DHL. Watch what happens to the price per person as the family grows.</p>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-dot">🧍</div>
+    <div class="chapter-body">
+      <h3>Omar ships alone</h3>
+      <p>Omar orders sneakers from a US store. His 1&nbsp;lb. package ships solo — and he pays the full international rate himself.</p>
+      <div class="price-strip">
+        <div class="avatars"><span class="avatar av-1">O</span></div>
+        <div class="price-figures"><span class="price-per">$27.84</span><span class="price-label">per person</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-dot">👥</div>
+    <div class="chapter-body">
+      <h3>His wife Layla joins — <em>the price halves</em></h3>
+      <p>Layla's skincare order arrives at the same suite. Two packages, one consolidated shipment, one shipping bill split two ways.</p>
+      <div class="price-strip">
+        <div class="avatars"><span class="avatar av-1">O</span><span class="avatar av-2">L</span></div>
+        <div class="price-figures"><span class="price-per">$14.07</span><span class="price-label">per person</span><span class="price-was">$27.84</span></div>
+        <span class="save-badge mid">50% saved</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-dot">👨‍👩‍👧</div>
+    <div class="chapter-body">
+      <h3>Their daughter Nadia adds her college haul</h3>
+      <p>Textbooks and a jacket join the box. The total barely moves — international rates are about weight, not the number of shoppers.</p>
+      <div class="price-strip">
+        <div class="avatars"><span class="avatar av-1">O</span><span class="avatar av-2">L</span><span class="avatar av-3">N</span></div>
+        <div class="price-figures"><span class="price-per">$9.93</span><span class="price-label">per person</span><span class="price-was">$27.84</span></div>
+        <span class="save-badge mid">64% saved</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-dot">🏠</div>
+    <div class="chapter-body">
+      <h3>Even the neighbor gets in — <em>72% off each</em></h3>
+      <p>Family is whoever you trust. Their neighbor Sami adds his order too, and now four people share one box, one customs entry, one bill.</p>
+      <div class="price-strip">
+        <div class="avatars"><span class="avatar av-1">O</span><span class="avatar av-2">L</span><span class="avatar av-3">N</span><span class="avatar av-4">S</span></div>
+        <div class="price-figures"><span class="price-per">$7.69</span><span class="price-label">per person</span><span class="price-was">$27.84</span></div>
+        <span class="save-badge">72% saved</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUNCHLINE -->
+<section class="punchline">
+  <figure>
+    <blockquote>"We used to pay for four separate international shipments. Now it's one box, and everyone pays <span class="orange">about a quarter</span> of what they used to."</blockquote>
+    <figcaption>The Halabi household · Shipping US → Saudi Arabia</figcaption>
+  </figure>
+  <p class="fineprint">*Savings based on splitting shipping costs equally from the US to Saudi Arabia via DHL. Actual savings will vary.</p>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <h2>Start your own story in three steps</h2>
+  <p class="how-sub">It takes about a minute — all you need is a name and an email.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Open MyUS Family</h3>
+      <p>Sign up or log in, then find MyUS Family right in your account navigation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Add your people</h3>
+      <p>First name, last name, email — that's the whole form. Add family, friends, neighbors, anyone you trust.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Shop &amp; ship together</h3>
+      <p>Everyone shops US stores with your suite address. Packages consolidate into one shipment, and the savings split themselves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <h2>Your household is already a Family.</h2>
+  <p>Make it official. MyUS Family is free with every membership — every plan, every member, no fine print.</p>
+  <a class="btn-big" href="confirmation.html">Sign Up Now, It's FREE</a>
+</section>
+
+<div class="switcher" aria-label="Exploration switcher">
+  <a href="family.html">⌂<span class="tip"><span class="tip-group">Hub</span><strong>All explorations</strong><span>Overview of both rounds — three quick explorations (Group A) and three presentation-ready concepts from the PM brief (Group B).</span></span></a>
+  <a href="family-a.html" class="on">A1<span class="tip"><span class="tip-group">Group A · quick exploration</span><strong>The Story</strong><span>A case-study narrative: one household grows chapter by chapter and the price per person visibly falls. Built on Bobby's “family of 4 shipping to Australia” idea — tests whether storytelling explains the mechanism better than a table.</span></span></a>
+  <a href="family-b.html">A2<span class="tip"><span class="tip-group">Group A · quick exploration</span><strong>The Math</strong><span>The price is the hero, Spotify-style: an interactive people picker drops the per-person cost live. Tests whether pure savings math — and answering “too good to be true” head-on — is enough to convert.</span></span></a>
+  <a href="family-c.html">A3<span class="tip"><span class="tip-group">Group A · quick exploration</span><strong>The Circle</strong><span>Attacks the “family” misnomer from the meeting: one suite orbited by friends, roommates, neighbors. Tests whether widening “who counts” removes the biggest sign-up hesitation.</span></span></a>
+  <span class="sep"></span>
+  <a href="family-d.html">B1 ★<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Savings First · ★ Primary candidate</strong><span>Full-page concept where the financial benefit leads: packages-to-one-box hero, savings progression with a falling cost curve, case study, trust callout, full FAQ. Answers: “How much can I save?”</span></span></a>
+  <a href="family-e.html">B2<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Human Story</strong><span>People before numbers: meet Maya's MyUS Family, follow their carts into one consolidated shipment, then reveal the savings as a transformation. Answers: “How would someone like me actually use this?”</span></span></a>
+  <a href="family-f.html">B3<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Shipping Group</strong><span>Product-led, SaaS-onboarding feel: group-builder hero, working savings calculator, add-person form and member management preview. Answers: “What exactly am I creating and how does it work?”</span></span></a>
+</div>
+
+</body>
+</html>

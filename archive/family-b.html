@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyUS Family — Option B · The Math</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:        #0f2336;
+      --navy-80:     rgba(15,35,54,0.8);
+      --navy-50:     rgba(15,35,54,0.5);
+      --navy-20:     rgba(15,35,54,0.12);
+      --orange:      #ff7a00;
+      --orange-btn:  #ff981f;
+      --orange-dark: #e06900;
+      --blue:        #1985e3;
+      --blue-dark:   #1270c4;
+      --blue-light:  #eaf4fd;
+      --blue-mid:    #d0e8fa;
+      --muted:       #5f6b78;
+      --border:      rgba(15,35,54,0.1);
+      --white:       #ffffff;
+      --off-white:   #f7f9fc;
+      --green:       #1e9e5a;
+    }
+    body { font-family: 'Poppins', system-ui, sans-serif; color: var(--navy); background: var(--white); -webkit-font-smoothing: antialiased; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); border-bottom: 1px solid var(--navy-20); }
+    .header-inner { max-width: 1280px; margin: 0 auto; height: 72px; padding: 0 32px; display: flex; align-items: center; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .site-nav { display: flex; gap: 4px; margin-left: 8px; flex: 1; }
+    .site-nav a { text-decoration: none; color: var(--navy-80); font-size: 14.5px; font-weight: 500; padding: 8px 14px; border-radius: 8px; }
+    .site-nav a:hover { color: var(--navy); background: var(--off-white); }
+    .site-nav a.active { color: var(--navy); font-weight: 600; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-login { text-decoration: none; color: var(--navy); font-size: 14.5px; font-weight: 600; padding: 9px 18px; border-radius: 8px; }
+    .btn-login:hover { background: var(--off-white); }
+    .btn-signup { text-decoration: none; color: var(--white); background: var(--orange-btn); font-size: 14.5px; font-weight: 600; padding: 10px 20px; border-radius: 8px; }
+    .btn-signup:hover { background: var(--orange-dark); }
+
+    /* Switcher */
+    .switcher { position: fixed; bottom: 20px; right: 20px; z-index: 60; display: flex; gap: 6px; background: var(--white); border: 1px solid var(--navy-20); border-radius: 999px; padding: 6px; box-shadow: 0 8px 30px rgba(15,35,54,0.18); }
+    .switcher a { min-width: 32px; height: 32px; padding: 0 6px; display: flex; align-items: center; justify-content: center; border-radius: 999px; text-decoration: none; font-size: 12.5px; font-weight: 600; color: var(--navy-80); }
+    .switcher .sep { width: 1px; height: 18px; background: var(--navy-20); margin: 0 3px; }
+    .switcher a:hover { background: var(--off-white); }
+    .switcher a.on { background: var(--navy); color: var(--white); }
+    .switcher .tip { position: absolute; bottom: calc(100% + 14px); right: 0; width: 320px; background: var(--navy); color: var(--white); border-radius: 14px; padding: 15px 18px; font-size: 12.5px; font-weight: 400; line-height: 1.55; text-align: left; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .16s, transform .16s, visibility .16s; pointer-events: none; box-shadow: 0 16px 44px rgba(15,35,54,0.3); z-index: 61; }
+    .switcher a:hover .tip { opacity: 1; visibility: visible; transform: none; }
+    .switcher .tip .tip-group { display: block; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-btn); }
+    .switcher .tip strong { display: block; font-size: 13.5px; font-weight: 600; margin: 4px 0 6px; }
+    .switcher .tip span { color: rgba(255,255,255,0.75); }
+
+
+    /* Hero + calculator (Spotify pattern: the price IS the hero) */
+    .hero { background: var(--blue-light); padding: 72px 32px 88px; }
+    .hero-grid { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+    .hero h1 { font-size: 42px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+    .hero h1 .orange { color: var(--orange); }
+    .hero-copy p { margin-top: 18px; font-size: 16px; line-height: 1.65; color: var(--muted); max-width: 460px; }
+    .hero-copy .free-line { margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--border); border-radius: 999px; padding: 9px 18px; font-size: 14px; font-weight: 600; }
+    .hero-copy .free-line .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
+
+    /* Calculator card */
+    .calc { background: var(--white); border: 1px solid var(--border); border-radius: 22px; box-shadow: 0 24px 60px rgba(15,35,54,0.12); padding: 34px 34px 30px; }
+    .calc h2 { font-size: 18px; font-weight: 600; }
+    .calc-sub { margin-top: 4px; font-size: 13px; color: var(--muted); }
+    .people-picker { margin-top: 22px; display: flex; gap: 10px; }
+    .person-btn {
+      flex: 1; border: 1.5px solid var(--border); background: var(--white); border-radius: 14px;
+      padding: 14px 6px 12px; cursor: pointer; font-family: inherit; text-align: center;
+      transition: border-color .15s, background .15s, transform .12s;
+    }
+    .person-btn:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .person-btn.sel { border-color: var(--blue); background: var(--blue-light); }
+    .person-btn .pp-avs { font-size: 20px; letter-spacing: -6px; display: block; }
+    .person-btn .pp-n { display: block; margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--navy); }
+    .calc-result { margin-top: 26px; text-align: center; background: var(--off-white); border-radius: 16px; padding: 24px 20px 22px; }
+    .calc-result .per { font-size: 46px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .calc-result .per-label { margin-top: 6px; font-size: 13px; color: var(--muted); }
+    .calc-result .compare { margin-top: 14px; font-size: 13.5px; color: var(--muted); }
+    .calc-result .compare s { color: var(--navy-50); }
+    .calc-result .badge { display: inline-block; margin-left: 8px; font-size: 12.5px; font-weight: 700; color: var(--white); background: var(--green); border-radius: 999px; padding: 4px 11px; vertical-align: 1px; }
+    .calc-cta { display: block; margin-top: 22px; text-align: center; text-decoration: none; background: var(--orange-btn); color: var(--white); font-size: 15.5px; font-weight: 600; padding: 14px; border-radius: 10px; }
+    .calc-cta:hover { background: var(--orange-dark); }
+    .calc-fine { margin-top: 12px; text-align: center; font-size: 11px; color: var(--navy-50); line-height: 1.5; }
+
+    /* Solo vs together comparison */
+    .versus { max-width: 1000px; margin: 0 auto; padding: 88px 32px; text-align: center; }
+    .versus h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+    .versus-sub { margin-top: 12px; font-size: 15px; color: var(--muted); }
+    .vs-grid { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 26px; text-align: left; }
+    .vs-card { border-radius: 18px; padding: 30px; border: 1px solid var(--border); }
+    .vs-card.solo { background: var(--off-white); }
+    .vs-card.fam { background: var(--navy); color: var(--white); position: relative; overflow: hidden; }
+    .vs-card.fam::after { content: ""; position: absolute; top: -40%; right: -25%; width: 260px; height: 260px; border-radius: 50%; background: rgba(255,152,31,0.16); }
+    .vs-tag { font-size: 11.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+    .vs-card.solo .vs-tag { color: var(--muted); }
+    .vs-card.fam .vs-tag { color: var(--orange-btn); }
+    .vs-price { margin-top: 14px; font-size: 38px; font-weight: 700; letter-spacing: -0.03em; }
+    .vs-price span { font-size: 14px; font-weight: 500; letter-spacing: 0; }
+    .vs-card.solo .vs-price span { color: var(--muted); }
+    .vs-card.fam .vs-price span { color: rgba(255,255,255,0.6); }
+    .vs-list { margin-top: 20px; list-style: none; display: flex; flex-direction: column; gap: 11px; position: relative; }
+    .vs-list li { font-size: 14px; line-height: 1.5; padding-left: 26px; position: relative; }
+    .vs-card.solo .vs-list li { color: var(--muted); }
+    .vs-card.fam .vs-list li { color: rgba(255,255,255,0.85); }
+    .vs-list li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+    .vs-card.solo .vs-list li::before { content: "✕"; color: #c0553a; }
+    .vs-card.fam .vs-list li::before { content: "✓"; color: #57c584; }
+
+    /* Benefits row */
+    .benefits { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 72px 32px; }
+    .benefits-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .benefit h3 { font-size: 16.5px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+    .benefit p { margin-top: 10px; font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* FAQ */
+    .faq { max-width: 760px; margin: 0 auto; padding: 88px 32px; }
+    .faq h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; text-align: center; }
+    .faq-list { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; }
+    details { background: var(--off-white); border: 1px solid var(--border); border-radius: 12px; padding: 0 22px; }
+    summary { list-style: none; cursor: pointer; padding: 18px 0; font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: "+"; font-size: 20px; font-weight: 400; color: var(--blue); }
+    details[open] summary::after { content: "–"; }
+    details p { padding: 0 0 18px; font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* Final */
+    .final { text-align: center; padding: 0 32px 96px; }
+    .final h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+    .final p { margin: 12px auto 0; font-size: 15px; color: var(--muted); max-width: 440px; line-height: 1.6; }
+    .final .btn-big { display: inline-block; margin-top: 28px; text-decoration: none; background: var(--orange-btn); color: var(--white); font-size: 16.5px; font-weight: 600; padding: 15px 36px; border-radius: 10px; }
+    .final .btn-big:hover { background: var(--orange-dark); }
+
+    @media (max-width: 900px) {
+      .site-nav { display: none; }
+      .header-inner { padding: 0 16px; height: 60px; }
+      .btn-login { display: none; }
+      .hero { padding: 48px 20px 64px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero h1 { font-size: 32px; }
+      .calc { padding: 26px 20px 22px; }
+      .vs-grid, .benefits-grid { grid-template-columns: 1fr; }
+      .versus, .faq { padding: 64px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="MyUS home">
+      <img src="logo.svg" alt="MyUS" style="height:32px;width:auto;display:block;" />
+    </a>
+    <nav class="site-nav">
+      <a href="#">How it works</a>
+      <a href="#">Why choose MyUS</a>
+      <a href="#">Shipping rates</a>
+      <a href="#">Shop with MyUS</a>
+      <a href="family.html" class="active">MyUS Family</a>
+    </nav>
+    <div class="header-actions">
+      <a href="MyUS%20Logged%20in/index.html" class="btn-login">Log in</a>
+      <a href="confirmation.html" class="btn-signup">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO + CALCULATOR -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">MyUS Family</div>
+      <h1>Shipping together costs <span class="orange">up to 72% less.</span></h1>
+      <p>One MyUS account, shared by the people you trust. Everyone shops US stores, packages combine into one shipment, and the bill splits across the group.</p>
+      <div class="free-line"><span class="dot"></span>Free on every membership plan</div>
+    </div>
+
+    <div class="calc" id="calc">
+      <h2>What would you pay per person?</h2>
+      <div class="calc-sub">Real DHL rates, US → Saudi Arabia</div>
+      <div class="people-picker" role="group" aria-label="Number of people sharing">
+        <button class="person-btn" data-n="1" type="button"><span class="pp-avs">🧍</span><span class="pp-n">Just me</span></button>
+        <button class="person-btn sel" data-n="2" type="button"><span class="pp-avs">🧍🧍</span><span class="pp-n">2 people</span></button>
+        <button class="person-btn" data-n="3" type="button"><span class="pp-avs">🧍🧍🧍</span><span class="pp-n">3 people</span></button>
+        <button class="person-btn" data-n="4" type="button"><span class="pp-avs">🧍🧍🧍🧍</span><span class="pp-n">4 people</span></button>
+      </div>
+      <div class="calc-result">
+        <div class="per" id="perPerson">$14.07</div>
+        <div class="per-label" id="perLabel">per person · one 2 lb. shipment</div>
+        <div class="compare" id="compareLine">Shipping solo: <s>$27.84 each</s><span class="badge" id="saveBadge">Save 50%</span></div>
+      </div>
+      <a class="calc-cta" href="confirmation.html">Sign Up Now, It's FREE</a>
+      <div class="calc-fine">*Savings based on splitting shipping costs equally from the US to Saudi Arabia via DHL. Actual savings will vary.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLO VS TOGETHER -->
+<section class="versus">
+  <h2>Going solo vs. shipping as a Family</h2>
+  <p class="versus-sub">International shipping is priced by weight — so nearly everything about a shipment is cheaper shared.</p>
+  <div class="vs-grid">
+    <div class="vs-card solo">
+      <div class="vs-tag">Shipping solo</div>
+      <div class="vs-price">$27.84 <span>/ person · 1 lb. each</span></div>
+      <ul class="vs-list">
+        <li>Every person pays the full base rate</li>
+        <li>Four boxes, four shipping fees, four customs entries</li>
+        <li>Each small package ships at the most expensive weight tier</li>
+      </ul>
+    </div>
+    <div class="vs-card fam">
+      <div class="vs-tag">MyUS Family</div>
+      <div class="vs-price">$7.69 <span>/ person · 4 people, one box</span></div>
+      <ul class="vs-list">
+        <li>One consolidated shipment, one bill, split 4 ways</li>
+        <li>Better rates and lower customs fees on combined orders</li>
+        <li>Costs $0 extra — included with every MyUS membership</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="benefits-grid">
+    <div class="benefit">
+      <h3>🛍️ Everyone can shop</h3>
+      <p>Friends, family, and neighbors shop any US store using your MyUS address — their packages arrive safely in your suite.</p>
+    </div>
+    <div class="benefit">
+      <h3>📦 Ship together, save together</h3>
+      <p>Shop separately, ship as one. Combining orders unlocks better shipping rates and lower customs fees for the whole group.</p>
+    </div>
+    <div class="benefit">
+      <h3>✏️ Add someone in 30 seconds</h3>
+      <p>First name, last name, email — that's the entire form. Add or remove people from your Family anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <h2>MyUS Family FAQ</h2>
+  <div class="faq-list">
+    <details>
+      <summary>Does it really cost nothing?</summary>
+      <p>Really. MyUS Family is included free with every membership plan. You never pay to add a member.</p>
+    </details>
+    <details>
+      <summary>Do they have to be actual family?</summary>
+      <p>No — "Family" is just what we call it. Add friends, roommates, neighbors, a business partner: anyone you trust to ship with.</p>
+    </details>
+    <details>
+      <summary>Who pays for shipments?</summary>
+      <p>The account owner initiates shipments and pays MyUS; how the group splits the cost is up to you. Add people you trust to pay their share.</p>
+    </details>
+    <details>
+      <summary>Is there a limit to how many people I can add?</summary>
+      <p>Add as many people as you like — and remove anyone, anytime, from your account settings.</p>
+    </details>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <h2>The math only gets better with friends.</h2>
+  <p>One account, shared perks &amp; big savings. Set up your Family in about a minute.</p>
+  <a class="btn-big" href="confirmation.html">Sign Up Now, It's FREE</a>
+</section>
+
+<div class="switcher" aria-label="Exploration switcher">
+  <a href="family.html">⌂<span class="tip"><span class="tip-group">Hub</span><strong>All explorations</strong><span>Overview of both rounds — three quick explorations (Group A) and three presentation-ready concepts from the PM brief (Group B).</span></span></a>
+  <a href="family-b.html" class="on">A2<span class="tip"><span class="tip-group">Group A · quick exploration</span><strong>The Math</strong><span>The price is the hero, Spotify-style: an interactive people picker drops the per-person cost live. Tests whether pure savings math — and answering “too good to be true” head-on — is enough to convert.</span></span></a>
+  <a href="family-c.html">A3<span class="tip"><span class="tip-group">Group A · quick exploration</span><strong>The Circle</strong><span>Attacks the “family” misnomer from the meeting: one suite orbited by friends, roommates, neighbors. Tests whether widening “who counts” removes the biggest sign-up hesitation.</span></span></a>
+  <span class="sep"></span>
+  <a href="family-d.html">B1 ★<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Savings First · ★ Primary candidate</strong><span>Full-page concept where the financial benefit leads: packages-to-one-box hero, savings progression with a falling cost curve, case study, trust callout, full FAQ. Answers: “How much can I save?”</span></span></a>
+  <a href="family-e.html">B2<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Human Story</strong><span>People before numbers: meet Maya's MyUS Family, follow their carts into one consolidated shipment, then reveal the savings as a transformation. Answers: “How would someone like me actually use this?”</span></span></a>
+  <a href="family-f.html">B3<span class="tip"><span class="tip-group">Group B · PM-brief concept</span><strong>Shipping Group</strong><span>Product-led, SaaS-onboarding feel: group-builder hero, working savings calculator, add-person form and member management preview. Answers: “What exactly am I creating and how does it work?”</span></span></a>
+</div>
+
+<script>
+  // Real figures from the live myus.com savings table (US → Saudi Arabia via DHL)
+  const RATES = {
+    1: { total: 27.84, per: 27.84, lbs: 1, save: 0 },
+    2: { total: 28.14, per: 14.07, lbs: 2, save: 50 },
+    3: { total: 29.79, per: 9.93,  lbs: 3, save: 64 },
+    4: { total: 30.77, per: 7.69,  lbs: 4, save: 72 },
+  };
+  const per = document.getElementById('perPerson');
+  const label = document.getElementById('perLabel');
+  const compare = document.getElementById('compareLine');
+  const btns = document.querySelectorAll('.person-btn');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('sel'));
+    btn.classList.add('sel');
+    const n = +btn.dataset.n;
+    const r = RATES[n];
+    per.textContent = '$' + r.per.toFixed(2);
+    label.textContent = n === 1
+      ? 'per person · one 1 lb. shipment'
+      : `per person · one ${r.lbs} lb. shipment, split ${n} ways`;
+    compare.innerHTML = n === 1
+      ? 'Add one person and this drops to <strong>$14.07</strong>'
+      : `Shipping solo: <s>$27.84 each</s><span class="badge">Save ${r.save}%</span>`;
+  }));
+</script>
+
+</body>
+</html>
