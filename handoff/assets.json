@@ -1,0 +1,177 @@
+[
+ {
+  "file": "avatar-1.webp",
+  "bytes": 15626,
+  "used": true
+ },
+ {
+  "file": "avatar-1.png",
+  "bytes": 96210,
+  "used": false
+ },
+ {
+  "file": "avatar-2.webp",
+  "bytes": 15038,
+  "used": true
+ },
+ {
+  "file": "avatar-2.png",
+  "bytes": 92583,
+  "used": false
+ },
+ {
+  "file": "avatar-3.webp",
+  "bytes": 42452,
+  "used": true
+ },
+ {
+  "file": "avatar-3.png",
+  "bytes": 363437,
+  "used": false
+ },
+ {
+  "file": "avatar-4.webp",
+  "bytes": 16322,
+  "used": true
+ },
+ {
+  "file": "avatar-4.png",
+  "bytes": 93108,
+  "used": false
+ },
+ {
+  "file": "cta-photo.webp",
+  "bytes": 148350,
+  "used": true
+ },
+ {
+  "file": "cta-photo.png",
+  "bytes": 1622192,
+  "used": false
+ },
+ {
+  "file": "hero.webp",
+  "bytes": 163712,
+  "used": true
+ },
+ {
+  "file": "hero.png",
+  "bytes": 1698230,
+  "used": false
+ },
+ {
+  "file": "icon-add-person.svg",
+  "bytes": 2272,
+  "used": true
+ },
+ {
+  "file": "icon-arrow-right.svg",
+  "bytes": 370,
+  "used": true
+ },
+ {
+  "file": "icon-cart-check.svg",
+  "bytes": 1972,
+  "used": true
+ },
+ {
+  "file": "icon-check.svg",
+  "bytes": 823,
+  "used": true
+ },
+ {
+  "file": "icon-consolidate.svg",
+  "bytes": 5427,
+  "used": true
+ },
+ {
+  "file": "icon-package.svg",
+  "bytes": 2298,
+  "used": true
+ },
+ {
+  "file": "icon-weight.svg",
+  "bytes": 2068,
+  "used": true
+ },
+ {
+  "file": "product-beauty.webp",
+  "bytes": 8626,
+  "used": true
+ },
+ {
+  "file": "product-beauty.png",
+  "bytes": 47013,
+  "used": false
+ },
+ {
+  "file": "product-clothing.webp",
+  "bytes": 13188,
+  "used": true
+ },
+ {
+  "file": "product-clothing.png",
+  "bytes": 86436,
+  "used": false
+ },
+ {
+  "file": "product-phone.webp",
+  "bytes": 8844,
+  "used": true
+ },
+ {
+  "file": "product-phone.png",
+  "bytes": 60939,
+  "used": false
+ },
+ {
+  "file": "product-sneakers.webp",
+  "bytes": 10124,
+  "used": true
+ },
+ {
+  "file": "product-sneakers.png",
+  "bytes": 59454,
+  "used": false
+ },
+ {
+  "file": "tile-family.webp",
+  "bytes": 122884,
+  "used": true
+ },
+ {
+  "file": "tile-family.png",
+  "bytes": 1094615,
+  "used": false
+ },
+ {
+  "file": "tile-friends.webp",
+  "bytes": 96764,
+  "used": true
+ },
+ {
+  "file": "tile-friends.png",
+  "bytes": 874886,
+  "used": false
+ },
+ {
+  "file": "tile-neighbors.webp",
+  "bytes": 85856,
+  "used": true
+ },
+ {
+  "file": "tile-neighbors.png",
+  "bytes": 762083,
+  "used": false
+ },
+ {
+  "file": "tile-roommates.webp",
+  "bytes": 84792,
+  "used": true
+ },
+ {
+  "file": "tile-roommates.png",
+  "bytes": 854773,
+  "used": false
+ }
+]

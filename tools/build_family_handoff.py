@@ -85,6 +85,24 @@ def main():
     (OUT / "myus-family-section.html").write_text(html)
     (OUT / "myus-family.html").write_text(HEADER + "<style>\n" + css + "</style>\n\n" + html)
 
+    # Image pack for the client: every asset the section references (webp/svg) plus the PNG twin
+    # where one exists, zipped for download, and a manifest the guide renders as a gallery.
+    import json, zipfile
+    names = sorted(set(re.findall(re.escape(ASSET_BASE) + r"([A-Za-z0-9_.-]+)", html)))
+    src_dir = SRC.parent / "assets" / "family"
+    files = []
+    for n in names:
+        files.append(n)
+        png = re.sub(r"\.webp$", ".png", n)
+        if png != n and (src_dir / png).exists():
+            files.append(png)
+    with zipfile.ZipFile(OUT / "myus-family-assets.zip", "w", zipfile.ZIP_DEFLATED) as z:
+        for f in files:
+            z.write(src_dir / f, f"myus-family-assets/{f}")
+    manifest = [{"file": f, "bytes": (src_dir / f).stat().st_size, "used": f in names} for f in files]
+    (OUT / "assets.json").write_text(json.dumps(manifest, indent=1))
+    print(f"wrote {OUT}/myus-family-assets.zip ({len(files)} files, {(OUT / 'myus-family-assets.zip').stat().st_size // 1024} KB)")
+
     leftovers = [l for l in html.splitlines() if '"assets/family/' in l or "confirmation.html" in l or "Logged%20in" in l]
     print(f"wrote {OUT}/myus-family.html ({len(css.encode())} B css, {len(html.encode())} B html)")
     if leftovers:
