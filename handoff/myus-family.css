@@ -16,16 +16,17 @@
 }
 /* ── Scoped reset: neutralise host styles inside the section ── */
 .myus-family *,.myus-family *::before,.myus-family *::after{box-sizing:border-box}
-.myus-family h1,.myus-family h2,.myus-family h3,.myus-family p,.myus-family ul,.myus-family li,.myus-family details,.myus-family summary{margin:0;padding:0;font-family:inherit;color:inherit}
+.myus-family h1,.myus-family h2,.myus-family h3,.myus-family p,.myus-family ul,.myus-family li,.myus-family details,.myus-family summary{margin:0 !important;padding:0;font-family:inherit;color:inherit}
+/* !important on heading sizes: myus.com sets h2/h3 sizes and margins with !important, which beats scoped rules */
 .myus-family ul{list-style:none}
 .myus-family a{color:inherit;text-decoration:none}
 .myus-family img{display:block;max-width:100%;height:auto;border:0}
 .myus-family .mf-container{max-width:1200px;margin:0 auto;padding:0 32px}
 
 /* ── Type ramp (Figma Desktop/*) ── */
-.myus-family .mf-h1{font-weight:600;font-size:64px;line-height:1.13;letter-spacing:0}
-.myus-family .mf-h2{font-weight:600;font-size:46px;line-height:1.15;letter-spacing:-1px}
-.myus-family .mf-h3{font-weight:600;font-size:20px;line-height:1.25}
+.myus-family .mf-h1{font-weight:600;font-size:64px !important;line-height:1.13;letter-spacing:0}
+.myus-family .mf-h2{font-weight:600;font-size:46px !important;line-height:1.15;letter-spacing:-1px}
+.myus-family .mf-h3{font-weight:600;font-size:20px !important;line-height:1.25}
 .myus-family .mf-lead{font-size:18px;line-height:1.22}
 .myus-family .mf-body{font-size:16px;line-height:1.2}
 .myus-family .mf-eyebrow{font-weight:600;font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:var(--mf-text-accent)}
@@ -105,7 +106,7 @@
 .myus-family .mf-wtile img{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center bottom;opacity:.95}
 .myus-family .mf-wtile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 76%,rgba(0,0,0,.8) 100%)}
 .myus-family .mf-wtile > *{position:relative;z-index:1}
-.myus-family .mf-wtile .mf-h3{font-size:24px;line-height:1.2}
+.myus-family .mf-wtile .mf-h3{font-size:24px !important;line-height:1.2}
 .myus-family .mf-wtile p{line-height:1.3;flex:1}
 .myus-family .mf-wtile .go{font:600 14px/1 var(--mf-font);letter-spacing:.02em}
 .myus-family .mf-wtile--red{background:var(--mf-red-600)}
@@ -182,7 +183,7 @@
 
 /* ── Responsive (Figma tablet 768 board 1802:2 · mobile 390 board 1803:2) ── */
 @media (max-width:1180px){
-  .myus-family .mf-hero .mf-container{grid-template-columns:1fr 1fr;gap:32px} .myus-family .mf-h1{font-size:52px}
+  .myus-family .mf-hero .mf-container{grid-template-columns:1fr 1fr;gap:32px} .myus-family .mf-h1{font-size:52px !important}
   .myus-family .mf-ladder{grid-template-columns:repeat(2,1fr)}
   .myus-family .mf-who-tiles{flex-wrap:wrap;height:auto} .myus-family .mf-wtile{flex:1 1 calc(50% - 8px);min-height:380px}
   .myus-family .mf-wtile img,.myus-family .mf-wtile--blue img,.myus-family .mf-wtile--green img{top:auto;bottom:0;left:0;width:100%;height:80%;object-fit:contain}
@@ -206,7 +207,7 @@
 @media (max-width:767px){
   .myus-family{font-size:15px}
   .myus-family .mf-container{padding:0 20px}
-  .myus-family .mf-h1{font-size:40px} .myus-family .mf-h2{font-size:32px;letter-spacing:-.5px} .myus-family .mf-h3{font-size:18px}
+  .myus-family .mf-h1{font-size:40px !important} .myus-family .mf-h2{font-size:32px !important;letter-spacing:-.5px} .myus-family .mf-h3{font-size:18px !important}
   .myus-family .mf-section{padding:56px 0} .myus-family .mf-head{gap:12px} .myus-family .mf-head p{padding-top:6px}
   .myus-family .mf-hero{padding:32px 0 0} .myus-family .mf-hero__copy{align-items:flex-start;text-align:center}
   .myus-family .mf-hero__lead{font-size:16px;padding-top:10px}
