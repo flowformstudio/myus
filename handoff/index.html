@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyUS Family — handoff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{--navy:#10283d;--orange:#ff981f;--orange-dk:#ff7a00;--grey-700:#65676a;--grey-500:#a2a5a9;--grey-300:#e3e6ea;--grey-100:#f4f6fa;--grey-50:#f9fbff;--blue:#0c71c9;--green:#18873d}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Poppins",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;color:var(--navy);background:var(--grey-50);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+    a{color:var(--blue)}
+    .wrap{max-width:1180px;margin:0 auto;padding:40px 24px 80px}
+    .eyebrow{font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-dk)}
+    h1{font-weight:600;font-size:34px;line-height:1.15;letter-spacing:-.5px;margin:8px 0 10px}
+    .lead{color:var(--grey-700);max-width:720px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 32px}
+    .step{background:#fff;border:1px solid var(--grey-300);border-radius:6px;padding:18px 20px}
+    .step b{display:flex;align-items:center;gap:10px;font-size:16px;margin-bottom:6px}
+    .step b i{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font:600 12px/24px inherit;font-style:normal;text-align:center;flex-shrink:0}
+    .step p{color:var(--grey-700);font-size:14px}
+    .panels{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .panel{background:#fff;border:1px solid var(--grey-300);border-radius:6px;display:flex;flex-direction:column;overflow:hidden}
+    .panel header{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--grey-300);background:var(--grey-100)}
+    .panel header b{font-size:15px}
+    .panel header .meta{color:var(--grey-500);font-size:13px;margin-left:auto}
+    .panel textarea{flex:1;min-height:420px;border:0;resize:vertical;padding:14px 16px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#242629;background:#fff;white-space:pre;overflow:auto}
+    .panel textarea:focus{outline:none;box-shadow:inset 0 0 0 2px rgba(12,113,201,.25)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:6px;border:1px solid transparent;font:600 15px/1 inherit;letter-spacing:.02em;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .12s}
+    .btn--main{background:var(--orange);color:var(--navy)} .btn--main:hover{background:var(--orange-dk)}
+    .btn--main.done{background:var(--green);color:#fff}
+    .btn--ghost{background:#fff;color:var(--blue);border-color:var(--grey-300)} .btn--ghost:hover{border-color:var(--blue)}
+    .btn--sm{padding:9px 14px;font-size:13px}
+    .notes{margin-top:32px;background:#fff;border:1px solid var(--grey-300);border-radius:6px;padding:20px 24px}
+    .notes h2{font-size:18px;font-weight:600;margin-bottom:10px}
+    .notes ul{padding-left:18px;color:var(--grey-700)} .notes li{margin:6px 0}
+    code{font:12.5px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--grey-100);padding:2px 6px;border-radius:4px;color:var(--navy)}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    @media (max-width:900px){ .steps,.panels{grid-template-columns:1fr} h1{font-size:28px} }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">MyUS Family · landing page</div>
+  <h1>Handoff: copy the CSS, copy the HTML, paste into the site.</h1>
+  <p class="lead">This is the final page, split the way you paste it. Both blocks are generated from the same source, so they always match. The page itself is at <a href="../family">myus-demo.vercel.app/family</a>.</p>
+  <div class="top-actions">
+    <a class="btn btn--ghost btn--sm" href="../family" target="_blank">Open the live demo ↗</a>
+    <a class="btn btn--ghost btn--sm" href="myus-family.html" target="_blank">Preview the section on its own ↗</a>
+    <a class="btn btn--ghost btn--sm" href="myus-family.html" download>Download the combined file</a>
+  </div>
+
+  <div class="steps">
+    <div class="step"><b><i>1</i>Copy the CSS</b><p>Press "Copy CSS" below and paste it into the page's CSS block. Everything is prefixed <code>mf-</code> and scoped under <code>.myus-family</code>, so it doesn't touch the rest of the site.</p></div>
+    <div class="step"><b><i>2</i>Copy the HTML</b><p>Press "Copy HTML" and paste it into the HTML block where the section should appear. No JavaScript is needed; the FAQ opens with the browser's own <code>&lt;details&gt;</code>.</p></div>
+    <div class="step"><b><i>3</i>Set the two links</b><p>Replace <code>#signup</code> (Sign up for MyUS) and <code>#add-member</code> (Add someone to your family) with the real URLs. <code>#mf-how</code> is an in-page anchor and stays as is.</p></div>
+  </div>
+
+  <div class="panels">
+    <section class="panel">
+      <header><b>CSS</b><span class="meta" id="css-meta"></span><button class="btn btn--main btn--sm" data-copy="css">Copy CSS</button></header>
+      <textarea id="css" readonly spellcheck="false" aria-label="CSS to copy">Loading…</textarea>
+    </section>
+    <section class="panel">
+      <header><b>HTML</b><span class="meta" id="html-meta"></span><button class="btn btn--main btn--sm" data-copy="html">Copy HTML</button></header>
+      <textarea id="html" readonly spellcheck="false" aria-label="HTML to copy">Loading…</textarea>
+    </section>
+  </div>
+
+  <div class="notes">
+    <h2>Good to know</h2>
+    <ul>
+      <li><b>Fonts:</b> the section uses Poppins, which myus.com already loads. No font import inside the block.</li>
+      <li><b>Images:</b> every image URL starts with <code>https://myus-demo.vercel.app/assets/family/</code>, so the pasted section renders right away. To move them to the MyUS CDN later, upload the <code>assets/family</code> folder and find-and-replace that prefix.</li>
+      <li><b>Colors and type</b> come from the MyUS tokens already used on the site (navy <code>#10283d</code>, orange <code>#ff981f</code> / <code>#ff7a00</code>, link blue <code>#0c71c9</code>, Poppins).</li>
+      <li><b>Responsive:</b> breakpoints at 1180, 1024 and 767px match the desktop, tablet and mobile Figma boards.</li>
+      <li><b>Logged-in state:</b> the pasted version is the signed-out page. The "Add someone to MyUS Family" button variant exists in the demo (Visitor switch) if the site can tell who is signed in.</li>
+    </ul>
+  </div>
+</div>
+<script>
+  (function(){
+    var files={css:'myus-family.css',html:'myus-family-section.html'};
+    Object.keys(files).forEach(function(k){
+      fetch(files[k],{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){
+        document.getElementById(k).value=t;
+        document.getElementById(k+'-meta').textContent=files[k]+' · '+(t.length/1024).toFixed(1)+' KB · '+t.split('\n').length+' lines';
+      }).catch(function(){ document.getElementById(k).value='Could not load '+files[k]+'. Open the file directly: '+location.href.replace(/[^/]*$/,'')+files[k]; });
+    });
+    document.querySelectorAll('[data-copy]').forEach(function(b){
+      var label=b.textContent;
+      b.addEventListener('click',function(){
+        var ta=document.getElementById(b.dataset.copy);
+        var done=function(){ b.textContent='Copied ✓'; b.classList.add('done'); setTimeout(function(){ b.textContent=label; b.classList.remove('done'); },1800); };
+        if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(ta.value).then(done).catch(function(){ ta.select(); document.execCommand('copy'); done(); }); }
+        else { ta.select(); document.execCommand('copy'); done(); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>

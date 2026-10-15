@@ -57,10 +57,13 @@
 
 /* ── Hero ── */
 .myus-family .mf-hero{position:relative;background:var(--mf-bg-subtle);padding:50px 0 72px;overflow:hidden;border-bottom:1px solid var(--mf-border)}
-.myus-family .mf-hero__photo{position:absolute;left:38.9%;top:1%;width:66.5%;max-width:none;pointer-events:none}
-.myus-family .mf-hero .mf-container{position:relative;display:grid;grid-template-columns:549px 1fr;gap:64px;min-height:617px;align-items:center}
+/* Photo keeps its Figma size (958×638 at 1440) and bottom-right anchor; it bleeds off the right edge
+   on narrower desktops instead of shrinking. left = container-left + 440px, never under the copy column. */
+.myus-family .mf-hero__photo{position:absolute;left:max(calc(50% - 160px),560px);bottom:0;height:99%;width:auto;max-width:none;pointer-events:none}
+.myus-family .mf-hero .mf-container{position:relative;display:grid;grid-template-columns:549px 1fr;gap:64px;min-height:523px;align-items:center}
 .myus-family .mf-hero__copy{display:flex;flex-direction:column;gap:11px}
 .myus-family .mf-hero__copy .mf-h1{padding-top:14px;max-width:550px}
+.myus-family .mf-hero__copy .mf-h1 .mf-accent{display:block}
 .myus-family .mf-hero__lead{padding-top:18px;max-width:560px;color:var(--mf-text-2)}
 .myus-family .mf-hero .mf-cta{padding-top:24px}
 .myus-family .mf-stats{display:flex;gap:32px;margin-top:32px;padding:11px 0}
@@ -191,13 +194,13 @@
   .myus-family .mf-hero__copy{align-items:center;text-align:center} .myus-family .mf-hero__copy .mf-h1,.myus-family .mf-hero__lead{max-width:none}
   .myus-family .mf-hero .mf-cta{align-items:center} .myus-family .mf-cta__row{justify-content:center}
   .myus-family .mf-stats{justify-content:center}
-  .myus-family .mf-hero__photo{position:relative;order:2;left:auto;top:auto;width:100%;max-width:600px;margin:32px auto 0;display:block}
+  .myus-family .mf-hero__photo{position:relative;order:2;left:auto;bottom:auto;height:auto;width:100%;max-width:600px;margin:32px auto 0;display:block}
   .myus-family .mf-scen{grid-template-columns:1fr}
   .myus-family .mf-ctl{grid-template-columns:1fr 1fr;gap:24px}
-  .myus-family .mf-final{min-height:0;padding:64px 0 0}
+  .myus-family .mf-final{min-height:0;padding:64px 0 0;flex-direction:column}
   .myus-family .mf-final .mf-container{display:flex;flex-direction:column;align-items:center;text-align:center}
   .myus-family .mf-final__copy{align-items:center} .myus-family .mf-final .mf-cta{align-items:center}
-  .myus-family .mf-final__photo{position:relative;left:auto;width:100%;max-width:768px;margin-top:32px}
+  .myus-family .mf-final__photo{position:relative;order:2;left:auto;width:100%;max-width:768px;margin-top:32px}
   .myus-family .mf-nowrap{white-space:normal}
 }
 @media (max-width:767px){
@@ -209,7 +212,7 @@
   .myus-family .mf-hero__lead{font-size:16px;padding-top:10px}
   .myus-family .mf-cta,.myus-family .mf-hero .mf-cta,.myus-family .mf-final .mf-cta{width:100%;align-items:stretch;gap:16px}
   .myus-family .mf-cta__row{flex-direction:column;gap:12px} .myus-family .mf-btn{width:100%}
-  .myus-family .mf-member{justify-content:center}
+  .myus-family .mf-member{justify-content:center} .myus-family .mf-hero .mf-member{align-self:center}
   .myus-family .mf-stats{flex-direction:column;align-items:flex-start;gap:14px;margin-top:20px;padding:0}
   .myus-family .mf-hero__photo{margin-top:24px}
   .myus-family .mf-ladder{grid-template-columns:1fr;gap:12px;margin-top:28px} .myus-family .mf-tile{padding:20px} .myus-family .mf-price{font-size:40px}
