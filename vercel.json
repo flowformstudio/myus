@@ -1,0 +1,21 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/design-system", "destination": "/design-system/", "permanent": false },
+    { "source": "/family-h", "destination": "/family", "permanent": false },
+    { "source": "/family-g", "destination": "/family", "permanent": false },
+    { "source": "/family-d", "destination": "/family", "permanent": false },
+    { "source": "/family-e", "destination": "/family", "permanent": false },
+    { "source": "/family-f", "destination": "/family", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/handoff/(.*)",
+      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
+    }
+  ]
+}
