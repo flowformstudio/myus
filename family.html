@@ -770,6 +770,49 @@
         .catch(function(){ location.href='handoff/'; });
       });
     });
+    // Keep the reader on the same content when the window is resized (or a phone rotates).
+    // Browsers keep the pixel offset, so a reflow that makes earlier content taller
+    // shoves the viewport onto something else. We remember which block is at the top of
+    // the viewport (and how far into it we are) on every scroll, and after a resize
+    // scroll back to that block.
+    (function(){
+      var anchor=null, w=window.innerWidth, pending=false;
+      // Content blocks only (no decorative/absolutely positioned pieces): the deepest block
+      // whose top is at or above the viewport top wins, and we keep our pixel offset into it.
+      var sel='.myus-family :is(h1,h2,h3,p,li,img,a,button,summary),.footer :is(a,li,p,img)';
+      var hdr=document.querySelector('.site-header');
+      function line(){ var b=hdr?hdr.getBoundingClientRect().bottom:0; return Math.max(0,b)+1; }  // first visible row below the sticky header
+      function record(){
+        pending=false;
+        if(window.scrollY<4){ anchor=null; return; }
+        var L=line(), best=null, bestKey=-Infinity, bestHit=false;
+        document.querySelectorAll(sel).forEach(function(el){
+          var r=el.getBoundingClientRect();
+          if(r.height<8||r.width<8||r.top>L) return;
+          var pos=getComputedStyle(el).position; if(pos==='absolute'||pos==='fixed'||pos==='sticky') return;
+          var hit=r.bottom>L;   // block actually crosses the line (preferred over one fully above it)
+          // crossing: deepest block (greatest top); above: the one ending closest to the line.
+          // >= so a later block wins a tie (a child over its parent, the last of a row over the first).
+          var key=hit?r.top:r.bottom;
+          if((hit&&!bestHit)||(hit===bestHit&&key>=bestKey)){ best=el; bestKey=key; bestHit=hit; }
+        });
+        if(best){ var b=best.getBoundingClientRect(); anchor={el:best, hit:bestHit, off:bestHit?L-b.top:L-b.bottom}; }
+      }
+      function restore(){
+        if(window.innerWidth===w) return;   // height-only change (mobile URL bar): leave it
+        w=window.innerWidth;
+        if(!anchor||!anchor.el.isConnected) return;
+        var r=anchor.el.getBoundingClientRect();
+        // Inside a block: keep the offset but don't run past its new bottom. Above a block
+        // (we were in the gap after it): keep the same distance below its bottom.
+        var y=anchor.hit ? window.scrollY+r.top+Math.min(anchor.off, Math.max(0,r.height-1))-line()
+                         : window.scrollY+r.bottom+anchor.off-line();
+        window.scrollTo({top:Math.max(0,y), behavior:'auto'});
+      }
+      window.addEventListener('scroll',function(){ if(!pending){ pending=true; requestAnimationFrame(record); } },{passive:true});
+      window.addEventListener('resize',function(){ restore(); requestAnimationFrame(record); });
+      record();
+    })();
   })();
 </script>
 </body>
