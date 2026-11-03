@@ -50,6 +50,21 @@
   "used": false
  },
  {
+  "file": "film-poster.webp",
+  "bytes": 66744,
+  "used": true
+ },
+ {
+  "file": "film-poster.png",
+  "bytes": 690687,
+  "used": false
+ },
+ {
+  "file": "film.mp4",
+  "bytes": 2462639,
+  "used": true
+ },
+ {
   "file": "hero.webp",
   "bytes": 163712,
   "used": true
