@@ -47,6 +47,11 @@
     .img-grid .th img{max-width:100%;max-height:100%;object-fit:contain}
     .img-grid .nm{font:600 12px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all}
     .img-grid .sz{font-size:11.5px;color:var(--grey-500)}
+    .video-row{display:grid;grid-template-columns:minmax(0,1.4fr) 1fr;gap:24px;padding:20px;align-items:start}
+    .video-row video{width:100%;aspect-ratio:16/9;border-radius:6px;background:#10283d;display:block}
+    .video-notes{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--grey-700)}
+    .panel.video{margin-bottom:24px}
+    @media (max-width:900px){ .video-row{grid-template-columns:1fr} }
     @media (max-width:900px){ .steps,.panels{grid-template-columns:1fr} h1{font-size:28px} }
   </style>
 </head>
@@ -64,9 +69,9 @@
 
   <div class="steps">
     <div class="step"><b><i>1</i>Copy the CSS</b><p>Press "Copy CSS" below and paste it into the page's CSS block. Everything is prefixed <code>mf-</code> and scoped under <code>.myus-family</code>, so it doesn't touch the rest of the site.</p></div>
-    <div class="step"><b><i>2</i>Copy the HTML</b><p>Press "Copy HTML" and paste it into the HTML block where the section should appear. No JavaScript is needed; the FAQ opens with the browser's own <code>&lt;details&gt;</code>.</p></div>
+    <div class="step"><b><i>2</i>Copy the HTML</b><p>Press "Copy HTML" and paste it into the HTML block where the section should appear. Keep the small <code>&lt;script&gt;</code> at the end of the block: it runs the animations and the video player. The FAQ works without it (native <code>&lt;details&gt;</code>).</p></div>
     <div class="step"><b><i>3</i>Set the two links</b><p>Replace <code>#signup</code> (Sign up for MyUS) and <code>#add-member</code> (Add someone to your family) with the real URLs. <code>#mf-how</code> is an in-page anchor and stays as is.</p></div>
-    <div class="step"><b><i>4</i>Upload the images</b><p>Download the zip, upload the files to the MyUS media library, then find-and-replace <code>https://myus-demo.vercel.app/assets/family/</code> in the HTML with your upload path. Until then the demo URLs work as is.</p></div>
+    <div class="step"><b><i>4</i>Upload images + video</b><p>Download the zip (it includes the video), upload the files to the MyUS media library, then find-and-replace <code>https://myus-demo.vercel.app/assets/family/</code> in the HTML with your upload path. Until then the demo URLs work as is.</p></div>
   </div>
 
   <div class="panels">
@@ -80,6 +85,19 @@
     </section>
   </div>
 
+  <section class="panel video" id="video">
+    <header><b>Video</b><span class="meta">film.mp4 · 1080p H.264 + AAC · 0:40 · 5.0 MB</span><a class="btn btn--ghost btn--sm" href="../assets/family/film-poster.webp" download>Poster</a><a class="btn btn--main btn--sm" href="../assets/family/film.mp4" download>Download video</a></header>
+    <div class="video-row">
+      <video src="../assets/family/film.mp4" poster="../assets/family/film-poster.webp" controls playsinline preload="metadata"></video>
+      <ul class="video-notes">
+        <li><b>Hero button</b> "Watch how it works 0:40" opens it in a pop-up, with sound, from the start. Ends on Sign up / Watch again.</li>
+        <li><b>How it works</b> (desktop and tablet): plays muted while in view, "Tap for sound" restarts it with audio. Hidden on mobile.</li>
+        <li><b>Web-optimized:</b> full 1080p, fast-start (plays while downloading), plays in every browser. Mobile visitors only download it if they tap the button.</li>
+        <li>The HTML points to <code>assets/family/film.mp4</code> and <code>film-poster.webp</code>; move both with the images.</li>
+      </ul>
+    </div>
+  </section>
+
   <section class="panel images" id="images">
     <header><b>Images</b><span class="meta" id="img-meta"></span><a class="btn btn--main btn--sm" href="myus-family-assets.zip" download>Download all (zip)</a></header>
     <p class="img-note">Every file the section uses, as served from the demo. WebP is what the HTML references; the PNG next to it is the same image uncompressed, in case your CMS prefers it. Click a file to download it on its own.</p>
@@ -89,6 +107,7 @@
   <div class="notes">
     <h2>Good to know</h2>
     <ul>
+      <li><b>Video:</b> one MP4 (1080p, 5 MB) plus a poster image, both in the zip. Upload them next to the images and update the two URLs.</li>
       <li><b>Fonts:</b> the section uses Poppins, which myus.com already loads. No font import inside the block.</li>
       <li><b>Images:</b> every image URL starts with <code>https://myus-demo.vercel.app/assets/family/</code>, so the pasted section renders right away. To move them to the MyUS CDN later, upload the <code>assets/family</code> folder and find-and-replace that prefix.</li>
       <li><b>Colors and type</b> come from the MyUS tokens already used on the site (navy <code>#10283d</code>, orange <code>#ff981f</code> / <code>#ff7a00</code>, link blue <code>#0c71c9</code>, Poppins).</li>
@@ -102,6 +121,7 @@
     fetch('assets.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(list){
       var grid=document.getElementById('img-grid'); grid.innerHTML='';
       var total=0;
+      list=list.filter(function(it){ return !/\.mp4$/i.test(it.file); }); /* the video has its own panel */
       list.forEach(function(it){ total+=it.bytes;
         var a=document.createElement('a'); a.href='../assets/family/'+it.file; a.setAttribute('download',it.file);
         var kb=(it.bytes/1024).toFixed(it.bytes>102400?0:1)+' KB';
