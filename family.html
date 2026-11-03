@@ -854,7 +854,7 @@
   <span class="lbl">Handoff</span>
   <button type="button" data-copy="handoff/myus-family.css">Copy CSS</button>
   <button type="button" data-copy="handoff/myus-family-section.html">Copy HTML</button>
-  <a href="handoff/">Guide</a>
+  <a href="/family/handoff">Guide</a>
 </div>
 
 <script>
@@ -872,7 +872,7 @@
         fetch(b.dataset.copy,{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){
           return navigator.clipboard.writeText(t);
         }).then(function(){ b.textContent='Copied ✓'; b.classList.add('done'); setTimeout(function(){ b.textContent=label; b.classList.remove('done'); },1800); })
-        .catch(function(){ location.href='handoff/'; });
+        .catch(function(){ location.href='/family/handoff'; });
       });
     });
     // Keep the reader on the same content when the window is resized (or a phone rotates).
