@@ -55,11 +55,11 @@
   "rewrites": [
     {
       "source": "/family/handoff",
-      "destination": "/handoff/family.html"
+      "destination": "/handoff/family"
     },
     {
       "source": "/family/handoff/",
-      "destination": "/handoff/family.html"
+      "destination": "/handoff/family"
     }
   ]
 }
