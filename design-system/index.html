@@ -638,6 +638,7 @@ a { color: inherit; }
       <div class="sidebar__grouplabel">Applied</div>
       <a class="sidebar__item" href="#landing">Landing Page</a>
       <a class="sidebar__item" href="#assets">Confirmation Assets</a>
+      <a class="sidebar__item" href="#email-signature">Email Signature</a>
     </div>
 
     <div class="sidebar__group">
@@ -1617,6 +1618,87 @@ a { color: inherit; }
           }, { threshold: 0.2 }).observe(target);
         }
       })();
+    </script>
+
+    <!-- ─────────── EMAIL SIGNATURE ─────────── -->
+    <section class="section" id="email-signature">
+      <div class="section__head">
+        <div class="section__eyebrow">17 — Email Signature</div>
+        <h2 class="section__title">The animated logo for every MyUS email.</h2>
+        <p class="section__lead">The logo reveal from the TruePrice film, made for email signatures. It plays once and stops on the logo, works in Outlook, Gmail and Apple Mail, and keeps a clean white tile in dark mode. Classic Outlook for Windows shows only the first frame, so that frame is the finished logo.</p>
+      </div>
+
+      <div style="display:flex; gap:12px; margin-bottom:28px; flex-wrap:wrap;">
+        <a class="btn btn--primary" href="assets/email-signature/myus-email-signature-kit.zip" download>Download signature kit (.zip · 250 KB)</a>
+        <button class="btn btn--outline" type="button" id="sigReplay">Replay animation</button>
+      </div>
+
+      <h3 class="section__h3">Preview at real size</h3>
+      <div class="sig-previews">
+        <div class="sig-mail sig-mail--light">
+          <div class="sig-label">Light mode</div>
+          <div class="sig-name">Jane Smith</div>
+          <div class="sig-line">Customer Experience Manager</div>
+          <div class="sig-line">+1 (800) 555-0123 &nbsp;|&nbsp; <a href="https://www.myus.com" target="_blank" rel="noopener">myus.com</a></div>
+          <img class="sig-logo" src="assets/email-signature/myus-email-signature.gif" width="180" height="59" alt="MyUS.com – unbox the possibilities">
+        </div>
+        <div class="sig-mail sig-mail--dark">
+          <div class="sig-label">Dark mode</div>
+          <div class="sig-name">Jane Smith</div>
+          <div class="sig-line">Customer Experience Manager</div>
+          <div class="sig-line">+1 (800) 555-0123 &nbsp;|&nbsp; <a href="https://www.myus.com" target="_blank" rel="noopener">myus.com</a></div>
+          <img class="sig-logo" src="assets/email-signature/myus-email-signature.gif" width="180" height="59" alt="MyUS.com – unbox the possibilities">
+        </div>
+      </div>
+
+      <h3 class="section__h3">Files</h3>
+      <div class="asset-grid">
+        <div class="asset-card">
+          <div class="asset-prev"><img src="assets/email-signature/myus-email-signature-still.png" alt="" width="180" height="59"></div>
+          <div class="asset-meta"><strong>myus-email-signature.gif</strong><span>Animated · 400×132, show at 180×59 · plays once · 139 KB</span></div>
+          <a class="asset-dl" href="assets/email-signature/myus-email-signature.gif" download>Download GIF</a>
+        </div>
+        <div class="asset-card">
+          <div class="asset-prev"><img src="assets/email-signature/myus-email-signature-still.png" alt="" width="180" height="59"></div>
+          <div class="asset-meta"><strong>myus-email-signature-still.png</strong><span>Static logo for tools that don't accept GIFs</span></div>
+          <a class="asset-dl" href="assets/email-signature/myus-email-signature-still.png" download>Download PNG</a>
+        </div>
+        <div class="asset-card">
+          <div class="asset-prev" style="font:600 13px/1.4 ui-monospace,Menlo,monospace;color:var(--text-2,#6b7280);">&lt;table&gt;…&lt;/table&gt;</div>
+          <div class="asset-meta"><strong>myus-signature-template.html</strong><span>Name · title · phone · link · logo</span></div>
+          <a class="asset-dl" href="assets/email-signature/myus-signature-template.html" download>Download HTML</a>
+        </div>
+      </div>
+
+      <h3 class="section__h3">Rules</h3>
+      <ul class="sig-rules">
+        <li><strong>Size:</strong> always 180 × 59 px (the file is about 2× for sharp screens).</li>
+        <li><strong>Hosted, not attached:</strong> the logo loads from a URL so it never shows up as an attachment.</li>
+        <li><strong>Links to</strong> myus.com, alt text “MyUS.com – unbox the possibilities”.</li>
+        <li><strong>Don't</strong> recolor, stretch, crop, or add a border to the logo.</li>
+      </ul>
+    </section>
+
+    <style>
+      .sig-previews { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: var(--s-8); }
+      .sig-mail { border-radius: var(--r-lg); padding: 22px 24px; font-family: Arial, Helvetica, sans-serif; border: 1px solid var(--border); }
+      .sig-mail--light { background: #fff; color: #6b7280; }
+      .sig-mail--dark { background: #202124; color: #c4c7c5; border-color: #202124; }
+      .sig-label { font: 600 11px/1 Arial, sans-serif; letter-spacing: .06em; text-transform: uppercase; opacity: .55; margin-bottom: 16px; }
+      .sig-name { font-size: 14px; line-height: 20px; font-weight: bold; color: #1d2b3a; margin-bottom: 2px; }
+      .sig-mail--dark .sig-name { color: #fff; }
+      .sig-line { font-size: 13px; line-height: 18px; }
+      .sig-line a { color: #265f93; text-decoration: none; }
+      .sig-mail--dark .sig-line a { color: #8ab4f8; }
+      .sig-logo { display: block; margin-top: 12px; border-radius: 6px; }
+      .sig-rules { margin: 0 0 var(--s-8); padding-left: 20px; line-height: 1.8; }
+    </style>
+    <script>
+      document.getElementById('sigReplay').addEventListener('click', function () {
+        document.querySelectorAll('#email-signature .sig-logo').forEach(function (img) {
+          img.src = 'assets/email-signature/myus-email-signature.gif?r=' + Date.now();
+        });
+      });
     </script>
 
   </main>
