@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Location · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css?v=2" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/multi.css" />
+  <link rel="stylesheet" href="../styles/membership.css" />
+  <link rel="stylesheet" href="../styles/settings.css" />
+  <link rel="stylesheet" href="../styles/tools.css" />
+  <link rel="stylesheet" href="../styles/packages.css" />
+</head>
+<body class="page" data-page="location">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main location-main">
+
+      <header class="loc-page-head">
+        <div class="loc-page-title">
+          <span class="loc-page-flag" data-loc-flag></span>
+          <h1 class="loc-page-h1" data-loc-name>Location</h1>
+          <button type="button" class="loc-fav-btn" data-loc-fav title="Set as Favorite location" aria-label="Set as Favorite location">☆</button>
+          <span class="loc-fav-label" data-loc-fav-label>Set as Favorite location</span>
+        </div>
+        <div class="loc-schedule">
+          <span class="loc-schedule-label">My Shipping Schedule:</span>
+          <span class="loc-schedule-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10283d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Automatic
+          </span>
+          <a class="loc-schedule-edit" href="shipping-preferences.html">Edit</a>
+        </div>
+      </header>
+
+      <div class="loc-notice">
+        Please <a class="sp-link" href="payment-method.html">go to your Payment Method</a> and update your credit card information to avoid any shipment or order delays.
+      </div>
+
+      <div class="loc-grid">
+        <section class="loc-packages">
+          <h3 class="loc-h3">Your Packages</h3>
+
+          <div class="pkg-tabs" data-pkg-tabs></div>
+
+          <div class="pkg-toolbar">
+            <div class="pkg-toolbar-left">
+              <button type="button" class="pkg-expand-link" data-pkg-expandall>Expand All</button>
+              <span class="pkg-expand-sep">|</span>
+              <button type="button" class="pkg-expand-link" data-pkg-collapseall>Collapse All</button>
+            </div>
+            <div class="pkg-search">
+              <select class="pkg-search-cat" aria-label="Search field">
+                <option>All</option>
+                <option>From</option>
+                <option>Tracking #</option>
+                <option>Package ID</option>
+              </select>
+              <span class="pkg-search-field">
+                <input type="search" placeholder="Search" data-pkg-search />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="pkg-listhead">
+            <input type="checkbox" class="pkg-check" data-pkg-selectall checked />
+            <span>From</span>
+            <span>Package ID</span>
+            <span>Received</span>
+            <span>Tracking #</span>
+            <span>Weight</span>
+            <span></span>
+          </div>
+
+          <div class="pkg-list" data-pkg-list></div>
+        </section>
+
+        <aside class="loc-side">
+          <div data-ship-request></div>
+
+          <a class="loc-promo loc-promo-refer" href="refer-a-friend.html">
+            <div class="loc-promo-inner">
+              <div class="loc-promo-text">
+                <div class="loc-promo-title">GIVE 20% OFF,<br />GET $25!</div>
+                <div class="loc-promo-sub">Refer a friend<br />and you both get rewarded.</div>
+                <span class="loc-promo-btn">REFER NOW</span>
+              </div>
+              <div class="loc-promo-icons">
+                <span class="loc-promo-pct">%</span>
+                <span class="loc-promo-dollar">$</span>
+              </div>
+            </div>
+          </a>
+        </aside>
+
+        <a class="loc-promo loc-promo-family" href="myus-family.html">
+          <div class="loc-promo-family-inner">
+            <span class="loc-family-house">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="#0c71c9" stroke="#0c71c9" stroke-width="1.5" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" fill="none" stroke="#0c71c9" stroke-width="2"/><path d="M12 2 L11 3 L12 4 L13 3 Z" fill="#d13138"/></svg>
+            </span>
+            <div class="loc-family-text">
+              <div class="loc-family-big">BIG<br />SAVINGS</div>
+              <div class="loc-family-logo">
+                <span class="loc-family-bullseye">⊙</span> <strong>MyUS.com</strong><br /><span>Family</span>
+              </div>
+            </div>
+            <div class="loc-family-cta">
+              <div class="loc-family-headline">SAVE 50%<br />OR MORE<br />ON SHIPPING!</div>
+              <span class="loc-family-btn">START SHARING</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <script src="../scripts/location.js"></script>
+  <script src="../scripts/packages.js"></script>
+</body>
+</html>

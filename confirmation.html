@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyUS — Registration Status</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* MyUS Figma DS tokens */
+      --content-main:   #10283d;
+      --content-weak:   #65676a;
+      --header-link:    #45484b;
+      --orange:         #ff981f;   /* Orange 700 · Button Main bg */
+      --orange-800:     #ff7a00;
+      --blue-600:       #266093;
+      --links:          #0c71c9;
+      --blue-l2:        #e8f3fd;
+      --green-800:      #18873d;
+      --green-700:      #18873d;
+      --green-600:      #299948;
+      --green-50:       #e6f4e9;
+      --bg-orange:      rgba(255,152,31,0.08);
+      --bg-red:         rgba(209,49,55,0.08);
+      --red-600:        #d13138;
+      --yellow-1:       #fff1cc;
+      --outline-weak2:  #e3e6ea;
+      --bg-grey:        #f4f6fa;
+      --footer-navy:    #183a58;
+      --footer-muted:   #7e8e9a;
+      --white:          #ffffff;
+
+      --r-big:   20px;
+      --r-small: 6px;
+      --r-btn:   6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      color: var(--content-main);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1;
+    }
+
+    img { display: block; }
+
+    /* ════════════════════════════════════════
+       HEADER  (Figma: header / design=ui)
+    ════════════════════════════════════════ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--outline-weak2);
+    }
+    .header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 40px;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo img { height: 32px; width: auto; }
+    .site-nav { display: flex; align-items: center; gap: 24px; }
+    .site-nav a {
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.28px;
+      color: var(--header-link);
+      text-decoration: none;
+      padding: 8px 4px;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .site-nav a:hover { color: var(--content-main); }
+    .header-actions { display: flex; align-items: center; gap: 20px; }
+    .btn-icon {
+      background: none; border: none; cursor: pointer;
+      padding: 10px; border-radius: var(--r-btn);
+      display: flex; color: var(--header-link);
+    }
+    .btn-icon:hover { background: var(--bg-grey); }
+    .btn-login {
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.28px;
+      color: var(--header-link);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .btn-login:hover { color: var(--content-main); }
+    .btn-signup {
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.28px;
+      color: var(--content-main);
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: var(--r-btn);
+      background: var(--orange);
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .btn-signup:hover { filter: brightness(0.95); transform: translateY(-1px); }
+
+    /* ════════════════════════════════════════
+       JOURNEY SIMULATOR
+    ════════════════════════════════════════ */
+    .simulator {
+      position: fixed;
+      top: auto;
+      bottom: 20px;
+      right: 20px;
+      z-index: 900;
+      width: 236px;
+      background: var(--white);
+      border: 1px solid var(--outline-weak2);
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(16,40,61,0.06), 0 20px 48px rgba(16,40,61,0.16);
+      overflow: hidden;
+    }
+    .simulator.collapsed .sim-body { display: none; }
+    .simulator.collapsed { width: auto; border-radius: 999px; }
+    .sim-head {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 14px;
+      cursor: pointer;
+      user-select: none;
+      background: var(--content-main);
+      color: var(--white);
+    }
+    .simulator.collapsed .sim-head { padding: 10px 16px; }
+    .sim-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 3px rgba(74,222,128,0.25);
+      animation: simPulse 2s ease-in-out infinite;
+    }
+    @keyframes simPulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.25); }
+      50%      { box-shadow: 0 0 0 5px rgba(74,222,128,0.12); }
+    }
+    .sim-title { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; flex: 1; }
+    .sim-chevron { transition: transform 0.2s; }
+    .simulator.collapsed .sim-chevron { transform: rotate(180deg); }
+    .sim-body { padding: 10px; }
+    .sim-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.7px; text-transform: uppercase;
+      color: var(--content-weak);
+      padding: 4px 8px 8px;
+    }
+    .sim-option {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%;
+      padding: 9px 10px;
+      border: none; background: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 12.5px; font-weight: 500;
+      color: var(--content-main);
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .sim-option:hover { background: var(--bg-grey); }
+    .sim-option.active { background: var(--blue-l2); font-weight: 600; }
+    .sim-radio {
+      width: 15px; height: 15px; border-radius: 50%;
+      border: 1.5px solid var(--outline-weak2);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sim-option.active .sim-radio { border-color: var(--links); }
+    .sim-radio::after {
+      content: '';
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--links);
+      transform: scale(0);
+      transition: transform 0.15s cubic-bezier(0.16,1,0.3,1);
+    }
+    .sim-option.active .sim-radio::after { transform: scale(1); }
+    .sim-assets {
+      display: block;
+      margin: 8px 4px 4px;
+      padding: 8px 10px;
+      border-top: 1px solid var(--outline-weak2);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--links);
+      text-decoration: none;
+    }
+    .sim-assets:hover { text-decoration: underline; }
+    .sim-key {
+      margin-left: auto;
+      font-size: 10px; font-weight: 500;
+      color: var(--content-weak);
+      background: var(--bg-grey);
+      border: 1px solid var(--outline-weak2);
+      border-radius: 5px;
+      padding: 2px 6px;
+    }
+
+    /* ════════════════════════════════════════
+       STAGE + transitions
+    ════════════════════════════════════════ */
+    #stage {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    #stage.leaving { opacity: 0; transform: translateY(8px); }
+    .section-anim { animation: sectionIn 0.45s cubic-bezier(0.16,1,0.3,1) both; }
+    .section-anim:nth-child(2) { animation-delay: 0.05s; }
+    .section-anim:nth-child(3) { animation-delay: 0.1s; }
+    .section-anim:nth-child(4) { animation-delay: 0.15s; }
+    .section-anim:nth-child(5) { animation-delay: 0.2s; }
+    @keyframes sectionIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .conf-hero {
+      padding: 72px 16px 70px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+    .hero-icon-wrap { position: relative; }
+    .hero-icon { width: 100px; height: 100px; position: relative; z-index: 1; cursor: pointer; }
+    .hero-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-icon.pop { animation: iconPop 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes iconPop {
+      0%   { transform: scale(0.7); }
+      55%  { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    /* Confetti burst */
+    .confetti {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 0; height: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .confetti-piece {
+      position: absolute;
+      left: 0; top: 0;
+      width: var(--size);
+      height: calc(var(--size) * 0.62);
+      background: var(--c);
+      border-radius: 1px;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    .confetti-piece.round { height: var(--size); border-radius: 50%; }
+    /* Denied icon: one soft, damped head-shake on entry */
+    .hero-icon.tone-danger {
+      animation: denyShake 1.15s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.4s both;
+      transform-origin: 50% 60%;
+    }
+    @keyframes denyShake {
+      0%, 100% { transform: rotate(0deg); }
+      18%      { transform: rotate(-5.5deg); }
+      38%      { transform: rotate(4.5deg); }
+      58%      { transform: rotate(-2.5deg); }
+      78%      { transform: rotate(1deg); }
+    }
+
+    /* Animated clock (pending state) */
+    .clock-hand {
+      transform-box: view-box;
+      transform-origin: 47.02px 47.91px;
+    }
+    .clock-hand.minute { animation: clockSpin 6s linear infinite; }
+    .clock-hand.hour   { animation: clockSpin 72s linear infinite; }
+    @keyframes clockSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-icon.pop { animation: none; }
+      .confetti-piece { display: none; }
+      .clock-hand.minute, .clock-hand.hour { animation: none; }
+      .hero-icon.tone-danger { animation: none; }
+    }
+    .hero-eyebrow {
+      font-size: 15px; font-weight: 600;
+      letter-spacing: 0.3px;
+      padding: 7px 14px;
+      border-radius: 100px;
+    }
+    .hero-eyebrow.success { background: var(--green-50);  color: var(--green-800); }
+    .hero-eyebrow.warning { background: var(--bg-orange); color: var(--orange-800); }
+    .hero-eyebrow.danger  { background: var(--bg-red);    color: var(--red-600); }
+    .hero-titles {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px;
+      width: 800px; max-width: 100%;
+    }
+    .conf-hero h1 {
+      font-size: clamp(34px, 4vw, 56px);
+      font-weight: 600;
+      line-height: 1.13;
+      color: var(--content-main);
+    }
+    .hero-sub {
+      font-size: clamp(16px, 1.5vw, 20px);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--content-main);
+      width: 100%;
+    }
+    .hero-sub.weak { font-size: clamp(16px, 1.6vw, 22px); line-height: 1.24; color: var(--content-weak); }
+
+    /* ════════════════════════════════════════
+       STEPPER  (State 1)
+    ════════════════════════════════════════ */
+    .stepper {
+      width: 800px; max-width: calc(100% - 32px);
+      margin: 0 auto;
+      display: flex; flex-direction: column;
+      gap: 60px;
+    }
+    .step { display: flex; gap: 30px; align-items: stretch; }
+    .step-rail {
+      width: 35px; flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px;
+    }
+    .step-dot {
+      width: 35px; height: 35px; flex-shrink: 0;
+      border-radius: 80px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-dot.done { background: var(--green-600); }
+    .step-dot.done svg { width: 16px; height: 14px; }
+    .step-dot.num { background: var(--white); border: 1px solid #a3a3a3; }
+    .step-dot.num span { font-size: 15px; font-weight: 600; letter-spacing: 0.3px; color: #000; }
+    .step:not(:last-child) .step-rail::after {
+      content: '';
+      flex: 1;
+      border-left: 1.5px dashed #b9bec4;
+      margin-bottom: -60px;
+    }
+    .step-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 13px; }
+    .step-title {
+      font-size: 20px; font-weight: 600;
+      line-height: 1.25;
+      color: var(--content-main);
+    }
+    .step-title em { font-style: normal; color: var(--orange-800); }
+    .step-desc {
+      font-size: 16px; font-weight: 400;
+      line-height: 1.3;
+      color: var(--content-main);
+    }
+    .step-tag {
+      align-self: flex-start;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.6px;
+      color: var(--green-700);
+      background: var(--green-50);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* Address cards (inside step 2) */
+    .address-stack { display: flex; flex-direction: column; gap: 26px; margin-top: 13px; }
+    .address-card {
+      background: var(--white);
+      border: 1px solid var(--outline-weak2);
+      border-radius: var(--r-big);
+      overflow: hidden;
+    }
+    .address-body {
+      padding: 26px 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .address-flag { width: 42px; height: 42px; flex-shrink: 0; }
+    .address-flag img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+    .address-lines { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
+    .address-name { font-size: 18px; font-weight: 600; letter-spacing: 0.36px; color: var(--content-main); }
+    .address-line { font-size: 16px; font-weight: 400; line-height: 1.2; color: var(--content-main); }
+    .address-line-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .suite-chip {
+      display: inline-flex; align-items: center;
+      height: 19px;
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.28px;
+      color: var(--blue-600);
+      background: var(--blue-l2);
+      padding: 1px 8px;
+      border-radius: var(--r-small);
+    }
+    .btn-copy {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: inherit;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.24px;
+      color: var(--orange);
+      background: transparent;
+      border: 1px solid var(--orange);
+      border-radius: var(--r-btn);
+      padding: 10px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      line-height: 1;
+    }
+    .btn-copy:hover { background: var(--bg-orange); }
+    .btn-copy.copied { border-color: var(--green-700); color: var(--green-700); background: var(--green-50); }
+
+    .btn-more {
+      align-self: flex-start;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: inherit;
+      font-size: 14px; font-weight: 600;
+      color: var(--links);
+      background: transparent;
+      border: 1px solid var(--links);
+      border-radius: var(--r-btn);
+      padding: 13px 20px;
+      cursor: pointer;
+      transition: background 0.15s;
+      line-height: 1;
+    }
+    .btn-more:hover { background: var(--blue-l2); }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: inherit;
+      font-size: 15px; font-weight: 600;
+      letter-spacing: 0.3px;
+      color: var(--content-main);
+      background: var(--orange);
+      border: none;
+      border-radius: var(--r-btn);
+      padding: 14px 20px;
+      min-width: 251px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: filter 0.15s, transform 0.1s;
+      line-height: 1;
+    }
+    .btn-primary:hover { filter: brightness(0.95); transform: translateY(-1px); }
+    .step-cta { padding: 8px 0 12px; }
+
+    /* ════════════════════════════════════════
+       ALERT  (State 2)
+    ════════════════════════════════════════ */
+    .alert-wrap { display: flex; justify-content: center; padding: 0 16px; }
+    .alert-box {
+      display: flex; align-items: center; gap: 20px;
+      width: 444px; max-width: 100%;
+      min-height: 80px;
+      background: var(--yellow-1);
+      border: 1px solid var(--orange);
+      border-radius: var(--r-btn);
+      padding: 20px;
+      filter: drop-shadow(0px 2px 2px rgba(16,40,61,0.13));
+    }
+    .alert-box img { width: 38px; height: 38px; flex-shrink: 0; }
+    .alert-box p {
+      font-size: 18px; font-weight: 600;
+      letter-spacing: -0.18px;
+      line-height: 1.25;
+      color: var(--content-main);
+    }
+    .alert-box p em { font-style: normal; color: var(--orange-800); }
+
+        /* "What happens next?" stepper card (pending) */
+    .next-card {
+      width: 855px; max-width: 100%;
+      background: var(--white);
+      border: 1px solid var(--outline-weak2);
+      border-radius: var(--r-btn);
+      box-shadow: 0px 9px 5px rgba(0,0,0,0.05), 0px 4px 4px rgba(0,0,0,0.09), 0px 1px 2px rgba(0,0,0,0.1);
+      padding: 24px 28px;
+      display: flex; flex-direction: column;
+      gap: 41px;
+    }
+    .next-title { font-size: 20px; font-weight: 600; line-height: 1.25; color: var(--content-main); }
+    .next-steps { display: flex; align-items: flex-start; }
+    .next-step {
+      width: 200px; flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+    .next-dot {
+      width: 55px; height: 55px;
+      border-radius: 80px;
+      background: var(--white);
+      border: 2px solid var(--orange-800);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .next-dot.off { border-color: #c1c3c7; }
+    .next-dot img { width: 28px; height: 28px; }
+    .next-texts { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+    .next-step-title { font-size: 14px; font-weight: 600; letter-spacing: 0.28px; line-height: 1; color: var(--content-main); }
+    .next-step-desc { font-size: 12px; font-weight: 400; line-height: 1.25; color: var(--content-weak); }
+    .next-line { flex: 1; height: 2px; margin: 27px -72px 0; background: var(--orange-800); }
+    .next-line.off { background: #c1c3c7; }
+    @media (max-width: 900px) {
+      .next-card { gap: 24px; }
+      .next-title { text-align: center; }
+      .next-steps { flex-direction: column; align-items: stretch; gap: 0; }
+      .next-step {
+        width: 100%;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 12px;
+        text-align: left;
+      }
+      .next-dot { flex-shrink: 0; }
+      .next-texts { align-items: flex-start; text-align: left; }
+      .next-line {
+        flex: none;
+        width: 2px;
+        height: 30px;
+        margin: 0 0 0 26.5px;
+      }
+    }
+
+/* ════════════════════════════════════════
+       SECTIONS
+    ════════════════════════════════════════ */
+    .section-title {
+      font-size: 28px; font-weight: 600;
+      line-height: 1.2;
+      color: var(--content-main);
+      text-align: center;
+    }
+    .section-sub {
+      font-size: 20px; font-weight: 400;
+      color: var(--content-main);
+      text-align: center;
+      line-height: 1.24;
+      margin-top: 10px;
+    }
+
+    /* Stores — animated logo marquee */
+    .stores-section {
+      padding-top: 80px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .stores-marquees {
+      width: 100%;
+      margin-top: 70px;
+      display: flex; flex-direction: column;
+    }
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: pan-y;
+    }
+    .marquee.dragging { cursor: grabbing; }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+    }
+    .marquee-track img {
+      height: 140px;
+      width: auto;
+      max-width: none;
+      pointer-events: none;
+      user-select: none;
+    }
+    .btn-stores {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-top: 44px;
+      font-family: inherit;
+      font-size: 15px; font-weight: 600;
+      letter-spacing: 0.3px;
+      color: var(--links);
+      background: var(--white);
+      border: 1px solid var(--links);
+      border-radius: var(--r-btn);
+      padding: 14px 28px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+      line-height: 1;
+    }
+    .btn-stores:hover { background: var(--blue-l2); }
+
+    /* Membership photo cards */
+    .member-section {
+      padding: 60px 16px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 38px;
+    }
+    .photo-cards {
+      display: flex; gap: 14px;
+      width: 880px; max-width: 100%;
+      padding-top: 18px;
+    }
+    .photo-card {
+      flex: 1;
+      height: 405px;
+      border-radius: var(--r-big);
+      padding: 22px 22px 30px;
+      display: flex; flex-direction: column; gap: 10px;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background-size: cover;
+      background-position: bottom center;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .photo-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(16,40,61,0.25); }
+    .photo-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.72) 100%);
+      pointer-events: none;
+    }
+    .photo-card > * { position: relative; z-index: 1; }
+    .photo-card-title { font-size: 28px; font-weight: 600; line-height: 1.2; }
+    .photo-card-desc  { font-size: 14px; font-weight: 400; line-height: 1.35; flex: 1; }
+    .photo-card-link  { font-size: 12px; font-weight: 600; letter-spacing: 0.24px; }
+
+    /* FAQ — grey rows */
+    .faq-section {
+      padding: 58px 16px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 18px;
+    }
+    .faq-card {
+      width: 880px; max-width: 100%;
+      padding: 30px 0;
+      display: flex; flex-direction: column; gap: 11px;
+    }
+    .faq-item { background: var(--bg-grey); }
+    .faq-q {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      background: none; border: none;
+      font-family: inherit;
+      font-size: 20px; font-weight: 600;
+      color: var(--content-main);
+      text-align: left;
+      padding: 20px 26px;
+      min-height: 60px;
+      cursor: pointer;
+      line-height: 1.25;
+      transition: background 0.12s;
+    }
+    .faq-q:hover { background: #eef1f6; }
+    .faq-chevron { width: 20px; flex-shrink: 0; transition: transform 0.25s; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.16,1,0.3,1); }
+    .faq-a-inner {
+      padding: 0 26px 22px;
+      font-size: 14px;
+      color: var(--content-weak);
+      line-height: 1.6;
+    }
+    .faq-a-inner strong { color: var(--content-main); font-weight: 600; }
+
+    .spacer-40 { height: 40px; }
+
+    /* ════════════════════════════════════════
+       FOOTER  (navy)
+    ════════════════════════════════════════ */
+    .conf-footer { background: var(--footer-navy); margin-top: 40px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 50px 40px 0; }
+    .footer-top { display: flex; justify-content: space-between; gap: 32px; }
+    .footer-logo img { height: 32px; width: auto; }
+    .footer-cols { display: flex; gap: 32px; flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 12px; }
+    .footer-col.w156 { width: 156px; }
+    .footer-col.w250 { width: 250px; }
+    .footer-col h4 {
+      font-size: 14px; font-weight: 500;
+      letter-spacing: 0.07px;
+      color: var(--white);
+      padding: 4px 0;
+    }
+    .footer-col a {
+      font-size: 14px; font-weight: 500;
+      letter-spacing: 0.07px;
+      color: var(--footer-muted);
+      text-decoration: none;
+      padding: 4px 0;
+      line-height: 1.3;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-contact {
+      display: flex; gap: 8px; align-items: flex-start;
+      padding: 3px 0;
+      font-size: 14px; font-weight: 500;
+      letter-spacing: 0.07px;
+      color: var(--footer-muted);
+      line-height: 1.3;
+    }
+    .footer-contact img { width: 16px; height: 16px; margin-top: 1px; }
+    .footer-sep { height: 1px; background: rgba(126,142,154,0.3); margin: 6px 0; }
+    .footer-social { margin: 22px 0 0; }
+    .footer-social img { height: 24px; width: auto; }
+    .btn-app {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-top: 24px;
+      font-size: 16px; font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--white);
+      background: var(--links);
+      border-radius: var(--r-btn);
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: filter 0.15s;
+    }
+    .btn-app:hover { filter: brightness(1.1); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 50px 0;
+      flex-wrap: wrap;
+    }
+    .footer-bottom p, .footer-bottom a {
+      font-size: 14px;
+      color: var(--footer-muted);
+      text-decoration: none;
+      line-height: 1.4;
+    }
+    .footer-bottom .legal { display: flex; align-items: center; gap: 12px; font-weight: 600; }
+    .footer-bottom .legal span { width: 4px; height: 4px; border-radius: 50%; background: var(--footer-muted); }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .site-nav { display: none; }
+      /* Membership cards per Figma mobile reference: full-width, 405px tall, stacked */
+      .photo-cards { flex-direction: column; padding-left: 22px; padding-right: 22px; }
+      .photo-card { height: 405px; }
+      .photo-card-desc { font-size: 16px; flex: 0 0 auto; }
+      .photo-card-link { margin-top: auto; }
+      .footer-top { flex-direction: column; }
+      .stores-marquees { margin-top: 40px; }
+    }
+    @media (max-width: 640px) {
+      .marquee-track img { height: 90px; }
+      .btn-stores { margin-top: 28px; }
+    }
+    @media (max-width: 640px) {
+      .header-inner { padding: 12px 16px; min-height: 60px; }
+      .conf-hero { padding: 48px 16px 44px; gap: 14px; }
+      .hero-icon { width: 76px; height: 76px; }
+      .simulator { top: auto; bottom: 16px; right: 16px; }
+
+      .stepper { gap: 40px; }
+      .step { gap: 16px; }
+      .step:not(:last-child) .step-rail::after { margin-bottom: -40px; }
+      .step-title { font-size: 18px; }
+      .step-desc { font-size: 15px; }
+
+      .address-body { flex-wrap: wrap; padding: 20px 18px; }
+      .btn-copy { width: 100%; }
+      .btn-primary { width: 100%; min-width: 0; }
+      .btn-more { width: 100%; }
+
+      .section-title { font-size: 22px; }
+      .section-sub { font-size: 16px; }
+      .stores-section { padding-top: 48px; }
+      .member-section { padding: 40px 16px; gap: 24px; }
+      .faq-section { padding: 40px 12px; }
+      .faq-card { padding: 16px 0; }
+      .faq-q { font-size: 16px; padding: 14px 18px; min-height: 52px; }
+      .faq-a-inner { padding: 0 18px 16px; }
+
+      .alert-box { gap: 14px; padding: 16px; }
+      .footer-inner { padding: 36px 20px 0; }
+      .footer-bottom { padding: 28px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo" aria-label="MyUS home">
+      <img src="logo.svg" alt="MyUS" />
+    </a>
+    <nav class="site-nav">
+      <a href="index.html#">How it works</a>
+      <a href="index.html#">Why choose MyUS</a>
+      <a href="index.html#">Shipping rates</a>
+      <a href="index.html#">Shop with MyUS</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-icon" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M12.5 12.5L16.5 16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <a href="#" class="btn-login" id="header-login">Log in</a>
+      <a href="#" class="btn-signup" id="header-signup">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ JOURNEY SIMULATOR ═══════════ -->
+<aside class="simulator" id="simulator" aria-label="Journey Simulator">
+  <div class="sim-head" id="sim-toggle" role="button" tabindex="0" aria-expanded="true">
+    <span class="sim-dot"></span>
+    <span class="sim-title">Journey Simulator</span>
+    <svg class="sim-chevron" width="11" height="7" viewBox="0 0 12 8" fill="none">
+      <path d="M1 6.5L6 1.5L11 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="sim-body">
+    <div class="sim-label">Registration Outcome</div>
+    <button class="sim-option active" data-state="approved"><span class="sim-radio"></span>Immediate Approval<span class="sim-key">1</span></button>
+    <button class="sim-option" data-state="pending"><span class="sim-radio"></span>Pending Review<span class="sim-key">2</span></button>
+    <button class="sim-option" data-state="rejected"><span class="sim-radio"></span>Rejected<span class="sim-key">3</span></button>
+    <a class="sim-assets" href="/design-system/#assets" target="_blank" rel="noopener">Download page assets ↗</a>
+  </div>
+</aside>
+
+<!-- ═══════════ ADAPTIVE STAGE ═══════════ -->
+<main id="stage"></main>
+
+<!-- ═══════════ FOOTER (navy) ═══════════ -->
+<footer class="conf-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo"><img src="assets/confirmation/logo-white.png" alt="MyUS.com" /></div>
+      <div class="footer-cols">
+        <div class="footer-col w156">
+          <h4>Company</h4>
+          <a href="#">How MyUS Works</a>
+          <a href="#">Why Choose MyUS</a>
+          <a href="#">Shipping rates</a>
+          <a href="#">Shop with MyUS</a>
+          <a href="#">About MyUS</a>
+          <a href="#">MyUS Reviews</a>
+          <a href="#">Careers at MyUS.com</a>
+        </div>
+        <div class="footer-col w250">
+          <h4>Partner with MyUS</h4>
+          <a href="#">Retail Partners</a>
+          <a href="#">Supply Chain &amp; Volume Shippers</a>
+          <a href="#">White Label Products</a>
+          <a href="#">Affiliate Partners</a>
+        </div>
+        <div class="footer-col w250">
+          <h4>Resources</h4>
+          <a href="#">Shipping &amp; Pricing for your Country</a>
+          <a href="#">Exchange Rates</a>
+          <a href="#">What You Cannot Ship</a>
+          <a href="#">Blog</a>
+          <a href="#">FAQs</a>
+          <a href="#">News &amp; Press</a>
+          <a href="#">Scholarships</a>
+          <a href="#">Top Stores</a>
+          <a href="#">Your Privacy Rights</a>
+        </div>
+        <div class="footer-col w250">
+          <h4>Contacts</h4>
+          <div class="footer-contact"><img src="icons/conf-ft-location.svg" alt="" />4299 Express Lane Sarasota,<br/>FL 34249 USA</div>
+          <div class="footer-contact"><img src="icons/conf-ft-whatsapp.svg" alt="" />+1 (941) 225-7374</div>
+          <div class="footer-contact"><img src="icons/conf-ft-phone.svg" alt="" />+1 (941) 225-7374</div>
+          <div class="footer-contact"><img src="icons/conf-ft-mail.svg" alt="" />+1 (941) 225-7374</div>
+          <div class="footer-sep"></div>
+          <div class="footer-contact"><img src="icons/conf-ft-clock.svg" alt="" />Local time: <span id="local-time">04:49</span></div>
+          <div class="footer-social"><img src="assets/confirmation/footer-social.png" alt="Facebook, Instagram, X" /></div>
+          <a href="#" class="btn-app">Get MyUS Mobile App</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>©1997-2026 MyUS.com All Rights Reserved</p>
+      <div class="legal">
+        <a href="#">Terms &amp; Conditions</a><span></span>
+        <a href="#">Privacy Policy</a><span></span>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   DATA
+════════════════════════════════════════════════════════════ */
+const ADDRESSES = [
+  {
+    flag: 'icons/conf-flag-us.png',
+    name: 'Amira Hassan',
+    street: '4283 Express Lane,',
+    suite: 'Suite 4021-518',
+    city: 'Sarasota, FL 34249',
+    country: 'United States',
+    tel: 'Tel: +1 (941) 538-6941',
+  },
+  {
+    flag: 'icons/conf-flag-uk.png',
+    name: 'Amira Hassan',
+    street: 'Unit 9, Skyport Drive',
+    suite: 'Suite 4021-518',
+    city: 'West Drayton, Middx UB7 0LB',
+    country: 'United Kingdom',
+    tel: 'Tel: +44 0175 321 0551',
+  },
+];
+
+const CHECK_SVG = '<svg viewBox="0 0 17 15" fill="none"><path d="M1.5 8l4.5 4.5L15.5 1.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* Pending clock rebuilt from the Figma icon with separate, animatable hands */
+const CLOCK_SVG = `
+<svg viewBox="0 0 93.75 93.75" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.825 1.13333C20.6396 0.579166 31.4562 0 46.875 0C62.2937 0 73.1104 0.579166 79.925 1.13333C86.775 1.68958 92.0604 6.975 92.6167 13.825C93.1708 20.6396 93.75 31.4562 93.75 46.875C93.75 62.2937 93.1708 73.1104 92.6167 79.925C92.0604 86.775 86.775 92.0604 79.925 92.6167C73.1104 93.1708 62.2937 93.75 46.875 93.75C31.4562 93.75 20.6396 93.1708 13.825 92.6167C6.975 92.0604 1.68958 86.775 1.13333 79.925C0.579166 73.1104 0 62.2937 0 46.875C0 31.4562 0.579166 20.6396 1.13333 13.825C1.68958 6.975 6.975 1.68958 13.825 1.13333Z" fill="#FF981F" fill-opacity="0.08"/>
+  <circle cx="47.02" cy="47.91" r="25.38" fill="#FF981F"/>
+  <g class="clock-hand minute">
+    <line x1="47.02" y1="47.91" x2="47.02" y2="31.6" stroke="#FFF1CC" stroke-width="6.9" stroke-linecap="round"/>
+  </g>
+  <g class="clock-hand hour">
+    <line x1="47.02" y1="47.91" x2="57.5" y2="58.4" stroke="#FFF1CC" stroke-width="6.9" stroke-linecap="round"/>
+  </g>
+  <circle cx="47.02" cy="47.91" r="3.4" fill="#FFF1CC"/>
+</svg>`;
+
+/* ════════════════════════════════════════════════════════════
+   COMPONENTS
+════════════════════════════════════════════════════════════ */
+const C = {
+  hero: ({ tone, icon, iconHtml, eyebrow, title, sub, subWeak, confetti }) => `
+    <section class="conf-hero section-anim">
+      <div class="hero-icon-wrap">
+        ${confetti ? '<div class="confetti" data-confetti></div>' : ''}
+        <div class="hero-icon tone-${tone}"${confetti ? ' data-confetti-trigger title="🎉"' : ''}>${iconHtml || `<img src="${icon}" alt="" />`}</div>
+      </div>
+      <div class="hero-eyebrow ${tone}">${eyebrow}</div>
+      <div class="hero-titles">
+        <h1>${title}</h1>
+        <p class="hero-sub${subWeak ? ' weak' : ''}">${sub}</p>
+      </div>
+    </section>`,
+
+  addressCard: (a, idx) => `
+    <div class="address-card">
+      <div class="address-body">
+        <div class="address-flag"><img src="${a.flag}" alt="${a.country}" /></div>
+        <div class="address-lines">
+          <div class="address-name">${a.name}</div>
+          <div class="address-line-row">
+            <span class="address-line">${a.street}</span>
+            <span class="suite-chip">${a.suite}</span>
+          </div>
+          <div class="address-line">${a.city}</div>
+          <div class="address-line">${a.country}</div>
+          <div class="address-line">${a.tel}</div>
+        </div>
+        <button class="btn-copy" data-copy-address="${idx}">Copy Address</button>
+      </div>
+    </div>`,
+
+  stepper: () => `
+    <section class="section-anim">
+      <div class="stepper">
+
+        <div class="step">
+          <div class="step-rail"><div class="step-dot done">${CHECK_SVG}</div></div>
+          <div class="step-body">
+            <div class="step-title">Your <em>Premium Membership</em> is Active</div>
+            <p class="step-desc">Your membership unlocks access to thousands of the world’s most popular stores and brands, discounted international shipping, free package consolidation, and other exclusive benefits designed to help you save time and money.</p>
+            <span class="step-tag">COMPLETED</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-rail"><div class="step-dot done">${CHECK_SVG}</div></div>
+          <div class="step-body">
+            <div class="step-title">Your <em>Global Shopping</em> Starts Now</div>
+            <p class="step-desc">Use your personal MyUS address as the shipping address when you shop at international stores. We'll notify you when your order arrives, and you choose when, where, and how to ship it.</p>
+            <span class="step-tag">READY TO SHOP</span>
+            <div class="address-stack">
+              ${ADDRESSES.map((a, i) => C.addressCard(a, i)).join('')}
+              <button class="btn-more">Show more Addresses (2)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-rail"><div class="step-dot num"><span>3</span></div></div>
+          <div class="step-body">
+            <div class="step-title">Your <em>MyUS Account</em> Awaits</div>
+            <p class="step-desc">Manage your packages, shipping preferences, addresses, payments, and more from your MyUS account.</p>
+            <span class="step-tag">24/7 ACCESS</span>
+            <div class="step-cta"><a href="#" class="btn-primary">Log In to My Account</a></div>
+          </div>
+        </div>
+
+      </div>
+    </section>`,
+
+  storesSection: () => `
+    <section class="stores-section section-anim">
+      <h2 class="section-title">Recommended Stores</h2>
+      <p class="section-sub">Shop these popular stores and ship to your new MyUS addresses.</p>
+      <div class="stores-marquees">
+        <div class="marquee" data-speed="0.55">
+          <div class="marquee-track">
+            <img src="assets/confirmation/stores-row1.png" alt="US stores: Amazon, eBay, SHEIN, Walmart, Zappos and more" />
+            <img src="assets/confirmation/stores-row1.png" alt="" aria-hidden="true" />
+          </div>
+        </div>
+        <div class="marquee" data-speed="0.38">
+          <div class="marquee-track">
+            <img src="assets/confirmation/stores-row2.png" alt="UK stores: M&amp;S, Boots, John Lewis, River Island, Debenhams and more" />
+            <img src="assets/confirmation/stores-row2.png" alt="" aria-hidden="true" />
+          </div>
+        </div>
+      </div>
+      <a href="#" class="btn-stores">See All US &amp; UK Stores</a>
+    </section>`,
+
+  membershipSection: () => `
+    <section class="member-section section-anim">
+      <h2 class="section-title">Make the Most of Your Membership</h2>
+      <div class="photo-cards">
+        <a href="#" class="photo-card" style="background-image: linear-gradient(180deg, rgba(254,152,31,0.3) 20%, rgba(209,49,56,0.3) 100%), url('assets/confirmation/member-invite.png'); background-color: #ff981f;">
+          <div class="photo-card-title">Refer Friends</div>
+          <div class="photo-card-desc">Earn a $15 shipping credit for every friend who signs up for a MyUS membership.</div>
+          <div class="photo-card-link">Get your invite link →</div>
+        </a>
+        <a href="#" class="photo-card" style="background-image: url('assets/confirmation/member-family.png'); background-color: #d13138;">
+          <div class="photo-card-title">MyUS Family</div>
+          <div class="photo-card-desc">Add friends and family members to your account &amp; share the savings!</div>
+          <div class="photo-card-link">Add MyUS Family members →</div>
+        </a>
+        <a href="#" class="photo-card" style="background-image: url('assets/confirmation/member-shopping.png'); background-color: #0c71c9;">
+          <div class="photo-card-title">MyUS Shopping</div>
+          <div class="photo-card-desc">Shop multiple US stores with one checkout, or let Buying Assistant shop for you.</div>
+          <div class="photo-card-link">Try MyUS Shopping →</div>
+        </a>
+      </div>
+    </section>`,
+
+  faqSection: (items) => `
+    <section class="faq-section section-anim">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-card">
+        ${items.map(f => `
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">${f.q}
+              <img class="faq-chevron" src="icons/conf-faq-chevron.svg" alt="" />
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>
+          </div>`).join('')}
+      </div>
+    </section>`,
+
+  nextSteps: () => `
+    <div class="alert-wrap section-anim">
+      <div class="next-card">
+        <div class="next-title">What happens next?</div>
+        <div class="next-steps">
+          <div class="next-step">
+            <div class="next-dot"><img src="icons/conf-step-filecheck.svg" alt="" /></div>
+            <div class="next-texts">
+              <div class="next-step-title">Application Received</div>
+              <div class="next-step-desc">You have successfully submitted your membership application.</div>
+            </div>
+          </div>
+          <div class="next-line"></div>
+          <div class="next-step">
+            <div class="next-dot"><img src="icons/conf-step-filesearch.svg" alt="" /></div>
+            <div class="next-texts">
+              <div class="next-step-title">Review in Progress</div>
+              <div class="next-step-desc">Our team is verifying your application details.</div>
+            </div>
+          </div>
+          <div class="next-line off"></div>
+          <div class="next-step">
+            <div class="next-dot off"><img src="icons/conf-step-inbox.svg" alt="" /></div>
+            <div class="next-texts">
+              <div class="next-step-title">Status Update Email</div>
+              <div class="next-step-desc">We will notify you within 24 hours with your application status.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`,
+
+  alert: (text) => `
+    <div class="alert-wrap section-anim">
+      <div class="alert-box">
+        <img src="icons/conf-info-circle.svg" alt="" />
+        <p>${text}</p>
+      </div>
+    </div>`,
+};
+
+/* ════════════════════════════════════════════════════════════
+   STATES  (the three Figma frames)
+════════════════════════════════════════════════════════════ */
+const STATES = {
+
+  /* ── 1 · IMMEDIATE APPROVAL ── */
+  approved: {
+    login: true, signup: false,
+    render: () => [
+      C.hero({
+        tone: 'success', icon: 'icons/conf-hero-check.svg',
+        eyebrow: 'ACCOUNT CREATED',
+        confetti: true,
+        title: 'Welcome to MyUS',
+        sub: "Congratulations! You're now one of more than 1.6 million shoppers worldwide who use MyUS to get what they love from international stores.",
+      }),
+      C.stepper(),
+      C.storesSection(),
+      C.membershipSection(),
+      C.faqSection([
+        { q: 'How do I use a MyUS address?', a: 'At checkout on any U.S. or U.K. store, enter your MyUS address exactly as shown above — <strong>including your suite number</strong>. The suite number is how we match arriving packages to your account.' },
+        { q: 'When will I see my packages in the dashboard?', a: 'Packages appear in your dashboard within a few hours of arriving at our facility, complete with photos and weights. We’ll also email you every time something arrives.' },
+        { q: 'How much does shipping cost?', a: 'With TruePrice you pay by <strong>actual weight only</strong> — never dimensional weight. Use the shipping calculator any time for an exact, guaranteed quote to your country.' },
+        { q: 'Is there a storage fee?', a: 'No. Your packages are stored <strong>free for up to 30 days</strong>, so you can combine multiple purchases into one shipment and save.' },
+      ]),
+    ],
+  },
+
+  /* ── 2 · PENDING REVIEW ── */
+  pending: {
+    login: true, signup: false,
+    render: () => [
+      C.hero({
+        tone: 'warning', iconHtml: CLOCK_SVG,
+        eyebrow: 'UNDER REVIEW',
+        title: 'Application Received',
+        sub: 'Thank you for registering for a MyUS account!<br/>Our team is reviewing your application.',
+      }),
+      C.nextSteps(),
+      '<div class="spacer-40"></div>',
+      C.faqSection([
+        { q: 'Why is my application under review?', a: 'Some applications need a short additional review before an account is created. It’s a standard part of our process and <strong>doesn’t necessarily mean anything is wrong</strong> with your application.' },
+        { q: 'How long does the review take?', a: 'Most reviews are completed <strong>within 24 hours</strong>. We’ll email you with a membership status update as soon as the review is complete.' },
+        { q: 'When can I start using my MyUS account?', a: '<strong>Your account is created once your application is approved.</strong> You’ll receive an email with your membership status — after approval you can log in, get your MyUS addresses, and start shopping right away.' },
+      ]),
+    ],
+  },
+
+  /* ── 3 · REJECTED ── */
+  rejected: {
+    login: false, signup: true,
+    render: () => [
+      C.hero({
+        tone: 'danger', icon: 'icons/conf-hero-stop.png',
+        eyebrow: 'APPLICATION DECISION',
+        title: 'We are unable to accept<br/>your membership application.',
+        sub: 'Applications may be declined for a variety of reasons, including issues with the information provided during registration.<br/><br/>We apologize for any inconvenience this may cause.',
+        subWeak: true,
+      }),
+      '<div class="spacer-40"></div>',
+    ],
+  },
+};
+
+/* ════════════════════════════════════════════════════════════
+   RENDER + STATE SWITCHING
+════════════════════════════════════════════════════════════ */
+const stage = document.getElementById('stage');
+const loginBtn = document.getElementById('header-login');
+const signupBtn = document.getElementById('header-signup');
+let currentState = 'approved';
+
+function render(stateKey) {
+  const s = STATES[stateKey];
+  stage.innerHTML = s.render().join('');
+  loginBtn.style.display = s.login ? '' : 'none';
+  signupBtn.style.display = s.signup ? '' : 'none';
+  bindFaq();
+  bindCopy();
+  bindConfetti();
+  bindMarquees();
+}
+
+function switchState(stateKey) {
+  if (stateKey === currentState) return;
+  currentState = stateKey;
+  document.querySelectorAll('.sim-option').forEach(o =>
+    o.classList.toggle('active', o.dataset.state === stateKey));
+  stage.classList.add('leaving');
+  setTimeout(() => {
+    render(stateKey);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    stage.classList.remove('leaving');
+  }, 180);
+}
+
+/* Store-logo marquees: auto-scroll left, pause on hover, draggable */
+function bindMarquees() {
+  stage.querySelectorAll('.marquee').forEach(mq => {
+    const track = mq.querySelector('.marquee-track');
+    const speed = parseFloat(mq.dataset.speed) || 0.5;
+    let offset = 0, paused = false, dragging = false, lastX = 0, half = 0;
+
+    const measure = () => { half = track.scrollWidth / 2; };
+    track.querySelectorAll('img').forEach(img => {
+      if (img.complete) measure();
+      else img.addEventListener('load', measure);
+    });
+    measure();
+
+    mq.addEventListener('mouseenter', () => { paused = true; });
+    mq.addEventListener('mouseleave', () => { paused = false; });
+
+    mq.addEventListener('pointerdown', e => {
+      dragging = true; lastX = e.clientX;
+      mq.classList.add('dragging');
+      mq.setPointerCapture(e.pointerId);
+    });
+    mq.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      offset += e.clientX - lastX;
+      lastX = e.clientX;
+    });
+    const endDrag = () => { dragging = false; mq.classList.remove('dragging'); };
+    mq.addEventListener('pointerup', endDrag);
+    mq.addEventListener('pointercancel', endDrag);
+
+    const tick = () => {
+      if (!mq.isConnected) return;           // stop when state switches away
+      if (!half) measure();
+      if (!paused && !dragging) offset -= speed;
+      if (half > 0) {
+        while (offset <= -half) offset += half;
+        while (offset > 0) offset -= half;
+      }
+      track.style.transform = `translateX(${offset}px)`;
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+
+/* Confetti burst around the success icon — rAF physics, repeats after a 5s pause */
+const CONFETTI_COLORS = ['#ff981f', '#0c71c9', '#299948', '#d13138', '#ffd31f', '#266093'];
+const CONFETTI_N = 30;
+const CONFETTI_LIFE = 2400;   // ms a burst lives
+const CONFETTI_PAUSE = 5000;  // ms between bursts
+const CONFETTI_FADE_Y = 55;   // px below icon center where dissolve begins
+const CONFETTI_GONE_Y = 130;  // px below icon center where pieces are fully gone (≈ under the title)
+
+function bindConfetti() {
+  const host = stage.querySelector('[data-confetti]');
+  if (!host) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let pieces = [];
+  let burstStart = 0;
+  let nextBurstAt = 0;
+
+  const launch = (now) => {
+    host.innerHTML = '';
+    pieces = [];
+    burstStart = now;
+    nextBurstAt = Infinity; // set when this burst ends
+    for (let i = 0; i < CONFETTI_N; i++) {
+      const el = document.createElement('span');
+      el.className = 'confetti-piece' + (Math.random() < 0.35 ? ' round' : '');
+      const size = 5 + Math.random() * 5;
+      el.style.setProperty('--size', size + 'px');
+      el.style.setProperty('--c', CONFETTI_COLORS[i % CONFETTI_COLORS.length]);
+      host.appendChild(el);
+      const angle = (i / CONFETTI_N) * Math.PI * 2 + (Math.random() - 0.5) * 0.6;
+      const power = 3.4 + Math.random() * 3.2;
+      pieces.push({
+        el,
+        x: 0, y: 0,
+        vx: Math.cos(angle) * power,
+        vy: Math.sin(angle) * power * 0.85 - 2.6,   // upward bias
+        rot: Math.random() * 360,
+        vr: (Math.random() - 0.5) * 14,             // spin
+        swayPhase: Math.random() * Math.PI * 2,
+        swayAmp: 0.35 + Math.random() * 0.5,
+        delay: Math.random() * 140,                  // stagger the pop
+      });
+    }
+    const icon = stage.querySelector('[data-confetti-trigger]');
+    if (icon) {
+      icon.classList.remove('pop');
+      void icon.offsetWidth;
+      icon.classList.add('pop');
+    }
+  };
+
+  let last = performance.now();
+  const tick = (now) => {
+    if (!host.isConnected) return;               // state switched away — stop
+    const dt = Math.min((now - last) / 16.667, 3); // normalize to 60fps units
+    last = now;
+
+    if (!burstStart) launch(now);
+    const age = now - burstStart;
+
+    if (age >= CONFETTI_LIFE && nextBurstAt === Infinity) nextBurstAt = now + CONFETTI_PAUSE;
+    if (now >= nextBurstAt) launch(now);
+
+    for (const p of pieces) {
+      const t = age - p.delay;
+      if (t < 0) { p.el.style.opacity = 0; continue; }
+      // physics: gravity + air drag + gentle horizontal sway while falling
+      p.vy += 0.085 * dt;                        // gravity
+      p.vx *= Math.pow(0.972, dt);               // horizontal drag
+      p.vy *= Math.pow(0.992, dt);               // vertical drag (terminal velocity feel)
+      const sway = Math.sin(t / 260 + p.swayPhase) * p.swayAmp * Math.min(t / 500, 1);
+      p.x += (p.vx + sway) * dt;
+      p.y += p.vy * dt;
+      p.vr *= Math.pow(0.995, dt);
+      p.rot += p.vr * dt;
+      const lifeFrac = t / CONFETTI_LIFE;
+      const timeFade = lifeFrac < 0.65 ? 1 : Math.max(0, 1 - (lifeFrac - 0.65) / 0.35);
+      // dissolve before reaching the title: fade out between FADE_Y and GONE_Y below the icon
+      const yFade = p.y <= CONFETTI_FADE_Y ? 1
+        : Math.max(0, 1 - (p.y - CONFETTI_FADE_Y) / (CONFETTI_GONE_Y - CONFETTI_FADE_Y));
+      p.el.style.opacity = Math.min(timeFade, yFade);
+      p.el.style.transform = `translate(${p.x}px, ${p.y}px) rotate(${p.rot}deg)`;
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
+  const icon = stage.querySelector('[data-confetti-trigger]');
+  if (icon) icon.addEventListener('click', () => { burstStart = 0; });
+}
+
+function bindFaq() {
+  stage.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      q.setAttribute('aria-expanded', open);
+      a.style.maxHeight = open ? a.scrollHeight + 'px' : '0px';
+    });
+  });
+}
+
+function bindCopy() {
+  stage.querySelectorAll('[data-copy-address]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const a = ADDRESSES[+btn.dataset.copyAddress];
+      const text = `${a.name}\n${a.street} ${a.suite}\n${a.city}\n${a.country}\n${a.tel}`;
+      navigator.clipboard.writeText(text).catch(() => {});
+      btn.classList.add('copied');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.textContent = 'Copy Address';
+      }, 1800);
+    });
+  });
+}
+
+/* Simulator interactions */
+document.querySelectorAll('.sim-option').forEach(opt =>
+  opt.addEventListener('click', () => switchState(opt.dataset.state)));
+
+const simulator = document.getElementById('simulator');
+const simToggle = document.getElementById('sim-toggle');
+simToggle.addEventListener('click', () => {
+  const collapsed = simulator.classList.toggle('collapsed');
+  simToggle.setAttribute('aria-expanded', !collapsed);
+});
+simToggle.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); simToggle.click(); }
+});
+
+/* Keyboard shortcuts 1–3 */
+const KEY_MAP = { '1': 'approved', '2': 'pending', '3': 'rejected' };
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, select, textarea')) return;
+  if (KEY_MAP[e.key]) switchState(KEY_MAP[e.key]);
+});
+
+/* Small screens: start simulator collapsed */
+if (window.matchMedia('(max-width: 640px)').matches) {
+  simulator.classList.add('collapsed');
+  simToggle.setAttribute('aria-expanded', 'false');
+}
+
+/* Live local time in footer (Sarasota, ET) */
+try {
+  document.getElementById('local-time').textContent =
+    new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/New_York' }).format(new Date());
+} catch (e) {}
+
+/* Deep-linking: confirmation.html#pending etc. */
+const hash = location.hash.replace('#', '');
+if (STATES[hash]) currentState = hash;
+document.querySelectorAll('.sim-option').forEach(o =>
+  o.classList.toggle('active', o.dataset.state === currentState));
+
+render(currentState);
+</script>
+</body>
+</html>

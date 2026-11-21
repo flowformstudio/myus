@@ -6,7 +6,7 @@
   <title>Dashboard · MyUS.com</title>
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/base.css" />
-  <link rel="stylesheet" href="styles/dashboard.css" />
+  <link rel="stylesheet" href="styles/dashboard.css?v=2" />
   <link rel="stylesheet" href="styles/components.css" />
   <link rel="stylesheet" href="styles/multi.css" />
 </head>
@@ -22,7 +22,7 @@
       <!-- Page header -->
       <div class="page-header">
         <h1>Dashboard</h1>
-        <span class="page-counter">256 locations</span>
+        <span class="page-counter" data-page-counter>… locations</span>
       </div>
 
       <!-- Locations master card (4 quick cards + table) -->
@@ -34,107 +34,13 @@
           </h5>
         </div>
 
-        <!-- 4 quick-access location cards -->
-        <div class="loc-row">
-
-          <div class="loc-card">
-            <div class="loc-card-head">
-              <span class="loc-card-flag" style="background-image:url('https://flagcdn.com/w80/li.png')"></span>
-              <span class="loc-card-name">Liechtenstein</span>
-            </div>
-            <div class="loc-card-status">
-              <span class="status-pill review"><span class="count">2</span>In Review</span>
-              <span class="status-pill action"><span class="count">4</span>Action Required</span>
-            </div>
-            <div class="loc-card-actions">
-              <button class="btn btn-outline" data-see-address
-                data-name="Liechtenstein"
-                data-flag="https://flagcdn.com/w80/li.png"
-                data-counts="1,0,4"
-                data-a1="Suite 6340-104"
-                data-a2="Unit 9, Skyport Drive"
-                data-city="West Drayton"
-                data-state="Middx"
-                data-zip="UB7 0LB"
-                data-tel="+44 0175 321 0551">See Address</button>
-              <button class="btn btn-primary">Manage Location</button>
-            </div>
-          </div>
-
-          <div class="loc-card">
-            <div class="loc-card-head">
-              <span class="loc-card-flag" style="background-image:url('https://flagcdn.com/w80/me.png')"></span>
-              <span class="loc-card-name">Montenegro</span>
-            </div>
-            <div class="loc-card-status">
-              <span class="status-pill ready"><span class="count">2</span>Ready to send</span>
-              <span class="status-pill action"><span class="count">8</span>Action Required</span>
-            </div>
-            <div class="loc-card-actions">
-              <button class="btn btn-outline" data-see-address
-                data-name="Montenegro"
-                data-flag="https://flagcdn.com/w80/me.png"
-                data-counts="2,0,8"
-                data-a1="Suite 6340-104"
-                data-a2="Bulevar Pera Ćetkovića 16"
-                data-city="Podgorica"
-                data-state="—"
-                data-zip="81000"
-                data-tel="+382 20 234 567">See Address</button>
-              <button class="btn btn-primary">Manage Location</button>
-            </div>
-          </div>
-
-          <div class="loc-card">
-            <div class="loc-card-head">
-              <span class="loc-card-flag" style="background-image:url('https://flagcdn.com/w80/ls.png')"></span>
-              <span class="loc-card-name">Lesotho</span>
-            </div>
-            <div class="loc-card-status">
-              <span class="status-pill review"><span class="count">7</span>In Review</span>
-            </div>
-            <div class="loc-card-actions">
-              <button class="btn btn-outline" data-see-address
-                data-name="Lesotho"
-                data-flag="https://flagcdn.com/w80/ls.png"
-                data-counts="0,7,0"
-                data-a1="Suite 6340-104"
-                data-a2="Kingsway Road"
-                data-city="Maseru"
-                data-state="—"
-                data-zip="100"
-                data-tel="+266 2231 1234">See Address</button>
-              <button class="btn btn-primary">Manage Location</button>
-            </div>
-          </div>
-
-          <div class="loc-card">
-            <div class="loc-card-head">
-              <span class="loc-card-flag" style="background-image:url('https://flagcdn.com/w80/mg.png')"></span>
-              <span class="loc-card-name">Madagascar</span>
-            </div>
-            <div class="loc-card-empty">You have no packages at this location</div>
-            <div class="loc-card-actions">
-              <button class="btn btn-outline" data-see-address
-                data-name="Madagascar"
-                data-flag="https://flagcdn.com/w80/mg.png"
-                data-counts="0,0,0"
-                data-a1="Suite 6340-104"
-                data-a2="Avenue de l'Indépendance"
-                data-city="Antananarivo"
-                data-state="—"
-                data-zip="101"
-                data-tel="+261 20 22 234 56">See Address</button>
-              <button class="btn btn-primary">Manage Location</button>
-            </div>
-          </div>
-
-        </div>
+        <!-- 4 quick-access location cards (hydrated from data/countries.json) -->
+        <div class="loc-row" data-loc-cards>        </div>
 
         <!-- 25 Locations sub-table -->
         <div style="margin-top: var(--s-6); padding-top: var(--s-6); border-top: 1px solid var(--ink-100)">
           <div class="loc-table-head">
-            <div class="count-line">25 Locations</div>
+            <div class="count-line" data-loc-count>… Locations</div>
             <div class="loc-search">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               <input type="search" placeholder="Search for location" />
@@ -142,7 +48,7 @@
             </div>
           </div>
 
-          <table class="loc-table">
+          <table class="loc-table" data-loc-table-embed>
             <thead>
               <tr>
                 <th style="width:220px">Country</th>
@@ -150,117 +56,7 @@
                 <th style="width:360px">Status <span class="sort-arrow">↑↓</span></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="fav-icon star">★</span>
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>
-                    UK
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1...</a></td>
-                <td>
-                  <div class="status-cell">
-                    <span class="status-pill ready"><span class="count">2</span>Ready to send</span>
-                    <span class="status-pill review"><span class="count">1</span>In Review</span>
-                    <span class="status-pill action"><span class="count">1</span>Action Required</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="fav-icon star">★</span>
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>
-                    USA
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1...</a></td>
-                <td>
-                  <div class="status-cell">
-                    <span class="status-pill ready"><span class="count">2</span>Ready to send</span>
-                    <span class="status-pill review"><span class="count">3</span>In Review</span>
-                    <span class="status-pill action"><span class="count">5</span>Action Required</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="fav-icon star">★</span>
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/us.png')"></span>
-                    USA
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">4283 Express Lane, Suite 6340-104, Sarasota FL, 34249, +1...</a></td>
-                <td>
-                  <div class="status-cell">
-                    <span class="status-pill action"><span class="count">2</span>Action Required</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/re.png')"></span>
-                    Réunion
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">12g, Lorong Tandang 51/204b, Seksyen 51, 46050 Petaling...</a></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/ru.png')"></span>
-                    Russian Federation
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">No. 59, Jalan SS 25/32, Taman Mayang, 47301 Petaling Ja...</a></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/mc.png')"></span>
-                    Monaco
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">Persiaran Molek Utama, Taman Molek, 81100 Johor Bahru...</a></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/vc.png')"></span>
-                    Saint Vincent and the…
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">Lot 49A, Sedco Industrial Estate, Jalan Kilang, Kolombong...</a></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/gb.png')"></span>
-                    United Kingdom of Gre…
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">1893-1892, Lor Taman Riverview 1, Taman Riverview, 93450...</a></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="country-cell">
-                    <span class="country-flag" style="background-image:url('https://flagcdn.com/w80/ht.png')"></span>
-                    Haiti
-                  </span>
-                </td>
-                <td><a class="address-link" href="#">17, Jalan Mewah Ria 1/2, Taman Bukit Mewah, 81200 Johor...</a></td>
-                <td></td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
 
           <button class="show-more"><a href="pages/all-locations.html" style="color:inherit;text-decoration:none">Show more →</a></button>
@@ -478,6 +274,7 @@
   </div>
 
   <script src="scripts/layout.js"></script>
+  <script src="scripts/data-render.js"></script>
   <script src="scripts/see-address.js"></script>
 </body>
 </html>

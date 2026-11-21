@@ -28,7 +28,7 @@
     const slot = document.querySelector(slotSelector);
     if (!slot) return;
     try {
-      const r = await fetch(root + 'partials/' + partialPath);
+      const r = await fetch(root + 'partials/' + partialPath, { cache: 'no-store' });
       if (!r.ok) throw new Error(partialPath + ' ' + r.status);
       slot.outerHTML = fix(await r.text());
     } catch (e) {

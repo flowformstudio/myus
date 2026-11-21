@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Membership · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css?v=2" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/multi.css" />
+  <link rel="stylesheet" href="../styles/membership.css" />
+</head>
+<body class="page" data-page="membership-profile">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <section class="card mp-card">
+        <h1 class="mp-title">Membership Profile</h1>
+
+        <nav class="mp-tabs" role="tablist">
+          <a class="mp-tab" href="membership-profile.html" role="tab">Contact Information</a>
+          <a class="mp-tab is-active" href="membership-type.html" role="tab" aria-selected="true">Membership</a>
+          <a class="mp-tab" href="myus-family.html" role="tab">MyUS Family</a>
+          <a class="mp-tab" href="membership-password.html" role="tab">Password</a>
+        </nav>
+
+        <div class="mp-section">
+          <div class="mp-row">
+            <div class="mp-row-text">
+              <div class="mp-row-label">Current Membership</div>
+              <div class="mp-row-value">Single Package</div>
+            </div>
+            <button class="mp-btn-outline">Change</button>
+          </div>
+          <hr class="mp-divider" />
+
+          <div class="mp-row">
+            <div class="mp-row-text">
+              <div class="mp-row-label">Billing Cycle</div>
+              <div class="mp-row-value">N/A</div>
+            </div>
+          </div>
+          <hr class="mp-divider" />
+
+          <div class="mp-row">
+            <div class="mp-row-text">
+              <div class="mp-row-label">Membership Cost</div>
+              <div class="mp-row-value">FREE</div>
+            </div>
+          </div>
+          <hr class="mp-divider" />
+
+          <div class="mp-row">
+            <div class="mp-row-text">
+              <div class="mp-row-label">Next Billing Date</div>
+              <div class="mp-row-value mp-row-value-empty">&nbsp;</div>
+            </div>
+          </div>
+          <hr class="mp-divider" />
+        </div>
+
+        <div class="mp-promo">
+          <div class="mp-promo-label">Apply a promo code</div>
+          <div class="mp-promo-row">
+            <input type="text" class="mp-input mp-promo-input" placeholder="Promo code" aria-label="Apply a promo code" />
+            <button class="mp-btn-primary">Apply Code</button>
+          </div>
+        </div>
+
+        <div class="mp-links">
+          <a class="mp-link-blue" href="#">View All Membership Types</a>
+          <a class="mp-link-red" href="#">Cancel Account</a>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyUS Family · MyUS.com</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css?v=2" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/multi.css" />
+  <link rel="stylesheet" href="../styles/membership.css" />
+  <link rel="stylesheet" href="../styles/family.css?v=17" />
+</head>
+<body class="page" data-page="myus-family">
+
+  <div data-slot="topbar"></div>
+
+  <div class="layout">
+    <div data-slot="sidebar"></div>
+
+    <main class="main">
+
+      <section class="card mp-card">
+        <h1 class="mp-title fam-title">MyUS Family</h1>
+
+        <!-- ════════ OPTION 1 — FORM UP FRONT (retired 09-01, Option 2 chosen) ════════ -->
+        <div class="fam-option" data-option="1" hidden>
+          <p class="fam-intro">Add friends and family to your MyUS account. <strong>Free, no limits.</strong></p>
+
+          <div class="fam-savings-strip" aria-label="Savings per person as your Family grows">
+            <span class="fss-chip"><b>1</b> $27.84 ea.</span>
+            <span class="fss-arrow">→</span>
+            <span class="fss-chip"><b>2</b> $14.07 <em>-50%</em></span>
+            <span class="fss-arrow">→</span>
+            <span class="fss-chip"><b>3</b> $9.93 <em>-64%</em></span>
+            <span class="fss-arrow">→</span>
+            <span class="fss-chip hot"><b>4</b> $7.69 <em>-72%</em></span>
+            <span class="fss-note">per person when you ship together*</span>
+          </div>
+
+          <div class="fam-inline-form" id="o1-form">
+            <div class="fif-field">
+              <label class="mp-label" for="o1-first">First Name</label>
+              <input class="mp-input" id="o1-first" type="text" autocomplete="off" />
+            </div>
+            <div class="fif-field">
+              <label class="mp-label" for="o1-last">Last Name</label>
+              <input class="mp-input" id="o1-last" type="text" autocomplete="off" />
+            </div>
+            <div class="fif-field fif-email">
+              <label class="mp-label" for="o1-email">Email</label>
+              <input class="mp-input" id="o1-email" type="email" autocomplete="off" />
+            </div>
+            <button class="mp-btn-primary fif-add" id="o1-add" type="button">+ Add</button>
+          </div>
+          <p class="fam-form-hint" id="o1-hint">They'll be able to ship packages to your suite. That's all we need.</p>
+
+          <div class="fam-list" id="o1-list"></div>
+        </div>
+
+        <!-- ════════ OPTION 2 — MODAL (★ CHOSEN 09-01; rebuilt 09-01 to Atlas Figma flows) ════════ -->
+        <div class="fam-option" data-option="2">
+          <p class="fam-intro">Add friends and family to your MyUS account. <strong>Free, no limits.</strong></p>
+
+          <div class="fam-o2-grid">
+            <div class="fam-o2-main">
+              <div class="fam-empty" id="o2-empty">
+                <img class="fam-empty-ic" src="../assets/icons/fam-empty.svg" alt="" width="80" height="80" />
+                <p class="fam-empty-line">You currently have no one in your family plan</p>
+                <button class="mp-btn-primary mp-btn-add" id="o2-open" type="button">+ Add a person</button>
+              </div>
+
+              <div class="fam-tablewrap" id="o2-tablewrap" hidden>
+                <table class="fam-table">
+                  <thead>
+                    <tr><th>Name</th><th>Email</th><th class="fam-th-actions"></th></tr>
+                  </thead>
+                  <tbody id="o2-rows"></tbody>
+                </table>
+                <button class="mp-btn-outline" id="o2-open2" type="button">+ Add a person</button>
+              </div>
+            </div>
+
+            <aside class="fam-side">
+              <div class="fam-hero-card">
+                <img src="../images/family-banner.png" alt="Family is whoever you ship with" />
+              </div>
+              <div class="fam-hiw">
+                <h3 class="fam-hiw-title">How does it work?</h3>
+                <div class="fam-hiw-row">
+                  <img src="../assets/icons/fam-family.svg" alt="" width="28" height="28" />
+                  <div><b>Add Your Family or Friends</b><p>Add anyone with just their name and email. You stay the account owner.</p></div>
+                </div>
+                <div class="fam-hiw-row">
+                  <img src="../assets/icons/fam-present.svg" alt="" width="28" height="28" />
+                  <div><b>Free, No Limits</b><p>MyUS Family is free on every plan — members don’t need their own MyUS account.</p></div>
+                </div>
+                <div class="fam-hiw-row">
+                  <img src="../assets/icons/fam-box-check.svg" alt="" width="28" height="28" />
+                  <div><b>Ship Together &amp; Save</b><p>Their packages arrive in your suite. You send one combined shipment and pay MyUS for it — then split the cost with your family however you like.</p></div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <!-- Add / Edit modal -->
+          <div class="fam-modal-backdrop" id="o2-modal" hidden>
+            <div class="fam-modal" role="dialog" aria-modal="true" aria-labelledby="o2-modal-title">
+              <button class="fam-modal-x" id="o2-close" type="button" aria-label="Close">✕</button>
+              <h3 class="fam-modal-title" id="o2-modal-title">Add to your Family</h3>
+              <p class="fam-modal-sub" id="o2-modal-sub">They'll be able to ship packages to your suite.</p>
+              <div class="fam-modal-fields">
+                <div class="fam-modal-row">
+                  <div class="fif-field"><label class="mp-label" for="o2-first">First Name</label><input class="mp-input" id="o2-first" type="text" autocomplete="off" /><p class="fif-error" hidden>First name is required</p></div>
+                  <div class="fif-field"><label class="mp-label" for="o2-last">Last Name</label><input class="mp-input" id="o2-last" type="text" autocomplete="off" /><p class="fif-error" hidden>Last name is required</p></div>
+                </div>
+                <div class="fif-field"><label class="mp-label" for="o2-email">Email</label><input class="mp-input" id="o2-email" type="email" autocomplete="off" /><p class="fif-error" hidden>Enter a valid email address</p></div>
+                <div class="fam-notify" id="o2-notify-row">
+                  <input type="checkbox" id="o2-notify" />
+                  <label class="fam-notify-label" for="o2-notify">Notify them by email</label>
+                  <button class="fam-info" type="button" aria-label="More info" aria-describedby="o2-notify-tip" data-tip><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7v4.2M8 4.8v.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="fam-tip" id="o2-notify-tip" role="tooltip">We’ll email them your suite address and how to get started.</span></button>
+                </div>
+              </div>
+              <div class="fam-modal-actions">
+                <button class="mp-btn-outline" id="o2-cancel" type="button">Cancel</button>
+                <button class="mp-btn-primary fam-btn-save" id="o2-save" type="button"><span class="fam-btn-label">Save</span><span class="fam-spinner" aria-hidden="true"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirmation modal -->
+          <div class="fam-modal-backdrop" id="o2-confirm" hidden>
+            <div class="fam-modal fam-modal-confirm" role="dialog" aria-modal="true" aria-labelledby="o2-confirm-title">
+              <img src="../assets/icons/fam-check.svg" alt="" width="48" height="48" />
+              <h3 class="fam-modal-title" id="o2-confirm-title">Maya was added to your Family</h3>
+              <p class="fam-modal-sub" id="o2-confirm-sub">We’ve emailed them the suite address and next steps.</p>
+              <button class="mp-btn-primary" id="o2-done" type="button">Done</button>
+            </div>
+          </div>
+
+          <!-- Remove confirmation (Flow 3 · Step 2 — "Are you sure?") -->
+          <div class="fam-modal-backdrop" id="o2-remove" hidden>
+            <div class="fam-modal" role="dialog" aria-modal="true" aria-labelledby="o2-remove-title">
+              <h3 class="fam-modal-title" id="o2-remove-title">Remove Maya from your Family?</h3>
+              <p class="fam-modal-sub" id="o2-remove-sub">They’ll no longer be able to ship to your suite. Packages already here stay with you.</p>
+              <div class="fam-notify" id="o2-remove-notify-row">
+                <input type="checkbox" id="o2-remove-notify" />
+                <label class="fam-notify-label" for="o2-remove-notify" id="o2-remove-notify-label">Notify them by email</label>
+                <button class="fam-info" type="button" aria-label="More info" aria-describedby="o2-remove-notify-tip" data-tip><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7v4.2M8 4.8v.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="fam-tip" id="o2-remove-notify-tip" role="tooltip">We’ll email them that they can no longer ship to your suite.</span></button>
+              </div>
+              <div class="fam-modal-actions">
+                <button class="mp-btn-outline" id="o2-remove-cancel" type="button">Cancel</button>
+                <button class="mp-btn-danger" id="o2-remove-confirm" type="button">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ════════ OPTION 3 — SAVINGS SLOTS ════════ -->
+        <div class="fam-option" data-option="3" hidden>
+          <p class="fam-intro">The more people ship with you, the less everyone pays. <strong>Free, no limits.</strong></p>
+
+          <div class="fam-slots" id="o3-slots"></div>
+
+          <div class="fam-rate" id="o3-rate">
+            <span class="fam-rate-label">Your rate today</span>
+            <span class="fam-rate-price" id="o3-price">$27.84</span>
+            <span class="fam-rate-per">per person</span>
+            <span class="fam-rate-save" id="o3-save" hidden></span>
+          </div>
+          <p class="fam-rate-nudge" id="o3-nudge">Add one person and this drops to $14.07 each.</p>
+
+          <div class="fam-slot-form" id="o3-form" hidden>
+            <div class="fam-slot-form-head" id="o3-form-title">Add to your Family</div>
+            <div class="fam-modal-row">
+              <div class="fif-field"><label class="mp-label" for="o3-first">First Name</label><input class="mp-input" id="o3-first" type="text" /></div>
+              <div class="fif-field"><label class="mp-label" for="o3-last">Last Name</label><input class="mp-input" id="o3-last" type="text" /></div>
+            </div>
+            <div class="fif-field"><label class="mp-label" for="o3-email">Email</label><input class="mp-input" id="o3-email" type="email" /></div>
+            <div class="fam-modal-actions">
+              <button class="mp-btn-outline" id="o3-remove" type="button" hidden>Remove</button>
+              <span class="fam-actions-spacer"></span>
+              <button class="mp-btn-outline" id="o3-cancel" type="button">Cancel</button>
+              <button class="mp-btn-primary" id="o3-save-btn" type="button">Save</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="fam-fineprint">*Example: splitting one shipment US → Saudi Arabia via DHL equally. Actual savings vary.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <div data-slot="footer"></div>
+  <script src="../scripts/layout.js"></script>
+  <script src="../scripts/myus-family.js?v=17"></script>
+</body>
+</html>

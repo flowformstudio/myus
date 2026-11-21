@@ -6,8 +6,12 @@
   <title>Refer a Friend · MyUS.com</title>
   <link rel="stylesheet" href="../styles/tokens.css" />
   <link rel="stylesheet" href="../styles/base.css" />
-  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css?v=2" />
   <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/multi.css" />
+  <link rel="stylesheet" href="../styles/membership.css" />
+  <link rel="stylesheet" href="../styles/settings.css" />
+  <link rel="stylesheet" href="../styles/tools.css" />
 </head>
 <body class="page" data-page="refer-a-friend">
 
@@ -18,98 +22,102 @@
 
     <main class="main">
 
-      <div class="page-header">
-        <div>
-          <h1>Refer a Friend</h1>
-          <p class="page-sub">Receive a <strong>15.00 USD</strong> shipping credit for every friend you refer when they become a member and send their first shipment. PLUS your friends will receive 20% off their first shipment, just because you referred them!</p>
+      <section class="card mp-card raf-card">
+        <h1 class="mp-title">Refer a Friend</h1>
+        <p class="raf-intro">Receive a 15.00 USD shipping credit for every friend you refer when they become a member and send their first shipment. PLUS your friends will receive 20% off their first shipment, just because you referred them!</p>
+
+        <nav class="mp-tabs raf-tabs" role="tablist">
+          <button type="button" class="mp-tab is-active" role="tab" aria-selected="true">Invite Friends</button>
+          <button type="button" class="mp-tab" role="tab">Referral History</button>
+        </nav>
+
+        <div class="raf-grid">
+          <div class="raf-main">
+            <h3 class="raf-h3">Share your unique referral link</h3>
+            <textarea class="raf-link" readonly rows="3">https://www.myus.com/signup/?aid=1004636&ReferId=lz3ll//Js7w=&utm_source=RAF&utm_medium=MyAccount</textarea>
+            <div class="raf-link-actions">
+              <a class="raf-fb" href="#" target="_blank" rel="noopener">
+                <span class="raf-fb-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877f2"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99h-2.54V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.19 2.24.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/></svg>
+                </span>
+                <span>Share on Facebook</span>
+              </a>
+              <button type="button" class="raf-copy">+ Copy</button>
+            </div>
+
+            <hr class="mp-divider raf-divider" />
+
+            <h3 class="raf-h3">Or send an email</h3>
+            <div class="raf-field">
+              <label class="raf-label" for="raf-emails">Enter up to five email addresses</label>
+              <input id="raf-emails" type="text" class="mp-input" />
+            </div>
+            <div class="raf-field">
+              <label class="raf-label" for="raf-msg">Include a customized message (optional)</label>
+              <textarea id="raf-msg" class="mp-input raf-textarea"></textarea>
+            </div>
+
+            <div class="raf-actions">
+              <button type="button" class="raf-link-btn" disabled>Preview Email</button>
+              <button type="button" class="mp-save" disabled>Send Email</button>
+            </div>
+          </div>
+
+          <aside class="raf-side">
+            <h3 class="raf-h3">How does it work?</h3>
+
+            <div class="raf-step">
+              <span class="raf-step-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0c71c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19v-1.5a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4V19"/><path d="M15 13.5h2a3 3 0 0 1 3 3V19"/></svg>
+              </span>
+              <div>
+                <h4 class="raf-step-title">Refer Friends</h4>
+                <p class="raf-step-text">Invite your friends to join MyUS using your referral link or email</p>
+              </div>
+            </div>
+
+            <div class="raf-step">
+              <span class="raf-step-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0c71c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></svg>
+              </span>
+              <div>
+                <h4 class="raf-step-title">Earn Rewards</h4>
+                <p class="raf-step-text">Earn a 15.00 USD account credit after they become a member and send their first shipment</p>
+              </div>
+            </div>
+
+            <div class="raf-step">
+              <span class="raf-step-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0c71c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="9 12 11 14 15 10"/></svg>
+              </span>
+              <div>
+                <h4 class="raf-step-title">Redeem Your Rewards</h4>
+                <p class="raf-step-text">Use your credit toward any future shipment</p>
+              </div>
+            </div>
+          </aside>
         </div>
-      </div>
 
-      <div class="tabs">
-        <button class="tab active">Invite Friends</button>
-        <button class="tab">Referral History</button>
-      </div>
-
-      <div class="raf-grid">
-        <section class="card">
-          <h3 style="color:var(--navy-900); margin-bottom: var(--s-3)">Share your unique referral link</h3>
-          <div class="share-row">
-            <input class="input" type="text" value="https://www.myus.com/signup/?aid=1004636&ReferId=lz3ll//Js7w=" readonly />
-            <button class="btn btn-outline compact">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copy
-            </button>
-          </div>
-          <div style="margin-top:var(--s-3)">
-            <a class="btn btn-outline compact" href="https://www.facebook.com/share.php">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.27c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.9h-2.34v6.98A10 10 0 0 0 22 12z"/></svg>
-              Share on Facebook
-            </a>
-          </div>
-
-          <hr class="divider" />
-
-          <h3 style="color:var(--navy-900); margin-bottom: var(--s-3)">Or send an email</h3>
-          <div class="field">
-            <label for="emails">Enter up to five email addresses</label>
-            <input id="emails" class="input" type="text" placeholder="friend@example.com, ..." />
-          </div>
-          <div class="field">
-            <label for="msg">Include a customized message <span class="muted">(optional)</span></label>
-            <textarea id="msg" class="textarea" placeholder="Hey! Try MyUS — they'll get you a US shipping address..."></textarea>
-          </div>
-          <div class="form-actions" style="border:none; padding-top:0; justify-content:flex-start">
-            <button class="btn btn-ghost" disabled>Preview Email</button>
-            <button class="btn btn-primary compact" disabled>Send Email</button>
-          </div>
-        </section>
-
-        <aside class="card">
-          <h3 style="color:var(--navy-900); margin-bottom: var(--s-4)">How does it work?</h3>
-          <div class="step">
-            <div class="step-num">1</div>
-            <div>
-              <h4>Refer Friends</h4>
-              <p class="text-muted">Invite your friends to join MyUS using your referral link or email.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div>
-              <h4>Earn Rewards</h4>
-              <p class="text-muted">Earn a 15.00 USD account credit after they become a member and send their first shipment.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div>
-              <h4>Redeem Your Rewards</h4>
-              <p class="text-muted">Use your credit toward any future shipment.</p>
-            </div>
-          </div>
-        </aside>
-      </div>
+      </section>
 
     </main>
   </div>
 
   <div data-slot="footer"></div>
   <script src="../scripts/layout.js"></script>
-  <style>
-    .raf-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s-5); align-items: start; }
-    @media (max-width: 900px) { .raf-grid { grid-template-columns: 1fr; } }
-    .share-row { display: grid; grid-template-columns: 1fr auto; gap: var(--s-2); }
-    .share-row .input { font-family: var(--font-ui); font-size: 13px; }
-    .step { display: flex; gap: var(--s-3); margin-bottom: var(--s-4); }
-    .step:last-child { margin-bottom: 0; }
-    .step-num {
-      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
-      background: var(--blue-050); color: var(--blue-600);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: var(--fw-bold); font-size: 16px;
-    }
-    .step h4 { color: var(--navy-900); margin-bottom: 4px; font-size: 15px; }
-    .step p { margin: 0; font-size: 13.5px; line-height: 1.55; }
-  </style>
+  <script>
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.raf-copy');
+      if (!btn) return;
+      const ta = document.querySelector('.raf-link');
+      if (ta && navigator.clipboard) {
+        navigator.clipboard.writeText(ta.value).then(() => {
+          const orig = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = orig; }, 1400);
+        });
+      }
+    });
+  </script>
 </body>
 </html>

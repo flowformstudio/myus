@@ -1,0 +1,371 @@
+/* ──────────────────────────────────────────────────────────────────────
+   Shipping Preferences + Address Book — match account.myus.com.
+   Builds on membership.css (shares .mp-card / .mp-title / inputs).
+   ────────────────────────────────────────────────────────────────────── */
+
+/* ─── Shipping Preferences ───────────────────────────────────────────── */
+.sp-card { max-width: none; }
+
+.sp-section { max-width: 570px; margin: 32px 0; }
+.sp-section:first-of-type { margin-top: 32px; }
+.sp-card .mp-title + .sp-section { margin-top: 36px; }
+
+.sp-h4 {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 21px; font-weight: 600; color: #10283d;
+  margin: 0 0 20px; line-height: 1.1;
+}
+.sp-sub {
+  font-size: 14px; color: #10283d; margin: 0 0 12px; line-height: 1.5;
+}
+/* Note paragraph styled as a soft gray info box, matching live */
+.sp-note {
+  background: #f0f2f5;
+  border: 1px solid #dae0e5;
+  border-radius: 6px;
+  padding: 20px 26px;
+  font-size: 12px;
+  color: #10283d;
+  line-height: 1.4;
+  margin: 20px 0 0;
+}
+
+/* Facility select with leading flag */
+.sp-facility-select {
+  position: relative; max-width: 280px;
+}
+.sp-facility-select .sp-flag {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px; border-radius: 50%;
+  background-size: cover; background-position: center;
+  pointer-events: none; z-index: 1;
+  box-shadow: 0 0 0 1px rgba(16,40,61,0.10);
+}
+.sp-flag-select { padding-left: 46px; }
+
+/* Default Shipping Address card — gray "Change" strip on top, address below */
+.sp-addr-card {
+  border: 1px solid #dae0e5;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  max-width: 570px;
+}
+.sp-addr-head {
+  background: #f0f2f5;
+  padding: 10px 20px;
+}
+.sp-addr-head .sp-link {
+  font-weight: 400;
+}
+.sp-addr-body {
+  padding: 18px 20px 20px;
+  font-size: 14px;
+  color: #10283d;
+  line-height: 1.55;
+}
+.sp-addr-title {
+  font-size: 14px; font-weight: 700; margin: 0 0 6px; color: #10283d;
+}
+.sp-link {
+  color: #0c71c9; font-size: 14px; font-weight: 600; text-decoration: none;
+}
+.sp-link:hover { text-decoration: underline; color: #0c71c9; }
+.sp-link-red { color: #d13138; }
+.sp-link-red:hover { color: #d13138; }
+
+/* Banners — exact match to live: square corners + red border + 16px text */
+.sp-banner-warn {
+  background: #ffcccc;
+  color: #161717;
+  border: 1px solid #d13138;
+  padding: 15px;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+  margin: 15px 0;
+  border-radius: 0;
+  max-width: 570px;
+}
+.sp-banner-info {
+  background: #cfe9d1; color: #10283d;
+  padding: 8px 14px; border-radius: 4px;
+  font-size: 13px; font-weight: 500;
+  display: inline-block;
+  margin: 8px 0 14px;
+}
+
+/* Info "i" icon */
+.sp-info {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 1px solid #0c71c9;
+  background: #fff;
+  color: #0c71c9;
+  font-size: 10px; font-weight: 700; font-style: italic;
+  font-family: serif;
+  line-height: 14px;
+  padding: 0;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* Toggle switch */
+.sp-toggle {
+  display: inline-flex; align-items: center; gap: 10px;
+  cursor: pointer;
+  margin: 4px 0 0;
+}
+.sp-toggle-switch {
+  position: relative;
+  width: 34px; height: 18px;
+  background: #c9d0d6;
+  border-radius: 999px;
+  transition: background .15s ease;
+  flex-shrink: 0;
+}
+.sp-toggle-switch input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.sp-toggle-knob {
+  position: absolute; top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  background: #fff; border-radius: 50%;
+  transition: transform .15s ease;
+}
+.sp-toggle-switch input:checked + .sp-toggle-knob { transform: translateX(16px); }
+.sp-toggle-switch:has(input:checked) { background: #0c71c9; }
+.sp-toggle-label { font-size: 14px; color: #10283d; }
+
+/* Radio rows for ship method */
+.sp-radio-row {
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #10283d;
+}
+.sp-radio-row input[type="radio"] { width: 16px; height: 16px; accent-color: #0c71c9; cursor: pointer; }
+.sp-radio-text { font-weight: 500; }
+.sp-radio-meta { color: #5a6670; font-size: 14px; }
+.sp-method-sub { font-size: 14px; font-weight: 600; color: #10283d; margin: 8px 0 4px; }
+
+/* Inline label + info + select rows */
+.sp-inline-field {
+  display: inline-flex; align-items: center; gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 8px;
+}
+.sp-inline-label { font-size: 14px; color: #10283d; }
+.sp-inline-select { width: 180px; height: 38px; padding-top: 6px; padding-bottom: 6px; }
+
+/* Checkbox rows */
+.sp-check-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #10283d;
+  cursor: pointer;
+}
+.sp-check-row input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: #0c71c9;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Maximum Weight per Box */
+.sp-num-field { margin: 14px 0 0; max-width: 280px; }
+.sp-num-label {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; color: #10283d;
+  margin: 0 0 6px;
+}
+.sp-num-input { max-width: 280px; }
+
+/* Generic field (label + input) */
+.sp-field { margin: 0 0 14px; }
+.sp-field-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; color: #10283d;
+  margin: 0 0 6px;
+}
+
+/* ─── Address Book ───────────────────────────────────────────────────── */
+.ab-card { max-width: none; }
+.ab-intro {
+  font-size: 14px; color: #10283d;
+  margin: 0 0 32px;
+  max-width: 780px; line-height: 1.55;
+}
+
+.ab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 880px;
+}
+
+/* "Add new shipping address" tile */
+.ab-card-add {
+  background: #fff;
+  border: 2px dashed #0c71c9;
+  border-radius: 6px;
+  min-height: 280px;
+  padding: 24px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px;
+  color: #0c71c9;
+  font: inherit;
+  cursor: pointer;
+  transition: background .12s ease;
+}
+.ab-card-add:hover { background: rgba(12,113,201,0.04); }
+.ab-pin { display: inline-flex; }
+.ab-add-label { font-size: 15px; font-weight: 500; color: #0c71c9; }
+
+/* Address card */
+.ab-card-addr {
+  background: #fff;
+  border: 1px solid #d2d8de;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.ab-card-head {
+  background: #ebf3fa;
+  padding: 12px 18px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; color: #5a6670;
+}
+.ab-default-label { font-weight: 600; text-transform: none; }
+.ab-default-flags { display: inline-flex; align-items: center; gap: 6px; }
+.ab-flag {
+  display: inline-block;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background-size: cover; background-position: center;
+  box-shadow: 0 0 0 1px rgba(16,40,61,0.10);
+}
+.ab-card-body {
+  padding: 16px 18px;
+  font-size: 13px; color: #10283d; line-height: 1.55;
+  flex: 1;
+}
+.ab-card-title { font-size: 14px; font-weight: 700; margin: 0 0 6px; color: #10283d; }
+.ab-card-foot {
+  padding: 12px 18px 16px;
+  display: flex; gap: 24px;
+  font-size: 13px;
+}
+.ab-card-foot-split {
+  justify-content: space-between;
+}
+.ab-foot-left { display: inline-flex; gap: 24px; }
+
+@media (max-width: 700px) {
+  .sp-section, .sp-addr-card, .sp-facility-select { max-width: 100%; }
+  .ab-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── Payment Method ─────────────────────────────────────────────────── */
+.pm-card { max-width: none; }
+.pm-card-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  border: 1px solid #d2d8de;
+  border-radius: 6px;
+  padding: 16px 20px;
+  max-width: 480px;
+  margin: 16px 0 24px;
+}
+.pm-card-info { display: flex; align-items: center; gap: 16px; }
+.pm-brand {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 50px; height: 32px;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #fff;
+  font-size: 14px;
+}
+.pm-brand-visa { background: #1a1f71; }
+.pm-card-text { display: flex; flex-direction: column; gap: 2px; }
+.pm-card-name { font-size: 16px; font-weight: 700; color: #10283d; line-height: 1.2; }
+.pm-card-exp { font-size: 12px; color: #5a6670; }
+
+.pm-add-btn { padding: 12px 24px; }
+
+.pm-h3 { font-size: 22px; font-weight: 700; color: #10283d; margin: 0 0 8px; }
+.pm-sub { font-size: 14px; color: #10283d; line-height: 1.5; margin: 0 0 16px; max-width: 760px; }
+
+.pm-other-row {
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap;
+}
+.pm-btn-outline {
+  font: inherit;
+  font-size: 14px; font-weight: 600;
+  color: #0c71c9;
+  background: #fff;
+  border: 1px solid #0c71c9;
+  border-radius: 6px;
+  padding: 11px 24px;
+  cursor: pointer;
+  transition: background .12s ease;
+}
+.pm-btn-outline:hover { background: rgba(12,113,201,0.06); }
+.pm-or { color: #5a6670; font-size: 14px; }
+
+/* ─── Order History ──────────────────────────────────────────────────── */
+.oh-card { max-width: none; }
+.oh-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  margin: 8px 0 24px;
+}
+.oh-filters { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.oh-filters-label { font-size: 14px; font-weight: 700; color: #10283d; }
+.oh-filter-pills { display: inline-flex; align-items: center; gap: 8px; }
+.oh-pill {
+  font: inherit; font-size: 14px;
+  background: transparent; border: 0; padding: 4px 4px;
+  color: #0c71c9; cursor: pointer;
+}
+.oh-pill.is-active { color: #10283d; font-weight: 600; cursor: default; }
+.oh-pill:hover:not(.is-active) { text-decoration: underline; }
+.oh-pill-sep { color: #c9d0d6; font-size: 14px; }
+
+.oh-search {
+  position: relative; display: inline-flex; align-items: center;
+  width: 280px; max-width: 100%;
+}
+.oh-search-input {
+  width: 100%; font: inherit; font-size: 14px; color: #10283d;
+  background: #fff;
+  border: 1px solid #d2d8de;
+  border-radius: 6px;
+  padding: 10px 44px 10px 14px;
+  height: 42px;
+}
+.oh-search-input:focus { outline: none; border-color: #0c71c9; box-shadow: 0 0 0 3px rgba(12,113,201,0.12); }
+.oh-search-btn {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px;
+  background: transparent; border: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.oh-empty { min-height: 360px; }
+
+/* ─── Communications ─────────────────────────────────────────────────── */
+.cm-card { max-width: none; }
+.cm-intro { font-size: 14px; color: #10283d; line-height: 1.55; margin: 8px 0 4px; }
+.cm-select-label { font-size: 14px; color: #10283d; margin: 0 0 12px; }
+.cm-toggles { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.cm-toggle-row { padding: 4px 0; }

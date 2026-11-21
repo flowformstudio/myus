@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Membership Profile · MyUS.com</title>
+  <title>Contact Information · MyUS.com</title>
   <link rel="stylesheet" href="../styles/tokens.css" />
   <link rel="stylesheet" href="../styles/base.css" />
-  <link rel="stylesheet" href="../styles/dashboard.css" />
+  <link rel="stylesheet" href="../styles/dashboard.css?v=2" />
   <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/multi.css" />
+  <link rel="stylesheet" href="../styles/membership.css" />
 </head>
 <body class="page" data-page="membership-profile">
 
@@ -18,102 +20,85 @@
 
     <main class="main">
 
-      <div class="page-header">
-        <h1>Membership Profile</h1>
-      </div>
+      <section class="card mp-card">
+        <h1 class="mp-title">Membership Profile</h1>
 
-      <!-- Profile summary -->
-      <section class="card">
-        <div class="profile-summary">
-          <h3>Igor Ginzburg</h3>
-          <ul class="profile-meta">
-            <li>Member since 9 April, 2020</li>
-            <li>Suite 6340-104</li>
-            <li>ginzburgigor@gmail.com</li>
-          </ul>
-        </div>
+        <nav class="mp-tabs" role="tablist">
+          <a class="mp-tab is-active" href="membership-profile.html" role="tab" aria-selected="true">Contact Information</a>
+          <a class="mp-tab" href="membership-type.html" role="tab">Membership</a>
+          <a class="mp-tab" href="myus-family.html" role="tab">MyUS Family</a>
+          <a class="mp-tab" href="membership-password.html" role="tab">Password</a>
+        </nav>
+
+        <form class="mp-form" autocomplete="off">
+
+          <fieldset class="mp-fieldset">
+            <legend class="mp-legend">Primary Account Holder</legend>
+            <div class="mp-field">
+              <label for="mp-name" class="mp-label">Name</label>
+              <input id="mp-name" class="mp-input is-readonly" type="text" value="Igor Ginzburg" readonly />
+            </div>
+            <div class="mp-field">
+              <label for="mp-email" class="mp-label">Email</label>
+              <input id="mp-email" class="mp-input is-readonly" type="email" value="ginzburgigor@gmail.com" readonly />
+            </div>
+          </fieldset>
+
+          <fieldset class="mp-fieldset">
+            <legend class="mp-legend">Telephone Numbers</legend>
+
+            <div class="mp-field">
+              <label class="mp-label" for="mp-tel-primary">Primary <span class="mp-required">*</span></label>
+              <div class="mp-phone-row">
+                <select class="mp-select" data-country-select data-default-code="us">
+                  <option value="">Select Country</option>
+                </select>
+                <input id="mp-tel-primary" class="mp-input" type="tel" placeholder="e.g. 123-4567890" value="4155398508" />
+              </div>
+            </div>
+
+            <div class="mp-field">
+              <label class="mp-label" for="mp-tel-secondary">Secondary</label>
+              <div class="mp-phone-row">
+                <select class="mp-select" data-country-select>
+                  <option value="">Select Country</option>
+                </select>
+                <input id="mp-tel-secondary" class="mp-input" type="tel" placeholder="e.g. 123-4567890" />
+              </div>
+            </div>
+
+            <div class="mp-field">
+              <label class="mp-label" for="mp-tel-alternate">Alternate</label>
+              <div class="mp-phone-row">
+                <select class="mp-select" data-country-select>
+                  <option value="">Select Country</option>
+                </select>
+                <input id="mp-tel-alternate" class="mp-input" type="tel" placeholder="e.g. 123-4567890" />
+              </div>
+            </div>
+
+            <div class="mp-field">
+              <label class="mp-label" for="mp-tel-fax">Fax</label>
+              <div class="mp-phone-row">
+                <select class="mp-select" data-country-select>
+                  <option value="">Select Country</option>
+                </select>
+                <input id="mp-tel-fax" class="mp-input" type="tel" placeholder="e.g. 123-4567890" />
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="mp-actions">
+            <button type="submit" class="mp-save" disabled>Save Changes</button>
+          </div>
+        </form>
       </section>
-
-      <!-- Sub-nav tabs -->
-      <div class="tabs">
-        <button class="tab active">Contact Information</button>
-        <button class="tab">Membership</button>
-        <button class="tab">MyUS Family</button>
-        <button class="tab">Password</button>
-      </div>
-
-      <!-- Form -->
-      <form>
-        <fieldset class="fieldset" style="margin-bottom: var(--s-5)">
-          <legend>Primary Account Holder</legend>
-          <div class="field">
-            <label for="name">Name</label>
-            <input id="name" class="input" type="text" value="Igor Ginzburg" />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" class="input" type="email" value="ginzburgigor@gmail.com" />
-          </div>
-        </fieldset>
-
-        <fieldset class="fieldset" style="margin-bottom: var(--s-5)">
-          <legend>Telephone Numbers</legend>
-
-          <div class="field">
-            <label>Primary <span style="color:var(--danger)">*</span></label>
-            <div class="phone-row">
-              <select class="select">
-                <option>Select Country</option>
-                <option>Canada (1)</option>
-                <option>United Kingdom (44)</option>
-                <option selected>United States (1)</option>
-              </select>
-              <input class="input" type="tel" placeholder="e.g. 123-4567890" value="4155398508" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Secondary</label>
-            <div class="phone-row">
-              <select class="select"><option>Select Country</option><option>Canada (1)</option><option>United Kingdom (44)</option><option>United States (1)</option></select>
-              <input class="input" type="tel" placeholder="e.g. 123-4567890" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Alternate</label>
-            <div class="phone-row">
-              <select class="select"><option>Select Country</option><option>Canada (1)</option><option>United Kingdom (44)</option><option>United States (1)</option></select>
-              <input class="input" type="tel" placeholder="e.g. 123-4567890" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Fax</label>
-            <div class="phone-row">
-              <select class="select"><option>Select Country</option><option>Canada (1)</option><option>United Kingdom (44)</option><option>United States (1)</option></select>
-              <input class="input" type="tel" placeholder="e.g. 123-4567890" />
-            </div>
-          </div>
-        </fieldset>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary compact" disabled>Save Changes</button>
-        </div>
-      </form>
 
     </main>
   </div>
 
   <div data-slot="footer"></div>
   <script src="../scripts/layout.js"></script>
-  <style>
-    .profile-summary h3 { color: var(--navy-900); margin-bottom: var(--s-2); }
-    .profile-meta { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-4); }
-    .profile-meta li { color: var(--ink-600); font-size: 13px; }
-    .phone-row { display: grid; grid-template-columns: 220px 1fr; gap: var(--s-3); }
-    @media (max-width: 600px) { .phone-row { grid-template-columns: 1fr; } }
-    .fieldset legend { background: #fff; padding: 0 var(--s-2); }
-  </style>
+  <script src="../scripts/membership-profile.js"></script>
 </body>
 </html>
