@@ -240,7 +240,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     <textarea data-c="general" placeholder="Other comments (optional)"></textarea>
     <p style="margin-top:20px">This is what Igor will receive:</p>
     <pre id="summary"></pre>
-    <button class="copy-link" type="button" id="copy">Copy my answers instead</button>
+    <button class="copy-link" type="button" id="copy">Copy my answers instead</button> <span style="color:var(--grey-300);margin:0 10px">|</span> <button class="copy-link" type="button" id="reset">Clear all my answers and start over</button>
   </section>
 </div>
 
@@ -285,6 +285,8 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   });
   document.getElementById('copy').addEventListener('click',function(){var t=summary();
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast('Copied. Paste it into a message to Igor.')},function(){toast('Select the text above and copy it.',true)})}else{toast('Select the text above and copy it.',true)}});
+  document.getElementById('reset').addEventListener('click',function(){st={};sent=false;sentText='';try{localStorage.removeItem(KEY);localStorage.removeItem(KEY+'-sent')}catch(e){}
+    document.querySelectorAll('textarea[data-c]').forEach(function(t){t.value=''});render();window.scrollTo({top:0,behavior:'smooth'});toast('Cleared. You can start again.')});
   render();
 })();
 </script>
