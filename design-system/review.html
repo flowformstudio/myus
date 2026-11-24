@@ -74,7 +74,42 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .reply h2{margin:0 0 8px;font-size:28.8px;font-weight:600}
 .reply p{color:#c9d4de;margin:0 0 20px}
 .reply pre{background:rgba(255,255,255,.08);border-radius:6px;padding:20px;font:500 16px/1.9 Poppins,sans-serif;margin:0;white-space:pre-wrap}
-@media(max-width:800px){h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
+
+.decide{background:var(--navy-900);color:#fff;border-radius:var(--radius-12);padding:36px 40px;margin:0 0 32px}
+.decide .k{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-700)}
+.decide h2{font-size:28.8px;font-weight:600;margin:6px 0 6px;color:#fff}
+.decide p{color:#c9d4de;margin:0 0 20px;max-width:none}
+.decide ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.decide li a{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.08);border-radius:6px;padding:14px 18px;color:#fff;text-decoration:none;font-weight:500}
+.decide li a:hover{background:rgba(255,255,255,.14)}
+.decide li .n{width:28px;height:28px;border-radius:999px;background:#fff;color:var(--navy-900);display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex-shrink:0}
+.decide li .st{margin-left:auto;font-size:13px;font-weight:600;border-radius:999px;padding:4px 12px;background:rgba(255,255,255,.14);color:#c9d4de;white-space:nowrap}
+.decide li .st.ok{background:var(--green-500);color:#fff}
+.answer{border:2px solid var(--orange-700);background:var(--orange-50);border-radius:var(--radius-12);padding:24px 28px;margin-top:28px}
+.answer .k{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-800)}
+.answer .qq{font-size:20px;font-weight:600;margin:4px 0 16px;color:var(--navy-900)}
+.answer .sub{font-size:14px;font-weight:600;margin:14px 0 8px;color:var(--navy-900)}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opt{font:600 16px/1 Poppins,sans-serif;height:48px;padding:0 20px;border-radius:6px;border:2px solid var(--grey-300);background:#fff;color:var(--navy-900);cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:.15s}
+.opt:hover{border-color:var(--blue-500)}
+.opt::before{content:"";width:18px;height:18px;border-radius:999px;border:2px solid var(--grey-300);background:#fff;flex-shrink:0}
+.opt[aria-pressed=true]{border-color:var(--blue-500);background:var(--blue-50);color:var(--blue-700)}
+.opt[aria-pressed=true]::before{border-color:var(--blue-500);background:radial-gradient(circle,var(--blue-500) 0 5px,#fff 6px)}
+.answer label{display:block;font-size:14px;font-weight:500;color:var(--navy-900);margin:16px 0 6px}
+.answer textarea,.send textarea{width:100%;min-height:64px;border:1px solid var(--grey-300);border-radius:6px;padding:12px 14px;font:400 15px/1.5 Poppins,sans-serif;color:var(--navy-900);resize:vertical;background:#fff}
+.answer textarea:focus,.send textarea:focus{outline:2px solid var(--blue-500);outline-offset:1px;border-color:var(--blue-500)}
+.send{background:#fff;border:1px solid var(--color-border-default);border-radius:var(--radius-12);padding:40px;margin:0 0 120px}
+.send h2{font-size:28.8px;font-weight:600;margin:0 0 8px}
+.send p{color:var(--color-text-secondary);margin:0 0 16px}
+.send pre{background:var(--grey-50);border:1px solid var(--color-border-default);border-radius:6px;padding:18px 20px;font:400 15px/1.7 Poppins,sans-serif;white-space:pre-wrap;margin:16px 0 20px;color:var(--navy-900)}
+.send .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.send button.btn{cursor:pointer}
+.send .note{font-size:14px;color:var(--green-500);font-weight:600}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--color-border-default);box-shadow:0 -6px 24px rgba(16,40,61,.08);z-index:10}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.bar b{font-weight:600}.bar span{color:var(--color-text-secondary);font-size:14px}
+.bar a.btn{cursor:pointer}
+@media(max-width:800px){.decide,.send{padding:24px}.answer{padding:20px}.bar span{display:none}h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
 </style>
 </head>
 <body>
@@ -83,8 +118,19 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 <div class="wrap">
   <section class="hero">
     <div class="eyebrow">For Karen</div>
-    <h1>Your updates are in.<br>3 quick decisions needed.</h1>
-    <p class="lead">Everything in your update doc has been applied. Three things came up that your doc does not cover. Each one is shown below with a picture and a simple question.</p>
+    <h1>Your updates are in.<br>3 things for you to decide.</h1>
+    <p class="lead">Everything in your update doc has been applied. Three things need your decision. Each one is shown below with pictures, and you can answer right on this page.</p>
+  </section>
+
+  <section class="decide" id="decide">
+    <div class="k">For Karen to decide</div>
+    <h2>3 answers needed</h2>
+    <p>Click one to jump to it. Pick an answer or write your own, then press Send at the bottom.</p>
+    <ol>
+      <li><a href="#q1"><span class="n">1</span>Approve the smaller button sizes<span class="st" data-st="q1">Not answered</span></a></li>
+      <li><a href="#q2"><span class="n">2</span>Keep or drop three other buttons<span class="st" data-st="q2">Not answered</span></a></li>
+      <li><a href="#q3"><span class="n">3</span>Pick the size for two text styles<span class="st" data-st="q3">Not answered</span></a></li>
+    </ol>
   </section>
 
   <section class="card">
@@ -100,10 +146,10 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     <div class="arrow"><small style="color:var(--color-text-secondary);flex-basis:100%;font-size:14px">Where older designs disagreed with your doc, we followed your doc. Example: the secondary button on the Family page was orange and is now blue.</small><span class="btn btn--s btn-old-outline">Watch how it works</span><span class="to">→</span><span class="btn btn--s btn-outline">Watch how it works</span></div>
   </section>
 
-  <section class="card">
+  <section class="card" id="q1">
     <div class="num">1</div>
-    <h2>Can we add three smaller button sizes?</h2>
-    <p>Your button is 50px tall with 18px text. That is right for the main buttons on a page. In tight spots it is too big. Here are two real examples.</p>
+    <h2>We applied your button, and added smaller sizes</h2>
+    <p>Your button (50px tall, 18px text) is now the main button everywhere. Some places are too tight for it, so we made the same buttons in three smaller sizes. Here are two real examples of why.</p>
 
     <div class="compare">
       <div class="pane bad"><div class="cap">Page header, your size <em>too tall for the bar</em></div><div class="stage"><div class="mock-header"><img src="logo.svg" alt=""><div class="acts"><span class="btn btn-outline">Log in</span><span class="btn btn-signup">Sign up</span></div></div></div></div>
@@ -112,17 +158,23 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       <div class="pane good"><div class="cap">Address card, Extra small size <em>fits</em></div><div class="stage"><div class="mock-addr"><div><b>Amira Hassan</b><br>4283 Express Lane, Suite 4021-518<br>Sarasota, FL 34249</div><span class="btn btn--xs btn-outline">Copy Address</span></div></div></div>
     </div>
 
-    <p>The proposal: keep your button as the Large size and add three smaller ones. Same colours, same corners, same font.</p>
+    <p>Your button is the Large size. The three smaller sizes use the same colours, corners and font, and every variant comes in every size.</p>
     <div class="sizes">
       <div class="size"><div><b>Large <span class="tag yours">Your spec</span></b><small>Main buttons on a page</small></div><div class="row"><span class="btn btn-signup">Sign up free</span><span class="btn">Learn more</span><span class="btn btn-outline">Shipping calculator</span></div></div>
       <div class="size"><div><b>Medium <span class="tag new">New</span></b><small>Inside cards and the dashboard</small></div><div class="row"><span class="btn btn--m btn-signup">Sign up free</span><span class="btn btn--m">Learn more</span><span class="btn btn--m btn-outline">Shipping calculator</span></div></div>
       <div class="size"><div><b>Small <span class="tag new">New</span></b><small>Page headers</small></div><div class="row"><span class="btn btn--s btn-signup">Sign up free</span><span class="btn btn--s">Learn more</span><span class="btn btn--s btn-outline">Shipping calculator</span></div></div>
       <div class="size"><div><b>Extra small <span class="tag new">New</span></b><small>Small actions like Copy, Edit, Remove</small></div><div class="row"><span class="btn btn--xs btn-signup">Sign up free</span><span class="btn btn--xs">Learn more</span><span class="btn btn--xs btn-outline">Shipping calculator</span></div></div>
     </div>
-    <div class="ask">Question 1: OK to add Medium, Small and Extra small?<span>Answer: Yes or No.</span></div>
+    <div class="answer">
+      <div class="k">For Karen to decide · 1 of 3</div>
+      <div class="qq">Do you approve the Medium, Small and Extra small button sizes?</div>
+      <div class="opts" data-q="q1"><button class="opt" type="button" data-v="Approved">Approve</button><button class="opt" type="button" data-v="I would like changes">I'd like changes</button></div>
+      <label for="c1">Your own answer or comments (optional)</label>
+      <textarea id="c1" data-c="q1" placeholder="Type here"></textarea>
+    </div>
   </section>
 
-  <section class="card">
+  <section class="card" id="q2">
     <div class="num">2</div>
     <h2>Should these three other buttons stay?</h2>
     <p>The current designs use three more buttons that are not in your doc. We have not removed or changed them.</p>
@@ -131,10 +183,16 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       <div class="kind"><span class="btn btn--m btn-red">Remove</span><small><b>Red button.</b> Deleting or removing, for example removing a family member.</small></div>
       <div class="kind"><span class="btn btn--m btn-green">Confirm</span><small><b>Green button.</b> Positive confirmations in the dashboard.</small></div>
     </div>
-    <div class="ask">Question 2: Keep all three, or tell us which to drop?<span>Answer: Keep all, or name the ones to remove.</span></div>
+    <div class="answer">
+      <div class="k">For Karen to decide · 2 of 3</div>
+      <div class="qq">Should these three buttons stay in the design system?</div>
+      <div class="opts" data-q="q2"><button class="opt" type="button" data-v="Keep all three">Keep all three</button><button class="opt" type="button" data-v="Remove some (see comment)">Remove some</button></div>
+      <label for="c2">Your own answer or comments (optional). If removing, tell us which.</label>
+      <textarea id="c2" data-c="q2" placeholder="Type here"></textarea>
+    </div>
   </section>
 
-  <section class="card">
+  <section class="card" id="q3">
     <div class="num">3</div>
     <h2>Two text sizes in your doc can be read two ways</h2>
     <p>For two styles, the doc lists a pixel size and a second number that do not match each other. Here is how each reading looks. We are currently using option A for both.</p>
@@ -144,7 +202,16 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       <div class="pane"><div class="cap">Body Lead · Option A <em>18px (in use now)</em></div><div class="stage"><div style="font-size:18px;color:var(--grey-500)">Save up to 80% on international shipping.</div></div></div>
       <div class="pane"><div class="cap">Body Lead · Option B <em>1.06em, about 17px</em></div><div class="stage"><div style="font-size:16.96px;color:var(--grey-500)">Save up to 80% on international shipping.</div></div></div>
     </div>
-    <div class="ask">Question 3: A or B for the H3 heading, and A or B for Body Lead?<span>Answer: for example "H3: A, Lead: A".</span></div>
+    <div class="answer">
+      <div class="k">For Karen to decide · 3 of 3</div>
+      <div class="qq">Which size is right for each?</div>
+      <div class="sub">Heading H3</div>
+      <div class="opts" data-q="q3a"><button class="opt" type="button" data-v="A (26.4px)">Option A · larger</button><button class="opt" type="button" data-v="B (about 19px)">Option B · smaller</button></div>
+      <div class="sub">Body Lead</div>
+      <div class="opts" data-q="q3b"><button class="opt" type="button" data-v="A (18px)">Option A · larger</button><button class="opt" type="button" data-v="B (about 17px)">Option B · smaller</button></div>
+      <label for="c3">Your own answer or comments (optional)</label>
+      <textarea id="c3" data-c="q3" placeholder="Type here"></textarea>
+    </div>
   </section>
 
   <section class="card">
@@ -157,13 +224,48 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     </div>
   </section>
 
-  <section class="reply">
-    <h2>How to reply</h2>
-    <p>A short message is all we need. For example:</p>
-    <pre>1. Yes
-2. Keep all
-3. H3: A, Lead: A</pre>
+  <section class="send" id="send">
+    <h2>Send your answers</h2>
+    <p>Anything else you want to tell us?</p>
+    <textarea data-c="general" placeholder="Other comments (optional)"></textarea>
+    <p style="margin-top:20px">This is what will be sent:</p>
+    <pre id="summary"></pre>
+    <div class="acts"><button class="btn btn-signup" type="button" id="mail">Email my answers</button><button class="btn btn-outline" type="button" id="copy">Copy my answers</button><span class="note" id="note"></span></div>
   </section>
 </div>
+
+<div class="bar"><div class="wrap"><div><b id="count">0 of 3 answered</b> <span>· For Karen to decide</span></div><a class="btn btn--m btn-signup" href="#send" id="next">Next question</a></div></div>
+
+<script>
+(function(){
+  var SEND_TO=''; // recipient for "Email my answers"
+  var KEY='myus-ds-review-2026-11-24', st={};
+  try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+  function done(q){return q==='q3'?!!(st.q3a&&st.q3b):!!st[q]||!!(st['c_'+q]||'').trim()}
+  function summary(){
+    var c=function(q){var t=(st['c_'+q]||'').trim();return t?'\n   Comment: '+t:''};
+    var L=['MyUS Design System review, answers',''];
+    L.push('1. Smaller button sizes: '+(st.q1||'(no choice)')+c('q1'));
+    L.push('2. Three other buttons: '+(st.q2||'(no choice)')+c('q2'));
+    L.push('3. Text sizes: H3 = '+(st.q3a||'(no choice)')+', Body Lead = '+(st.q3b||'(no choice)')+c('q3'));
+    var g=(st.c_general||'').trim(); if(g){L.push('');L.push('Other comments: '+g)}
+    return L.join('\n');
+  }
+  function render(){
+    document.querySelectorAll('.opts').forEach(function(g){var q=g.dataset.q;g.querySelectorAll('.opt').forEach(function(b){b.setAttribute('aria-pressed',st[q]===b.dataset.v?'true':'false')})});
+    var n=0,first=null;['q1','q2','q3'].forEach(function(q){var ok=done(q);if(ok)n++;else if(!first)first=q;var el=document.querySelector('[data-st='+q+']');el.textContent=ok?'Answered':'Not answered';el.classList.toggle('ok',ok)});
+    document.getElementById('count').textContent=n+' of 3 answered';
+    var nx=document.getElementById('next');nx.textContent=first?'Next question':'Send my answers';nx.setAttribute('href',first?'#'+first:'#send');
+    document.getElementById('summary').textContent=summary();
+  }
+  document.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode.dataset.q;st[q]=st[q]===b.dataset.v?'':b.dataset.v;save();render()})});
+  document.querySelectorAll('textarea[data-c]').forEach(function(t){t.value=st['c_'+t.dataset.c]||'';t.addEventListener('input',function(){st['c_'+t.dataset.c]=t.value;save();render()})});
+  document.getElementById('mail').addEventListener('click',function(){location.href='mailto:'+SEND_TO+'?subject='+encodeURIComponent('MyUS Design System review: my answers')+'&body='+encodeURIComponent(summary())});
+  document.getElementById('copy').addEventListener('click',function(){var t=summary(),n=document.getElementById('note');function ok(){n.textContent='Copied. Paste it into your reply to Igor.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){n.textContent='Select the text above and copy it.'})}else{n.textContent='Select the text above and copy it.'}});
+  render();
+})();
+</script>
 </body>
 </html>

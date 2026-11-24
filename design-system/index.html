@@ -395,7 +395,7 @@ a { color: inherit; }
 /* ── COMPONENT: Button ───────────────────────────────────────────
    Class names match myus.com: .btn (blue), .btn-signup (orange), .btn-outline.
    Colours come from tokens.css (same names as the Figma variables).
-   Sizes: default = L (PM spec). .btn--m / .btn--s / .btn--xs are proposed. */
+   Sizes: default = L (PM spec). .btn--m / .btn--s / .btn--xs are the smaller sizes. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -910,9 +910,9 @@ a { color: inherit; }
       <h3 class="section__h3">Sizes</h3>
       <div class="demo">
         <div class="size-row"><div><div class="t">Large (L)</div><div class="m">50px · 18px label · padding 0 24px · <span style="color:var(--text-muted)">no size class</span></div><div class="u">PM spec. Hero and section CTAs, forms, modals.</div></div><div class="b"><button class="btn btn-signup">Sign up free</button><button class="btn">Learn more</button><button class="btn btn-outline">Shipping calculator</button><button class="btn" disabled>Disabled</button></div></div>
-        <div class="size-row"><div><div class="t">Medium (M)<span class="tag-proposed">Proposed</span></div><div class="m">44px · 16px label · padding 0 20px · <span style="color:var(--text-muted)">.btn--m</span></div><div class="u">Default inside cards, tables and dashboard pages.</div></div><div class="b"><button class="btn btn-signup btn--m">Sign up free</button><button class="btn btn--m">Learn more</button><button class="btn btn-outline btn--m">Shipping calculator</button><button class="btn btn--m" disabled>Disabled</button></div></div>
-        <div class="size-row"><div><div class="t">Small (S)<span class="tag-proposed">Proposed</span></div><div class="m">40px · 14px label · padding 0 16px · <span style="color:var(--text-muted)">.btn--s</span></div><div class="u">Page headers: Sign up / Log in.</div></div><div class="b"><button class="btn btn-signup btn--s">Sign up free</button><button class="btn btn--s">Learn more</button><button class="btn btn-outline btn--s">Shipping calculator</button><button class="btn btn--s" disabled>Disabled</button></div></div>
-        <div class="size-row"><div><div class="t">Extra small (XS)<span class="tag-proposed">Proposed</span></div><div class="m">32px · 12px label · padding 0 14px · <span style="color:var(--text-muted)">.btn--xs</span></div><div class="u">Inline actions: Copy Address, Edit, Remove.</div></div><div class="b"><button class="btn btn-signup btn--xs">Sign up free</button><button class="btn btn--xs">Learn more</button><button class="btn btn-outline btn--xs">Shipping calculator</button><button class="btn btn--xs" disabled>Disabled</button></div></div>
+        <div class="size-row"><div><div class="t">Medium (M)<span class="tag-proposed">Added</span></div><div class="m">44px · 16px label · padding 0 20px · <span style="color:var(--text-muted)">.btn--m</span></div><div class="u">Default inside cards, tables and dashboard pages.</div></div><div class="b"><button class="btn btn-signup btn--m">Sign up free</button><button class="btn btn--m">Learn more</button><button class="btn btn-outline btn--m">Shipping calculator</button><button class="btn btn--m" disabled>Disabled</button></div></div>
+        <div class="size-row"><div><div class="t">Small (S)<span class="tag-proposed">Added</span></div><div class="m">40px · 14px label · padding 0 16px · <span style="color:var(--text-muted)">.btn--s</span></div><div class="u">Page headers: Sign up / Log in.</div></div><div class="b"><button class="btn btn-signup btn--s">Sign up free</button><button class="btn btn--s">Learn more</button><button class="btn btn-outline btn--s">Shipping calculator</button><button class="btn btn--s" disabled>Disabled</button></div></div>
+        <div class="size-row"><div><div class="t">Extra small (XS)<span class="tag-proposed">Added</span></div><div class="m">32px · 12px label · padding 0 14px · <span style="color:var(--text-muted)">.btn--xs</span></div><div class="u">Inline actions: Copy Address, Edit, Remove.</div></div><div class="b"><button class="btn btn-signup btn--xs">Sign up free</button><button class="btn btn--xs">Learn more</button><button class="btn btn-outline btn--xs">Shipping calculator</button><button class="btn btn--xs" disabled>Disabled</button></div></div>
       </div>
 
       <h3 class="section__h3">With iconography</h3>
@@ -937,7 +937,7 @@ a { color: inherit; }
       <div class="section__head">
         <div class="section__eyebrow">For review · 24 Nov 2026</div>
         <h2 class="section__title">Updates applied, and what needs a decision.</h2>
-        <p class="section__lead">The four updates from the PM doc are applied here and in the Figma library. A few could not be applied literally everywhere, so this section lists what was done instead and the open questions.</p>
+        <p class="section__lead">The four updates from the PM doc are applied here and in the Figma library. Smaller button sizes were added where the Large button does not fit. This section lists what was done and the open questions. <a href="review" style="color:var(--links)">Open the review page →</a></p>
       </div>
 
       <h3 class="section__h3">Applied from the doc</h3>
@@ -949,16 +949,16 @@ a { color: inherit; }
         <div><div class="q">Where older designs differed, the doc decides</div><div class="a">Outline buttons are blue (the Landing designs used orange). Hover colours are #085496 and #f1f4f9 (the dashboard used #0a5ba3 and #e8f3fd). One grey disabled style for every button. The Landing and dashboard Figma files will be updated to match.</div></div>
       </div></div>
 
-      <h3 class="section__h3">Proposal: four button sizes<span class="tag-proposed">Proposed</span></h3>
+      <h3 class="section__h3">Added: smaller button sizes<span class="tag-proposed">For approval</span></h3>
       <div class="demo"><div class="review-list">
-        <div><div class="a">The doc's spec (50px high, 18px label, 0 24px padding) is the Large size. It is too tall for page headers, address cards and dashboard rows, so three smaller sizes are proposed: Medium 44px / 16px, Small 40px / 14px, Extra small 32px / 12px. These heights already exist in both Figma files (Landing and Atlas). See them live under <a href="#buttons" style="color:var(--links)">Buttons → Sizes</a>.</div></div>
+        <div><div class="a">The doc's button (50px high, 18px label, 0 24px padding) is applied as the Large size. Page headers, address cards and dashboard rows need smaller buttons, so the same three variants are also available as Medium 44px / 16px, Small 40px / 14px and Extra small 32px / 12px. Same colours, corners, font and states. See them under <a href="#buttons" style="color:var(--links)">Buttons → Sizes</a>.</div></div>
       </div></div>
 
-      <h3 class="section__h3">Where the spec was not applied literally</h3>
+      <h3 class="section__h3">Where each size is used</h3>
       <div class="demo"><div class="review-list">
-        <div><div class="q">Header "Sign up" and "Log in" (homepage, confirmation page)</div><div class="a">Colours, radius and hover follow the doc, but the size stays compact (13–14px label). At 50px they do not fit the header. Proposed: Small.</div></div>
-        <div><div class="q">"Copy Address" on the confirmation page</div><div class="a">Kept at 12px inside the address card. Proposed: Extra small.</div></div>
-        <div><div class="q">Family page CTAs, "Calculate My Savings", "Log In to My Account", "See All US &amp; UK Stores", "Get MyUS Mobile App"</div><div class="a">Now exactly the doc's spec: Large.</div></div>
+        <div><div class="q">Large</div><div class="a">Family page CTAs, "Calculate My Savings", "Log In to My Account", "See All US &amp; UK Stores", "Get MyUS Mobile App".</div></div>
+        <div><div class="q">Small</div><div class="a">Header "Sign up" and "Log in" on the homepage and confirmation page.</div></div>
+        <div><div class="q">Extra small</div><div class="a">"Copy Address" on the confirmation page.</div></div>
       </div></div>
 
       <h3 class="section__h3">Open questions</h3>
