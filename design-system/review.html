@@ -271,7 +271,8 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   }
   document.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode.dataset.q;st[q]=st[q]===b.dataset.v?'':b.dataset.v;save();render()})});
   document.querySelectorAll('textarea[data-c]').forEach(function(t){t.value=st['c_'+t.dataset.c]||'';t.addEventListener('input',function(){st['c_'+t.dataset.c]=t.value;save();render()})});
-  var sent=false,sentText='';
+  var sentText='';try{sentText=localStorage.getItem(KEY+'-sent')||''}catch(e){}
+  var sent=!!sentText;
   function toast(msg,err){var n=document.getElementById('note');n.textContent=msg;n.className='toast show'+(err?' err':'');clearTimeout(toast.t);toast.t=setTimeout(function(){n.className='toast'},err?9000:6000)}
   function sendState(){var b=document.getElementById('sendbtn');if(b.dataset.busy)return;var all=['q1','q2','q3'].every(done);
     if(sent&&summary()===sentText){b.disabled=true;b.textContent='Sent ✓';b.classList.remove('ready')}
@@ -279,7 +280,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   document.getElementById('sendbtn').addEventListener('click',function(){
     var b=this,text=summary();b.dataset.busy='1';b.disabled=true;b.textContent='Sending…';
     fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text})})
-      .then(function(r){if(!r.ok)throw 0;sent=true;sentText=text;delete b.dataset.busy;sendState();toast('Thank you, Karen. Igor has your answers.')})
+      .then(function(r){if(!r.ok)throw 0;sent=true;sentText=text;try{localStorage.setItem(KEY+'-sent',text)}catch(e){}delete b.dataset.busy;sendState();toast('Thank you, Karen. Igor has your answers.')})
       .catch(function(){delete b.dataset.busy;sendState();toast('Sorry, that did not go through. Please press Send again in a moment.',true)});
   });
   document.getElementById('copy').addEventListener('click',function(){var t=summary();
