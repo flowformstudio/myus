@@ -305,7 +305,7 @@ html{scroll-padding-top:96px}
     if(text.length>11000){toast('Your comments are too long to send. Please shorten them a little and press Send again.',true);return}
     b.dataset.busy='1';b.disabled=true;b.textContent='Sending…';
     var ctl=window.AbortController?new AbortController():null,timer=setTimeout(function(){if(ctl)ctl.abort()},15000);
-    fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text}),signal:ctl?ctl.signal:undefined})
+    fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text,key:'002b6094c496'}),signal:ctl?ctl.signal:undefined})
       .then(function(r){clearTimeout(timer);if(!r.ok)throw 0;sent=true;sentText=text;try{localStorage.setItem(KEY+'-sent',text)}catch(e){}delete b.dataset.busy;sendState();
         toast(missing.length?'Sent, thank you. Question'+(missing.length>1?'s ':' ')+missing.map(function(q){return names[q]}).join(' and ')+(missing.length>1?' are':' is')+' still unanswered. You can answer and send again.':'Thank you, Karen. Igor has your answers.')})
       .catch(function(){clearTimeout(timer);delete b.dataset.busy;sendState();toast('Sorry, that did not go through. Please press Send again, or use "Copy my answers instead" at the bottom of the page.',true)});

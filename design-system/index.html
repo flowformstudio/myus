@@ -436,6 +436,15 @@ a { color: inherit; }
   cursor: not-allowed;
   pointer-events: none;
 }
+.btn.is-hover { background: var(--color-action-main-bg-hover); }
+.btn-signup.is-hover { background: var(--color-action-signup-bg-hover); }
+.btn-outline.is-hover { background: var(--color-action-outline-bg-hover); }
+.state-grid { display: grid; grid-template-columns: 150px repeat(3, 1fr); gap: 0; align-items: center; }
+.state-grid > div { padding: 16px 12px; border-top: 1px solid var(--border); min-height: 84px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px; }
+.state-grid > .hd { border-top: 0; min-height: 0; padding: 0 12px 10px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.state-grid .rl { font-weight: 600; font-size: 14px; color: var(--text); }
+.state-grid .rl small { display: block; font-weight: 400; font-size: 12px; color: var(--text-muted); }
+.state-grid .cap { font-size: 11px; color: var(--text-muted); }
 .tag-proposed { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-accent); background: var(--orange-50); border-radius: var(--radius-4); padding: 2px 8px; margin-left: 8px; vertical-align: middle; }
 .size-row { display: grid; grid-template-columns: 300px 1fr; gap: var(--s-6); align-items: center; padding: var(--s-4) 0; border-top: 1px solid var(--border); }
 .size-row:first-child { border-top: 0; }
@@ -922,7 +931,26 @@ a { color: inherit; }
         <button class="btn btn--ghost"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg>Chat 24/7</button>
       </div>
 
-      <h3 class="section__h3">States</h3>
+      <h3 class="section__h3">States by variant</h3>
+      <div class="demo">
+        <div class="state-grid">
+          <div class="hd">Variant</div><div class="hd">Default</div><div class="hd">Hover</div><div class="hd">Disabled</div>
+          <div class="rl">Signup<small>btn-signup</small></div>
+          <div><button class="btn btn-signup">Sign up free</button><span class="cap">#FF981F · label #10283D</span></div>
+          <div><button class="btn btn-signup is-hover">Sign up free</button><span class="cap">#D98017 · label #10283D</span></div>
+          <div><button class="btn btn-signup" disabled>Sign up free</button><span class="cap">#E0E6EB · label #A9B4BC</span></div>
+          <div class="rl">Main<small>btn</small></div>
+          <div><button class="btn">Learn more</button><span class="cap">#0C71C9 · label #FFFFFF</span></div>
+          <div><button class="btn is-hover">Learn more</button><span class="cap">#085496 · label #FFFFFF</span></div>
+          <div><button class="btn" disabled>Learn more</button><span class="cap">#E0E6EB · label #A9B4BC</span></div>
+          <div class="rl">Outline<small>btn-outline</small></div>
+          <div><button class="btn btn-outline">Shipping calculator</button><span class="cap">border + label #0C71C9</span></div>
+          <div><button class="btn btn-outline is-hover">Shipping calculator</button><span class="cap">fill #F1F4F9</span></div>
+          <div><button class="btn btn-outline" disabled>Shipping calculator</button><span class="cap">#E0E6EB · label #A9B4BC</span></div>
+        </div>
+      </div>
+
+      <h3 class="section__h3">Other states</h3>
       <div class="demo demo--row">
         <button class="btn btn-signup">Default</button>
         <button class="btn btn-signup" style="background: #d98017;">Hover</button>
@@ -937,7 +965,7 @@ a { color: inherit; }
       <div class="section__head">
         <div class="section__eyebrow">For review · 24 Nov 2026</div>
         <h2 class="section__title">Updates applied, and what needs a decision.</h2>
-        <p class="section__lead">The four updates from the PM doc are applied here and in the Figma library. Smaller button sizes were added where the Large button does not fit. This section lists what was done and the open questions. <a href="review" style="color:var(--links)">Open the review page →</a></p>
+        <p class="section__lead">The four updates from the PM doc are applied here and in the Figma library. Smaller button sizes were added where the Large button does not fit. This section lists what was done and the open questions.</p>
       </div>
 
       <h3 class="section__h3">Applied from the doc</h3>
