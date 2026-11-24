@@ -264,8 +264,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     var b=this,n=document.getElementById('note');b.disabled=true;b.textContent='Sending…';n.style.color='';n.textContent='';
     fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:summary()})})
       .then(function(r){if(!r.ok)throw 0;b.textContent='Sent';n.textContent='Thank you, Karen. Igor has your answers.'})
-      .catch(function(){b.disabled=false;b.textContent='Send my answers';n.textContent='Opening an email to Igor with your answers. Just press Send there.';
-        location.href='mailto:igor@flowformstudio.com?subject='+encodeURIComponent('MyUS Design System review: my answers')+'&body='+encodeURIComponent(summary())});
+      .catch(function(){b.disabled=false;b.textContent='Send my answers';n.style.color='var(--red-500)';n.textContent='Sorry, that did not go through. Please press Send again in a moment.'});
   });
   document.getElementById('copy').addEventListener('click',function(){var t=summary(),n=document.getElementById('note');function ok(){n.style.color='';n.textContent='Copied. Paste it into a message to Igor.'}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){n.textContent='Select the text above and copy it.'})}else{n.textContent='Select the text above and copy it.'}});
