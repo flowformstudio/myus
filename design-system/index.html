@@ -43,8 +43,9 @@
   --warning-100: #fbecce;
   --danger:  #d13138;
   --danger-100: #f8dddd;
-  --info:    #0c71c9;
-  --info-100: #e0eef9;
+  --links:    #0c71c9;
+  --links-700: #085496; /* blue button hover — matches myus.com .btn:hover */
+  --links-100: #e0eef9;
 
   /* Surfaces */
   --bg: var(--ink-50);
@@ -52,7 +53,7 @@
   --surface-2: var(--ink-100);
   --border: var(--ink-200);
   --border-strong: var(--ink-300);
-  --text: var(--ink-900);
+  --text: #10283d; /* myus.com body + heading colour */
   --text-muted: var(--ink-500);
   --text-subtle: var(--ink-400);
 
@@ -390,36 +391,47 @@ a { color: inherit; }
   margin-top: 2px;
 }
 
-/* ── COMPONENT: Button ─────────────────────────────────────────── */
+/* ── COMPONENT: Button ───────────────────────────────────────────
+   Class names and values match myus.com: .btn (blue), .btn-signup (orange), .btn-outline. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 22px;
-  height: 48px;
-  font-size: 15px;
+  padding: 0 24px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
   font-weight: 600;
-  letter-spacing: -0.005em;
-  border-radius: var(--r-md);
+  background: var(--links);
+  color: #fff;
+  border-radius: 6px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  transition: .15s;
+  vertical-align: middle;
   white-space: nowrap;
+  text-decoration: none;
   font-family: var(--font-ui);
 }
-.btn--sm { height: 36px; padding: 0 14px; font-size: 13px; border-radius: var(--r-sm); }
-.btn--lg { height: 56px; padding: 0 28px; font-size: 16px; }
-.btn--primary { background: var(--brand-accent); color: #fff; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.15); }
-.btn--primary:hover { background: var(--brand-accent-700); }
-.btn--secondary { background: var(--brand-primary); color: #fff; }
-.btn--secondary:hover { background: var(--brand-primary-600); }
-.btn--outline { background: transparent; color: var(--text); border-color: var(--border-strong); }
-.btn--outline:hover { background: var(--ink-100); }
+.btn:hover { background: var(--links-700); color: #fff; }
+.btn--sm { height: 36px; line-height: 36px; padding: 0 14px; font-size: 13px; }
+.btn--lg { height: 56px; line-height: 56px; padding: 0 28px; font-size: 20px; }
+.btn-signup { background: #ff981f; color: #10283d; }
+.btn-signup:hover { background: #d98017; color: #10283d; }
+.btn-outline { background: transparent; color: var(--links); border-color: var(--links); }
+.btn-outline:hover { background: #f1f4f9; color: var(--links); }
 .btn--ghost { background: transparent; color: var(--text); }
-.btn--ghost:hover { background: var(--ink-100); }
-.btn--link { background: transparent; color: var(--brand-accent); padding: 0; height: auto; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
-.btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+.btn--ghost:hover { background: var(--ink-100); color: var(--text); }
+.btn--link { background: transparent; color: var(--links); padding: 0; height: auto; line-height: inherit; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.btn--link:hover { background: transparent; color: var(--links-700); }
+.btn[disabled], .btn.disabled, .disabled.btn {
+  background-color: #e0e6eb;
+  border-color: #e0e6eb;
+  color: #a9b4bc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
 /* ── COMPONENT: Form ────────────────────────────────────────────── */
 .field { display: flex; flex-direction: column; gap: 6px; }
@@ -451,7 +463,7 @@ a { color: inherit; }
 .badge--primary { background: var(--brand-primary); color: #fff; border-color: transparent; }
 .badge--success { background: var(--success-100); color: var(--success); border-color: transparent; }
 .badge--warning { background: var(--warning-100); color: var(--warning); border-color: transparent; }
-.badge--info { background: var(--info-100); color: var(--info); border-color: transparent; }
+.badge--info { background: var(--links-100); color: var(--links); border-color: transparent; }
 .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.7; }
 
 /* ── Swatch ─────────────────────────────────────────────────────── */
@@ -487,7 +499,7 @@ a { color: inherit; }
 .price-card ul li .check { flex-shrink: 0; color: var(--success); }
 
 /* ── Alert ──────────────────────────────────────────────────────── */
-.alert { display: flex; gap: 12px; padding: 14px 16px; border-radius: var(--r-md); background: var(--info-100); color: var(--info); font-size: 14px; border: 1px solid transparent; align-items: flex-start; }
+.alert { display: flex; gap: 12px; padding: 14px 16px; border-radius: var(--r-md); background: var(--links-100); color: var(--links); font-size: 14px; border: 1px solid transparent; align-items: flex-start; }
 .alert--success { background: var(--success-100); color: var(--success); }
 .alert--warning { background: var(--warning-100); color: var(--warning); }
 .alert--danger { background: var(--danger-100); color: var(--danger); }
@@ -658,7 +670,7 @@ a { color: inherit; }
         package consolidation, and worldwide shipping. Internal reference for product, design, and marketing.
       </p>
       <div style="display: flex; gap: 12px;">
-        <a class="btn btn--primary" href="#color">Explore the system</a>
+        <a class="btn btn-signup" href="#color">Explore the system</a>
       </div>
       <div class="hero__stats">
         <div><span class="num">17</span><span class="lbl">Documented sections</span></div>
@@ -750,7 +762,7 @@ a { color: inherit; }
         <div class="sw"><div class="chip" data-copy="#18873D" style="background: var(--success); height: 72px;"></div><div class="name">Success</div><div class="meta"><span>#18873D</span></div></div>
         <div class="sw"><div class="chip" data-copy="#C2861D" style="background: var(--warning); height: 72px;"></div><div class="name">Warning</div><div class="meta"><span>#C2861D</span></div></div>
         <div class="sw"><div class="chip" data-copy="#D13138" style="background: var(--danger); height: 72px;"></div><div class="name">Danger</div><div class="meta"><span>#D13138</span></div></div>
-        <div class="sw"><div class="chip" data-copy="#0C71C9" style="background: var(--info); height: 72px;"></div><div class="name">Info</div><div class="meta"><span>#0C71C9</span></div></div>
+        <div class="sw"><div class="chip" data-copy="#0C71C9" style="background: var(--links); height: 72px;"></div><div class="name">Links</div><div class="meta"><span>#0C71C9</span></div></div>
       </div>
     </section>
 
@@ -762,7 +774,7 @@ a { color: inherit; }
         <p class="section__lead">A single typeface across every surface — UI, display, body, and numeric data. Tabular numerics handle the technical bits (suite numbers, weights, tracking IDs, prices) without needing a separate mono family.</p>
       </div>
 
-      <div class="split">
+      <div class="split" style="grid-template-columns: 1fr;">
         <div>
           <div class="sec-label">UI · Display · Data</div>
           <div style="font-family: var(--font-ui); font-size: 48px; font-weight: 700; letter-spacing: -0.03em; line-height: 1;">Poppins</div>
@@ -771,16 +783,16 @@ a { color: inherit; }
 
         <div class="demo">
           <div class="sec-label">Scale</div>
-          <div class="spec"><span class="lbl">Display / XL</span><span class="ex" style="font-size: 56px; font-weight: 700; letter-spacing: -0.035em; line-height: 1;">Ship Worldwide</span><span class="tok">72 / 1.00 / -0.035em<br/>700</span></div>
-          <div class="spec"><span class="lbl">Display / LG</span><span class="ex" style="font-size: 40px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05;">Shop US &amp; UK</span><span class="tok">48 / 1.05 / -0.025em<br/>700</span></div>
-          <div class="spec"><span class="lbl">Heading / H1</span><span class="ex" style="font-size: 32px; font-weight: 600; letter-spacing: -0.02em;">How MyUS works</span><span class="tok">36 / 1.15 / -0.02em<br/>600</span></div>
-          <div class="spec"><span class="lbl">Heading / H2</span><span class="ex" style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em;">Premium membership</span><span class="tok">24 / 1.25 / -0.015em<br/>600</span></div>
-          <div class="spec"><span class="lbl">Heading / H3</span><span class="ex" style="font-size: 18px; font-weight: 600;">Package consolidation</span><span class="tok">18 / 1.35 / -0.01em<br/>600</span></div>
-          <div class="spec"><span class="lbl">Body / Lead</span><span class="ex" style="font-size: 16px; color: var(--text-muted); line-height: 1.5;">Save up to 80% on international shipping.</span><span class="tok">18 / 1.50<br/>400</span></div>
-          <div class="spec"><span class="lbl">Body / Default</span><span class="ex" style="font-size: 14px; line-height: 1.55;">Get a US address, shop any store, and ship home.</span><span class="tok">14 / 1.55<br/>400</span></div>
-          <div class="spec"><span class="lbl">Caption</span><span class="ex" style="font-size: 12px; color: var(--text-muted);">Rates apply to standard shipments.</span><span class="tok">12 / 1.4<br/>400</span></div>
-          <div class="spec"><span class="lbl">Eyebrow</span><span class="ex" style="font-size: 11px; color: var(--brand-accent); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;">Membership benefit</span><span class="tok">11 / 0.12em<br/>500 / UPPER</span></div>
-          <div class="spec"><span class="lbl">Data / Numeric</span><span class="ex" style="font-size: 16px; font-weight: 500; font-feature-settings: 'tnum' 1;">SUITE-12345 · 4.2 lb · $47.80</span><span class="tok">16 / tnum<br/>500</span></div>
+          <div class="spec"><span class="lbl">Display / XL</span><span class="ex" style="font-size: 56px; font-weight: 600; line-height: 1.05;">Ship Worldwide</span><span class="tok">#10283d, 56px/3.5em<br/>weight: 600</span></div>
+          <div class="spec"><span class="lbl">Display / LG</span><span class="ex" style="font-size: 48px; font-weight: 600; line-height: 1.1;">Shop US &amp; UK</span><span class="tok">#10283d, 48px/3em<br/>weight: 600</span></div>
+          <div class="spec"><span class="lbl">Heading / H1</span><span class="ex" style="font-size: 36.8px; font-weight: 600; line-height: 1.15;">How MyUS works</span><span class="tok">#10283d, 36.8px/2.3em<br/>weight: 600</span></div>
+          <div class="spec"><span class="lbl">Heading / H2</span><span class="ex" style="font-size: 28.8px; font-weight: 600; line-height: 1.25;">Premium membership</span><span class="tok">28.8px/1.8em<br/>weight: 600</span></div>
+          <div class="spec"><span class="lbl">Heading / H3</span><span class="ex" style="font-size: 26.4px; font-weight: 600; line-height: 1.3;">Package consolidation</span><span class="tok">26.4px/1.2em<br/>weight: 600</span></div>
+          <div class="spec"><span class="lbl">Body / Lead</span><span class="ex" style="font-size: 18px; font-weight: 400; color: #667793; line-height: 1.5;">Save up to 80% on international shipping.</span><span class="tok">#667793, 18px/1.06em<br/>weight: 400</span></div>
+          <div class="spec"><span class="lbl">Body / Default</span><span class="ex" style="font-size: 16px; font-weight: 400; line-height: 1.55;">Get a US address, shop any store, and ship home.</span><span class="tok">#10283d, 16px/1em<br/>weight: 400</span></div>
+          <div class="spec"><span class="lbl">Disclaimer</span><span class="ex" style="font-size: 12px; font-weight: 400; color: #65676a;">Rates apply to standard shipments.</span><span class="tok">#65676a, 12px/.75em<br/>weight: 400</span></div>
+          <div class="spec"><span class="lbl">Eyebrow</span><span class="ex" style="font-size: 14px; color: #6f7377; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;">Membership benefit</span><span class="tok">#6f7377, 14px/.875em<br/>weight: 500 / UPPER CASE</span></div>
+          <div class="spec"><span class="lbl">Data / Numeric</span><span class="ex" style="font-size: 16px; font-weight: 500; font-feature-settings: 'tnum' 1;">$50.00 US · Suite 123-456 · 4.2 lbs</span><span class="tok">#10283d, 16px/1em<br/>weight: 500</span></div>
         </div>
       </div>
     </section>
@@ -846,7 +858,7 @@ a { color: inherit; }
           <div style="display: flex; gap: 8px;"><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: #fde8dd; color: #c44a22; border-radius: 999px;">NEW</span><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: #e2f4ea; color: #1f8f5c; border-radius: 999px;">READY TO SEND</span></div>
           <h3 style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em; margin: 0; color:#0b1420;">Your package is ready.</h3>
           <p style="font-size: 14px; color: #667793; margin: 0;">Ship it now or add more orders — storage is free for 30 days.</p>
-          <div style="display: flex; gap: 8px;"><button class="btn btn--primary btn--sm">Ship now</button><button class="btn btn--sm" style="background:transparent;color:#0b1420;border:1px solid #b6c1d2;">Wait</button></div>
+          <div style="display: flex; gap: 8px;"><button class="btn btn-signup btn--sm">Ship now</button><button class="btn btn--sm" style="background:transparent;color:#0b1420;border:1px solid #b6c1d2;">Wait</button></div>
         </div>
 
         <div style="background: #0a1220; color: #eef2f8; border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4);">
@@ -854,7 +866,7 @@ a { color: inherit; }
           <div style="display: flex; gap: 8px;"><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: rgba(232,93,47,0.15); color: #ff9566; border-radius: 999px;">NEW</span><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: rgba(31,143,92,0.2); color: #5dcb9a; border-radius: 999px;">READY TO SEND</span></div>
           <h3 style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em; margin: 0; color: #eef2f8;">Your package is ready.</h3>
           <p style="font-size: 14px; color: #97a4bc; margin: 0;">Ship it now or add more orders — storage is free for 30 days.</p>
-          <div style="display: flex; gap: 8px;"><button class="btn btn--primary btn--sm">Ship now</button><button class="btn btn--sm" style="background: transparent; color: #eef2f8; border: 1px solid #33425e;">Wait</button></div>
+          <div style="display: flex; gap: 8px;"><button class="btn btn-signup btn--sm">Ship now</button><button class="btn btn--sm" style="background: transparent; color: #eef2f8; border: 1px solid #33425e;">Wait</button></div>
         </div>
       </div>
     </section>
@@ -864,39 +876,39 @@ a { color: inherit; }
       <div class="section__head">
         <div class="section__eyebrow">06 — Components / Buttons</div>
         <h2 class="section__title">One primary action, always.</h2>
-        <p class="section__lead">Coral accent = "do the thing." Navy = "consider this carefully." Outline and ghost are supporting roles.</p>
+        <p class="section__lead">Orange btn-signup = "do the thing." Blue btn is the standard action. Outline and ghost are supporting roles.</p>
       </div>
 
       <h3 class="section__h3">Variants</h3>
       <div class="demo">
-        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--primary">Sign up free</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--primary</span></div>
-        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--secondary">Learn more</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--secondary</span></div>
-        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--outline">Shipping calculator</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--outline</span></div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn-signup">Sign up free</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn-signup</span></div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn">Learn more</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn</span></div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn-outline">Shipping calculator</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn-outline</span></div>
         <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--ghost">Skip for now</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--ghost</span></div>
         <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;"><button class="btn btn--link">View all countries →</button><span style="font-family: var(--font-ui); font-size: 11px; color: var(--text-muted);">btn--link</span></div>
       </div>
 
       <h3 class="section__h3">Sizes</h3>
       <div class="demo demo--row">
-        <button class="btn btn--primary btn--sm">Small</button>
-        <button class="btn btn--primary">Default</button>
-        <button class="btn btn--primary btn--lg">Large</button>
+        <button class="btn btn-signup btn--sm">Small</button>
+        <button class="btn btn-signup">Default</button>
+        <button class="btn btn-signup btn--lg">Large</button>
       </div>
 
       <h3 class="section__h3">With iconography</h3>
       <div class="demo demo--row">
-        <button class="btn btn--primary"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Get my US address</button>
-        <button class="btn btn--outline"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Track package</button>
+        <button class="btn btn-signup"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Get my US address</button>
+        <button class="btn btn-outline"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Track package</button>
         <button class="btn btn--ghost"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg>Chat 24/7</button>
       </div>
 
       <h3 class="section__h3">States</h3>
       <div class="demo demo--row">
-        <button class="btn btn--primary">Default</button>
-        <button class="btn btn--primary" style="background: var(--brand-accent-700);">Hover</button>
-        <button class="btn btn--primary" style="box-shadow: var(--sh-focus);">Focused</button>
-        <button class="btn btn--primary" disabled>Disabled</button>
-        <button class="btn btn--primary"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" stroke-dasharray="40 20"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>Loading</button>
+        <button class="btn btn-signup">Default</button>
+        <button class="btn btn-signup" style="background: #d98017;">Hover</button>
+        <button class="btn btn-signup" style="box-shadow: var(--sh-focus);">Focused</button>
+        <button class="btn btn-signup" disabled>Disabled</button>
+        <button class="btn btn-signup"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" stroke-dasharray="40 20"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>Loading</button>
       </div>
     </section>
 
@@ -1016,8 +1028,8 @@ a { color: inherit; }
             <div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); text-transform: uppercase;">Arrived</div><div style="font-family: var(--font-ui); font-size: 15px; font-weight: 500;">Apr 18</div></div>
           </div>
           <div style="display: flex; gap: 8px; margin-top: 4px;">
-            <button class="btn btn--primary btn--sm" style="flex:1;">Create ship request</button>
-            <button class="btn btn--outline btn--sm">Details</button>
+            <button class="btn btn-signup btn--sm" style="flex:1;">Create ship request</button>
+            <button class="btn btn-outline btn--sm">Details</button>
           </div>
         </div>
 
@@ -1033,7 +1045,7 @@ a { color: inherit; }
             <div><strong>Value needed</strong><p>Merchant didn't provide a purchase price.</p></div>
           </div>
           <div style="display: flex; gap: 8px; margin-top: 4px;">
-            <button class="btn btn--primary btn--sm" style="flex:1;">Provide values</button>
+            <button class="btn btn-signup btn--sm" style="flex:1;">Provide values</button>
             <button class="btn btn--ghost btn--sm">Later</button>
           </div>
         </div>
@@ -1170,7 +1182,7 @@ a { color: inherit; }
       </div>
 
       <div style="display: flex; align-items: center; gap: 16px; margin-top: var(--s-8); flex-wrap: wrap;">
-        <button class="btn btn--primary btn--lg">Get my US address free</button>
+        <button class="btn btn-signup btn--lg">Get my US address free</button>
         <button class="btn btn--link">Estimate shipping →</button>
       </div>
     </section>
@@ -1195,7 +1207,7 @@ a { color: inherit; }
             <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Standard shipping rates</li>
             <li style="color: var(--text-subtle)"><svg class="ic-sm" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l8 8M4 12l8-8"/></svg>Package consolidation</li>
           </ul>
-          <button class="btn btn--outline" style="margin-top:auto;">Start free</button>
+          <button class="btn btn-outline" style="margin-top:auto;">Start free</button>
         </div>
 
         <div class="price-card price-card--featured">
@@ -1210,7 +1222,7 @@ a { color: inherit; }
             <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Discounted shipping (up to 80%)</li>
             <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Tax-free Delaware address</li>
           </ul>
-          <button class="btn btn--primary" style="margin-top:auto;">Try free for 30 days</button>
+          <button class="btn btn-signup" style="margin-top:auto;">Try free for 30 days</button>
         </div>
 
         <div class="price-card">
@@ -1224,7 +1236,7 @@ a { color: inherit; }
             <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Free photos &amp; return fees</li>
             <li><svg class="ic-sm check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l4 4 8-9"/></svg>Dedicated account manager</li>
           </ul>
-          <button class="btn btn--secondary" style="margin-top:auto;">Contact sales</button>
+          <button class="btn" style="margin-top:auto;">Contact sales</button>
         </div>
       </div>
     </section>
@@ -1251,7 +1263,7 @@ a { color: inherit; }
         </div>
         <div style="display: flex; align-items: center; gap: 12px;">
           <button class="btn btn--ghost btn--sm">Sign in</button>
-          <button class="btn btn--primary btn--sm">Get my US address</button>
+          <button class="btn btn-signup btn--sm">Get my US address</button>
         </div>
       </nav>
 
@@ -1317,8 +1329,8 @@ a { color: inherit; }
             Get your own US address in minutes, consolidate orders from any store, and save up to 80% on international shipping.
           </p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button class="btn btn--primary btn--lg">Get my free US address</button>
-            <button class="btn btn--outline btn--lg">See how it works</button>
+            <button class="btn btn-signup btn--lg">Get my free US address</button>
+            <button class="btn btn-outline btn--lg">See how it works</button>
           </div>
           <div style="display: flex; gap: 32px; padding-top: 20px; border-top: 1px solid var(--border); flex-wrap: wrap;">
             <div><div style="font-family: var(--font-ui); font-size: 22px; font-weight: 600;">220+</div><div style="font-size: 12px; color: var(--text-muted);">Countries served</div></div>
@@ -1360,7 +1372,7 @@ a { color: inherit; }
             <div class="field"><label>Country of residence</label><select class="select"><option>🇦🇪 United Arab Emirates</option></select></div>
             <div class="field"><label>Password</label><input class="input" type="password" value="••••••••••" /></div>
           </div>
-          <button class="btn btn--primary" style="margin-top: auto;">Continue</button>
+          <button class="btn btn-signup" style="margin-top: auto;">Continue</button>
           <div style="font-size: 12px; color: var(--text-muted); text-align: center;">No credit card required</div>
         </div>
 
@@ -1396,7 +1408,7 @@ a { color: inherit; }
               </div>
             </label>
           </div>
-          <button class="btn btn--primary" style="margin-top: auto;">Continue</button>
+          <button class="btn btn-signup" style="margin-top: auto;">Continue</button>
         </div>
 
         <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4);">
@@ -1417,7 +1429,7 @@ a { color: inherit; }
             <div style="font-size: 13px;">United States</div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
-            <button class="btn btn--primary">Start shopping</button>
+            <button class="btn btn-signup">Start shopping</button>
             <button class="btn btn--ghost btn--sm">Copy address</button>
           </div>
         </div>
@@ -1442,7 +1454,7 @@ a { color: inherit; }
           </div>
           <div style="display: flex; gap: 10px;">
             <button class="btn btn--ghost btn--sm">Sign in</button>
-            <button class="btn btn--primary btn--sm">Get my US address</button>
+            <button class="btn btn-signup btn--sm">Get my US address</button>
           </div>
         </nav>
 
@@ -1451,7 +1463,7 @@ a { color: inherit; }
             <span class="badge badge--accent" style="align-self: flex-start;"><span class="dot"></span>TRUSTED BY 350,000+ MEMBERS</span>
             <h1 style="font-family: var(--font-display); font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -0.035em; margin: 0;">Shop US stores.<br/><span style="color: var(--brand-accent);">Ship anywhere.</span></h1>
             <p style="font-size: 15px; color: var(--text-muted); max-width: 440px; margin: 0; line-height: 1.5;">Get a US address in minutes, consolidate from any store, save up to 80% on international shipping.</p>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;"><button class="btn btn--primary">Get my free US address</button><button class="btn btn--outline">See how it works</button></div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;"><button class="btn btn-signup">Get my free US address</button><button class="btn btn-outline">See how it works</button></div>
           </div>
           <div style="background: repeating-linear-gradient(135deg, var(--ink-100) 0 10px, var(--ink-150) 10px 20px); border-radius: var(--r-md); position: relative; min-height: 240px;">
             <div style="position: absolute; inset: 20px; background: var(--surface); border: 1px dashed var(--border-strong); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;">HERO IMAGE</div>
@@ -1484,8 +1496,8 @@ a { color: inherit; }
       </div>
 
       <div style="display:flex; gap:12px; margin-bottom:28px; flex-wrap:wrap;">
-        <a class="btn btn--primary" href="assets/confirmation/myus-confirmation-assets.zip" download>Download full kit (.zip · 2.0 MB)</a>
-        <a class="btn btn--outline" href="/confirmation" target="_blank" rel="noopener">View live page ↗</a>
+        <a class="btn btn-signup" href="assets/confirmation/myus-confirmation-assets.zip" download>Download full kit (.zip · 2.0 MB)</a>
+        <a class="btn btn-outline" href="/confirmation" target="_blank" rel="noopener">View live page ↗</a>
       </div>
 
       <h3 class="section__h3">Animated hero icons</h3>

@@ -109,9 +109,9 @@
       padding: 12px 20px;
       border-radius: var(--r-btn);
       background: var(--orange);
-      transition: filter 0.15s, transform 0.1s;
+      transition: .15s;
     }
-    .btn-signup:hover { filter: brightness(0.95); transform: translateY(-1px); }
+    .btn-signup:hover { background: #d98017; }
 
     /* ════════════════════════════════════════
        JOURNEY SIMULATOR
@@ -415,9 +415,9 @@
       font-family: inherit;
       font-size: 12px; font-weight: 600;
       letter-spacing: 0.24px;
-      color: var(--orange);
+      color: var(--links);
       background: transparent;
-      border: 1px solid var(--orange);
+      border: 1px solid var(--links);
       border-radius: var(--r-btn);
       padding: 10px 20px;
       cursor: pointer;
@@ -425,42 +425,41 @@
       transition: background 0.15s, color 0.15s, border-color 0.15s;
       line-height: 1;
     }
-    .btn-copy:hover { background: var(--bg-orange); }
+    .btn-copy:hover { background: #f1f4f9; }
     .btn-copy.copied { border-color: var(--green-700); color: var(--green-700); background: var(--green-50); }
 
     .btn-more {
       align-self: flex-start;
       display: inline-flex; align-items: center; justify-content: center;
       font-family: inherit;
-      font-size: 14px; font-weight: 600;
+      font-size: 18px; font-weight: 600;
       color: var(--links);
       background: transparent;
       border: 1px solid var(--links);
       border-radius: var(--r-btn);
-      padding: 13px 20px;
+      height: 50px; padding: 0 24px;
       cursor: pointer;
-      transition: background 0.15s;
+      transition: .15s;
       line-height: 1;
     }
-    .btn-more:hover { background: var(--blue-l2); }
+    .btn-more:hover { background: #f1f4f9; }
 
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center;
       font-family: inherit;
-      font-size: 15px; font-weight: 600;
-      letter-spacing: 0.3px;
+      font-size: 18px; font-weight: 600;
       color: var(--content-main);
       background: var(--orange);
       border: none;
       border-radius: var(--r-btn);
-      padding: 14px 20px;
+      height: 50px; padding: 0 24px;
       min-width: 251px;
       cursor: pointer;
       text-decoration: none;
-      transition: filter 0.15s, transform 0.1s;
+      transition: .15s;
       line-height: 1;
     }
-    .btn-primary:hover { filter: brightness(0.95); transform: translateY(-1px); }
+    .btn-primary:hover { background: #d98017; color: var(--content-main); }
     .step-cta { padding: 8px 0 12px; }
 
     /* ════════════════════════════════════════
@@ -591,19 +590,18 @@
       display: inline-flex; align-items: center; justify-content: center;
       margin-top: 44px;
       font-family: inherit;
-      font-size: 15px; font-weight: 600;
-      letter-spacing: 0.3px;
+      font-size: 18px; font-weight: 600;
       color: var(--links);
-      background: var(--white);
+      background: transparent;
       border: 1px solid var(--links);
       border-radius: var(--r-btn);
-      padding: 14px 28px;
+      height: 50px; padding: 0 24px;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.15s;
+      transition: .15s;
       line-height: 1;
     }
-    .btn-stores:hover { background: var(--blue-l2); }
+    .btn-stores:hover { background: #f1f4f9; }
 
     /* Membership photo cards */
     .member-section {
@@ -724,16 +722,15 @@
     .btn-app {
       display: inline-flex; align-items: center; justify-content: center;
       margin-top: 24px;
-      font-size: 16px; font-weight: 600;
-      letter-spacing: 0.5px;
+      font-size: 18px; font-weight: 600;
       color: var(--white);
       background: var(--links);
       border-radius: var(--r-btn);
-      padding: 14px 20px;
+      height: 50px; padding: 0 24px;
       text-decoration: none;
-      transition: filter 0.15s;
+      transition: .15s;
     }
-    .btn-app:hover { filter: brightness(1.1); }
+    .btn-app:hover { background: #085496; color: var(--white); }
     .footer-bottom {
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
       padding: 50px 0;
