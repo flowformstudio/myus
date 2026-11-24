@@ -13,10 +13,17 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:Poppins,-apple-system,Helvetica,Arial,sans-serif;color:var(--color-text-primary);background:var(--color-bg-subtle);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-header.top{background:#fff;border-bottom:1px solid var(--color-border-default)}
-header.top .wrap{display:flex;align-items:center;gap:16px;height:72px}
-header.top img{height:34px}
-header.top span{color:var(--color-text-secondary);font-size:14px;font-weight:500}
+header.top{background:#fff;border-bottom:1px solid var(--color-border-default);position:sticky;top:0;z-index:20;box-shadow:0 4px 16px rgba(16,40,61,.06)}
+header.top .wrap{display:flex;align-items:center;gap:16px;min-height:72px;padding-top:10px;padding-bottom:10px}
+header.top img{height:30px;flex-shrink:0}
+.chips{display:flex;gap:8px;flex:1;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--grey-300);border-radius:999px;padding:6px 14px 6px 6px;text-decoration:none;color:var(--navy-900);font-size:13px;line-height:1.2;background:#fff}
+.chip:hover{border-color:var(--blue-500)}
+.chip b{width:24px;height:24px;border-radius:999px;background:var(--orange-700);color:var(--navy-900);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
+.chip .t{font-weight:600}.chip .v{color:var(--color-text-secondary)}
+.chip.ok{border-color:var(--green-500);background:#eaf6ee}.chip.ok b{background:var(--green-500);color:#fff}.chip.ok .v{color:var(--green-500);font-weight:600}
+.count{font-size:13px;font-weight:600;color:var(--color-text-secondary);white-space:nowrap}
+section[id]{scroll-margin-top:96px}
 .hero{padding:64px 0 40px}
 .eyebrow{font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-accent)}
 h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spacing:-.01em}
@@ -38,13 +45,13 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .pane .cap em{font-style:normal;font-weight:500;color:var(--color-text-secondary)}
 .pane.good .cap{background:#eaf6ee;color:var(--green-500)}
 .pane.bad .cap{background:#fdf0f0;color:var(--red-500)}
-.pane .stage{padding:24px;min-height:120px;display:flex;align-items:center}
+.pane .stage{pointer-events:none;padding:24px;min-height:120px;display:flex;align-items:center}
 .mock-header{width:100%;height:56px;border:1px solid var(--color-border-default);border-radius:6px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;overflow:visible;background:#fff}
 .mock-header img{height:24px}
 .mock-header .acts{display:flex;gap:8px;align-items:center}
 .mock-addr{width:100%;border:1px solid var(--color-border-default);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-size:13px;line-height:1.6}
 .mock-addr b{font-size:14px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 24px;height:50px;font:600 18px/1 Poppins,sans-serif;background:var(--color-action-main-bg);color:var(--color-action-main-text);border-radius:var(--radius-6);border:1px solid transparent;white-space:nowrap;text-decoration:none;cursor:default;flex-shrink:0}
+.btn{pointer-events:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 24px;height:50px;font:600 18px/1 Poppins,sans-serif;background:var(--color-action-main-bg);color:var(--color-action-main-text);border-radius:var(--radius-6);border:1px solid transparent;white-space:nowrap;text-decoration:none;cursor:default;flex-shrink:0}
 .btn--m{height:44px;padding:0 20px;font-size:16px}.btn--s{height:40px;padding:0 16px;font-size:14px}.btn--xs{height:32px;padding:0 14px;font-size:12px}
 .btn-signup{background:var(--color-action-signup-bg);color:var(--color-action-signup-text)}
 .btn-outline{background:transparent;color:var(--color-action-outline-text);border-color:var(--color-action-outline-border)}
@@ -61,6 +68,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .tag.new{color:var(--orange-800);background:var(--orange-50)}.tag.yours{color:var(--green-500);background:#eaf6ee}
 .ask{background:var(--blue-50);border-radius:var(--radius-6);padding:18px 20px;margin-top:24px;font-weight:600;color:var(--navy-900)}
 .ask span{display:block;font-weight:400;font-size:14px;color:var(--color-text-secondary);margin-top:4px}
+.sample{border:2px dashed var(--grey-300);border-radius:var(--radius-12);padding:8px 24px 16px;margin:20px 0 0;position:relative;background:#fff}.sample>.cap2{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-secondary);background:var(--grey-100);border-radius:4px;padding:3px 10px;margin:8px 0 4px}.sample .sizes{border-top:0;margin-top:0}.sample .size:last-child{border-bottom:0}.sample .kinds{margin:12px 0 8px}
 .kinds{display:flex;gap:28px;flex-wrap:wrap;margin:24px 0 0}
 .kind{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .kind small{font-size:13px;color:var(--color-text-secondary);max-width:220px;line-height:1.45}
@@ -75,62 +83,54 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .reply p{color:#c9d4de;margin:0 0 20px}
 .reply pre{background:rgba(255,255,255,.08);border-radius:6px;padding:20px;font:500 16px/1.9 Poppins,sans-serif;margin:0;white-space:pre-wrap}
 
-.decide{background:var(--navy-900);color:#fff;border-radius:var(--radius-12);padding:36px 40px;margin:0 0 32px}
-.decide .k{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-700)}
-.decide h2{font-size:28.8px;font-weight:600;margin:6px 0 6px;color:#fff}
-.decide p{color:#c9d4de;margin:0 0 20px;max-width:none}
-.decide ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.decide li a{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.08);border-radius:6px;padding:14px 18px;color:#fff;text-decoration:none;font-weight:500}
-.decide li a:hover{background:rgba(255,255,255,.14)}
-.decide li .n{width:28px;height:28px;border-radius:999px;background:#fff;color:var(--navy-900);display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex-shrink:0}
-.decide li .st{margin-left:auto;font-size:13px;font-weight:600;border-radius:999px;padding:4px 12px;background:rgba(255,255,255,.14);color:#c9d4de;white-space:nowrap}
-.decide li .st.ok{background:var(--green-500);color:#fff}
-.answer{border:2px solid var(--orange-700);background:var(--orange-50);border-radius:var(--radius-12);padding:24px 28px;margin-top:28px}
-.answer .k{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-800)}
-.answer .qq{font-size:20px;font-weight:600;margin:4px 0 16px;color:var(--navy-900)}
-.answer .sub{font-size:14px;font-weight:600;margin:14px 0 8px;color:var(--navy-900)}
-.opts{display:flex;gap:10px;flex-wrap:wrap}
-.opt{font:600 16px/1 Poppins,sans-serif;height:48px;padding:0 20px;border-radius:6px;border:2px solid var(--grey-300);background:#fff;color:var(--navy-900);cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:.15s}
-.opt:hover{border-color:var(--blue-500)}
-.opt::before{content:"";width:18px;height:18px;border-radius:999px;border:2px solid var(--grey-300);background:#fff;flex-shrink:0}
-.opt[aria-pressed=true]{border-color:var(--blue-500);background:var(--blue-50);color:var(--blue-700)}
-.opt[aria-pressed=true]::before{border-color:var(--blue-500);background:radial-gradient(circle,var(--blue-500) 0 5px,#fff 6px)}
+.answer{border:3px solid var(--orange-700);border-radius:var(--radius-12);margin-top:32px;overflow:hidden;box-shadow:0 10px 30px rgba(255,152,31,.22)}
+.answer .strip{background:var(--orange-700);color:var(--navy-900);padding:14px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.answer .strip .who{font-size:20px;font-weight:700}
+.answer .strip .who::before{content:"▼";margin-right:10px;font-size:14px;vertical-align:2px}
+.answer .strip .of{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.answer .strip .state{margin-left:auto;font-size:13px;font-weight:600;background:rgba(255,255,255,.55);border-radius:999px;padding:5px 14px}
+.answer .body{background:var(--orange-50);padding:24px 28px 28px}
+.answer.ok{border-color:var(--green-500);box-shadow:none}
+.answer.ok .strip{background:var(--green-500);color:#fff}
+.answer.ok .strip .who::before{content:"✓"}
+.answer.ok .strip .state{background:rgba(255,255,255,.22)}
+.answer.ok .body{background:#f3faf5}
+.answer .qq{font-size:24px;font-weight:600;line-height:1.3;margin:0 0 18px;color:var(--navy-900)}
+.answer .sub{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--navy-900)}
+.opts{display:flex;flex-direction:column;gap:8px;max-width:520px}
+.opt{font:500 17px/1.3 Poppins,sans-serif;min-height:56px;padding:12px 18px;border-radius:12px;border:2px solid var(--grey-300);background:#fff;color:var(--navy-900);cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left;width:100%;transition:.15s}
+.opt:hover{border-color:var(--navy-900)}
+.opt::before{content:"";width:22px;height:22px;border-radius:999px;border:2px solid var(--grey-400);background:#fff;flex-shrink:0}
+.opt[aria-pressed=true]{border-color:var(--navy-900);background:#fff;font-weight:600;box-shadow:0 0 0 2px var(--navy-900)}
+.opt[aria-pressed=true]::before{border-color:var(--navy-900);background:radial-gradient(circle,var(--navy-900) 0 6px,#fff 7px)}
 .answer label{display:block;font-size:14px;font-weight:500;color:var(--navy-900);margin:16px 0 6px}
 .answer textarea,.send textarea{width:100%;min-height:64px;border:1px solid var(--grey-300);border-radius:6px;padding:12px 14px;font:400 15px/1.5 Poppins,sans-serif;color:var(--navy-900);resize:vertical;background:#fff}
 .answer textarea:focus,.send textarea:focus{outline:2px solid var(--blue-500);outline-offset:1px;border-color:var(--blue-500)}
-.send{background:#fff;border:1px solid var(--color-border-default);border-radius:var(--radius-12);padding:40px;margin:0 0 120px}
+.send{background:#fff;border:1px solid var(--color-border-default);border-radius:var(--radius-12);padding:40px;margin:0 0 80px}
 .send h2{font-size:28.8px;font-weight:600;margin:0 0 8px}
 .send p{color:var(--color-text-secondary);margin:0 0 16px}
 .send pre{background:var(--grey-50);border:1px solid var(--color-border-default);border-radius:6px;padding:18px 20px;font:400 15px/1.7 Poppins,sans-serif;white-space:pre-wrap;margin:16px 0 20px;color:var(--navy-900)}
 .send .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.send button.btn{cursor:pointer}.send button.btn:disabled{opacity:.7;cursor:default}
+.send-btn{font:600 18px/1 Poppins,sans-serif;height:60px;padding:0 36px;border-radius:999px;border:0;background:var(--navy-900);color:#fff;cursor:pointer}.send-btn:hover{background:#1c3d5a}.send-btn:disabled{opacity:.7;cursor:default}.copy-link{font:500 15px/1 Poppins,sans-serif;background:none;border:0;color:var(--color-text-secondary);text-decoration:underline;cursor:pointer;padding:0}
 .send .note{font-size:14px;color:var(--green-500);font-weight:600}
-.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--color-border-default);box-shadow:0 -6px 24px rgba(16,40,61,.08);z-index:10}
-.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
-.bar b{font-weight:600}.bar span{color:var(--color-text-secondary);font-size:14px}
-.bar a.btn{cursor:pointer}
-@media(max-width:800px){.decide,.send{padding:24px}.answer{padding:20px}.bar span{display:none}h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
+@media(max-width:800px){.send{padding:24px}.answer .body{padding:20px}.chip .t{display:none}.count{display:none}h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><img src="logo.svg" alt="MyUS"><span>Design System · For review · 24 Nov 2026</span></div></header>
+<header class="top"><div class="wrap"><img src="logo.svg" alt="MyUS">
+  <nav class="chips" aria-label="Your answers so far">
+    <a class="chip" href="#q1" data-chip="q1"><b>1</b><span class="t">Button sizes</span><span class="v">Not answered</span></a>
+    <a class="chip" href="#q2" data-chip="q2"><b>2</b><span class="t">Other buttons</span><span class="v">Not answered</span></a>
+    <a class="chip" href="#q3" data-chip="q3"><b>3</b><span class="t">Text sizes</span><span class="v">Not answered</span></a>
+  </nav>
+  <span class="count" id="count">0 of 3 answered</span>
+</div></header>
 
 <div class="wrap">
   <section class="hero">
     <div class="eyebrow">For Karen</div>
     <h1>Your updates are in.<br>3 things for you to decide.</h1>
-    <p class="lead">Everything in your update doc has been applied. Three things need your decision. Each one is shown below with pictures, and you can answer right on this page.</p>
-  </section>
-
-  <section class="decide" id="decide">
-    <div class="k">For Karen to decide</div>
-    <h2>3 answers needed</h2>
-    <p>Click one to jump to it. Pick an answer or write your own, then press Send at the bottom. Your answers go straight to Igor.</p>
-    <ol>
-      <li><a href="#q1"><span class="n">1</span>Approve the smaller button sizes<span class="st" data-st="q1">Not answered</span></a></li>
-      <li><a href="#q2"><span class="n">2</span>Keep or drop three other buttons<span class="st" data-st="q2">Not answered</span></a></li>
-      <li><a href="#q3"><span class="n">3</span>Pick the size for two text styles<span class="st" data-st="q3">Not answered</span></a></li>
-    </ol>
+    <p class="lead">Everything in your update doc has been applied. Three things need your decision. Look for the orange "Karen, please answer here" boxes, answer each one, then press Send at the end. The bar at the top keeps track of your answers.</p>
   </section>
 
   <section class="card">
@@ -159,37 +159,43 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     </div>
 
     <p>Your button is the Large size. The three smaller sizes use the same colours, corners and font, and every variant comes in every size.</p>
+    <div class="sample"><span class="cap2">Examples of the buttons · not clickable</span>
     <div class="sizes">
       <div class="size"><div><b>Large <span class="tag yours">Your spec</span></b><small>Main buttons on a page</small></div><div class="row"><span class="btn btn-signup">Sign up free</span><span class="btn">Learn more</span><span class="btn btn-outline">Shipping calculator</span></div></div>
       <div class="size"><div><b>Medium <span class="tag new">New</span></b><small>Inside cards and the dashboard</small></div><div class="row"><span class="btn btn--m btn-signup">Sign up free</span><span class="btn btn--m">Learn more</span><span class="btn btn--m btn-outline">Shipping calculator</span></div></div>
       <div class="size"><div><b>Small <span class="tag new">New</span></b><small>Page headers</small></div><div class="row"><span class="btn btn--s btn-signup">Sign up free</span><span class="btn btn--s">Learn more</span><span class="btn btn--s btn-outline">Shipping calculator</span></div></div>
       <div class="size"><div><b>Extra small <span class="tag new">New</span></b><small>Small actions like Copy, Edit, Remove</small></div><div class="row"><span class="btn btn--xs btn-signup">Sign up free</span><span class="btn btn--xs">Learn more</span><span class="btn btn--xs btn-outline">Shipping calculator</span></div></div>
     </div>
-    <div class="answer">
-      <div class="k">For Karen to decide · 1 of 3</div>
+    </div>
+    <div class="answer" data-box="q1">
+      <div class="strip"><span class="who">Karen, please answer here</span><span class="of">Question 1 of 3</span><span class="state" data-state="q1">Waiting for your answer</span></div>
+      <div class="body">
       <div class="qq">Do you approve the Medium, Small and Extra small button sizes?</div>
       <div class="opts" data-q="q1"><button class="opt" type="button" data-v="Approved">Approve</button><button class="opt" type="button" data-v="I would like changes">I'd like changes</button></div>
       <label for="c1">Your own answer or comments (optional)</label>
       <textarea id="c1" data-c="q1" placeholder="Type here"></textarea>
-    </div>
+    </div></div>
   </section>
 
   <section class="card" id="q2">
     <div class="num">2</div>
     <h2>Should these three other buttons stay?</h2>
     <p>The current designs use three more buttons that are not in your doc. We have not removed or changed them.</p>
+    <div class="sample"><span class="cap2">Examples of the buttons · not clickable</span>
     <div class="kinds">
       <div class="kind"><span class="btn btn--m btn-text">View all countries →</span><small><b>Text button.</b> A quiet action next to a main button.</small></div>
       <div class="kind"><span class="btn btn--m btn-red">Remove</span><small><b>Red button.</b> Deleting or removing, for example removing a family member.</small></div>
       <div class="kind"><span class="btn btn--m btn-green">Confirm</span><small><b>Green button.</b> Positive confirmations in the dashboard.</small></div>
     </div>
-    <div class="answer">
-      <div class="k">For Karen to decide · 2 of 3</div>
+    </div>
+    <div class="answer" data-box="q2">
+      <div class="strip"><span class="who">Karen, please answer here</span><span class="of">Question 2 of 3</span><span class="state" data-state="q2">Waiting for your answer</span></div>
+      <div class="body">
       <div class="qq">Should these three buttons stay in the design system?</div>
       <div class="opts" data-q="q2"><button class="opt" type="button" data-v="Keep all three">Keep all three</button><button class="opt" type="button" data-v="Remove some (see comment)">Remove some</button></div>
       <label for="c2">Your own answer or comments (optional). If removing, tell us which.</label>
       <textarea id="c2" data-c="q2" placeholder="Type here"></textarea>
-    </div>
+    </div></div>
   </section>
 
   <section class="card" id="q3">
@@ -202,8 +208,9 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       <div class="pane"><div class="cap">Body Lead · Option A <em>18px (in use now)</em></div><div class="stage"><div style="font-size:18px;color:var(--grey-500)">Save up to 80% on international shipping.</div></div></div>
       <div class="pane"><div class="cap">Body Lead · Option B <em>1.06em, about 17px</em></div><div class="stage"><div style="font-size:16.96px;color:var(--grey-500)">Save up to 80% on international shipping.</div></div></div>
     </div>
-    <div class="answer">
-      <div class="k">For Karen to decide · 3 of 3</div>
+    <div class="answer" data-box="q3">
+      <div class="strip"><span class="who">Karen, please answer here</span><span class="of">Question 3 of 3</span><span class="state" data-state="q3">Waiting for your answer</span></div>
+      <div class="body">
       <div class="qq">Which size is right for each?</div>
       <div class="sub">Heading H3</div>
       <div class="opts" data-q="q3a"><button class="opt" type="button" data-v="A (26.4px)">Option A · larger</button><button class="opt" type="button" data-v="B (about 19px)">Option B · smaller</button></div>
@@ -211,7 +218,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       <div class="opts" data-q="q3b"><button class="opt" type="button" data-v="A (18px)">Option A · larger</button><button class="opt" type="button" data-v="B (about 17px)">Option B · smaller</button></div>
       <label for="c3">Your own answer or comments (optional)</label>
       <textarea id="c3" data-c="q3" placeholder="Type here"></textarea>
-    </div>
+    </div></div>
   </section>
 
   <section class="card">
@@ -230,18 +237,16 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     <textarea data-c="general" placeholder="Other comments (optional)"></textarea>
     <p style="margin-top:20px">This is what will be sent:</p>
     <pre id="summary"></pre>
-    <div class="acts"><button class="btn btn-signup" type="button" id="sendbtn">Send my answers</button><button class="btn btn-outline" type="button" id="copy">Copy my answers</button><span class="note" id="note"></span></div>
+    <div class="acts"><button class="send-btn" type="button" id="sendbtn">Send my answers to Igor</button><button class="copy-link" type="button" id="copy">or copy them instead</button><span class="note" id="note"></span></div>
   </section>
 </div>
-
-<div class="bar"><div class="wrap"><div><b id="count">0 of 3 answered</b> <span>· For Karen to decide</span></div><a class="btn btn--m btn-signup" href="#send" id="next">Next question</a></div></div>
 
 <script>
 (function(){
   var KEY='myus-ds-review-2026-11-24', st={};
   try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
-  function done(q){return q==='q3'?!!(st.q3a&&st.q3b):!!st[q]||!!(st['c_'+q]||'').trim()}
+  function done(q){var c=!!(st['c_'+q]||'').trim();return q==='q3'?(!!(st.q3a&&st.q3b)||(c&&!st.q3a&&!st.q3b)):(!!st[q]||c)}
   function summary(){
     var c=function(q){var t=(st['c_'+q]||'').trim();return t?'\n   Comment: '+t:''};
     var L=['MyUS Design System review, answers',''];
@@ -253,9 +258,11 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   }
   function render(){
     document.querySelectorAll('.opts').forEach(function(g){var q=g.dataset.q;g.querySelectorAll('.opt').forEach(function(b){b.setAttribute('aria-pressed',st[q]===b.dataset.v?'true':'false')})});
-    var n=0,first=null;['q1','q2','q3'].forEach(function(q){var ok=done(q);if(ok)n++;else if(!first)first=q;var el=document.querySelector('[data-st='+q+']');el.textContent=ok?'Answered':'Not answered';el.classList.toggle('ok',ok)});
+    var val={q1:st.q1||((st.c_q1||'').trim()?'Comment written':''),q2:st.q2||((st.c_q2||'').trim()?'Comment written':''),q3:(st.q3a||st.q3b)?('H3: '+(st.q3a?st.q3a.charAt(0):'?')+', Lead: '+(st.q3b?st.q3b.charAt(0):'?')):((st.c_q3||'').trim()?'Comment written':'')};
+    var n=0;['q1','q2','q3'].forEach(function(q){var ok=done(q);if(ok)n++;
+      var chip=document.querySelector('[data-chip='+q+']');chip.classList.toggle('ok',ok);chip.querySelector('.v').textContent=val[q]||'Not answered';
+      var box=document.querySelector('[data-box='+q+']');box.classList.toggle('ok',ok);box.querySelector('.state').textContent=ok?'Answered. You can still change it.':(val[q]?'Almost there, one more choice':'Waiting for your answer')});
     document.getElementById('count').textContent=n+' of 3 answered';
-    var nx=document.getElementById('next');nx.textContent=first?'Next question':'Send my answers';nx.setAttribute('href',first?'#'+first:'#send');
     document.getElementById('summary').textContent=summary();
   }
   document.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode.dataset.q;st[q]=st[q]===b.dataset.v?'':b.dataset.v;save();render()})});
@@ -264,7 +271,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     var b=this,n=document.getElementById('note');b.disabled=true;b.textContent='Sending…';n.style.color='';n.textContent='';
     fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:summary()})})
       .then(function(r){if(!r.ok)throw 0;b.textContent='Sent';n.textContent='Thank you, Karen. Igor has your answers.'})
-      .catch(function(){b.disabled=false;b.textContent='Send my answers';n.style.color='var(--red-500)';n.textContent='Sorry, that did not go through. Please press Send again in a moment.'});
+      .catch(function(){b.disabled=false;b.textContent='Send my answers to Igor';n.style.color='var(--red-500)';n.textContent='Sorry, that did not go through. Please press Send again in a moment.'});
   });
   document.getElementById('copy').addEventListener('click',function(){var t=summary(),n=document.getElementById('note');function ok(){n.style.color='';n.textContent='Copied. Paste it into a message to Igor.'}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){n.textContent='Select the text above and copy it.'})}else{n.textContent='Select the text above and copy it.'}});
