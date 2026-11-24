@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 
 <style>
 /* ── TOKENS (carried over from MyUS Design System v1) ───────────── */
@@ -43,9 +44,9 @@
   --warning-100: #fbecce;
   --danger:  #d13138;
   --danger-100: #f8dddd;
-  --links:    #0c71c9;
-  --links-700: #085496; /* blue button hover — matches myus.com .btn:hover */
-  --links-100: #e0eef9;
+  --links:    var(--color-links-default);
+  --links-700: var(--color-links-hover); /* blue button hover — matches myus.com .btn:hover */
+  --links-100: var(--color-links-subtle);
 
   /* Surfaces */
   --bg: var(--ink-50);
@@ -53,7 +54,7 @@
   --surface-2: var(--ink-100);
   --border: var(--ink-200);
   --border-strong: var(--ink-300);
-  --text: #10283d; /* myus.com body + heading colour */
+  --text: var(--color-text-primary); /* myus.com body + heading colour */
   --text-muted: var(--ink-500);
   --text-subtle: var(--ink-400);
 
@@ -392,7 +393,9 @@ a { color: inherit; }
 }
 
 /* ── COMPONENT: Button ───────────────────────────────────────────
-   Class names and values match myus.com: .btn (blue), .btn-signup (orange), .btn-outline. */
+   Class names match myus.com: .btn (blue), .btn-signup (orange), .btn-outline.
+   Colours come from tokens.css (same names as the Figma variables).
+   Sizes: default = L (PM spec). .btn--m / .btn--s / .btn--xs are proposed. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -403,9 +406,9 @@ a { color: inherit; }
   line-height: 50px;
   font-size: 18px;
   font-weight: 600;
-  background: var(--links);
-  color: #fff;
-  border-radius: 6px;
+  background: var(--color-action-main-bg);
+  color: var(--color-action-main-text);
+  border-radius: var(--radius-6);
   border: 1px solid transparent;
   cursor: pointer;
   transition: .15s;
@@ -414,24 +417,35 @@ a { color: inherit; }
   text-decoration: none;
   font-family: var(--font-ui);
 }
-.btn:hover { background: var(--links-700); color: #fff; }
-.btn--sm { height: 36px; line-height: 36px; padding: 0 14px; font-size: 13px; }
-.btn--lg { height: 56px; line-height: 56px; padding: 0 28px; font-size: 20px; }
-.btn-signup { background: #ff981f; color: #10283d; }
-.btn-signup:hover { background: #d98017; color: #10283d; }
-.btn-outline { background: transparent; color: var(--links); border-color: var(--links); }
-.btn-outline:hover { background: #f1f4f9; color: var(--links); }
+.btn:hover { background: var(--color-action-main-bg-hover); color: var(--color-action-main-text); }
+.btn--m  { height: 44px; line-height: 44px; padding: 0 20px; font-size: 16px; }
+.btn--s  { height: 40px; line-height: 40px; padding: 0 16px; font-size: 14px; }
+.btn--xs { height: 32px; line-height: 32px; padding: 0 14px; font-size: 12px; gap: 6px; }
+.btn-signup { background: var(--color-action-signup-bg); color: var(--color-action-signup-text); }
+.btn-signup:hover { background: var(--color-action-signup-bg-hover); color: var(--color-action-signup-text); }
+.btn-outline { background: transparent; color: var(--color-action-outline-text); border-color: var(--color-action-outline-border); }
+.btn-outline:hover { background: var(--color-action-outline-bg-hover); color: var(--color-action-outline-text); }
 .btn--ghost { background: transparent; color: var(--text); }
 .btn--ghost:hover { background: var(--ink-100); color: var(--text); }
 .btn--link { background: transparent; color: var(--links); padding: 0; height: auto; line-height: inherit; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
 .btn--link:hover { background: transparent; color: var(--links-700); }
 .btn[disabled], .btn.disabled, .disabled.btn {
-  background-color: #e0e6eb;
-  border-color: #e0e6eb;
-  color: #a9b4bc;
+  background-color: var(--color-action-disabled-bg);
+  border-color: var(--color-action-disabled-border);
+  color: var(--color-action-disabled-text);
   cursor: not-allowed;
   pointer-events: none;
 }
+.tag-proposed { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-accent); background: var(--orange-50); border-radius: var(--radius-4); padding: 2px 8px; margin-left: 8px; vertical-align: middle; }
+.size-row { display: grid; grid-template-columns: 300px 1fr; gap: var(--s-6); align-items: center; padding: var(--s-4) 0; border-top: 1px solid var(--border); }
+.size-row:first-child { border-top: 0; }
+.size-row .t { font-weight: 600; font-size: 15px; color: var(--text); }
+.size-row .m { font-size: 13px; color: var(--text); margin-top: 2px; }
+.size-row .u { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.size-row .b { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.review-list { display: flex; flex-direction: column; gap: var(--s-4); }
+.review-list .q { font-weight: 600; font-size: 15px; color: var(--text); }
+.review-list .a { font-size: 14px; color: var(--text-muted); line-height: 1.55; margin-top: 2px; }
 
 /* ── COMPONENT: Form ────────────────────────────────────────────── */
 .field { display: flex; flex-direction: column; gap: 6px; }
@@ -619,6 +633,11 @@ a { color: inherit; }
       <div class="sidebar__grouplabel">Get started</div>
       <a class="sidebar__item" href="#overview">Overview</a>
       <a class="sidebar__item" href="#principles">Principles</a>
+    </div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__grouplabel">For review</div>
+      <a class="sidebar__item" href="#review">Updates &amp; proposals</a>
     </div>
 
     <div class="sidebar__group">
@@ -858,7 +877,7 @@ a { color: inherit; }
           <div style="display: flex; gap: 8px;"><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: #fde8dd; color: #c44a22; border-radius: 999px;">NEW</span><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: #e2f4ea; color: #1f8f5c; border-radius: 999px;">READY TO SEND</span></div>
           <h3 style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em; margin: 0; color:#0b1420;">Your package is ready.</h3>
           <p style="font-size: 14px; color: #667793; margin: 0;">Ship it now or add more orders — storage is free for 30 days.</p>
-          <div style="display: flex; gap: 8px;"><button class="btn btn-signup btn--sm">Ship now</button><button class="btn btn--sm" style="background:transparent;color:#0b1420;border:1px solid #b6c1d2;">Wait</button></div>
+          <div style="display: flex; gap: 8px;"><button class="btn btn-signup btn--s">Ship now</button><button class="btn btn--s" style="background:transparent;color:#0b1420;border:1px solid #b6c1d2;">Wait</button></div>
         </div>
 
         <div style="background: #0a1220; color: #eef2f8; border-radius: var(--r-lg); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4);">
@@ -866,7 +885,7 @@ a { color: inherit; }
           <div style="display: flex; gap: 8px;"><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: rgba(232,93,47,0.15); color: #ff9566; border-radius: 999px;">NEW</span><span style="padding: 4px 10px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); background: rgba(31,143,92,0.2); color: #5dcb9a; border-radius: 999px;">READY TO SEND</span></div>
           <h3 style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em; margin: 0; color: #eef2f8;">Your package is ready.</h3>
           <p style="font-size: 14px; color: #97a4bc; margin: 0;">Ship it now or add more orders — storage is free for 30 days.</p>
-          <div style="display: flex; gap: 8px;"><button class="btn btn-signup btn--sm">Ship now</button><button class="btn btn--sm" style="background: transparent; color: #eef2f8; border: 1px solid #33425e;">Wait</button></div>
+          <div style="display: flex; gap: 8px;"><button class="btn btn-signup btn--s">Ship now</button><button class="btn btn--s" style="background: transparent; color: #eef2f8; border: 1px solid #33425e;">Wait</button></div>
         </div>
       </div>
     </section>
@@ -889,10 +908,11 @@ a { color: inherit; }
       </div>
 
       <h3 class="section__h3">Sizes</h3>
-      <div class="demo demo--row">
-        <button class="btn btn-signup btn--sm">Small</button>
-        <button class="btn btn-signup">Default</button>
-        <button class="btn btn-signup btn--lg">Large</button>
+      <div class="demo">
+        <div class="size-row"><div><div class="t">Large (L)</div><div class="m">50px · 18px label · padding 0 24px · <span style="color:var(--text-muted)">no size class</span></div><div class="u">PM spec. Hero and section CTAs, forms, modals.</div></div><div class="b"><button class="btn btn-signup">Sign up free</button><button class="btn">Learn more</button><button class="btn btn-outline">Shipping calculator</button><button class="btn" disabled>Disabled</button></div></div>
+        <div class="size-row"><div><div class="t">Medium (M)<span class="tag-proposed">Proposed</span></div><div class="m">44px · 16px label · padding 0 20px · <span style="color:var(--text-muted)">.btn--m</span></div><div class="u">Default inside cards, tables and dashboard pages.</div></div><div class="b"><button class="btn btn-signup btn--m">Sign up free</button><button class="btn btn--m">Learn more</button><button class="btn btn-outline btn--m">Shipping calculator</button><button class="btn btn--m" disabled>Disabled</button></div></div>
+        <div class="size-row"><div><div class="t">Small (S)<span class="tag-proposed">Proposed</span></div><div class="m">40px · 14px label · padding 0 16px · <span style="color:var(--text-muted)">.btn--s</span></div><div class="u">Page headers: Sign up / Log in.</div></div><div class="b"><button class="btn btn-signup btn--s">Sign up free</button><button class="btn btn--s">Learn more</button><button class="btn btn-outline btn--s">Shipping calculator</button><button class="btn btn--s" disabled>Disabled</button></div></div>
+        <div class="size-row"><div><div class="t">Extra small (XS)<span class="tag-proposed">Proposed</span></div><div class="m">32px · 12px label · padding 0 14px · <span style="color:var(--text-muted)">.btn--xs</span></div><div class="u">Inline actions: Copy Address, Edit, Remove.</div></div><div class="b"><button class="btn btn-signup btn--xs">Sign up free</button><button class="btn btn--xs">Learn more</button><button class="btn btn-outline btn--xs">Shipping calculator</button><button class="btn btn--xs" disabled>Disabled</button></div></div>
       </div>
 
       <h3 class="section__h3">With iconography</h3>
@@ -910,6 +930,45 @@ a { color: inherit; }
         <button class="btn btn-signup" disabled>Disabled</button>
         <button class="btn btn-signup"><svg class="ic-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" stroke-dasharray="40 20"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>Loading</button>
       </div>
+    </section>
+
+    <!-- ─────────── FOR REVIEW ─────────── -->
+    <section class="section" id="review">
+      <div class="section__head">
+        <div class="section__eyebrow">For review · 24 Nov 2026</div>
+        <h2 class="section__title">Updates applied, and what needs a decision.</h2>
+        <p class="section__lead">The four updates from the PM doc are applied here and in the Figma library. A few could not be applied literally everywhere, so this section lists what was done instead and the open questions.</p>
+      </div>
+
+      <h3 class="section__h3">Applied from the doc</h3>
+      <div class="demo"><div class="review-list">
+        <div><div class="q">Semantic colour "Info" is now "Links"</div><div class="a">#0C71C9. Token: links/default (CSS --color-links-default).</div></div>
+        <div><div class="q">Typography scale</div><div class="a">Sizes, colours and weights as in the doc table. "Caption" is now "Disclaimer". Default text colour is #10283d.</div></div>
+        <div><div class="q">Button variants</div><div class="a">btn-signup (orange, navy label), btn (blue), btn-outline (blue outline), with the doc's hover colours.</div></div>
+        <div><div class="q">Disabled button</div><div class="a">#e0e6eb background and border, #a9b4bc label, for every variant.</div></div>
+      </div></div>
+
+      <h3 class="section__h3">Proposal: four button sizes<span class="tag-proposed">Proposed</span></h3>
+      <div class="demo"><div class="review-list">
+        <div><div class="a">The doc's spec (50px high, 18px label, 0 24px padding) is the Large size. It is too tall for page headers, address cards and dashboard rows, so three smaller sizes are proposed: Medium 44px / 16px, Small 40px / 14px, Extra small 32px / 12px. These heights already exist in both Figma files (Landing and Atlas). See them live under <a href="#buttons" style="color:var(--links)">Buttons → Sizes</a>.</div></div>
+      </div></div>
+
+      <h3 class="section__h3">Where the spec was not applied literally</h3>
+      <div class="demo"><div class="review-list">
+        <div><div class="q">Header "Sign up" and "Log in" (homepage, confirmation page)</div><div class="a">Colours, radius and hover follow the doc, but the size stays compact (13–14px label). At 50px they do not fit the header. Proposed: Small.</div></div>
+        <div><div class="q">"Copy Address" on the confirmation page</div><div class="a">Kept at 12px inside the address card. Proposed: Extra small.</div></div>
+        <div><div class="q">Family page CTAs, "Calculate My Savings", "Log In to My Account", "See All US &amp; UK Stores", "Get MyUS Mobile App"</div><div class="a">Now exactly the doc's spec: Large.</div></div>
+      </div></div>
+
+      <h3 class="section__h3">Open questions</h3>
+      <div class="demo"><div class="review-list">
+        <div><div class="q">Outline colour: blue or orange?</div><div class="a">The doc says blue (#0c71c9). The Landing Figma file uses an orange outline as its secondary button. Blue is applied everywhere, including "Watch how it works" on the Family page and "Copy Address".</div></div>
+        <div><div class="q">Hover values</div><div class="a">Doc: blue hover #085496, outline hover #f1f4f9. The Atlas (signed-in) Figma file uses #0a5ba3 and #e8f3fd. The doc's values are used. Should the dashboard change to match?</div></div>
+        <div><div class="q">Disabled outline button</div><div class="a">The doc gives one solid grey style for all buttons. Atlas has a separate disabled outline (grey border, no fill). The single grey style is used.</div></div>
+        <div><div class="q">Other button kinds</div><div class="a">Both Figma files also have a text-only button, a red (danger) and a green (success) button. They are not in the doc. Keep them in the system?</div></div>
+        <div><div class="q">Two typography values</div><div class="a">Heading H3 is listed as 26.4px / 1.2em and Body Lead as 18px / 1.06em. The em values do not match the px values. The px values are used.</div></div>
+        <div><div class="q">Dashboard headings</div><div class="a">The signed-in dashboard uses smaller headings (26 / 21 / 18 / 14px) than the marketing pages. Proposed: two heading sets (Marketing and Product) that share the same body text, buttons and colours.</div></div>
+      </div></div>
     </section>
 
     <!-- ─────────── FORMS ─────────── -->
@@ -1028,8 +1087,8 @@ a { color: inherit; }
             <div><div style="font-family: var(--font-ui); font-size: 11px; color: var(--text-subtle); text-transform: uppercase;">Arrived</div><div style="font-family: var(--font-ui); font-size: 15px; font-weight: 500;">Apr 18</div></div>
           </div>
           <div style="display: flex; gap: 8px; margin-top: 4px;">
-            <button class="btn btn-signup btn--sm" style="flex:1;">Create ship request</button>
-            <button class="btn btn-outline btn--sm">Details</button>
+            <button class="btn btn-signup btn--s" style="flex:1;">Create ship request</button>
+            <button class="btn btn-outline btn--s">Details</button>
           </div>
         </div>
 
@@ -1045,8 +1104,8 @@ a { color: inherit; }
             <div><strong>Value needed</strong><p>Merchant didn't provide a purchase price.</p></div>
           </div>
           <div style="display: flex; gap: 8px; margin-top: 4px;">
-            <button class="btn btn-signup btn--sm" style="flex:1;">Provide values</button>
-            <button class="btn btn--ghost btn--sm">Later</button>
+            <button class="btn btn-signup btn--s" style="flex:1;">Provide values</button>
+            <button class="btn btn--ghost btn--s">Later</button>
           </div>
         </div>
       </div>
@@ -1182,7 +1241,7 @@ a { color: inherit; }
       </div>
 
       <div style="display: flex; align-items: center; gap: 16px; margin-top: var(--s-8); flex-wrap: wrap;">
-        <button class="btn btn-signup btn--lg">Get my US address free</button>
+        <button class="btn btn-signup">Get my US address free</button>
         <button class="btn btn--link">Estimate shipping →</button>
       </div>
     </section>
@@ -1262,8 +1321,8 @@ a { color: inherit; }
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 12px;">
-          <button class="btn btn--ghost btn--sm">Sign in</button>
-          <button class="btn btn-signup btn--sm">Get my US address</button>
+          <button class="btn btn--ghost btn--s">Sign in</button>
+          <button class="btn btn-signup btn--s">Get my US address</button>
         </div>
       </nav>
 
@@ -1329,8 +1388,8 @@ a { color: inherit; }
             Get your own US address in minutes, consolidate orders from any store, and save up to 80% on international shipping.
           </p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button class="btn btn-signup btn--lg">Get my free US address</button>
-            <button class="btn btn-outline btn--lg">See how it works</button>
+            <button class="btn btn-signup">Get my free US address</button>
+            <button class="btn btn-outline">See how it works</button>
           </div>
           <div style="display: flex; gap: 32px; padding-top: 20px; border-top: 1px solid var(--border); flex-wrap: wrap;">
             <div><div style="font-family: var(--font-ui); font-size: 22px; font-weight: 600;">220+</div><div style="font-size: 12px; color: var(--text-muted);">Countries served</div></div>
@@ -1430,7 +1489,7 @@ a { color: inherit; }
           </div>
           <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
             <button class="btn btn-signup">Start shopping</button>
-            <button class="btn btn--ghost btn--sm">Copy address</button>
+            <button class="btn btn--ghost btn--s">Copy address</button>
           </div>
         </div>
       </div>
@@ -1453,8 +1512,8 @@ a { color: inherit; }
             </div>
           </div>
           <div style="display: flex; gap: 10px;">
-            <button class="btn btn--ghost btn--sm">Sign in</button>
-            <button class="btn btn-signup btn--sm">Get my US address</button>
+            <button class="btn btn--ghost btn--s">Sign in</button>
+            <button class="btn btn-signup btn--s">Get my US address</button>
           </div>
         </nav>
 

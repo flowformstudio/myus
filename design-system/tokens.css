@@ -1,0 +1,65 @@
+/* MyUS Design System tokens — v0.1 (2026-11-24)
+   Names and values mirror the variables in the Figma library "MyUS Design System"
+   (1 · Primitives, 2 · Semantic, 3 · Layout). Each Figma variable's WEB code syntax
+   is the custom property below. Change a value here and in Figma under the same name. */
+:root {
+  /* 1 · Primitives */
+  --navy-900: #10283d;
+  --blue-50: #e8f3fd;
+  --blue-100: #e0eef9;
+  --blue-500: #0c71c9;
+  --blue-700: #085496;
+  --orange-50: #fff3e4;
+  --orange-700: #ff981f;
+  --orange-750: #d98017;
+  --orange-800: #ed6812;
+  --grey-50: #f7f9fc;
+  --grey-100: #f1f4f9;
+  --grey-200: #e0e6eb;
+  --grey-300: #b6c1d2;
+  --grey-400: #a9b4bc;
+  --grey-500: #667793;
+  --grey-600: #6f7377;
+  --grey-700: #65676a;
+  --green-500: #18873d;
+  --yellow-600: #c2861d;
+  --red-500: #d13138;
+  --base-white: #ffffff;
+
+  /* 2 · Semantic */
+  --color-bg-page: var(--base-white);
+  --color-bg-subtle: var(--grey-50);
+  --color-bg-disabled: var(--grey-200);
+  --color-text-primary: var(--navy-900);
+  --color-text-secondary: var(--grey-500);
+  --color-text-eyebrow: var(--grey-600);
+  --color-text-disclaimer: var(--grey-700);
+  --color-text-inverse: var(--base-white);
+  --color-text-disabled: var(--grey-400);
+  --color-text-accent: var(--orange-800);
+  --color-links-default: var(--blue-500);
+  --color-links-hover: var(--blue-700);
+  --color-links-subtle: var(--blue-100);
+  --color-border-default: var(--grey-200);
+  --color-border-strong: var(--grey-300);
+  --color-action-signup-bg: var(--orange-700);
+  --color-action-signup-bg-hover: var(--orange-750);
+  --color-action-signup-text: var(--navy-900);
+  --color-action-main-bg: var(--blue-500);
+  --color-action-main-bg-hover: var(--blue-700);
+  --color-action-main-text: var(--base-white);
+  --color-action-outline-text: var(--blue-500);
+  --color-action-outline-border: var(--blue-500);
+  --color-action-outline-bg-hover: var(--grey-100);
+  --color-action-disabled-bg: var(--grey-200);
+  --color-action-disabled-border: var(--grey-200);
+  --color-action-disabled-text: var(--grey-400);
+  --color-feedback-success: var(--green-500);
+  --color-feedback-warning: var(--yellow-600);
+  --color-feedback-danger: var(--red-500);
+
+  /* 3 · Layout */
+  --space-4: 4px; --space-8: 8px; --space-12: 12px; --space-16: 16px; --space-20: 20px;
+  --space-24: 24px; --space-32: 32px; --space-48: 48px; --space-64: 64px; --space-96: 96px;
+  --radius-4: 4px; --radius-6: 6px; --radius-12: 12px; --radius-18: 18px; --radius-full: 999px;
+}
