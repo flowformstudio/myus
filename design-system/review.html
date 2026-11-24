@@ -14,15 +14,16 @@
 body{margin:0;font-family:Poppins,-apple-system,Helvetica,Arial,sans-serif;color:var(--color-text-primary);background:var(--color-bg-subtle);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
 header.top{background:#fff;border-bottom:1px solid var(--color-border-default);position:sticky;top:0;z-index:20;box-shadow:0 4px 16px rgba(16,40,61,.06)}
-header.top .wrap{display:flex;align-items:center;gap:16px;min-height:72px;padding-top:10px;padding-bottom:10px}
+header.top .wrap{display:flex;align-items:center;gap:16px;height:72px}
 header.top img{height:30px;flex-shrink:0}
-.chips{display:flex;gap:8px;flex:1;flex-wrap:wrap}
-.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--grey-300);border-radius:999px;padding:6px 14px 6px 6px;text-decoration:none;color:var(--navy-900);font-size:13px;line-height:1.2;background:#fff}
-.chip:hover{border-color:var(--blue-500)}
-.chip b{width:24px;height:24px;border-radius:999px;background:var(--orange-700);color:var(--navy-900);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
-.chip .t{font-weight:600}.chip .v{color:var(--color-text-secondary)}
+.chips{display:flex;gap:8px;flex:1;flex-wrap:nowrap;min-width:0}
+.chip{flex:1 1 0;min-width:0;max-width:240px;display:grid;grid-template-columns:28px 1fr;column-gap:10px;align-items:center;border:1px solid var(--grey-300);border-radius:10px;padding:7px 12px 7px 8px;text-decoration:none;color:var(--navy-900);line-height:1.25;background:#fff;height:50px}
+.chip:hover{border-color:var(--navy-900)}
+.chip b{grid-row:1 / span 2;width:28px;height:28px;border-radius:999px;background:var(--orange-700);color:var(--navy-900);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.chip .t,.chip .v{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.chip .t{font-size:12px;font-weight:600}.chip .v{font-size:12px;color:var(--color-text-secondary)}
 .chip.ok{border-color:var(--green-500);background:#eaf6ee}.chip.ok b{background:var(--green-500);color:#fff}.chip.ok .v{color:var(--green-500);font-weight:600}
-.count{font-size:13px;font-weight:600;color:var(--color-text-secondary);white-space:nowrap}
+.count{font-size:13px;font-weight:600;color:var(--color-text-secondary);white-space:nowrap;flex-shrink:0;width:118px;text-align:right}
 section[id]{scroll-margin-top:96px}
 .hero{padding:64px 0 40px}
 .eyebrow{font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-accent)}
@@ -113,7 +114,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .send .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .send-btn{font:600 18px/1 Poppins,sans-serif;height:60px;padding:0 36px;border-radius:999px;border:0;background:var(--navy-900);color:#fff;cursor:pointer}.send-btn:hover{background:#1c3d5a}.send-btn:disabled{opacity:.7;cursor:default}.copy-link{font:500 15px/1 Poppins,sans-serif;background:none;border:0;color:var(--color-text-secondary);text-decoration:underline;cursor:pointer;padding:0}
 .send .note{font-size:14px;color:var(--green-500);font-weight:600}
-@media(max-width:800px){.send{padding:24px}.answer .body{padding:20px}.chip .t{display:none}.count{display:none}h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
+@media(max-width:800px){.send{padding:24px}.answer .body{padding:20px}.count{display:none}header.top img{display:none}h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
 </style>
 </head>
 <body>
@@ -258,7 +259,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   }
   function render(){
     document.querySelectorAll('.opts').forEach(function(g){var q=g.dataset.q;g.querySelectorAll('.opt').forEach(function(b){b.setAttribute('aria-pressed',st[q]===b.dataset.v?'true':'false')})});
-    var val={q1:st.q1||((st.c_q1||'').trim()?'Comment written':''),q2:st.q2||((st.c_q2||'').trim()?'Comment written':''),q3:(st.q3a||st.q3b)?('H3: '+(st.q3a?st.q3a.charAt(0):'?')+', Lead: '+(st.q3b?st.q3b.charAt(0):'?')):((st.c_q3||'').trim()?'Comment written':'')};
+    var short={'Approved':'Approved','I would like changes':'Changes wanted','Keep all three':'Keep all three','Remove some (see comment)':'Remove some'};var val={q1:short[st.q1]||((st.c_q1||'').trim()?'Comment written':''),q2:short[st.q2]||((st.c_q2||'').trim()?'Comment written':''),q3:(st.q3a||st.q3b)?('H3: '+(st.q3a?st.q3a.charAt(0):'?')+', Lead: '+(st.q3b?st.q3b.charAt(0):'?')):((st.c_q3||'').trim()?'Comment written':'')};
     var n=0;['q1','q2','q3'].forEach(function(q){var ok=done(q);if(ok)n++;
       var chip=document.querySelector('[data-chip='+q+']');chip.classList.toggle('ok',ok);chip.querySelector('.v').textContent=val[q]||'Not answered';
       var box=document.querySelector('[data-box='+q+']');box.classList.toggle('ok',ok);box.querySelector('.state').textContent=ok?'Answered. You can still change it.':(val[q]?'Almost there, one more choice':'Waiting for your answer')});
