@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>MyUS Design System · 3 decisions for review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins,-apple-system,Helvetica,Arial,sans-serif;color:var(--color-text-primary);background:var(--color-bg-subtle);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+header.top{background:#fff;border-bottom:1px solid var(--color-border-default)}
+header.top .wrap{display:flex;align-items:center;gap:16px;height:72px}
+header.top img{height:34px}
+header.top span{color:var(--color-text-secondary);font-size:14px;font-weight:500}
+.hero{padding:64px 0 40px}
+.eyebrow{font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-accent)}
+h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spacing:-.01em}
+.lead{font-size:18px;color:var(--color-text-secondary);max-width:720px;margin:0}
+.card{background:#fff;border:1px solid var(--color-border-default);border-radius:var(--radius-12);padding:40px;margin:0 0 32px}
+.card h2{font-size:28.8px;line-height:1.25;font-weight:600;margin:0 0 8px}
+.card p{margin:0 0 16px;color:var(--color-text-secondary);max-width:760px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;background:var(--navy-900);color:#fff;font-weight:600;font-size:18px;margin-bottom:16px}
+.num.done{background:var(--green-500)}
+.done-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.done-item{border:1px solid var(--color-border-default);border-radius:var(--radius-6);padding:20px;display:flex;flex-direction:column;gap:12px}
+.done-item .vis{height:72px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.done-item b{font-size:15px;font-weight:600}
+.done-item small{font-size:13px;color:var(--color-text-secondary);line-height:1.45}
+.check{color:var(--green-500);font-weight:600;font-size:13px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+.pane{border:1px solid var(--color-border-default);border-radius:var(--radius-6);overflow:hidden;background:#fff}
+.pane .cap{padding:10px 16px;font-size:13px;font-weight:600;border-bottom:1px solid var(--color-border-default);display:flex;justify-content:space-between;align-items:center;background:var(--grey-50)}
+.pane .cap em{font-style:normal;font-weight:500;color:var(--color-text-secondary)}
+.pane.good .cap{background:#eaf6ee;color:var(--green-500)}
+.pane.bad .cap{background:#fdf0f0;color:var(--red-500)}
+.pane .stage{padding:24px;min-height:120px;display:flex;align-items:center}
+.mock-header{width:100%;height:56px;border:1px solid var(--color-border-default);border-radius:6px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;overflow:visible;background:#fff}
+.mock-header img{height:24px}
+.mock-header .acts{display:flex;gap:8px;align-items:center}
+.mock-addr{width:100%;border:1px solid var(--color-border-default);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-size:13px;line-height:1.6}
+.mock-addr b{font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 24px;height:50px;font:600 18px/1 Poppins,sans-serif;background:var(--color-action-main-bg);color:var(--color-action-main-text);border-radius:var(--radius-6);border:1px solid transparent;white-space:nowrap;text-decoration:none;cursor:default;flex-shrink:0}
+.btn--m{height:44px;padding:0 20px;font-size:16px}.btn--s{height:40px;padding:0 16px;font-size:14px}.btn--xs{height:32px;padding:0 14px;font-size:12px}
+.btn-signup{background:var(--color-action-signup-bg);color:var(--color-action-signup-text)}
+.btn-outline{background:transparent;color:var(--color-action-outline-text);border-color:var(--color-action-outline-border)}
+.btn-text{background:transparent;color:var(--color-links-default);padding:0 4px}
+.btn-red{background:var(--red-500);color:#fff}.btn-green{background:var(--green-500);color:#fff}
+.btn-old-outline{background:transparent;color:var(--orange-700);border-color:var(--orange-700)}
+.btn.disabled{background:var(--color-action-disabled-bg);border-color:var(--color-action-disabled-border);color:var(--color-action-disabled-text)}
+.sizes{border-top:1px solid var(--color-border-default);margin-top:8px}
+.size{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid var(--color-border-default)}
+.size b{display:block;font-size:16px;font-weight:600}
+.size small{color:var(--color-text-secondary);font-size:13px}
+.size .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.tag.new{color:var(--orange-800);background:var(--orange-50)}.tag.yours{color:var(--green-500);background:#eaf6ee}
+.ask{background:var(--blue-50);border-radius:var(--radius-6);padding:18px 20px;margin-top:24px;font-weight:600;color:var(--navy-900)}
+.ask span{display:block;font-weight:400;font-size:14px;color:var(--color-text-secondary);margin-top:4px}
+.kinds{display:flex;gap:28px;flex-wrap:wrap;margin:24px 0 0}
+.kind{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.kind small{font-size:13px;color:var(--color-text-secondary);max-width:220px;line-height:1.45}
+.type-sample{font-weight:600;line-height:1.3;color:var(--navy-900)}
+.fyi{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+.fyi .col{border:1px solid var(--color-border-default);border-radius:6px;padding:24px}
+.fyi .col .lbl{font-size:13px;font-weight:600;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.arrow{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px}
+.arrow .to{color:var(--color-text-secondary);font-size:20px}
+.reply{background:var(--navy-900);color:#fff;border-radius:var(--radius-12);padding:40px;margin:0 0 80px}
+.reply h2{margin:0 0 8px;font-size:28.8px;font-weight:600}
+.reply p{color:#c9d4de;margin:0 0 20px}
+.reply pre{background:rgba(255,255,255,.08);border-radius:6px;padding:20px;font:500 16px/1.9 Poppins,sans-serif;margin:0;white-space:pre-wrap}
+@media(max-width:800px){h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><img src="logo.svg" alt="MyUS"><span>Design System · For review · 24 Nov 2026</span></div></header>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">For Karen</div>
+    <h1>Your updates are in.<br>3 quick decisions needed.</h1>
+    <p class="lead">Everything in your update doc has been applied. Three things came up that your doc does not cover. Each one is shown below with a picture and a simple question.</p>
+  </section>
+
+  <section class="card">
+    <div class="num done">✓</div>
+    <h2>Done: the four updates from your doc</h2>
+    <p>These are live in the design system and on the Family page, homepage and confirmation page.</p>
+    <div class="done-grid">
+      <div class="done-item"><div class="vis"><div style="width:100%;height:56px;border-radius:6px;background:var(--blue-500)"></div></div><b>"Info" is now "Links"</b><small>Same blue, new name.</small><span class="check">✓ Applied</span></div>
+      <div class="done-item"><div class="vis"><div><div style="font-size:20px;font-weight:600;line-height:1.1;white-space:nowrap">Ship Worldwide</div><div style="font-size:12px;color:var(--grey-700);margin-top:6px">Rates apply to standard shipments.</div></div></div><b>Typography</b><small>Your sizes, colours and weights. "Caption" is now "Disclaimer".</small><span class="check">✓ Applied</span></div>
+      <div class="done-item"><div class="vis"><span class="btn btn--xs btn-signup">Sign up</span><span class="btn btn--xs">Learn</span><span class="btn btn--xs btn-outline">Rates</span></div><b>Three buttons</b><small>Orange sign-up, blue, and blue outline, with your hover colours.</small><span class="check">✓ Applied</span></div>
+      <div class="done-item"><div class="vis"><span class="btn btn--s disabled">Disabled</span></div><b>Disabled button</b><small>Your grey style, used for every button.</small><span class="check">✓ Applied</span></div>
+    </div>
+    <div class="arrow"><small style="color:var(--color-text-secondary);flex-basis:100%;font-size:14px">Where older designs disagreed with your doc, we followed your doc. Example: the secondary button on the Family page was orange and is now blue.</small><span class="btn btn--s btn-old-outline">Watch how it works</span><span class="to">→</span><span class="btn btn--s btn-outline">Watch how it works</span></div>
+  </section>
+
+  <section class="card">
+    <div class="num">1</div>
+    <h2>Can we add three smaller button sizes?</h2>
+    <p>Your button is 50px tall with 18px text. That is right for the main buttons on a page. In tight spots it is too big. Here are two real examples.</p>
+
+    <div class="compare">
+      <div class="pane bad"><div class="cap">Page header, your size <em>too tall for the bar</em></div><div class="stage"><div class="mock-header"><img src="logo.svg" alt=""><div class="acts"><span class="btn btn-outline">Log in</span><span class="btn btn-signup">Sign up</span></div></div></div></div>
+      <div class="pane good"><div class="cap">Page header, Small size <em>fits</em></div><div class="stage"><div class="mock-header"><img src="logo.svg" alt=""><div class="acts"><span class="btn btn--s btn-outline">Log in</span><span class="btn btn--s btn-signup">Sign up</span></div></div></div></div>
+      <div class="pane bad"><div class="cap">Address card, your size <em>crowds the address</em></div><div class="stage"><div class="mock-addr"><div><b>Amira Hassan</b><br>4283 Express Lane, Suite 4021-518<br>Sarasota, FL 34249</div><span class="btn btn-outline">Copy Address</span></div></div></div>
+      <div class="pane good"><div class="cap">Address card, Extra small size <em>fits</em></div><div class="stage"><div class="mock-addr"><div><b>Amira Hassan</b><br>4283 Express Lane, Suite 4021-518<br>Sarasota, FL 34249</div><span class="btn btn--xs btn-outline">Copy Address</span></div></div></div>
+    </div>
+
+    <p>The proposal: keep your button as the Large size and add three smaller ones. Same colours, same corners, same font.</p>
+    <div class="sizes">
+      <div class="size"><div><b>Large <span class="tag yours">Your spec</span></b><small>Main buttons on a page</small></div><div class="row"><span class="btn btn-signup">Sign up free</span><span class="btn">Learn more</span><span class="btn btn-outline">Shipping calculator</span></div></div>
+      <div class="size"><div><b>Medium <span class="tag new">New</span></b><small>Inside cards and the dashboard</small></div><div class="row"><span class="btn btn--m btn-signup">Sign up free</span><span class="btn btn--m">Learn more</span><span class="btn btn--m btn-outline">Shipping calculator</span></div></div>
+      <div class="size"><div><b>Small <span class="tag new">New</span></b><small>Page headers</small></div><div class="row"><span class="btn btn--s btn-signup">Sign up free</span><span class="btn btn--s">Learn more</span><span class="btn btn--s btn-outline">Shipping calculator</span></div></div>
+      <div class="size"><div><b>Extra small <span class="tag new">New</span></b><small>Small actions like Copy, Edit, Remove</small></div><div class="row"><span class="btn btn--xs btn-signup">Sign up free</span><span class="btn btn--xs">Learn more</span><span class="btn btn--xs btn-outline">Shipping calculator</span></div></div>
+    </div>
+    <div class="ask">Question 1: OK to add Medium, Small and Extra small?<span>Answer: Yes or No.</span></div>
+  </section>
+
+  <section class="card">
+    <div class="num">2</div>
+    <h2>Should these three other buttons stay?</h2>
+    <p>The current designs use three more buttons that are not in your doc. We have not removed or changed them.</p>
+    <div class="kinds">
+      <div class="kind"><span class="btn btn--m btn-text">View all countries →</span><small><b>Text button.</b> A quiet action next to a main button.</small></div>
+      <div class="kind"><span class="btn btn--m btn-red">Remove</span><small><b>Red button.</b> Deleting or removing, for example removing a family member.</small></div>
+      <div class="kind"><span class="btn btn--m btn-green">Confirm</span><small><b>Green button.</b> Positive confirmations in the dashboard.</small></div>
+    </div>
+    <div class="ask">Question 2: Keep all three, or tell us which to drop?<span>Answer: Keep all, or name the ones to remove.</span></div>
+  </section>
+
+  <section class="card">
+    <div class="num">3</div>
+    <h2>Two text sizes in your doc can be read two ways</h2>
+    <p>For two styles, the doc lists a pixel size and a second number that do not match each other. Here is how each reading looks. We are currently using option A for both.</p>
+    <div class="compare">
+      <div class="pane"><div class="cap">Heading H3 · Option A <em>26.4px (in use now)</em></div><div class="stage"><div class="type-sample" style="font-size:26.4px">Package consolidation</div></div></div>
+      <div class="pane"><div class="cap">Heading H3 · Option B <em>1.2em, about 19px</em></div><div class="stage"><div class="type-sample" style="font-size:19.2px">Package consolidation</div></div></div>
+      <div class="pane"><div class="cap">Body Lead · Option A <em>18px (in use now)</em></div><div class="stage"><div style="font-size:18px;color:var(--grey-500)">Save up to 80% on international shipping.</div></div></div>
+      <div class="pane"><div class="cap">Body Lead · Option B <em>1.06em, about 17px</em></div><div class="stage"><div style="font-size:16.96px;color:var(--grey-500)">Save up to 80% on international shipping.</div></div></div>
+    </div>
+    <div class="ask">Question 3: A or B for the H3 heading, and A or B for Body Lead?<span>Answer: for example "H3: A, Lead: A".</span></div>
+  </section>
+
+  <section class="card">
+    <div class="num" style="background:var(--grey-500)">i</div>
+    <h2>For your information: two heading sizes</h2>
+    <p>Marketing pages use large headings. The signed-in dashboard uses smaller ones so more fits on screen. We plan to keep both sets, with the same body text, buttons and colours everywhere. No answer needed unless you disagree.</p>
+    <div class="fyi">
+      <div class="col"><div class="lbl">Marketing pages</div><div style="font-size:36.8px;font-weight:600;line-height:1.15">How MyUS works</div><div style="font-size:28.8px;font-weight:600;margin-top:10px">Premium membership</div></div>
+      <div class="col"><div class="lbl">Signed-in dashboard</div><div style="font-size:26px;font-weight:700;line-height:1.15">My packages</div><div style="font-size:21px;font-weight:600;margin-top:10px">Ready to send</div></div>
+    </div>
+  </section>
+
+  <section class="reply">
+    <h2>How to reply</h2>
+    <p>A short message is all we need. For example:</p>
+    <pre>1. Yes
+2. Keep all
+3. H3: A, Lead: A</pre>
+  </section>
+</div>
+</body>
+</html>
