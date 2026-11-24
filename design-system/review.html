@@ -17,13 +17,13 @@ header.top{background:#fff;border-bottom:1px solid var(--color-border-default);p
 header.top .wrap{display:flex;align-items:center;gap:16px;height:72px}
 header.top img{height:30px;flex-shrink:0}
 .chips{display:flex;gap:8px;flex:1;flex-wrap:nowrap;min-width:0}
-.chip{flex:1 1 0;min-width:0;max-width:240px;display:grid;grid-template-columns:28px 1fr;column-gap:10px;align-items:center;border:1px solid var(--grey-300);border-radius:10px;padding:7px 12px 7px 8px;text-decoration:none;color:var(--navy-900);line-height:1.25;background:#fff;height:50px}
+.chip{flex:1 1 0;min-width:0;max-width:210px;display:grid;grid-template-columns:28px 1fr;column-gap:10px;align-items:center;border:1px solid var(--grey-300);border-radius:10px;padding:7px 12px 7px 8px;text-decoration:none;color:var(--navy-900);line-height:1.25;background:#fff;height:50px}
 .chip:hover{border-color:var(--navy-900)}
 .chip b{grid-row:1 / span 2;width:28px;height:28px;border-radius:999px;background:var(--orange-700);color:var(--navy-900);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
 .chip .t,.chip .v{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .chip .t{font-size:12px;font-weight:600}.chip .v{font-size:12px;color:var(--color-text-secondary)}
 .chip.ok{border-color:var(--green-500);background:#eaf6ee}.chip.ok b{background:var(--green-500);color:#fff}.chip.ok .v{color:var(--green-500);font-weight:600}
-.count{font-size:13px;font-weight:600;color:var(--color-text-secondary);white-space:nowrap;flex-shrink:0;width:118px;text-align:right}
+.count{font-size:13px;font-weight:600;color:var(--color-text-secondary);white-space:nowrap;flex-shrink:0;width:112px;text-align:right}
 section[id]{scroll-margin-top:96px}
 .hero{padding:64px 0 40px}
 .eyebrow{font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-accent)}
@@ -112,7 +112,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .send p{color:var(--color-text-secondary);margin:0 0 16px}
 .send pre{background:var(--grey-50);border:1px solid var(--color-border-default);border-radius:6px;padding:18px 20px;font:400 15px/1.7 Poppins,sans-serif;white-space:pre-wrap;margin:16px 0 20px;color:var(--navy-900)}
 .send .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.send-btn{font:600 18px/1 Poppins,sans-serif;height:60px;padding:0 36px;border-radius:999px;border:0;background:var(--navy-900);color:#fff;cursor:pointer}.send-btn:hover{background:#1c3d5a}.send-btn:disabled{opacity:.7;cursor:default}.copy-link{font:500 15px/1 Poppins,sans-serif;background:none;border:0;color:var(--color-text-secondary);text-decoration:underline;cursor:pointer;padding:0}
+.send-btn{flex-shrink:0;font:600 16px/1 Poppins,sans-serif;height:48px;padding:0 26px;border-radius:999px;border:0;background:var(--navy-900);color:#fff;cursor:pointer}.send-btn:hover{background:#1c3d5a}.send-btn:disabled{opacity:.7;cursor:default}.send-btn.ready{background:var(--green-500);box-shadow:0 0 0 4px rgba(24,135,61,.2)}.send-btn.ready:hover{background:#136c31}.toast{position:fixed;top:84px;left:50%;transform:translateX(-50%);z-index:30;background:var(--navy-900);color:#fff;font-weight:600;font-size:15px;border-radius:999px;padding:12px 24px;box-shadow:0 10px 30px rgba(16,40,61,.25);display:none;max-width:90vw;text-align:center}.toast.show{display:block}.toast.err{background:var(--red-500)}.copy-link{font:500 15px/1 Poppins,sans-serif;background:none;border:0;color:var(--color-text-secondary);text-decoration:underline;cursor:pointer;padding:0}
 .send .note{font-size:14px;color:var(--green-500);font-weight:600}
 @media(max-width:800px){.send{padding:24px}.answer .body{padding:20px}.count{display:none}header.top img{display:none}h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
 </style>
@@ -125,13 +125,15 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     <a class="chip" href="#q3" data-chip="q3"><b>3</b><span class="t">Text sizes</span><span class="v">Not answered</span></a>
   </nav>
   <span class="count" id="count">0 of 3 answered</span>
+  <button class="send-btn" type="button" id="sendbtn">Send answers</button>
 </div></header>
+<div class="toast" id="note" role="status"></div>
 
 <div class="wrap">
   <section class="hero">
     <div class="eyebrow">For Karen</div>
     <h1>Your updates are in.<br>3 things for you to decide.</h1>
-    <p class="lead">Everything in your update doc has been applied. Three things need your decision. Look for the orange "Karen, please answer here" boxes, answer each one, then press Send at the end. The bar at the top keeps track of your answers.</p>
+    <p class="lead">Everything in your update doc has been applied. Three things need your decision. Look for the orange "Karen, please answer here" boxes, answer each one, then press <b>Send answers</b> at the top of the page. The bar at the top keeps track of your answers.</p>
   </section>
 
   <section class="card">
@@ -233,12 +235,12 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   </section>
 
   <section class="send" id="send">
-    <h2>Send your answers</h2>
-    <p>Anything else you want to tell us?</p>
+    <h2>Anything else?</h2>
+    <p>Add any other comments here. When you are done, press the <b>Send answers</b> button at the top of the page.</p>
     <textarea data-c="general" placeholder="Other comments (optional)"></textarea>
-    <p style="margin-top:20px">This is what will be sent:</p>
+    <p style="margin-top:20px">This is what Igor will receive:</p>
     <pre id="summary"></pre>
-    <div class="acts"><button class="send-btn" type="button" id="sendbtn">Send my answers to Igor</button><button class="copy-link" type="button" id="copy">or copy them instead</button><span class="note" id="note"></span></div>
+    <button class="copy-link" type="button" id="copy">Copy my answers instead</button>
   </section>
 </div>
 
@@ -265,17 +267,23 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       var box=document.querySelector('[data-box='+q+']');box.classList.toggle('ok',ok);box.querySelector('.state').textContent=ok?'Answered. You can still change it.':(val[q]?'Almost there, one more choice':'Waiting for your answer')});
     document.getElementById('count').textContent=n+' of 3 answered';
     document.getElementById('summary').textContent=summary();
+    if(typeof sendState==='function')sendState();
   }
   document.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode.dataset.q;st[q]=st[q]===b.dataset.v?'':b.dataset.v;save();render()})});
   document.querySelectorAll('textarea[data-c]').forEach(function(t){t.value=st['c_'+t.dataset.c]||'';t.addEventListener('input',function(){st['c_'+t.dataset.c]=t.value;save();render()})});
+  var sent=false,sentText='';
+  function toast(msg,err){var n=document.getElementById('note');n.textContent=msg;n.className='toast show'+(err?' err':'');clearTimeout(toast.t);toast.t=setTimeout(function(){n.className='toast'},err?9000:6000)}
+  function sendState(){var b=document.getElementById('sendbtn');if(b.dataset.busy)return;var all=['q1','q2','q3'].every(done);
+    if(sent&&summary()===sentText){b.disabled=true;b.textContent='Sent ✓';b.classList.remove('ready')}
+    else{b.disabled=false;b.textContent=sent?'Send updated answers':'Send answers';b.classList.toggle('ready',all)}}
   document.getElementById('sendbtn').addEventListener('click',function(){
-    var b=this,n=document.getElementById('note');b.disabled=true;b.textContent='Sending…';n.style.color='';n.textContent='';
-    fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:summary()})})
-      .then(function(r){if(!r.ok)throw 0;b.textContent='Sent';n.textContent='Thank you, Karen. Igor has your answers.'})
-      .catch(function(){b.disabled=false;b.textContent='Send my answers to Igor';n.style.color='var(--red-500)';n.textContent='Sorry, that did not go through. Please press Send again in a moment.'});
+    var b=this,text=summary();b.dataset.busy='1';b.disabled=true;b.textContent='Sending…';
+    fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text})})
+      .then(function(r){if(!r.ok)throw 0;sent=true;sentText=text;delete b.dataset.busy;sendState();toast('Thank you, Karen. Igor has your answers.')})
+      .catch(function(){delete b.dataset.busy;sendState();toast('Sorry, that did not go through. Please press Send again in a moment.',true)});
   });
-  document.getElementById('copy').addEventListener('click',function(){var t=summary(),n=document.getElementById('note');function ok(){n.style.color='';n.textContent='Copied. Paste it into a message to Igor.'}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){n.textContent='Select the text above and copy it.'})}else{n.textContent='Select the text above and copy it.'}});
+  document.getElementById('copy').addEventListener('click',function(){var t=summary();
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast('Copied. Paste it into a message to Igor.')},function(){toast('Select the text above and copy it.',true)})}else{toast('Select the text above and copy it.',true)}});
   render();
 })();
 </script>
