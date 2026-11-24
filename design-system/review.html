@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="/design-system/tokens.css">
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Poppins,-apple-system,Helvetica,Arial,sans-serif;color:var(--color-text-primary);background:var(--color-bg-subtle);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
@@ -99,7 +99,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .answer .qq{font-size:24px;font-weight:600;line-height:1.3;margin:0 0 18px;color:var(--navy-900)}
 .answer .sub{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--navy-900)}
 .opts{display:flex;flex-direction:column;gap:8px;max-width:520px}
-.opt{font:500 17px/1.3 Poppins,sans-serif;min-height:56px;padding:12px 18px;border-radius:12px;border:2px solid var(--grey-300);background:#fff;color:var(--navy-900);cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left;width:100%;transition:.15s}
+.opt{font:500 17px/1.3 Poppins,sans-serif;min-height:56px;padding:12px 18px;border-radius:12px;border:2px solid var(--grey-400);background:#fff;color:var(--navy-900);cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left;width:100%;transition:.15s}
 .opt:hover{border-color:var(--navy-900)}
 .opt::before{content:"";width:22px;height:22px;border-radius:999px;border:2px solid var(--grey-400);background:#fff;flex-shrink:0}
 .opt[aria-pressed=true]{border-color:var(--navy-900);background:#fff;font-weight:600;box-shadow:0 0 0 2px var(--navy-900)}
@@ -112,13 +112,33 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .send p{color:var(--color-text-secondary);margin:0 0 16px}
 .send pre{background:var(--grey-50);border:1px solid var(--color-border-default);border-radius:6px;padding:18px 20px;font:400 15px/1.7 Poppins,sans-serif;white-space:pre-wrap;margin:16px 0 20px;color:var(--navy-900)}
 .send .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.send-btn{flex-shrink:0;font:600 16px/1 Poppins,sans-serif;height:48px;padding:0 26px;border-radius:999px;border:0;background:var(--navy-900);color:#fff;cursor:pointer}.send-btn:hover{background:#1c3d5a}.send-btn:disabled{opacity:.7;cursor:default}.send-btn.ready{background:var(--green-500);box-shadow:0 0 0 4px rgba(24,135,61,.2)}.send-btn.ready:hover{background:#136c31}.toast{position:fixed;top:84px;left:50%;transform:translateX(-50%);z-index:30;background:var(--navy-900);color:#fff;font-weight:600;font-size:15px;border-radius:999px;padding:12px 24px;box-shadow:0 10px 30px rgba(16,40,61,.25);display:none;max-width:90vw;text-align:center}.toast.show{display:block}.toast.err{background:var(--red-500)}.copy-link{font:500 15px/1 Poppins,sans-serif;background:none;border:0;color:var(--color-text-secondary);text-decoration:underline;cursor:pointer;padding:0}
+.send-btn{flex-shrink:0;font:600 16px/1 Poppins,sans-serif;height:48px;padding:0 26px;border-radius:999px;border:0;background:var(--navy-900);color:#fff;cursor:pointer}.send-btn:hover{background:#1c3d5a}.send-btn:disabled{opacity:.7;cursor:default}.send-btn.ready{background:var(--green-500);box-shadow:0 0 0 4px rgba(24,135,61,.2)}.send-btn.ready:hover{background:#136c31}.toast{position:fixed;top:84px;left:16px;right:16px;margin:0 auto;width:fit-content;max-width:640px;z-index:30;background:var(--navy-900);color:#fff;font-weight:600;font-size:15px;line-height:1.4;border-radius:16px;padding:12px 22px;box-shadow:0 10px 30px rgba(16,40,61,.25);visibility:hidden;opacity:0;text-align:center}.toast.show{visibility:visible;opacity:1}.toast.err{background:var(--red-500)}.copy-link{font:500 15px/1 Poppins,sans-serif;background:none;border:0;color:var(--color-text-secondary);text-decoration:underline;cursor:pointer;padding:0}
 .send .note{font-size:14px;color:var(--green-500);font-weight:600}
-@media(max-width:800px){.send{padding:24px}.answer .body{padding:20px}.count{display:none}header.top img{display:none}h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.compare,.fyi{grid-template-columns:1fr}.size{grid-template-columns:1fr}.card,.reply{padding:24px}}
+html{scroll-padding-top:96px}
+.send-btn{min-width:176px}
+.send-btn.sent,.send-btn.sent:disabled{background:var(--green-500);opacity:1}
+.send pre{overflow-wrap:anywhere}
+.pane .stage{overflow-x:auto}
+.done-item .vis{height:auto;min-height:72px}
+@media(max-width:960px){header.top img,.count{display:none}.compare,.fyi{grid-template-columns:1fr}}
+@media(max-width:800px){h1{font-size:34px}.done-grid{grid-template-columns:1fr 1fr}.size{grid-template-columns:1fr}.card,.send{padding:24px}.answer .body{padding:20px}}
+@media(max-width:640px){
+  header.top .wrap{height:auto;flex-wrap:wrap;gap:8px;padding-top:8px;padding-bottom:8px}
+  .chips{flex:1 1 100%;gap:6px}
+  .chip{max-width:none;height:44px;padding:5px 8px 5px 6px;column-gap:6px;grid-template-columns:24px 1fr}
+  .chip b{width:24px;height:24px;font-size:12px}
+  .chip .t,.chip .v{font-size:11px}
+  .send-btn{flex:1 1 100%;height:44px}
+  section[id]{scroll-margin-top:136px}html{scroll-padding-top:136px}
+  .toast{top:124px}
+  .mock-header img{display:none}.mock-header{justify-content:flex-end}
+  .mock-addr{flex-wrap:wrap}
+}
+@media(max-width:480px){.done-grid{grid-template-columns:1fr}.wrap{padding:0 16px}h1{font-size:28px}}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><img src="logo.svg" alt="MyUS">
+<header class="top"><div class="wrap"><img src="/design-system/logo.svg" alt="MyUS">
   <nav class="chips" aria-label="Your answers so far">
     <a class="chip" href="#q1" data-chip="q1"><b>1</b><span class="t">Button sizes</span><span class="v">Not answered</span></a>
     <a class="chip" href="#q2" data-chip="q2"><b>2</b><span class="t">Other buttons</span><span class="v">Not answered</span></a>
@@ -142,7 +162,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     <p>These are live in the design system and on the Family page, homepage and confirmation page.</p>
     <div class="done-grid">
       <div class="done-item"><div class="vis"><div style="width:100%;height:56px;border-radius:6px;background:var(--blue-500)"></div></div><b>"Info" is now "Links"</b><small>Same blue, new name.</small><span class="check">✓ Applied</span></div>
-      <div class="done-item"><div class="vis"><div><div style="font-size:20px;font-weight:600;line-height:1.1;white-space:nowrap">Ship Worldwide</div><div style="font-size:12px;color:var(--grey-700);margin-top:6px">Rates apply to standard shipments.</div></div></div><b>Typography</b><small>Your sizes, colours and weights. "Caption" is now "Disclaimer".</small><span class="check">✓ Applied</span></div>
+      <div class="done-item"><div class="vis"><div><div style="font-size:20px;font-weight:600;line-height:1.1">Ship Worldwide</div><div style="font-size:12px;color:var(--grey-700);margin-top:6px">Rates apply to standard shipments.</div></div></div><b>Typography</b><small>Your sizes, colours and weights. "Caption" is now "Disclaimer".</small><span class="check">✓ Applied</span></div>
       <div class="done-item"><div class="vis"><span class="btn btn--xs btn-signup">Sign up</span><span class="btn btn--xs">Learn</span><span class="btn btn--xs btn-outline">Rates</span></div><b>Three buttons</b><small>Orange sign-up, blue, and blue outline, with your hover colours.</small><span class="check">✓ Applied</span></div>
       <div class="done-item"><div class="vis"><span class="btn btn--s disabled">Disabled</span></div><b>Disabled button</b><small>Your grey style, used for every button.</small><span class="check">✓ Applied</span></div>
     </div>
@@ -155,8 +175,8 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     <p>Your button (50px tall, 18px text) is now the main button everywhere. Some places are too tight for it, so we made the same buttons in three smaller sizes. Here are two real examples of why.</p>
 
     <div class="compare">
-      <div class="pane bad"><div class="cap">Page header, your size <em>too tall for the bar</em></div><div class="stage"><div class="mock-header"><img src="logo.svg" alt=""><div class="acts"><span class="btn btn-outline">Log in</span><span class="btn btn-signup">Sign up</span></div></div></div></div>
-      <div class="pane good"><div class="cap">Page header, Small size <em>fits</em></div><div class="stage"><div class="mock-header"><img src="logo.svg" alt=""><div class="acts"><span class="btn btn--s btn-outline">Log in</span><span class="btn btn--s btn-signup">Sign up</span></div></div></div></div>
+      <div class="pane bad"><div class="cap">Page header, your size <em>too tall for the bar</em></div><div class="stage"><div class="mock-header"><img src="/design-system/logo.svg" alt=""><div class="acts"><span class="btn btn-outline">Log in</span><span class="btn btn-signup">Sign up</span></div></div></div></div>
+      <div class="pane good"><div class="cap">Page header, Small size <em>fits</em></div><div class="stage"><div class="mock-header"><img src="/design-system/logo.svg" alt=""><div class="acts"><span class="btn btn--s btn-outline">Log in</span><span class="btn btn--s btn-signup">Sign up</span></div></div></div></div>
       <div class="pane bad"><div class="cap">Address card, your size <em>crowds the address</em></div><div class="stage"><div class="mock-addr"><div><b>Amira Hassan</b><br>4283 Express Lane, Suite 4021-518<br>Sarasota, FL 34249</div><span class="btn btn-outline">Copy Address</span></div></div></div>
       <div class="pane good"><div class="cap">Address card, Extra small size <em>fits</em></div><div class="stage"><div class="mock-addr"><div><b>Amira Hassan</b><br>4283 Express Lane, Suite 4021-518<br>Sarasota, FL 34249</div><span class="btn btn--xs btn-outline">Copy Address</span></div></div></div>
     </div>
@@ -174,9 +194,9 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       <div class="strip"><span class="who">Karen, please answer here</span><span class="of">Question 1 of 3</span><span class="state" data-state="q1">Waiting for your answer</span></div>
       <div class="body">
       <div class="qq">Do you approve the Medium, Small and Extra small button sizes?</div>
-      <div class="opts" data-q="q1"><button class="opt" type="button" data-v="Approved">Approve</button><button class="opt" type="button" data-v="I would like changes">I'd like changes</button></div>
+      <div class="opts" data-q="q1" role="group" aria-label="Smaller button sizes"><button class="opt" type="button" data-v="Approved">Approve</button><button class="opt" type="button" data-v="I would like changes">I'd like changes</button></div>
       <label for="c1">Your own answer or comments (optional)</label>
-      <textarea id="c1" data-c="q1" placeholder="Type here"></textarea>
+      <textarea maxlength="2500" id="c1" data-c="q1" placeholder="Type here"></textarea>
     </div></div>
   </section>
 
@@ -195,9 +215,9 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       <div class="strip"><span class="who">Karen, please answer here</span><span class="of">Question 2 of 3</span><span class="state" data-state="q2">Waiting for your answer</span></div>
       <div class="body">
       <div class="qq">Should these three buttons stay in the design system?</div>
-      <div class="opts" data-q="q2"><button class="opt" type="button" data-v="Keep all three">Keep all three</button><button class="opt" type="button" data-v="Remove some (see comment)">Remove some</button></div>
+      <div class="opts" data-q="q2" role="group" aria-label="Three other buttons"><button class="opt" type="button" data-v="Keep all three">Keep all three</button><button class="opt" type="button" data-v="Remove some (see comment)">Remove some</button></div>
       <label for="c2">Your own answer or comments (optional). If removing, tell us which.</label>
-      <textarea id="c2" data-c="q2" placeholder="Type here"></textarea>
+      <textarea maxlength="2500" id="c2" data-c="q2" placeholder="Type here"></textarea>
     </div></div>
   </section>
 
@@ -216,11 +236,11 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
       <div class="body">
       <div class="qq">Which size is right for each?</div>
       <div class="sub">Heading H3</div>
-      <div class="opts" data-q="q3a"><button class="opt" type="button" data-v="A (26.4px)">Option A · larger</button><button class="opt" type="button" data-v="B (about 19px)">Option B · smaller</button></div>
+      <div class="opts" data-q="q3a" role="group" aria-label="Heading H3 size"><button class="opt" type="button" data-v="A (26.4px)">Option A · larger</button><button class="opt" type="button" data-v="B (about 19px)">Option B · smaller</button></div>
       <div class="sub">Body Lead</div>
-      <div class="opts" data-q="q3b"><button class="opt" type="button" data-v="A (18px)">Option A · larger</button><button class="opt" type="button" data-v="B (about 17px)">Option B · smaller</button></div>
+      <div class="opts" data-q="q3b" role="group" aria-label="Body Lead size"><button class="opt" type="button" data-v="A (18px)">Option A · larger</button><button class="opt" type="button" data-v="B (about 17px)">Option B · smaller</button></div>
       <label for="c3">Your own answer or comments (optional)</label>
-      <textarea id="c3" data-c="q3" placeholder="Type here"></textarea>
+      <textarea maxlength="2500" id="c3" data-c="q3" placeholder="Type here"></textarea>
     </div></div>
   </section>
 
@@ -237,10 +257,10 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   <section class="send" id="send">
     <h2>Anything else?</h2>
     <p>Add any other comments here. When you are done, press the <b>Send answers</b> button at the top of the page.</p>
-    <textarea data-c="general" placeholder="Other comments (optional)"></textarea>
+    <textarea maxlength="2500" data-c="general" placeholder="Other comments (optional)"></textarea>
     <p style="margin-top:20px">This is what Igor will receive:</p>
     <pre id="summary"></pre>
-    <button class="copy-link" type="button" id="copy">Copy my answers instead</button> <span style="color:var(--grey-300);margin:0 10px">|</span> <button class="copy-link" type="button" id="reset">Clear all my answers and start over</button>
+    <button class="copy-link" type="button" id="copy">Copy my answers instead</button> <span style="display:inline-block;width:32px"></span><button class="copy-link" type="button" id="reset" style="color:var(--red-500)">Clear all my answers and start over</button>
   </section>
 </div>
 
@@ -248,10 +268,12 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 (function(){
   var KEY='myus-ds-review-2026-11-24', st={};
   try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  if(!st||typeof st!=='object'||Array.isArray(st))st={};
+  Object.keys(st).forEach(function(k){st[k]=st[k]==null?'':String(st[k])});
   function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
   function done(q){var c=!!(st['c_'+q]||'').trim();return q==='q3'?(!!(st.q3a&&st.q3b)||(c&&!st.q3a&&!st.q3b)):(!!st[q]||c)}
   function summary(){
-    var c=function(q){var t=(st['c_'+q]||'').trim();return t?'\n   Comment: '+t:''};
+    var c=function(q){var t=(st['c_'+q]||'').trim();return t?'\n   Comment: '+t.replace(/\n/g,'\n   '):''};
     var L=['MyUS Design System review, answers',''];
     L.push('1. Smaller button sizes: '+(st.q1||'(no choice)')+c('q1'));
     L.push('2. Three other buttons: '+(st.q2||'(no choice)')+c('q2'));
@@ -264,7 +286,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     var short={'Approved':'Approved','I would like changes':'Changes wanted','Keep all three':'Keep all three','Remove some (see comment)':'Remove some'};var val={q1:short[st.q1]||((st.c_q1||'').trim()?'Comment written':''),q2:short[st.q2]||((st.c_q2||'').trim()?'Comment written':''),q3:(st.q3a||st.q3b)?('H3: '+(st.q3a?st.q3a.charAt(0):'?')+', Lead: '+(st.q3b?st.q3b.charAt(0):'?')):((st.c_q3||'').trim()?'Comment written':'')};
     var n=0;['q1','q2','q3'].forEach(function(q){var ok=done(q);if(ok)n++;
       var chip=document.querySelector('[data-chip='+q+']');chip.classList.toggle('ok',ok);chip.querySelector('.v').textContent=val[q]||'Not answered';
-      var box=document.querySelector('[data-box='+q+']');box.classList.toggle('ok',ok);box.querySelector('.state').textContent=ok?'Answered. You can still change it.':(val[q]?'Almost there, one more choice':'Waiting for your answer')});
+      var box=document.querySelector('[data-box='+q+']');box.classList.toggle('ok',ok);box.querySelector('.who').textContent=ok?'Answered, thank you':'Karen, please answer here';box.querySelector('.state').textContent=ok?'Answered. You can still change it.':(val[q]?'Almost there, one more choice':'Waiting for your answer')});
     document.getElementById('count').textContent=n+' of 3 answered';
     document.getElementById('summary').textContent=summary();
     if(typeof sendState==='function')sendState();
@@ -273,19 +295,24 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   document.querySelectorAll('textarea[data-c]').forEach(function(t){t.value=st['c_'+t.dataset.c]||'';t.addEventListener('input',function(){st['c_'+t.dataset.c]=t.value;save();render()})});
   var sentText='';try{sentText=localStorage.getItem(KEY+'-sent')||''}catch(e){}
   var sent=!!sentText;
-  function toast(msg,err){var n=document.getElementById('note');n.textContent=msg;n.className='toast show'+(err?' err':'');clearTimeout(toast.t);toast.t=setTimeout(function(){n.className='toast'},err?9000:6000)}
+  function toast(msg,err){var n=document.getElementById('note');n.setAttribute('role',err?'alert':'status');n.textContent=msg;n.className='toast show'+(err?' err':'');clearTimeout(toast.t);toast.t=setTimeout(function(){n.className='toast'},err?20000:7000)}
   function sendState(){var b=document.getElementById('sendbtn');if(b.dataset.busy)return;var all=['q1','q2','q3'].every(done);
-    if(sent&&summary()===sentText){b.disabled=true;b.textContent='Sent ✓';b.classList.remove('ready')}
-    else{b.disabled=false;b.textContent=sent?'Send updated answers':'Send answers';b.classList.toggle('ready',all)}}
+    if(sent&&summary()===sentText){b.disabled=true;b.textContent='Sent ✓';b.classList.remove('ready');b.classList.add('sent')}
+    else{b.disabled=false;b.textContent=sent?'Send update':'Send answers';b.classList.remove('sent');b.classList.toggle('ready',all)}}
   document.getElementById('sendbtn').addEventListener('click',function(){
-    var b=this,text=summary();b.dataset.busy='1';b.disabled=true;b.textContent='Sending…';
-    fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text})})
-      .then(function(r){if(!r.ok)throw 0;sent=true;sentText=text;try{localStorage.setItem(KEY+'-sent',text)}catch(e){}delete b.dataset.busy;sendState();toast('Thank you, Karen. Igor has your answers.')})
-      .catch(function(){delete b.dataset.busy;sendState();toast('Sorry, that did not go through. Please press Send again in a moment.',true)});
+    var b=this,text=summary(),names={q1:'1',q2:'2',q3:'3'},missing=['q1','q2','q3'].filter(function(q){return !done(q)});
+    if(missing.length===3&&!(st.c_general||'').trim()){toast('Nothing to send yet. Please answer at least one question first.',true);return}
+    if(text.length>11000){toast('Your comments are too long to send. Please shorten them a little and press Send again.',true);return}
+    b.dataset.busy='1';b.disabled=true;b.textContent='Sending…';
+    var ctl=window.AbortController?new AbortController():null,timer=setTimeout(function(){if(ctl)ctl.abort()},15000);
+    fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text}),signal:ctl?ctl.signal:undefined})
+      .then(function(r){clearTimeout(timer);if(!r.ok)throw 0;sent=true;sentText=text;try{localStorage.setItem(KEY+'-sent',text)}catch(e){}delete b.dataset.busy;sendState();
+        toast(missing.length?'Sent, thank you. Question'+(missing.length>1?'s ':' ')+missing.map(function(q){return names[q]}).join(' and ')+(missing.length>1?' are':' is')+' still unanswered. You can answer and send again.':'Thank you, Karen. Igor has your answers.')})
+      .catch(function(){clearTimeout(timer);delete b.dataset.busy;sendState();toast('Sorry, that did not go through. Please press Send again, or use "Copy my answers instead" at the bottom of the page.',true)});
   });
   document.getElementById('copy').addEventListener('click',function(){var t=summary();
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast('Copied. Paste it into a message to Igor.')},function(){toast('Select the text above and copy it.',true)})}else{toast('Select the text above and copy it.',true)}});
-  document.getElementById('reset').addEventListener('click',function(){st={};sent=false;sentText='';try{localStorage.removeItem(KEY);localStorage.removeItem(KEY+'-sent')}catch(e){}
+  document.getElementById('reset').addEventListener('click',function(){if(!window.confirm('Clear all your answers and comments on this page?'))return;st={};sent=false;sentText='';try{localStorage.removeItem(KEY);localStorage.removeItem(KEY+'-sent')}catch(e){}
     document.querySelectorAll('textarea[data-c]').forEach(function(t){t.value=''});render();window.scrollTo({top:0,behavior:'smooth'});toast('Cleared. You can start again.')});
   render();
 })();
