@@ -17,3 +17,5 @@
 !hub
 !hub/**
 !hub.html
+!api
+!api/**

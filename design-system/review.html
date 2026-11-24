@@ -103,7 +103,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 .send p{color:var(--color-text-secondary);margin:0 0 16px}
 .send pre{background:var(--grey-50);border:1px solid var(--color-border-default);border-radius:6px;padding:18px 20px;font:400 15px/1.7 Poppins,sans-serif;white-space:pre-wrap;margin:16px 0 20px;color:var(--navy-900)}
 .send .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.send button.btn{cursor:pointer}
+.send button.btn{cursor:pointer}.send button.btn:disabled{opacity:.7;cursor:default}
 .send .note{font-size:14px;color:var(--green-500);font-weight:600}
 .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--color-border-default);box-shadow:0 -6px 24px rgba(16,40,61,.08);z-index:10}
 .bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
@@ -125,7 +125,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   <section class="decide" id="decide">
     <div class="k">For Karen to decide</div>
     <h2>3 answers needed</h2>
-    <p>Click one to jump to it. Pick an answer or write your own, then press Send at the bottom.</p>
+    <p>Click one to jump to it. Pick an answer or write your own, then press Send at the bottom. Your answers go straight to Igor.</p>
     <ol>
       <li><a href="#q1"><span class="n">1</span>Approve the smaller button sizes<span class="st" data-st="q1">Not answered</span></a></li>
       <li><a href="#q2"><span class="n">2</span>Keep or drop three other buttons<span class="st" data-st="q2">Not answered</span></a></li>
@@ -230,7 +230,7 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
     <textarea data-c="general" placeholder="Other comments (optional)"></textarea>
     <p style="margin-top:20px">This is what will be sent:</p>
     <pre id="summary"></pre>
-    <div class="acts"><button class="btn btn-signup" type="button" id="mail">Email my answers</button><button class="btn btn-outline" type="button" id="copy">Copy my answers</button><span class="note" id="note"></span></div>
+    <div class="acts"><button class="btn btn-signup" type="button" id="sendbtn">Send my answers</button><button class="btn btn-outline" type="button" id="copy">Copy my answers</button><span class="note" id="note"></span></div>
   </section>
 </div>
 
@@ -238,7 +238,6 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
 
 <script>
 (function(){
-  var SEND_TO=''; // recipient for "Email my answers"
   var KEY='myus-ds-review-2026-11-24', st={};
   try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
@@ -261,8 +260,13 @@ h1{font-size:48px;line-height:1.1;font-weight:600;margin:12px 0 16px;letter-spac
   }
   document.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode.dataset.q;st[q]=st[q]===b.dataset.v?'':b.dataset.v;save();render()})});
   document.querySelectorAll('textarea[data-c]').forEach(function(t){t.value=st['c_'+t.dataset.c]||'';t.addEventListener('input',function(){st['c_'+t.dataset.c]=t.value;save();render()})});
-  document.getElementById('mail').addEventListener('click',function(){location.href='mailto:'+SEND_TO+'?subject='+encodeURIComponent('MyUS Design System review: my answers')+'&body='+encodeURIComponent(summary())});
-  document.getElementById('copy').addEventListener('click',function(){var t=summary(),n=document.getElementById('note');function ok(){n.textContent='Copied. Paste it into your reply to Igor.'}
+  document.getElementById('sendbtn').addEventListener('click',function(){
+    var b=this,n=document.getElementById('note');b.disabled=true;b.textContent='Sending…';n.style.color='';n.textContent='';
+    fetch('/api/review-answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:summary()})})
+      .then(function(r){if(!r.ok)throw 0;b.textContent='Sent';n.textContent='Thank you, Karen. Igor has your answers.'})
+      .catch(function(){b.disabled=false;b.textContent='Send my answers';n.style.color='var(--red-500)';n.textContent='Could not send. Please use "Copy my answers" and paste them in a message to Igor.'});
+  });
+  document.getElementById('copy').addEventListener('click',function(){var t=summary(),n=document.getElementById('note');function ok(){n.style.color='';n.textContent='Copied. Paste it into a message to Igor.'}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){n.textContent='Select the text above and copy it.'})}else{n.textContent='Select the text above and copy it.'}});
   render();
 })();
