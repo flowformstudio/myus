@@ -7,12 +7,12 @@ module.exports = async (req, res) => {
   const body = typeof req.body === 'string' ? safeParse(req.body) : (req.body || {});
   const text = String(body.text || '').trim();
   if (body.website) return res.status(200).json({ ok: true }); // honeypot field, bots only
-  if (!text || text.length > 4000) return res.status(400).json({ ok: false, error: 'bad text' });
+  if (!text || text.length > 12000) return res.status(400).json({ ok: false, error: 'bad text' });
   try {
     const r = await fetch(hook, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: ':memo: *MyUS Design System review: answers received*\n```' + text.replace(/```/g, "'''") + '```' }),
+      body: JSON.stringify({ text: ':memo: *MyUS Design System review: answers received*\n```' + text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/```/g, "'''") + '```' }),
     });
     if (!r.ok) return res.status(502).json({ ok: false, error: 'slack ' + r.status });
     return res.status(200).json({ ok: true });
